@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite verbose="2" name="Failed suite [Omlete Suite]">
+  <test name="Browser Conf Test(failed)">
+    <classes>
+      <class name="framework.data.BrowserXmlParserTest">
+        <methods>
+          <include name="beforeTest"/>
+        </methods>
+      </class> <!-- framework.data.BrowserXmlParserTest -->
+      <class name="framework.data.BrowserConfMethod">
+        <methods>
+          <include name="setup"/>
+          <include name="verifyMapValueEmpty"/>
+          <include name="verifyCmdEmpty"/>
+          <include name="verifyCmd_Map_Mix"/>
+          <include name="verifyMapValues"/>
+        </methods>
+      </class> <!-- framework.data.BrowserConfMethod -->
+      <class name="framework.data.MappingParserTest">
+        <methods>
+          <include name="beforeTest"/>
+        </methods>
+      </class> <!-- framework.data.MappingParserTest -->
+    </classes>
+  </test> <!-- Browser Conf Test(failed) -->
+</suite> <!-- Failed suite [Omlete Suite] -->
