@@ -1,5 +1,8 @@
 omelet
 ======
+![Build Status](https://travis-ci.org/springer-opensource/omelet.svg?branch=master)](https://travis-ci.org/springer-opensource/omelet)
+
+
 
 What is Omelet
 --------------
