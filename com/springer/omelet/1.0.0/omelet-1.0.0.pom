@@ -108,11 +108,18 @@
 			</plugin>
 		</plugins>
 	</build>
-	<distributionManagement>
+	<!-- <distributionManagement>
 		<repository>
 			<id>internal.repo</id>
 			<name>Temporary Staging Repository</name>
 			<url>file://${project.build.directory}/mvn-repo</url>
+		</repository>
+	</distributionManagement> -->
+	<distributionManagement>
+		<repository>
+		<id>nexus</id>
+		<name>omelet-repo</name>
+		<url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
 		</repository>
 	</distributionManagement>
 	<properties>
