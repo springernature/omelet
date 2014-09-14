@@ -1,12 +1,11 @@
 omelet
 ======
-![Build Status](https://travis-ci.org/springer-opensource/omelet.svg?branch=master)](https://travis-ci.org/springer-opensource/omelet)
-
-
+[![Build Status](https://travis-ci.org/springer-opensource/omelet.svg?branch=master)](https://travis-ci.org/springer-opensource/omelet)
 
 What is Omelet
 --------------
-Very simple yet powerful automation library for **Selenium-WebDriver** which uses one of the most popular test runner for UI Automation- **TestNG**
+Very simple yet powerful automation library for **Selenium WebDriver** which uses one of the most popular test runner for UI Automation- **TestNG**
+
 
 Salient Features
 ----------------
@@ -28,12 +27,11 @@ Build
 Quick Start
 ----------
 * install maven 
-* clone omelet using git clone 
-* go to root directory and do mvn clean install
+* copy dependency in your project
  
 
 ####For mavenised project
-copy below dependency and add to your pom.xml
+copy omelet dependency and add to your pom.xml
 
         <dependency>
 	      <groupId>com.springer</groupId>
@@ -87,14 +85,7 @@ Reports
 -----------
 
 Omelet uses reportNG for reporting and there has to be guice dependency for reportNG to work 
-
-                       <dependency>
-                          <groupId>com.google.inject</groupId>
-                          <artifactId>guice</artifactId>
-                          <version>3.0</version>
-                      </dependency>
-
-
+You may face issue with dependencies related to ReportNG, do read this [blog](http://solidsoft.wordpress.com/2011/01/23/better-looking-html-test-reports-for-testng-with-reportng-maven-guide/)
 ### Reports Path 
 
 * If we do mvn test(or clean install ) then reports will be generated in target/surefire-reports/html/index.html
