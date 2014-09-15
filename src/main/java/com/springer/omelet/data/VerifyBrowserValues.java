@@ -181,7 +181,7 @@ public class VerifyBrowserValues {
 	private String defaultBrowserVersion() {
 		if ("true".equals(browserConfMapValues.get(BrowserConstant.remoteFlag))
 				&& "true".equals(browserConfMapValues
-						.get(BrowserConstant.bsSwitch))) {
+						.get(BrowserConstant.bsSwitch)) && "false".equals(browserConfMapValues.get(BrowserConstant.mobileTest))) {
 			throw new FrameworkException("Please set browser Version ");
 		}
 		return browserVersion;
