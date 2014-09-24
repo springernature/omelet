@@ -120,7 +120,9 @@ class DriverFactory {
 
 		// For maximizing driver windows and wait
 		if (webDriver != null) {
-			webDriver.manage().window().maximize();
+			if (this.isMobileTest == false) {
+				webDriver.manage().window().maximize();	
+			}
 			webDriver.manage().timeouts()
 					.implicitlyWait(driverTimeOut, TimeUnit.SECONDS);
 		}
