@@ -104,8 +104,7 @@ public class Utils {
 				break;
 			case MAC:
 				returFilePath = className.getClass()
-						.getResource("/" + fileName).getPath().substring(1)
-						.replace("%20", " ");
+						.getResource("/" + fileName).getPath();
 				break;
 			default:
 				break;
