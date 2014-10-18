@@ -369,6 +369,7 @@ public class MappingParser {
 		}
 
 		// run startegy update
+		
 		if (packageRunStartegy.get(PackageName) != null
 				&& !packageRunStartegy.get(PackageName).isEmpty()) {
 			runStartegy = packageRunStartegy.get(PackageName);

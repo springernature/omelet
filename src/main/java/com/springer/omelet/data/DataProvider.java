@@ -45,15 +45,58 @@ public class DataProvider {
 			.synchronizedMap(new HashMap<String, List<IProperty>>());
 	static Map<String, List<IBrowserConf>> methodBrowser = Collections
 			.synchronizedMap(new HashMap<String, List<IBrowserConf>>());
+	public static final String GOOGLEDATANAME="GoogleSheet";
 	@SuppressWarnings("unused")
 	private static final Logger LOGGER = Logger.getLogger(DataProvider.class);
 
-	@org.testng.annotations.DataProvider(name = "Data", parallel = true)
+	//@org.testng.annotations.DataProvider(name = "DataT", parallel = true)
 	public static Object[][] dataProvider(Method m) {
 		String environment = System.getProperty("env-type");
 
 		String methodName = m.getDeclaringClass().getName() + "." + m.getName();
 		IMappingData mapD = MappingParser.getInstance().getMethodData(m);
+		XmlApplicationData xmlapData = null;
+		if (environment != null && !StringUtils.isBlank(environment)) {
+			// get the xml name from MappingParser Static Method
+			xmlapData = new XmlApplicationData(mapD.getTestData(), environment);
+			methodData.put(methodName, xmlapData.getAppData());
+		} else {
+			xmlapData = new XmlApplicationData(mapD.getTestData());
+			methodData.put(methodName, xmlapData.getAppData());
+		}
+		BrowserXmlParser bxp = new BrowserXmlParser(mapD.getClientEnvironment());
+		methodBrowser.put(methodName, bxp.getBrowserConf());
+		return getData(mapD.getRunStartegy(), methodName);
+	}
+	
+	private static String getEnvironment(){
+		return System.getProperty("env-type");
+	}
+	
+	private static String getFullMethodName(Method m){
+		return m.getDeclaringClass().getName() + "." + m.getName();
+	}
+	
+	@org.testng.annotations.DataProvider(name = GOOGLEDATANAME, parallel = true)
+	public static Object[][] googleSheetDataProvider(Method m){
+		String environment = getEnvironment();
+		String methodName = getFullMethodName(m);
+		//Check if we already have values in methodBrowser and methodData which for sure we will be having 
+		//simply call getData which is having the logic of filtering all the data for you 
+		//Challenge is we should not do expensive call to sheet 
+		//And methodBrowserShould be having values for the data for Google sheet if at all it is required
+		return null;
+	}
+	
+	@org.testng.annotations.DataProvider(name ="Data",parallel = true)
+	public static Object[][] xmlDataRevisited(Method m){
+		String environment = System.getProperty("env-type");
+		String methodName = m.getDeclaringClass().getName() + "." + m.getName();
+		MappingParserRevisit mpr = new MappingParserRevisit("Mapping.xml");
+		RefineMappedData refinedMappedData = new RefineMappedData(mpr);
+		IMappingData mapD = refinedMappedData.getMethodData(m);
+		System.out.println(mapD.getClientEnvironment().get(0));
+		System.out.println(mapD.getTestData());
 		XmlApplicationData xmlapData = null;
 		if (environment != null && !StringUtils.isBlank(environment)) {
 			// get the xml name from MappingParser Static Method
