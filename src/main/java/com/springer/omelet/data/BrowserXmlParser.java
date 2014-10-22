@@ -91,6 +91,10 @@ public class BrowserXmlParser {
 		return singleXMlList;
 	}
 
+	/**
+	 * Return list of {@link IBrowserConf} prepared from the list of the name of the xml recieved
+	 * @return
+	 */
 	public List<IBrowserConf> getBrowserConf() {
 
 		List<HashMap<String, String>> totalList = new ArrayList<HashMap<String, String>>();
@@ -113,6 +117,11 @@ public class BrowserXmlParser {
 		return ibrowserList;
 	}
 
+	/**
+	 * Return key values pair for the the tag ClientEnvironment of the Browser Xml
+	 * @param keyElement
+	 * @return
+	 */
 	private HashMap<String, String> getKeyValue(Element keyElement) {
 
 		HashMap<String, String> browserData = new HashMap<String, String>();

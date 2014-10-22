@@ -43,7 +43,7 @@ import com.springer.omelet.exception.FrameworkException;
  * @author kapilA
  * 
  */
-class XmlApplicationData {
+public class XmlApplicationData {
 
 	private DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 	private DocumentBuilder builder = null;

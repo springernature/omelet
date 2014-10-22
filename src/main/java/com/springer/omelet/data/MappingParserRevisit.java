@@ -19,7 +19,11 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import com.springer.omelet.common.Utils;
-
+/**
+ * Mapping.xml parser 
+ * @author kapil
+ *
+ */
 public class MappingParserRevisit implements IDataSource {
 
 	private final DocumentBuilderFactory factory = DocumentBuilderFactory

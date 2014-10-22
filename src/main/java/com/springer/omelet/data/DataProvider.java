@@ -29,6 +29,8 @@ import java.util.Set;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 
+import com.springer.omelet.testng.support.RetryIAnnotationTransformer;
+
 /***
  * Data Provider class for the @Test Methods
  * 
@@ -66,7 +68,7 @@ public class DataProvider {
 		}
 		BrowserXmlParser bxp = new BrowserXmlParser(mapD.getClientEnvironment());
 		methodBrowser.put(methodName, bxp.getBrowserConf());
-		return getData(mapD.getRunStartegy(), methodName);
+		return getData(methodName);
 	}
 	
 	private static String getEnvironment(){
@@ -77,15 +79,20 @@ public class DataProvider {
 		return m.getDeclaringClass().getName() + "." + m.getName();
 	}
 	
-	@org.testng.annotations.DataProvider(name = GOOGLEDATANAME, parallel = true)
+	@org.testng.annotations.DataProvider(name = "GoogleData", parallel = true)
 	public static Object[][] googleSheetDataProvider(Method m){
-		String environment = getEnvironment();
 		String methodName = getFullMethodName(m);
 		//Check if we already have values in methodBrowser and methodData which for sure we will be having 
 		//simply call getData which is having the logic of filtering all the data for you 
 		//Challenge is we should not do expensive call to sheet 
 		//And methodBrowserShould be having values for the data for Google sheet if at all it is required
-		return null;
+		return getData(methodName);
+	}
+	
+	@org.testng.annotations.DataProvider(name = "XmlData", parallel = true)
+	public static Object[][] xmlDataProvider(Method m){
+		String methodName = getFullMethodName(m);
+		return getData(methodName);
 	}
 	
 	@org.testng.annotations.DataProvider(name ="Data",parallel = true)
@@ -108,23 +115,24 @@ public class DataProvider {
 		}
 		BrowserXmlParser bxp = new BrowserXmlParser(mapD.getClientEnvironment());
 		methodBrowser.put(methodName, bxp.getBrowserConf());
-		return getData(mapD.getRunStartegy(), methodName);
+		return getData(methodName);
 	}
 
-	public static Object[][] getData(mapStrategy startegy, String methodName) {
+	public static Object[][] getData(String methodName) {
 		Object[][] returnObject = null;
-		List<IBrowserConf> n_browserConf = methodBrowser.get(methodName);
+		List<IBrowserConf> n_browserConf = RetryIAnnotationTransformer.methodBrowser.get(methodName);
 		// removing the duplicate via hashset
 		Set<IBrowserConf> browserConfSet = new HashSet<IBrowserConf>(
 				n_browserConf);
 		List<IBrowserConf> browserConf = new ArrayList<IBrowserConf>(
 				browserConfSet);
-		List<IProperty> prop = methodData.get(methodName);
+		List<IProperty> prop = RetryIAnnotationTransformer.methodData.get(methodName);
+		mapStrategy strategy = RetryIAnnotationTransformer.runStrategy.get(methodName);
 		int browserConfsize = browserConf.size();
 		int propSize = prop.size();
 		int loopCombination;
 		int k = 0;
-		switch (startegy) {
+		switch (strategy) {
 		case Full:
 			loopCombination = browserConfsize * propSize;
 			returnObject = new Object[loopCombination][2];

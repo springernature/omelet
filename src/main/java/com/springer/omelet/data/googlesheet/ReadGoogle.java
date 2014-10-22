@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.log4j.Logger;
 
 import com.google.gdata.client.spreadsheet.SpreadsheetService;
 import com.google.gdata.data.spreadsheet.ListEntry;
@@ -32,11 +33,12 @@ public class ReadGoogle implements IDataSource {
 	private String googleUserName;
 	private String googlePasswd;
 	private static final String MAP_SHEET_NAME = "Mapping";
-	private static final CharSequence DELIMITTER = ";";
+	private static final String DELIMITTER = ";";
 	private URL SPREADSHEET_FEED_URL = null;
 	private SpreadsheetEntry spreadSheet;
 	private SpreadsheetService service = null;
 	private String sheetName = null;
+	private static final Logger LOGGER = Logger.getLogger(ReadGoogle.class);
 
 	public ReadGoogle(String googleUserName, String googlePasswd,
 			String sheetName) {
@@ -57,23 +59,19 @@ public class ReadGoogle implements IDataSource {
 			List<com.google.gdata.data.spreadsheet.SpreadsheetEntry> spreadsheets = feed
 					.getEntries();
 			for (SpreadsheetEntry sheet : spreadsheets) {
+			//	System.out.println(sheet.getTitle().getPlainText());
 				if (sheet.getTitle().getPlainText().equalsIgnoreCase(sheetName)) {
 					return sheet;
 				}
 			}
 		} catch (AuthenticationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-
+			LOGGER.error(e);
 		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			LOGGER.error(e);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			LOGGER.error(e);
 		} catch (ServiceException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			LOGGER.error(e);
 		}
 		return null;
 
@@ -101,19 +99,17 @@ public class ReadGoogle implements IDataSource {
 			listFeedURL = getWorkSheet(MAP_SHEET_NAME).getListFeedUrl();
 			ListFeed listFeed = service.getFeed(listFeedURL, ListFeed.class);
 			for (ListEntry row : listFeed.getEntries()) {
-				System.out.println(row.getCustomElements().getValue(
+				/*System.out.println(row.getCustomElements().getValue(
 						"methodname"));
 				System.out.println(row.getCustomElements().getValue(
-						"methodnameadsasd"));
+						"methodnameadsasd"));*/
 				returnedMap.put(row.getCustomElements().getValue("methodname"),
 						getMap(row));
 			}
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			LOGGER.error(e);
 		} catch (ServiceException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			LOGGER.error(e);
 		}
 
 		return returnedMap;
@@ -125,6 +121,8 @@ public class ReadGoogle implements IDataSource {
 	 * @return
 	 */
 	private ImplementIMap getMap(ListEntry row) {
+		/*System.out.println("In preparing the Map:");
+		System.out.println();*/
 		return new ImplementIMap.Builder()
 				.withClientEnvironment(
 						getList(row.getCustomElements()
@@ -146,7 +144,7 @@ public class ReadGoogle implements IDataSource {
 		List<String> returnedList = new ArrayList<String>();
 		if (StringUtils.isNotBlank(commaSepratedList)) {
 			if (commaSepratedList.contains(DELIMITTER)) {
-				String array[] = commaSepratedList.split(";");
+				String array[] = commaSepratedList.split(DELIMITTER);
 				for (int i = 0; i < array.length; i++)
 					returnedList.add(array[i]);
 			} else {
@@ -188,14 +186,12 @@ public class ReadGoogle implements IDataSource {
 				} catch (NullPointerException ex) {
 					System.out.println("Not able to find sheet:"
 							+ sheetNameHolder);
+					LOGGER.error(ex);
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					LOGGER.error(e);
 				} catch (ServiceException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					LOGGER.error(e);
 				}
-				;
 			}
 		return browserConfList;
 	}
@@ -232,17 +228,15 @@ public class ReadGoogle implements IDataSource {
 		URL testDataSheetURL;
 		ListFeed testDataFeed = null;
 		// Here reading the method name and the WorkSheetName
-			System.out.println(mData.getTestData());
+//			System.out.println(mData.getTestData());
 			try {
 				testDataSheetURL = getWorkSheet(mData.getTestData())
 						.getListFeedUrl();
 				testDataFeed = service.getFeed(testDataSheetURL, ListFeed.class);
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				LOGGER.error(e);
 			} catch (ServiceException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				LOGGER.error(e);
 			}
 			
 			return getSingleMethodtData(environment, testDataFeed);
@@ -255,15 +249,14 @@ public class ReadGoogle implements IDataSource {
 	 * @return
 	 */
 	private List<IProperty> getSingleMethodtData(String env, ListFeed rows) {
-
 		List<TestEnvironmentMap> testEnvironmentMap = new ArrayList<ReadGoogle.TestEnvironmentMap>();
 		Map<String, String> keyValuePair = new HashMap<String, String>();
 		TestEnvironmentMap testEnvHolder = null;
 		for (ListEntry row : rows.getEntries()) {
-			System.out.println("Row is:"
+		/*	System.out.println("Row is:"
 					+ row.getCustomElements().getValue("key") + "value:"
 					+ row.getCustomElements().getValue("value"));
-
+*/
 			if (row.getCustomElements().getValue("key").contains("Environment")) {
 				if (testEnvHolder != null) {
 					testEnvironmentMap.add(testEnvHolder);
@@ -333,13 +326,18 @@ public class ReadGoogle implements IDataSource {
 		return fullEnvList;
 	}
 
+	/**
+	 * Hold the test data for the particular environment 
+	 * @author kapil
+	 *
+	 */
 	private class TestEnvironmentMap {
 		String environmentName;
 		IProperty prop;
 		Map<String, String> testDataForSingelEnvEntry = new HashMap<String, String>();
 
 		public TestEnvironmentMap(String environmentName) {
-			System.out.println("Environment for TestENvu:" + environmentName);
+//			System.out.println("Environment for TestENvu:" + environmentName);
 			/* System.out.println("Prop value:"+prop.getValue("Key1")); */
 			this.environmentName = environmentName;
 		}

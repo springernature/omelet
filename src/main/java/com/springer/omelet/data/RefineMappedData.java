@@ -8,7 +8,12 @@ import org.apache.commons.lang3.StringUtils;
 
 import com.springer.omelet.data.DataProvider.mapStrategy;
 import com.springer.omelet.exception.FrameworkException;
-
+/**
+ * Refine data based on the hierarchy method-->Class-->Package
+ * take {@link IDataSource} and return 
+ * @author kapil
+ *
+ */
 public class RefineMappedData {
 
 	private Map<String, IMappingData> primaryDataMap;
@@ -25,7 +30,7 @@ public class RefineMappedData {
 	 * @return
 	 */
 	public IMappingData getMethodData(Method methodName) {
-		System.out.println(getRefinedClientEnvironment(methodName).get(0));
+		//System.out.println(getRefinedClientEnvironment(methodName).get(0));
 		
 		return new ImplementIMap.Builder()
 				.withTestData(getRefinedTestData(methodName))
@@ -62,11 +67,14 @@ public class RefineMappedData {
 				method.getDeclaringClass().getPackage().getName().toString());
 
 		//if 1st entry is list is zero then for sure its fake list of client Environment
-		if (methodClientData != null && StringUtils.isNotBlank(methodClientData.getClientEnvironment().get(0))) {
+		/*System.out.println("Method:"+methodClientData.getClientEnvironment().get(0));
+		System.out.println("Class"+classClientData.getClientEnvironment().get(0));
+		System.out.println("package:"+packageClientData.getClientEnvironment().get(0));*/
+		if (methodClientData != null && !methodClientData.getClientEnvironment().isEmpty() && StringUtils.isNotBlank(methodClientData.getClientEnvironment().get(0))) {
 			return methodClientData.getClientEnvironment();
-		} else if (classClientData != null && StringUtils.isNotBlank(classClientData.getClientEnvironment().get(0))) {
+		} else if (classClientData != null && !classClientData.getClientEnvironment().isEmpty() && StringUtils.isNotBlank(classClientData.getClientEnvironment().get(0))) {
 			return classClientData.getClientEnvironment();
-		} else if (packageClientData != null && StringUtils.isNotBlank(packageClientData.getClientEnvironment().get(0))) {
+		} else if (packageClientData != null && !packageClientData.getClientEnvironment().isEmpty() && StringUtils.isNotBlank(packageClientData.getClientEnvironment().get(0))) {
 			return packageClientData.getClientEnvironment();
 		}
 		throw new FrameworkException(
