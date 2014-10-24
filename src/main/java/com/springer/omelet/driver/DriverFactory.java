@@ -22,6 +22,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -35,7 +36,7 @@ import org.openqa.selenium.support.events.EventFiringWebDriver;
 
 import com.springer.omelet.browserstacktunnel.BrowserStackTunnel;
 import com.springer.omelet.data.IBrowserConf;
-import com.springer.omelet.data.MappingParser;
+import com.springer.omelet.data.xml.MappingParserRevisit;
 
 /***
  * Driver factory Class for Returning Driver Instances
@@ -187,11 +188,10 @@ class DriverFactory {
 
 			if (browserStackSwitch) {
 
-				dc.setCapability("project", MappingParser.getInstance()
+				dc.setCapability("project", MappingParserRevisit
 						.getProjectName());
-				if (MappingParser.getInstance().getBuildNumber() != null) {
-					dc.setCapability("build", MappingParser.getInstance()
-							.getBuildNumber());
+				if (StringUtils.isNotBlank(MappingParserRevisit.getBuildNumber())) {
+					dc.setCapability("build", MappingParserRevisit.getBuildNumber());
 				}
 				dc.setCapability("platform", platform);
 				dc.setCapability("acceptSslCerts", "true");

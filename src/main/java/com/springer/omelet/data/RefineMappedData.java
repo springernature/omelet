@@ -48,10 +48,10 @@ public class RefineMappedData {
 		if (methodVal != null && StringUtils.isNotBlank(methodVal.getTestData())) {
 			return methodVal.getTestData();
 		} else if (classVal != null && StringUtils.isNotBlank(classVal.getTestData())) {
-			System.out.println(classVal.getTestData());
+			//System.out.println(classVal.getTestData());
 			return classVal.getTestData();
 		} else if (packageVal != null && StringUtils.isNotBlank(packageVal.getTestData())) {
-			System.out.println(packageVal.getTestData());
+		//	System.out.println(packageVal.getTestData());
 			return packageVal.getTestData();
 		}
 		throw new FrameworkException(

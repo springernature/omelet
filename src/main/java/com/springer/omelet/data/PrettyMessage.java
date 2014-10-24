@@ -20,9 +20,10 @@ public class PrettyMessage implements Runnable {
 		Stopwatch sw = new Stopwatch();
 		sw.start();
 		System.out.println("Please wait while we are building your testData..");
-		
+		StringBuilder sb = new StringBuilder();
 		while(keepRunning){
-			System.out.println("....");
+			sb.append(".");
+			LOGGER.info(sb.toString());
 			sleep(1);
 		}
 		LOGGER.info("Time taken to build data in milliseconds is:"+sw.elapsedTime(TimeUnit.SECONDS));

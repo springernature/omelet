@@ -1,4 +1,4 @@
-package com.springer.omelet.data;
+package com.springer.omelet.data.xml;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -19,10 +19,19 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import com.springer.omelet.common.Utils;
+import com.springer.omelet.data.IDataSource;
+import com.springer.omelet.data.IMappingData;
+import com.springer.omelet.data.IProperty;
+import com.springer.omelet.data.ImplementIMap;
+import com.springer.omelet.data.PropertyMapping;
+import com.springer.omelet.data.PropertyValueMin;
+import com.springer.omelet.driver.SuiteConfiguration;
+
 /**
- * Mapping.xml parser 
+ * Mapping.xml parser
+ * 
  * @author kapil
- *
+ * 
  */
 public class MappingParserRevisit implements IDataSource {
 
@@ -32,14 +41,16 @@ public class MappingParserRevisit implements IDataSource {
 	private Document document = null;
 	private String xmlName;
 	private static final String DELIMITTER = ";";
-	private static final Logger LOGGER = Logger.getLogger(MappingParserRevisit.class);
+	private static final Logger LOGGER = Logger
+			.getLogger(MappingParserRevisit.class);
 	private HashMap<String, IMappingData> bucket = new HashMap<String, IMappingData>();
 
 	public MappingParserRevisit(String xmlName) {
 		this.xmlName = xmlName;
 		try {
 			builder = factory.newDocumentBuilder();
-			document = builder.parse("/home/kapil/git/omelet-example-dataset/src/test/resources/Mapping.xml");
+			document = builder
+					.parse("/home/kapil/git/omelet-example-dataset/src/test/resources/Mapping.xml");
 		} catch (ParserConfigurationException e) {
 
 		} catch (SAXException e) {
@@ -50,9 +61,10 @@ public class MappingParserRevisit implements IDataSource {
 
 	}
 
-
 	/***
-	 * walk to every element of the Xml from the root Element which updates Map as well for all the values
+	 * walk to every element of the Xml from the root Element which updates Map
+	 * as well for all the values
+	 * 
 	 * @param element
 	 */
 	private void walkInXml(Element element) {
@@ -66,33 +78,37 @@ public class MappingParserRevisit implements IDataSource {
 			}
 		}
 	}
-	
+
 	/***
-	 * Simple Primary data read from the datasource
-	 * for obvious reason {@link IMappingData} will have nulls as well
+	 * Simple Primary data read from the datasource for obvious reason
+	 * {@link IMappingData} will have nulls as well
 	 */
-	public Map<String, IMappingData> getPrimaryData(){
-		//get the root Element
+	public Map<String, IMappingData> getPrimaryData() {
+		// get the root Element
 		walkInXml(document.getDocumentElement());
-		for(String key:bucket.keySet()){
-			System.out.println("Key is:"+key+" TestData:"+bucket.get(key).getTestData()+"ClientEnv:"+bucket.get(key).getClientEnvironment());
-			System.out.println("Strategy is:"+bucket.get(key).getRunStartegy());
+		for (String key : bucket.keySet()) {
+			System.out.println("Key is:" + key + " TestData:"
+					+ bucket.get(key).getTestData() + "ClientEnv:"
+					+ bucket.get(key).getClientEnvironment());
+			System.out.println("Strategy is:"
+					+ bucket.get(key).getRunStartegy());
 		}
 		return bucket;
 	}
+
 	/**
 	 * update the master bucket with values
+	 * 
 	 * @param element
 	 */
-	private void updateBucket(Element element){
+	private void updateBucket(Element element) {
 		System.out.println(element.getAttribute("name"));
 		bucket.put(element.getAttribute("name"), getImap(element));
-		
-		
 	}
 
 	/**
 	 * Get the {@link IMappingData} for any Entry in Datasource
+	 * 
 	 * @param element
 	 * @return
 	 */
@@ -105,8 +121,10 @@ public class MappingParserRevisit implements IDataSource {
 				.build();
 
 	}
+
 	/**
 	 * Helper method to get List from "," seprated strings
+	 * 
 	 * @param commaSepratedList
 	 * @return
 	 */
@@ -125,9 +143,49 @@ public class MappingParserRevisit implements IDataSource {
 		return returnedList;
 	}
 
+	public static String getProjectName() {
+		if (StringUtils.isNotBlank(getCalcValue("projectName"))) {
+			return getCalcValue("projectName");
+		} else {
+			return SuiteConfiguration.suiteName;
+		}
+	}
+
+	private static String getCalcValue(String key) {
+		if (StringUtils.isNotBlank(System.getProperty(key))) {
+			return System.getProperty(key);
+		} else {
+			return getFrameworkPropertyValue(key);
+		}
+
+	}
+
+	public static String getBuildNumber() {
+		return getCalcValue("buildNumber");
+	}
+
+	private static String getFrameworkPropertyValue(String key) {
+		PropertyValueMin prop = null;
+		if (isFrameworkProperties()) {
+			prop = new PropertyValueMin(Utils.getResources(
+					MappingParserRevisit.class, "Framework.properties"));
+			return prop.getValue(key);
+		} else {
+			return "";
+		}
+
+	}
+
+	private static boolean isFrameworkProperties(){
+		if(Utils.getResources(MappingParserRevisit.class, "Framework.properties") != null){
+			return true;
+		}
+		return false;
+	}
+
 	@Override
-	public String toString(){
-		return "Reading the Xml file with name:"+xmlName;
-		
+	public String toString() {
+		return "Reading the Xml file with name:" + xmlName;
+
 	}
 }

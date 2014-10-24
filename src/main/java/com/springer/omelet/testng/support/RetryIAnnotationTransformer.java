@@ -36,16 +36,16 @@ import org.testng.annotations.IDataProviderAnnotation;
 import org.testng.annotations.IFactoryAnnotation;
 import org.testng.annotations.ITestAnnotation;
 
-import com.springer.omelet.data.BrowserXmlParser;
 import com.springer.omelet.data.DataProvider.mapStrategy;
 import com.springer.omelet.data.IBrowserConf;
 import com.springer.omelet.data.IMappingData;
 import com.springer.omelet.data.IProperty;
-import com.springer.omelet.data.MappingParserRevisit;
 import com.springer.omelet.data.PrettyMessage;
 import com.springer.omelet.data.RefineMappedData;
-import com.springer.omelet.data.XmlApplicationData;
 import com.springer.omelet.data.googlesheet.ReadGoogle;
+import com.springer.omelet.data.xml.BrowserXmlParser;
+import com.springer.omelet.data.xml.MappingParserRevisit;
+import com.springer.omelet.data.xml.XmlApplicationData;
 import com.springer.omelet.exception.FrameworkException;
 
 /***
@@ -154,7 +154,7 @@ public class RetryIAnnotationTransformer implements IAnnotationTransformer,
 		String methodName = method.getDeclaringClass().getName() + "."
 				+ method.getName();
 		checkGoogleUserNameAndPassword(methodName);
-		System.out.println(System.getProperty(googleUsername));
+		//System.out.println(System.getProperty(googleUsername));
 		ReadGoogle readGoogle = new ReadGoogle(
 				System.getProperty(googleUsername),
 				System.getProperty(googlePassword),

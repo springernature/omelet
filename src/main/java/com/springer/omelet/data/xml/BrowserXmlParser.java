@@ -14,7 +14,7 @@
  * 	See the License for the specific language governing permissions and
  * 	limitations under the License.
  *******************************************************************************/
-package com.springer.omelet.data;
+package com.springer.omelet.data.xml;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -35,6 +35,9 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import com.springer.omelet.common.Utils;
+import com.springer.omelet.data.BrowserConfiguration;
+import com.springer.omelet.data.BrowserConstant;
+import com.springer.omelet.data.IBrowserConf;
 
 /***
  * Return list of {@link IBrowserConf} given name of Xml file

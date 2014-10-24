@@ -205,7 +205,7 @@ public class ReadGoogle implements IDataSource {
 		Map<String, String> browserMap = new HashMap<String, String>();
 		for (BrowserConstant colValue : BrowserConstant.values()) {
 			browserMap.put(colValue.toString(), row.getCustomElements()
-					.getValue(colValue.toString()));
+					.getValue(colValue.toString().toLowerCase().replace("_", "")));
 		}
 		return new BrowserConfiguration(browserMap);
 	}

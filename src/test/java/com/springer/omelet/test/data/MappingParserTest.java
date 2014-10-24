@@ -16,15 +16,9 @@
  *******************************************************************************/
 package com.springer.omelet.test.data;
 
-import org.testng.Assert;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
-
-import com.springer.omelet.data.MappingParser;
-import com.springer.omelet.driver.SuiteConfiguration;
 
 public class MappingParserTest {
-	public static MappingParser mappingParser;
+/*	public static MappingParserRe mappingParser;
 	public static SuiteConfiguration suiteConfiguration;
 
 	@BeforeMethod
@@ -79,5 +73,5 @@ public class MappingParserTest {
 	// TODO
 	// getMethodData is not called need to add that as well with different
 	// scenarios
-
+*/
 }
