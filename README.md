@@ -92,6 +92,10 @@ You may face issue with dependencies related to ReportNG, do read this [blog](ht
 
 * if we run via TestNg then report can be found in test-output/html/index.html
 
+Data
+----------
+Currently omelet supports xml and simple properties file and very soon it will be supporting Google Sheets
+
 Example Projects
 --------------
  [omelet-example-dataset](https://github.com/springer-opensource/omelet-example-dataset)
