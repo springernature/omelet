@@ -32,8 +32,6 @@ public class ReadGoogle implements IDataSource {
 
 	private String googleUserName;
 	private String googlePasswd;
-	private static final String MAP_SHEET_NAME = "Mapping";
-	private static final String DELIMITTER = ";";
 	private URL SPREADSHEET_FEED_URL = null;
 	private SpreadsheetEntry spreadSheet;
 	private SpreadsheetService service = null;
@@ -96,7 +94,7 @@ public class ReadGoogle implements IDataSource {
 		Map<String, IMappingData> returnedMap = new HashMap<String, IMappingData>();
 		URL listFeedURL;
 		try {
-			listFeedURL = getWorkSheet(MAP_SHEET_NAME).getListFeedUrl();
+			listFeedURL = getWorkSheet(GoogleSheetConstant.GOOGLE_MAP_SHEET_NAME).getListFeedUrl();
 			ListFeed listFeed = service.getFeed(listFeedURL, ListFeed.class);
 			for (ListEntry row : listFeed.getEntries()) {
 				/*System.out.println(row.getCustomElements().getValue(
@@ -143,8 +141,8 @@ public class ReadGoogle implements IDataSource {
 
 		List<String> returnedList = new ArrayList<String>();
 		if (StringUtils.isNotBlank(commaSepratedList)) {
-			if (commaSepratedList.contains(DELIMITTER)) {
-				String array[] = commaSepratedList.split(DELIMITTER);
+			if (commaSepratedList.contains(GoogleSheetConstant.GOOGLE_BROWSERSHEET_DELIMITER)) {
+				String array[] = commaSepratedList.split(GoogleSheetConstant.GOOGLE_BROWSERSHEET_DELIMITER);
 				for (int i = 0; i < array.length; i++)
 					returnedList.add(array[i]);
 			} else {
@@ -181,7 +179,6 @@ public class ReadGoogle implements IDataSource {
 							ListFeed.class);
 					for (ListEntry row : browserFeed.getEntries()) {
 						browserConfList.add(getBrowserConfFromRow(row));
-
 					}
 				} catch (NullPointerException ex) {
 					System.out.println("Not able to find sheet:"
@@ -356,15 +353,4 @@ public class ReadGoogle implements IDataSource {
 		}
 	}
 
-	/*
-	 * private List<IBrowserConf> getBrowserConf(String workSheetName) throws
-	 * IOException, ServiceException{ URL browserListFeedURL; browserListFeedURL
-	 * = getWorkSheet(workSheetName).getListFeedUrl(); ListFeed browserListFeed
-	 * = service.getFeed(browserListFeedURL, ListFeed.class); for(ListEntry
-	 * row:browserListFeed.getEntries()){
-	 * row.getCustomElements().getValue(columnHeader) } return null;
-	 * 
-	 * 
-	 * }
-	 */
 }

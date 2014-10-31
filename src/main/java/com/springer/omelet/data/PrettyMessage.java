@@ -19,7 +19,7 @@ public class PrettyMessage implements Runnable {
 	public void run() {
 		Stopwatch sw = new Stopwatch();
 		sw.start();
-		System.out.println("Please wait while we are building your testData..");
+		LOGGER.info("Please wait while we are building your testData..");
 		StringBuilder sb = new StringBuilder();
 		while(keepRunning){
 			sb.append(".");
@@ -36,7 +36,7 @@ public class PrettyMessage implements Runnable {
 			Thread.sleep(timeInSeconds*1000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			LOGGER.info(e);
 		}
 	}
 	

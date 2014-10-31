@@ -36,6 +36,7 @@ public class BrowserConfiguration implements IBrowserConf {
 	private Map<String, String> browerData;
 	private List<String> bsURLs = new ArrayList<String>();
 	private Map<BrowserConstant, String> mappedValues = new HashMap<BrowserConstant, String>();
+	private String testMethodName;
 	@SuppressWarnings("unused")
 	private static final Logger LOGGER = Logger
 			.getLogger(BrowserConfiguration.class);
@@ -43,6 +44,11 @@ public class BrowserConfiguration implements IBrowserConf {
 	public BrowserConfiguration(Map<String, String> browserData) {
 		this.browerData = browserData;
 		initializeMap();
+	}
+	
+	public BrowserConfiguration(String methodName,Map<String, String> browserData){
+		this(browserData);
+		this.testMethodName = methodName;
 	}
 
 	public BrowserConfiguration() {

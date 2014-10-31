@@ -42,6 +42,7 @@ import com.springer.omelet.data.IMappingData;
 import com.springer.omelet.data.IProperty;
 import com.springer.omelet.data.PrettyMessage;
 import com.springer.omelet.data.RefineMappedData;
+import com.springer.omelet.data.googlesheet.GoogleSheetConstant;
 import com.springer.omelet.data.googlesheet.ReadGoogle;
 import com.springer.omelet.data.xml.BrowserXmlParser;
 import com.springer.omelet.data.xml.MappingParserRevisit;
@@ -63,9 +64,6 @@ public class RetryIAnnotationTransformer implements IAnnotationTransformer,
 
 	public static Set<String> beforeMethodClasses = new HashSet<String>();
 	public static Set<String> afterMethodClasses = new HashSet<String>();
-	public static final String googleUsername = "googleUserName";
-	public static final String googlePassword = "googlePassword";
-	public static final String googleSheetName = "googleSheetName";
 	public static Map<String, List<IProperty>> methodData = new HashMap<String, List<IProperty>>();
 	public static Map<String, List<IBrowserConf>> methodBrowser = new HashMap<String, List<IBrowserConf>>();
 	public static Map<String,mapStrategy> runStrategy = new HashMap<String, mapStrategy>();
@@ -140,9 +138,9 @@ public class RetryIAnnotationTransformer implements IAnnotationTransformer,
 	}
 
 	private void checkGoogleUserNameAndPassword(String methodName) {
-		if (StringUtils.isBlank(System.getProperty(googleUsername))
-				&& StringUtils.isBlank(System.getProperty(googlePassword))
-				&& StringUtils.isBlank(System.getProperty(googleSheetName))) {
+		if (StringUtils.isBlank(System.getProperty(GoogleSheetConstant.GOOGLEUSERNAME))
+				&& StringUtils.isBlank(System.getProperty(GoogleSheetConstant.GOOGLEPASSWD))
+				&& StringUtils.isBlank(System.getProperty(GoogleSheetConstant.GOOGLESHEETNAME))) {
 			throw new FrameworkException(
 					"Method with name:"
 							+ methodName
@@ -156,9 +154,9 @@ public class RetryIAnnotationTransformer implements IAnnotationTransformer,
 		checkGoogleUserNameAndPassword(methodName);
 		//System.out.println(System.getProperty(googleUsername));
 		ReadGoogle readGoogle = new ReadGoogle(
-				System.getProperty(googleUsername),
-				System.getProperty(googlePassword),
-				System.getProperty(googleSheetName));
+				System.getProperty(GoogleSheetConstant.GOOGLEUSERNAME),
+				System.getProperty(GoogleSheetConstant.GOOGLEPASSWD),
+				System.getProperty(GoogleSheetConstant.GOOGLESHEETNAME));
 		RefineMappedData refinedData = new RefineMappedData(readGoogle);
 		IMappingData mapData = refinedData.getMethodData(method);
 		methodBrowser.put(methodName,

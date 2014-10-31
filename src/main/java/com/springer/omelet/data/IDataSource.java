@@ -8,6 +8,9 @@ import java.util.Map;
  *
  */
 public interface IDataSource {
-	
+	/**
+	 * This is intial read of Mapping data
+	 * @return
+	 */
 	public Map<String, IMappingData> getPrimaryData();
 }
