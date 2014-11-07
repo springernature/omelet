@@ -50,7 +50,7 @@ public class MappingParserRevisit implements IDataSource {
 		try {
 			builder = factory.newDocumentBuilder();
 			document = builder
-					.parse("/home/kapil/git/omelet-example-dataset/src/test/resources/Mapping.xml");
+					.parse(Utils.getResources(this, xmlName));
 		} catch (ParserConfigurationException e) {
 
 		} catch (SAXException e) {

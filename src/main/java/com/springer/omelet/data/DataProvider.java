@@ -47,8 +47,8 @@ public class DataProvider {
 	
 	@org.testng.annotations.DataProvider(name = "GoogleData", parallel = true)
 	public static Object[][] googleSheetDataProvider(Method m){
-		String methodName = getFullMethodName(m);
-		return getData(methodName);
+		String testMethodName = getFullMethodName(m);
+		return getData(testMethodName);
 	}
 	
 	@org.testng.annotations.DataProvider(name = "XmlData", parallel = true)
@@ -64,52 +64,52 @@ public class DataProvider {
 	 * @return
 	 */
 	public static Object[][] getData(String methodName) {
-		Object[][] returnObject = null;
-		List<IBrowserConf> n_browserConf = RetryIAnnotationTransformer.methodBrowser.get(methodName);
+		Object[][] testMethodData = null;
+		List<IBrowserConf> browserConfFullList = RetryIAnnotationTransformer.methodBrowser.get(methodName);
 		// removing the duplicate via hashset
 		Set<IBrowserConf> browserConfSet = new HashSet<IBrowserConf>(
-				n_browserConf);
-		List<IBrowserConf> browserConf = new ArrayList<IBrowserConf>(
+				browserConfFullList);
+		List<IBrowserConf> browserConfFilteredList = new ArrayList<IBrowserConf>(
 				browserConfSet);
-		List<IProperty> prop = RetryIAnnotationTransformer.methodData.get(methodName);
+		List<IProperty> testMData = RetryIAnnotationTransformer.methodData.get(methodName);
 		mapStrategy strategy = RetryIAnnotationTransformer.runStrategy.get(methodName);
-		int browserConfsize = browserConf.size();
-		int propSize = prop.size();
+		int browserConfCount = browserConfFilteredList.size();
+		int testDataCount = testMData.size();
 		int loopCombination;
 		int k = 0;
 		switch (strategy) {
 		case Full:
-			loopCombination = browserConfsize * propSize;
-			returnObject = new Object[loopCombination][2];
+			loopCombination = browserConfCount * testDataCount;
+			testMethodData = new Object[loopCombination][2];
 
-			for (int i = 0; i < browserConfsize; i++) {
+			for (int i = 0; i < browserConfCount; i++) {
 
-				for (int j = 0; j < propSize; j++) {
-					returnObject[k][0] = browserConf.get(i);
-					returnObject[k][1] = prop.get(j);
+				for (int j = 0; j < testDataCount; j++) {
+					testMethodData[k][0] = browserConfFilteredList.get(i);
+					testMethodData[k][1] = testMData.get(j);
 					k++;
 				}
 			}
 			break;
 		case Optimal:
-			if (browserConfsize >= propSize)
-				loopCombination = browserConfsize;
+			if (browserConfCount >= testDataCount)
+				loopCombination = browserConfCount;
 			else
-				loopCombination = propSize;
-			returnObject = new Object[loopCombination][2];
+				loopCombination = testDataCount;
+			testMethodData = new Object[loopCombination][2];
 			for (int i = 0; i < loopCombination; i++) {
 				Random r = new Random();
 				// check whose value is greater and start the loop
-				if (i >= browserConfsize) {
-					returnObject[i][0] = browserConf.get(r
-							.nextInt(browserConfsize));
+				if (i >= browserConfCount) {
+					testMethodData[i][0] = browserConfFilteredList.get(r
+							.nextInt(browserConfCount));
 				} else {
-					returnObject[i][0] = browserConf.get(i);
+					testMethodData[i][0] = browserConfFilteredList.get(i);
 				}
-				if (i >= propSize) {
-					returnObject[i][1] = prop.get(r.nextInt(propSize));
+				if (i >= testDataCount) {
+					testMethodData[i][1] = testMData.get(r.nextInt(testDataCount));
 				} else {
-					returnObject[i][1] = prop.get(i);
+					testMethodData[i][1] = testMData.get(i);
 				}
 
 			}
@@ -117,7 +117,7 @@ public class DataProvider {
 		default:
 			break;
 		}
-		return returnObject;
+		return testMethodData;
 	}
 
 }

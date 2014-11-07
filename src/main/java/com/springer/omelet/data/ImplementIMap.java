@@ -74,7 +74,7 @@ public class ImplementIMap implements IMappingData {
 			else if ("optimal".equalsIgnoreCase(runStrategy))
 				this.runStrat = mapStrategy.Optimal;
 			else
-				this.runStrat = mapStrategy.Optimal;
+				this.runStrat = null;
 			return this;
 		}
 

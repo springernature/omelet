@@ -20,6 +20,10 @@ public class RefineMappedData {
 
 	public RefineMappedData(IDataSource dataSource) {
 		primaryDataMap = dataSource.getPrimaryData();
+		//Primary Map value
+		for(String s :primaryDataMap.keySet()){
+			System.out.println("Primary key:"+s+"value:"+primaryDataMap.get(s).getRunStartegy());
+		}
 	}
 
 	/**
@@ -88,7 +92,7 @@ public class RefineMappedData {
 				method.getDeclaringClass().getName().toString());
 		IMappingData packageRunStartegy = primaryDataMap.get(
 				method.getDeclaringClass().getPackage().getName().toString());
-
+		System.out.println(classRunStartegy.getRunStartegy());
 		if (methodRunStartegy != null && methodRunStartegy.getRunStartegy()!= null) {
 			return methodRunStartegy.getRunStartegy();
 		} else if (classRunStartegy != null && classRunStartegy.getRunStartegy() != null) {
