@@ -22,7 +22,7 @@ import java.util.Map;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 
-import com.springer.omelet.browserstacktunnel.OsCheck;
+import com.springer.omelet.browserstacktunnel.OSName;
 import com.springer.omelet.common.Utils;
 import com.springer.omelet.exception.FrameworkException;
 
@@ -130,7 +130,7 @@ public class VerifyBrowserValues {
 		} else {
 			if (browserConfMapValues.get(BrowserConstant.browserName)
 					.toLowerCase().startsWith("i")) {
-				switch (OsCheck.getOS()) {
+				switch (OSName.get()) {
 
 				case MAC:
 					throw new FrameworkException(

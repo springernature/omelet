@@ -91,17 +91,13 @@ public class ReadGoogle implements IDataSource {
 	 */
 	@Override
 	public Map<String, IMappingData> getPrimaryData() {
-		Map<String, IMappingData> returnedMap = new HashMap<String, IMappingData>();
+		Map<String, IMappingData> primaryData = new HashMap<String, IMappingData>();
 		URL listFeedURL;
 		try {
 			listFeedURL = getWorkSheet(GoogleSheetConstant.GOOGLE_MAP_SHEET_NAME).getListFeedUrl();
 			ListFeed listFeed = service.getFeed(listFeedURL, ListFeed.class);
 			for (ListEntry row : listFeed.getEntries()) {
-				/*System.out.println(row.getCustomElements().getValue(
-						"methodname"));
-				System.out.println(row.getCustomElements().getValue(
-						"methodnameadsasd"));*/
-				returnedMap.put(row.getCustomElements().getValue("methodname"),
+				primaryData.put(row.getCustomElements().getValue("methodname"),
 						getMap(row));
 			}
 		} catch (IOException e) {
@@ -110,7 +106,7 @@ public class ReadGoogle implements IDataSource {
 			LOGGER.error(e);
 		}
 
-		return returnedMap;
+		return primaryData;
 	}
 
 	/**
@@ -246,9 +242,9 @@ public class ReadGoogle implements IDataSource {
 	 * @return
 	 */
 	private List<IProperty> getSingleMethodtData(String env, ListFeed rows) {
-		List<TestEnvironmentMap> testEnvironmentMap = new ArrayList<ReadGoogle.TestEnvironmentMap>();
+		List<DataPerEnvironment> testEnvironmentMap = new ArrayList<ReadGoogle.DataPerEnvironment>();
 		Map<String, String> keyValuePair = new HashMap<String, String>();
-		TestEnvironmentMap testEnvHolder = null;
+		DataPerEnvironment testEnvHolder = null;
 		for (ListEntry row : rows.getEntries()) {
 		/*	System.out.println("Row is:"
 					+ row.getCustomElements().getValue("key") + "value:"
@@ -258,7 +254,7 @@ public class ReadGoogle implements IDataSource {
 				if (testEnvHolder != null) {
 					testEnvironmentMap.add(testEnvHolder);
 				}
-				testEnvHolder = new TestEnvironmentMap(row.getCustomElements()
+				testEnvHolder = new DataPerEnvironment(row.getCustomElements()
 						.getValue("value"));
 				/*
 				 * if (!keyValuePair.isEmpty()) { testEnvironmentMap.add(new
@@ -268,7 +264,7 @@ public class ReadGoogle implements IDataSource {
 				 * HashMap<String, String>(); }
 				 */
 			} else {
-				testEnvHolder.setProperty(
+				testEnvHolder.setTestData(
 						row.getCustomElements().getValue("key"), row
 								.getCustomElements().getValue("value"));
 				keyValuePair.put(row.getCustomElements().getValue("key"), row
@@ -280,9 +276,9 @@ public class ReadGoogle implements IDataSource {
 		testEnvironmentMap.add(testEnvHolder);
 		// check if environment was present
 		if (StringUtils.isNotBlank(env)) {
-			return getConcatentedList(env, testEnvironmentMap);
+			return getConcatentedDataList(env, testEnvironmentMap);
 		} else {
-			return getConcatentedList(testEnvironmentMap);
+			return getConcatentedDataList(testEnvironmentMap);
 		}
 	}
 
@@ -296,11 +292,11 @@ public class ReadGoogle implements IDataSource {
 	 *            sheet from top to bottom
 	 * @return
 	 */
-	private List<IProperty> getConcatentedList(String environment,
-			List<TestEnvironmentMap> testEnvList) {
+	private List<IProperty> getConcatentedDataList(String environment,
+			List<DataPerEnvironment> testEnvList) {
 		List<IProperty> filteredEnvIPropList = new ArrayList<IProperty>();
-		for (TestEnvironmentMap testEnv : testEnvList) {
-			if (testEnv.getEnvironment().equalsIgnoreCase(environment)) {
+		for (DataPerEnvironment testEnv : testEnvList) {
+			if (testEnv.getEnvName().equalsIgnoreCase(environment)) {
 				filteredEnvIPropList.add(testEnv.getTestData());
 			}
 		}
@@ -314,10 +310,10 @@ public class ReadGoogle implements IDataSource {
 	 * @param testEnvList
 	 * @return
 	 */
-	private List<IProperty> getConcatentedList(
-			List<TestEnvironmentMap> testEnvList) {
+	private List<IProperty> getConcatentedDataList(
+			List<DataPerEnvironment> testEnvList) {
 		List<IProperty> fullEnvList = new ArrayList<IProperty>();
-		for (TestEnvironmentMap testMap : testEnvList) {
+		for (DataPerEnvironment testMap : testEnvList) {
 			fullEnvList.add(testMap.getTestData());
 		}
 		return fullEnvList;
@@ -328,22 +324,22 @@ public class ReadGoogle implements IDataSource {
 	 * @author kapil
 	 *
 	 */
-	private class TestEnvironmentMap {
+	private class DataPerEnvironment {
 		String environmentName;
 		IProperty prop;
 		Map<String, String> testDataForSingelEnvEntry = new HashMap<String, String>();
 
-		public TestEnvironmentMap(String environmentName) {
+		public DataPerEnvironment(String environmentName) {
 //			System.out.println("Environment for TestENvu:" + environmentName);
 			/* System.out.println("Prop value:"+prop.getValue("Key1")); */
 			this.environmentName = environmentName;
 		}
 
-		public String getEnvironment() {
+		public String getEnvName() {
 			return environmentName;
 		}
 
-		public void setProperty(String key, String value) {
+		public void setTestData(String key, String value) {
 			testDataForSingelEnvEntry.put(key, value);
 		}
 

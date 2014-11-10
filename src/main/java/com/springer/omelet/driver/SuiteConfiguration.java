@@ -38,7 +38,7 @@ public class SuiteConfiguration implements ISuiteListener {
 		BrowserStackTunnel bs = BrowserStackTunnel.getInstance();
 		List<String> bsKey = bs.getOpenTunnelKeys();
 		for (String s : bsKey) {
-			bs.terminatedTunnel(s);
+			bs.terminateTunnel(s);
 		}
 
 	}
