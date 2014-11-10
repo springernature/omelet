@@ -57,6 +57,13 @@ public class DataProvider {
 		return getData(methodName);
 	}
 	
+	public static List<IBrowserConf> filterSameBrowsers(List<IBrowserConf> fullBrowserList){
+		Set<IBrowserConf> browserConfSet = new HashSet<IBrowserConf>(
+				fullBrowserList);
+		return new ArrayList<IBrowserConf>(
+				browserConfSet);
+	}
+	
 
 	/***
 	 * Removes duplicate browsers and prepare data based on the MapStrategy
@@ -65,12 +72,7 @@ public class DataProvider {
 	 */
 	public static Object[][] getData(String methodName) {
 		Object[][] testMethodData = null;
-		List<IBrowserConf> browserConfFullList = RetryIAnnotationTransformer.methodBrowser.get(methodName);
-		// removing the duplicate via hashset
-		Set<IBrowserConf> browserConfSet = new HashSet<IBrowserConf>(
-				browserConfFullList);
-		List<IBrowserConf> browserConfFilteredList = new ArrayList<IBrowserConf>(
-				browserConfSet);
+		List<IBrowserConf> browserConfFilteredList = filterSameBrowsers(RetryIAnnotationTransformer.methodBrowser.get(methodName));
 		List<IProperty> testMData = RetryIAnnotationTransformer.methodData.get(methodName);
 		mapStrategy strategy = RetryIAnnotationTransformer.runStrategy.get(methodName);
 		int browserConfCount = browserConfFilteredList.size();
