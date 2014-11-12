@@ -21,6 +21,7 @@ import java.util.HashMap;
 import org.apache.log4j.Logger;
 
 import com.springer.omelet.data.BrowserConfiguration;
+import com.springer.omelet.data.BrowserConstant;
 import com.springer.omelet.data.IBrowserConf;
 import com.springer.omelet.data.IProperty;
 
@@ -86,7 +87,7 @@ public class DefaultBrowserConf {
 
 	private static HashMap<String, String> getKeyValue() {
 		HashMap<String, String> f_map = new HashMap<String, String>();
-		for (BrowserStackConstant b : BrowserStackConstant.values()) {
+		for (BrowserConstant b : BrowserConstant.values()) {
 			f_map.put(b.toString(), customProp.getValue(b));
 		}
 		return f_map;

@@ -25,7 +25,7 @@ import org.testng.annotations.Test;
 
 import com.springer.omelet.common.Utils;
 import com.springer.omelet.data.BrowserConfiguration;
-import com.springer.omelet.data.BrowserStackConstant;
+import com.springer.omelet.data.BrowserConstant;
 import com.springer.omelet.data.IProperty;
 import com.springer.omelet.data.PropertyMapping;
 
@@ -65,33 +65,33 @@ public class BrowserConfMethodTest {
 	@BeforeMethod
 	public void setup() {
 		browserValues.clear();
-		browserValues.put(BrowserStackConstant.browserName.toString(), browserName);
-		browserValues.put(BrowserStackConstant.browserVersion.toString(),
+		browserValues.put(BrowserConstant.browserName.toString(), browserName);
+		browserValues.put(BrowserConstant.browserVersion.toString(),
 				browserVersion);
-		browserValues.put(BrowserStackConstant.bs_key.toString(), bs_key);
-		browserValues.put(BrowserStackConstant.bs_localTesting.toString(),
+		browserValues.put(BrowserConstant.bs_key.toString(), bs_key);
+		browserValues.put(BrowserConstant.bs_localTesting.toString(),
 				bs_localTesting);
-		browserValues.put(BrowserStackConstant.bs_urls.toString(), browserStackURLS);
-		browserValues.put(BrowserStackConstant.bs_userName.toString(), bs_user);
-		browserValues.put(BrowserStackConstant.bsSwitch.toString(),
+		browserValues.put(BrowserConstant.bs_urls.toString(), browserStackURLS);
+		browserValues.put(BrowserConstant.bs_userName.toString(), bs_user);
+		browserValues.put(BrowserConstant.bsSwitch.toString(),
 				browserStackSwitch);
-		browserValues.put(BrowserStackConstant.chromeServerPath.toString(),
+		browserValues.put(BrowserConstant.chromeServerPath.toString(),
 				chromePath);
-		browserValues.put(BrowserStackConstant.device.toString(), device);
-		browserValues.put(BrowserStackConstant.driverTimeOut.toString(),
+		browserValues.put(BrowserConstant.device.toString(), device);
+		browserValues.put(BrowserConstant.driverTimeOut.toString(),
 				drivertimeout);
-		browserValues.put(BrowserStackConstant.highlightElementFlag.toString(),
+		browserValues.put(BrowserConstant.highlightElementFlag.toString(),
 				highlightElement);
-		browserValues.put(BrowserStackConstant.ieServerPath.toString(), ie_path);
-		browserValues.put(BrowserStackConstant.mobileTest.toString(), bs_mobileTest);
-		browserValues.put(BrowserStackConstant.os.toString(), osName);
-		browserValues.put(BrowserStackConstant.osVersion.toString(), osVersion);
-		browserValues.put(BrowserStackConstant.platform.toString(), platform);
-		browserValues.put(BrowserStackConstant.remoteFlag.toString(), remoteFlag);
+		browserValues.put(BrowserConstant.ieServerPath.toString(), ie_path);
+		browserValues.put(BrowserConstant.mobileTest.toString(), bs_mobileTest);
+		browserValues.put(BrowserConstant.os.toString(), osName);
+		browserValues.put(BrowserConstant.osVersion.toString(), osVersion);
+		browserValues.put(BrowserConstant.platform.toString(), platform);
+		browserValues.put(BrowserConstant.remoteFlag.toString(), remoteFlag);
 		browserValues
-				.put(BrowserStackConstant.screenShotFlag.toString(), screenShot);
-		browserValues.put(BrowserStackConstant.remoteURL.toString(), reomteURL);
-		browserValues.put(BrowserStackConstant.retryFailedTestCase.toString(),
+				.put(BrowserConstant.screenShotFlag.toString(), screenShot);
+		browserValues.put(BrowserConstant.remoteURL.toString(), reomteURL);
+		browserValues.put(BrowserConstant.retryFailedTestCase.toString(),
 				retryFailedTestCount);
 
 	}
@@ -139,15 +139,15 @@ public class BrowserConfMethodTest {
 
 	@Test(dependsOnMethods = "verifyMapValues")
 	public void verifyMapValueEmpty() {
-		browserValues.put(BrowserStackConstant.browserName.toString(), "    ");
+		browserValues.put(BrowserConstant.browserName.toString(), "    ");
 		BrowserConfiguration bc = new BrowserConfiguration(browserValues);
 		Assert.assertEquals(bc.getBrowser(),
-				prop.getValue(BrowserStackConstant.browserName));
+				prop.getValue(BrowserConstant.browserName));
 	}
 
 	@Test(dependsOnMethods = "verifyMapValueEmpty", description = "Some Values by cmd and all by map")
 	public void verifyCmd_Map_Mix() {
-		System.setProperty(BrowserStackConstant.browserName.toString(), "firefox");
+		System.setProperty(BrowserConstant.browserName.toString(), "firefox");
 		BrowserConfiguration bc = new BrowserConfiguration(browserValues);
 		Assert.assertEquals(bc.getBrowser(), "firefox");
 		Assert.assertEquals(bc.getOsVersion(), osVersion);
@@ -158,7 +158,7 @@ public class BrowserConfMethodTest {
 	@Test(dependsOnMethods = "verifyCmd_Map_Mix", description = "cmd empty  ")
 	public void verifyCmdEmpty() {
 
-		System.setProperty(BrowserStackConstant.browserName.toString(), "");
+		System.setProperty(BrowserConstant.browserName.toString(), "");
 		// osVersion = null;
 		// System.setProperty(BrowserConstant.os.toString(),null);
 		BrowserConfiguration bc = new BrowserConfiguration(browserValues);

@@ -26,7 +26,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.springer.omelet.data.BrowserConfiguration;
-import com.springer.omelet.data.BrowserStackConstant;
+import com.springer.omelet.data.BrowserConstant;
 import com.springer.omelet.data.IBrowserConf;
 
 public class BrowserConfIsEqualTest {
@@ -39,13 +39,13 @@ public class BrowserConfIsEqualTest {
 	public void checkBrowserConfEquality_RemoteFlagOFF() {
 		browserConfValues1.clear();
 		browserConfValues2.clear();
-		browserConfValues1.put(BrowserStackConstant.browserName.toString(),
+		browserConfValues1.put(BrowserConstant.browserName.toString(),
 				"firefox");
-		browserConfValues1.put(BrowserStackConstant.remoteFlag.toString(), "false");
+		browserConfValues1.put(BrowserConstant.remoteFlag.toString(), "false");
 
-		browserConfValues2.put(BrowserStackConstant.browserName.toString(),
+		browserConfValues2.put(BrowserConstant.browserName.toString(),
 				"firefox");
-		browserConfValues2.put(BrowserStackConstant.remoteFlag.toString(), "false");
+		browserConfValues2.put(BrowserConstant.remoteFlag.toString(), "false");
 		BrowserConfiguration obj1 = new BrowserConfiguration(browserConfValues1);
 		BrowserConfiguration obj2 = new BrowserConfiguration(browserConfValues2);
 
@@ -64,21 +64,21 @@ public class BrowserConfIsEqualTest {
 		browserConfValues1.clear();
 		browserConfValues2.clear();
 
-		browserConfValues1.put(BrowserStackConstant.browserName.toString(),
+		browserConfValues1.put(BrowserConstant.browserName.toString(),
 				"firefox");
-		browserConfValues1.put(BrowserStackConstant.remoteFlag.toString(), "true");
-		browserConfValues1.put(BrowserStackConstant.bsSwitch.toString(), "true");
-		browserConfValues1.put(BrowserStackConstant.browserVersion.toString(), "11");
-		browserConfValues1.put(BrowserStackConstant.os.toString(), "Windows");
-		browserConfValues1.put(BrowserStackConstant.osVersion.toString(), "XP");
+		browserConfValues1.put(BrowserConstant.remoteFlag.toString(), "true");
+		browserConfValues1.put(BrowserConstant.bsSwitch.toString(), "true");
+		browserConfValues1.put(BrowserConstant.browserVersion.toString(), "11");
+		browserConfValues1.put(BrowserConstant.os.toString(), "Windows");
+		browserConfValues1.put(BrowserConstant.osVersion.toString(), "XP");
 
-		browserConfValues2.put(BrowserStackConstant.browserName.toString(),
+		browserConfValues2.put(BrowserConstant.browserName.toString(),
 				"firefox");
-		browserConfValues2.put(BrowserStackConstant.remoteFlag.toString(), "true");
-		browserConfValues2.put(BrowserStackConstant.bsSwitch.toString(), "true");
-		browserConfValues2.put(BrowserStackConstant.browserVersion.toString(), "11");
-		browserConfValues2.put(BrowserStackConstant.os.toString(), "Windows");
-		browserConfValues2.put(BrowserStackConstant.osVersion.toString(), "XP");
+		browserConfValues2.put(BrowserConstant.remoteFlag.toString(), "true");
+		browserConfValues2.put(BrowserConstant.bsSwitch.toString(), "true");
+		browserConfValues2.put(BrowserConstant.browserVersion.toString(), "11");
+		browserConfValues2.put(BrowserConstant.os.toString(), "Windows");
+		browserConfValues2.put(BrowserConstant.osVersion.toString(), "XP");
 
 		BrowserConfiguration obj1 = new BrowserConfiguration(browserConfValues1);
 		BrowserConfiguration obj2 = new BrowserConfiguration(browserConfValues2);
@@ -90,24 +90,24 @@ public class BrowserConfIsEqualTest {
 		browserConfValues1.clear();
 		browserConfValues2.clear();
 
-		browserConfValues1.put(BrowserStackConstant.browserName.toString(),
+		browserConfValues1.put(BrowserConstant.browserName.toString(),
 				"firefox");
-		browserConfValues1.put(BrowserStackConstant.remoteFlag.toString(), "true");
-		browserConfValues1.put(BrowserStackConstant.bsSwitch.toString(), "true");
-		browserConfValues1.put(BrowserStackConstant.browserVersion.toString(), "11");
-		browserConfValues1.put(BrowserStackConstant.os.toString(), "Windows");
-		browserConfValues1.put(BrowserStackConstant.osVersion.toString(), "XP");
-		browserConfValues1.put(BrowserStackConstant.bs_localTesting.toString(),
+		browserConfValues1.put(BrowserConstant.remoteFlag.toString(), "true");
+		browserConfValues1.put(BrowserConstant.bsSwitch.toString(), "true");
+		browserConfValues1.put(BrowserConstant.browserVersion.toString(), "11");
+		browserConfValues1.put(BrowserConstant.os.toString(), "Windows");
+		browserConfValues1.put(BrowserConstant.osVersion.toString(), "XP");
+		browserConfValues1.put(BrowserConstant.bs_localTesting.toString(),
 				"true");
 
-		browserConfValues2.put(BrowserStackConstant.browserName.toString(),
+		browserConfValues2.put(BrowserConstant.browserName.toString(),
 				"firefox");
-		browserConfValues2.put(BrowserStackConstant.remoteFlag.toString(), "true");
-		browserConfValues2.put(BrowserStackConstant.bsSwitch.toString(), "true");
-		browserConfValues2.put(BrowserStackConstant.browserVersion.toString(), "11");
-		browserConfValues2.put(BrowserStackConstant.os.toString(), "Windows");
-		browserConfValues2.put(BrowserStackConstant.osVersion.toString(), "XP");
-		browserConfValues2.put(BrowserStackConstant.bs_localTesting.toString(),
+		browserConfValues2.put(BrowserConstant.remoteFlag.toString(), "true");
+		browserConfValues2.put(BrowserConstant.bsSwitch.toString(), "true");
+		browserConfValues2.put(BrowserConstant.browserVersion.toString(), "11");
+		browserConfValues2.put(BrowserConstant.os.toString(), "Windows");
+		browserConfValues2.put(BrowserConstant.osVersion.toString(), "XP");
+		browserConfValues2.put(BrowserConstant.bs_localTesting.toString(),
 				"false");
 
 		BrowserConfiguration obj1 = new BrowserConfiguration(browserConfValues1);
@@ -121,24 +121,24 @@ public class BrowserConfIsEqualTest {
 		browserConfValues1.clear();
 		browserConfValues2.clear();
 
-		browserConfValues1.put(BrowserStackConstant.browserName.toString(),
+		browserConfValues1.put(BrowserConstant.browserName.toString(),
 				"firefox");
-		browserConfValues1.put(BrowserStackConstant.remoteFlag.toString(), "true");
-		browserConfValues1.put(BrowserStackConstant.bsSwitch.toString(), "true");
-		browserConfValues1.put(BrowserStackConstant.browserVersion.toString(), "11");
-		browserConfValues1.put(BrowserStackConstant.os.toString(), "Mac");
-		browserConfValues1.put(BrowserStackConstant.osVersion.toString(), "XP");
-		browserConfValues1.put(BrowserStackConstant.bs_localTesting.toString(),
+		browserConfValues1.put(BrowserConstant.remoteFlag.toString(), "true");
+		browserConfValues1.put(BrowserConstant.bsSwitch.toString(), "true");
+		browserConfValues1.put(BrowserConstant.browserVersion.toString(), "11");
+		browserConfValues1.put(BrowserConstant.os.toString(), "Mac");
+		browserConfValues1.put(BrowserConstant.osVersion.toString(), "XP");
+		browserConfValues1.put(BrowserConstant.bs_localTesting.toString(),
 				"true");
 
-		browserConfValues2.put(BrowserStackConstant.browserName.toString(),
+		browserConfValues2.put(BrowserConstant.browserName.toString(),
 				"firefox");
-		browserConfValues2.put(BrowserStackConstant.remoteFlag.toString(), "true");
-		browserConfValues2.put(BrowserStackConstant.bsSwitch.toString(), "true");
-		browserConfValues2.put(BrowserStackConstant.browserVersion.toString(), "11");
-		browserConfValues2.put(BrowserStackConstant.os.toString(), "Windows");
-		browserConfValues2.put(BrowserStackConstant.osVersion.toString(), "XP");
-		browserConfValues2.put(BrowserStackConstant.bs_localTesting.toString(),
+		browserConfValues2.put(BrowserConstant.remoteFlag.toString(), "true");
+		browserConfValues2.put(BrowserConstant.bsSwitch.toString(), "true");
+		browserConfValues2.put(BrowserConstant.browserVersion.toString(), "11");
+		browserConfValues2.put(BrowserConstant.os.toString(), "Windows");
+		browserConfValues2.put(BrowserConstant.osVersion.toString(), "XP");
+		browserConfValues2.put(BrowserConstant.bs_localTesting.toString(),
 				"false");
 
 		BrowserConfiguration obj1 = new BrowserConfiguration(browserConfValues1);
@@ -159,24 +159,24 @@ public class BrowserConfIsEqualTest {
 		browserConfValues1.clear();
 		browserConfValues2.clear();
 
-		browserConfValues1.put(BrowserStackConstant.browserName.toString(),
+		browserConfValues1.put(BrowserConstant.browserName.toString(),
 				"firefox");
-		browserConfValues1.put(BrowserStackConstant.remoteFlag.toString(), "true");
-		browserConfValues1.put(BrowserStackConstant.bsSwitch.toString(), "false");
-		browserConfValues1.put(BrowserStackConstant.browserVersion.toString(), "11");
-		browserConfValues1.put(BrowserStackConstant.os.toString(), "Mac");
-		browserConfValues1.put(BrowserStackConstant.osVersion.toString(), "XP");
-		browserConfValues1.put(BrowserStackConstant.bs_localTesting.toString(),
+		browserConfValues1.put(BrowserConstant.remoteFlag.toString(), "true");
+		browserConfValues1.put(BrowserConstant.bsSwitch.toString(), "false");
+		browserConfValues1.put(BrowserConstant.browserVersion.toString(), "11");
+		browserConfValues1.put(BrowserConstant.os.toString(), "Mac");
+		browserConfValues1.put(BrowserConstant.osVersion.toString(), "XP");
+		browserConfValues1.put(BrowserConstant.bs_localTesting.toString(),
 				"true");
 
-		browserConfValues2.put(BrowserStackConstant.browserName.toString(),
+		browserConfValues2.put(BrowserConstant.browserName.toString(),
 				"firefox");
-		browserConfValues2.put(BrowserStackConstant.remoteFlag.toString(), "true");
-		browserConfValues2.put(BrowserStackConstant.bsSwitch.toString(), "false");
-		browserConfValues2.put(BrowserStackConstant.browserVersion.toString(), "11");
-		browserConfValues2.put(BrowserStackConstant.os.toString(), "Windows");
-		browserConfValues2.put(BrowserStackConstant.osVersion.toString(), "XP");
-		browserConfValues2.put(BrowserStackConstant.bs_localTesting.toString(),
+		browserConfValues2.put(BrowserConstant.remoteFlag.toString(), "true");
+		browserConfValues2.put(BrowserConstant.bsSwitch.toString(), "false");
+		browserConfValues2.put(BrowserConstant.browserVersion.toString(), "11");
+		browserConfValues2.put(BrowserConstant.os.toString(), "Windows");
+		browserConfValues2.put(BrowserConstant.osVersion.toString(), "XP");
+		browserConfValues2.put(BrowserConstant.bs_localTesting.toString(),
 				"false");
 
 		BrowserConfiguration obj1 = new BrowserConfiguration(browserConfValues1);
