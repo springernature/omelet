@@ -24,6 +24,8 @@ import java.util.Map;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 
+import com.springer.omelet.data.VerifyBrowserValues;
+
 /***
  * Implementation of IBrowser takes Browser Data and make BrowserObject based on
  * the hierarchy CommandLine->XML -> {@link VerifyBrowserValues}

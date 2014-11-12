@@ -24,19 +24,5 @@ package com.springer.omelet.data;
  */
 
 public enum BrowserConstant {
-	device(""), browserName("FireFox"), browserVersion(""), os(""), osVersion(
-			""), bsSwitch("false"), bs_userName(""), bs_key(""), remoteFlag(
-			"false"), remoteURL(""), driverTimeOut("30"), bs_localTesting(
-			"false"), bs_urls(""), platform(""), retryFailedTestCase("0"), ieServerPath(
-			""), chromeServerPath(""), highlightElementFlag("false"), screenShotFlag(
-			"true"), mobileTest("false");
-	private String defaultValue;
-
-	BrowserConstant(String defaultValue) {
-		this.defaultValue = defaultValue;
-	}
-
-	public String get() {
-		return this.defaultValue;
-	}
+	device, browserName, browserVersion, os, osVersion, bsSwitch, bs_userName, bs_key, remoteFlag, remoteURL, driverTimeOut, bs_localTesting, bs_urls, platform, retryFailedTestCase, ieServerPath, chromeServerPath, highlightElementFlag, screenShotFlag, mobileTest
 }

@@ -22,7 +22,7 @@ import java.util.Map;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import com.springer.omelet.data.BrowserConstant;
+import com.springer.omelet.data.BrowserStackConstant;
 import com.springer.omelet.data.VerifyBrowserValues;
 
 public class VerifyBrowserValueTest {
@@ -53,41 +53,41 @@ public class VerifyBrowserValueTest {
 	public void checkDefaultOption() {
 		// if no values are given thats is null or blank then default value are
 		// set
-		Map<BrowserConstant, String> testMap = new HashMap<BrowserConstant, String>();
+		Map<BrowserStackConstant, String> testMap = new HashMap<BrowserStackConstant, String>();
 		VerifyBrowserValues vb = new VerifyBrowserValues(testMap);
 		vb.isFrameworkProperties("test");
 		testMap = vb.verifiedValues();
-		Assert.assertEquals(testMap.get(BrowserConstant.highlightElementFlag),
+		Assert.assertEquals(testMap.get(BrowserStackConstant.highlightElementFlag),
 				highlightElementFlag);
-		Assert.assertEquals(testMap.get(BrowserConstant.driverTimeOut),
+		Assert.assertEquals(testMap.get(BrowserStackConstant.driverTimeOut),
 				driverTimeout);
-		Assert.assertEquals(testMap.get(BrowserConstant.retryFailedTestCase),
+		Assert.assertEquals(testMap.get(BrowserStackConstant.retryFailedTestCase),
 				retryFailTestCount);
-		Assert.assertEquals(testMap.get(BrowserConstant.screenShotFlag),
+		Assert.assertEquals(testMap.get(BrowserStackConstant.screenShotFlag),
 				screenShotFlag);
-		Assert.assertEquals(testMap.get(BrowserConstant.remoteFlag), remoteFlag);
-		Assert.assertEquals(testMap.get(BrowserConstant.remoteURL), remotURL);
-		Assert.assertEquals(testMap.get(BrowserConstant.ieServerPath), iePath);
-		Assert.assertEquals(testMap.get(BrowserConstant.chromeServerPath),
+		Assert.assertEquals(testMap.get(BrowserStackConstant.remoteFlag), remoteFlag);
+		Assert.assertEquals(testMap.get(BrowserStackConstant.remoteURL), remotURL);
+		Assert.assertEquals(testMap.get(BrowserStackConstant.ieServerPath), iePath);
+		Assert.assertEquals(testMap.get(BrowserStackConstant.chromeServerPath),
 				chromePathD);
-		Assert.assertEquals(testMap.get(BrowserConstant.browserVersion),
+		Assert.assertEquals(testMap.get(BrowserStackConstant.browserVersion),
 				browserVersion);
-		Assert.assertEquals(testMap.get(BrowserConstant.browserName),
+		Assert.assertEquals(testMap.get(BrowserStackConstant.browserName),
 				browserName);
-		Assert.assertEquals(testMap.get(BrowserConstant.bsSwitch), bs_switch);
-		Assert.assertEquals(testMap.get(BrowserConstant.bs_localTesting),
+		Assert.assertEquals(testMap.get(BrowserStackConstant.bsSwitch), bs_switch);
+		Assert.assertEquals(testMap.get(BrowserStackConstant.bs_localTesting),
 				bs_localTesting);
-		Assert.assertEquals(testMap.get(BrowserConstant.mobileTest),
+		Assert.assertEquals(testMap.get(BrowserStackConstant.mobileTest),
 				bs_mobileTest);
-		Assert.assertEquals(testMap.get(BrowserConstant.platform), bs_platform);
-		Assert.assertEquals(testMap.get(BrowserConstant.os), bs_os);
-		Assert.assertEquals(testMap.get(BrowserConstant.osVersion),
+		Assert.assertEquals(testMap.get(BrowserStackConstant.platform), bs_platform);
+		Assert.assertEquals(testMap.get(BrowserStackConstant.os), bs_os);
+		Assert.assertEquals(testMap.get(BrowserStackConstant.osVersion),
 				bs_osversion);
-		Assert.assertEquals(testMap.get(BrowserConstant.device), bs_device);
-		Assert.assertEquals(testMap.get(BrowserConstant.bs_key), bs_key);
-		Assert.assertEquals(testMap.get(BrowserConstant.bs_userName),
+		Assert.assertEquals(testMap.get(BrowserStackConstant.device), bs_device);
+		Assert.assertEquals(testMap.get(BrowserStackConstant.bs_key), bs_key);
+		Assert.assertEquals(testMap.get(BrowserStackConstant.bs_userName),
 				bs_userName);
-		Assert.assertEquals(testMap.get(BrowserConstant.bs_urls), bs_URLS);
+		Assert.assertEquals(testMap.get(BrowserStackConstant.bs_urls), bs_URLS);
 
 	}
 

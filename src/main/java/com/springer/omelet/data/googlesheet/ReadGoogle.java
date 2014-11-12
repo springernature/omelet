@@ -20,7 +20,6 @@ import com.google.gdata.data.spreadsheet.WorksheetEntry;
 import com.google.gdata.util.AuthenticationException;
 import com.google.gdata.util.ServiceException;
 import com.springer.omelet.data.BrowserConfiguration;
-import com.springer.omelet.data.BrowserConstant;
 import com.springer.omelet.data.IBrowserConf;
 import com.springer.omelet.data.IDataSource;
 import com.springer.omelet.data.IMappingData;
@@ -196,7 +195,7 @@ public class ReadGoogle implements IDataSource {
 	 */
 	private IBrowserConf getBrowserConfFromRow(ListEntry row) {
 		Map<String, String> browserMap = new HashMap<String, String>();
-		for (BrowserConstant colValue : BrowserConstant.values()) {
+		for (BrowserStackConstant colValue : BrowserStackConstant.values()) {
 			browserMap.put(colValue.toString(), row.getCustomElements()
 					.getValue(colValue.toString().toLowerCase().replace("_", "")));
 		}

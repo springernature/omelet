@@ -36,7 +36,6 @@ import org.xml.sax.SAXException;
 
 import com.springer.omelet.common.Utils;
 import com.springer.omelet.data.BrowserConfiguration;
-import com.springer.omelet.data.BrowserConstant;
 import com.springer.omelet.data.IBrowserConf;
 
 /***
@@ -129,7 +128,7 @@ public class BrowserXmlParser {
 
 		HashMap<String, String> browserData = new HashMap<String, String>();
 		Element element = keyElement;
-		for (BrowserConstant b : BrowserConstant.values()) {
+		for (BrowserStackConstant b : BrowserStackConstant.values()) {
 			browserData.put(b.toString(), element.getAttribute(b.toString()));
 		}
 		return browserData;
