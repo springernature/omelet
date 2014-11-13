@@ -50,7 +50,7 @@ public class DriverConfigurations {
 	 *
 	 */
 	public enum BrowserStackConfig {
-		device(""), browserName("FireFox"), browserVersion(""), os(""), osVersion(
+		device(""), browserVersion(""), os(""), osVersion(
 				""), bsSwitch("false"), bs_userName(""), bs_key(""), bs_localTesting(
 				"false"), bs_urls(""), platform(""), mobileTest("false");
 		private String defaultValue;

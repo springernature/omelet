@@ -35,7 +35,7 @@ public class BrowserStackRuleTest {
 				DriverConfigurations.BrowserStackConfig.mobileTest.toString(),
 				"True");
 		browserMap.put(
-				DriverConfigurations.BrowserStackConfig.browserName.toString(),
+				DriverConfigurations.LocalEnvironmentConfig.browserName.toString(),
 				"iPhone");
 		browserMap.put(
 				DriverConfigurations.BrowserStackConfig.device.toString(),
@@ -55,7 +55,7 @@ public class BrowserStackRuleTest {
 				DriverConfigurations.BrowserStackConfig.mobileTest.toString(),
 				"True");
 		browserMap.put(
-				DriverConfigurations.BrowserStackConfig.browserName.toString(),
+				DriverConfigurations.LocalEnvironmentConfig.browserName.toString(),
 				"iPad");
 		browserMap.put(
 				DriverConfigurations.BrowserStackConfig.device.toString(),
@@ -75,7 +75,7 @@ public class BrowserStackRuleTest {
 				DriverConfigurations.BrowserStackConfig.mobileTest.toString(),
 				"True");
 		browserMap.put(
-				DriverConfigurations.BrowserStackConfig.browserName.toString(),
+				DriverConfigurations.LocalEnvironmentConfig.browserName.toString(),
 				"android");
 		browserMap.put(
 				DriverConfigurations.BrowserStackConfig.device.toString(),
@@ -95,7 +95,7 @@ public class BrowserStackRuleTest {
 				DriverConfigurations.BrowserStackConfig.mobileTest.toString(),
 				"True");
 		browserMap.put(
-				DriverConfigurations.BrowserStackConfig.browserName.toString(),
+				DriverConfigurations.LocalEnvironmentConfig.browserName.toString(),
 				"test");
 		browserMap.put(
 				DriverConfigurations.BrowserStackConfig.device.toString(),
@@ -115,7 +115,7 @@ public class BrowserStackRuleTest {
 				DriverConfigurations.BrowserStackConfig.mobileTest.toString(),
 				"True");
 		browserMap.put(
-				DriverConfigurations.BrowserStackConfig.browserName.toString(),
+				DriverConfigurations.LocalEnvironmentConfig.browserName.toString(),
 				"test");
 		browserMap.put(
 				DriverConfigurations.BrowserStackConfig.device.toString(), "");
@@ -134,7 +134,7 @@ public class BrowserStackRuleTest {
 				DriverConfigurations.BrowserStackConfig.mobileTest.toString(),
 				"True");
 		browserMap.put(
-				DriverConfigurations.BrowserStackConfig.browserName.toString(),
+				DriverConfigurations.LocalEnvironmentConfig.browserName.toString(),
 				"test");
 		browserMap.put(
 				DriverConfigurations.BrowserStackConfig.device.toString(),
@@ -159,7 +159,7 @@ public class BrowserStackRuleTest {
 				DriverConfigurations.BrowserStackConfig.mobileTest.toString(),
 				"True");
 		browserMap.put(
-				DriverConfigurations.BrowserStackConfig.browserName.toString(),
+				DriverConfigurations.LocalEnvironmentConfig.browserName.toString(),
 				"android");
 		browserMap.put(
 				DriverConfigurations.BrowserStackConfig.device.toString(),
@@ -185,7 +185,7 @@ public class BrowserStackRuleTest {
 				DriverConfigurations.BrowserStackConfig.mobileTest.toString(),
 				"True");
 		browserMap.put(
-				DriverConfigurations.BrowserStackConfig.browserName.toString(),
+				DriverConfigurations.LocalEnvironmentConfig.browserName.toString(),
 				"android");
 		browserMap.put(
 				DriverConfigurations.BrowserStackConfig.device.toString(),
@@ -205,7 +205,7 @@ public class BrowserStackRuleTest {
 				DriverConfigurations.BrowserStackConfig.mobileTest.toString(),
 				"False");
 		browserMap.put(
-				DriverConfigurations.BrowserStackConfig.browserName.toString(),
+				DriverConfigurations.LocalEnvironmentConfig.browserName.toString(),
 				"");
 		browserMap.put(DriverConfigurations.BrowserStackConfig.browserVersion
 				.toString(), "");
@@ -226,7 +226,7 @@ public class BrowserStackRuleTest {
 				DriverConfigurations.BrowserStackConfig.mobileTest.toString(),
 				"False");
 		browserMap.put(
-				DriverConfigurations.BrowserStackConfig.browserName.toString(),
+				DriverConfigurations.LocalEnvironmentConfig.browserName.toString(),
 				"test");
 		browserMap.put(DriverConfigurations.BrowserStackConfig.browserVersion
 				.toString(), "test");

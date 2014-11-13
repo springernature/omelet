@@ -1,19 +1,5 @@
 package com.springer.omelet.test.data;
 
-import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-
-import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.testng.annotations.Test;
-
-import com.springer.omelet.data.IDataSource;
-import com.springer.omelet.data.IMappingData;
-import com.springer.omelet.data.ImplementIMap;
-import com.springer.omelet.data.RefineMappedData;
 
 public class MappedDataTest {
 	

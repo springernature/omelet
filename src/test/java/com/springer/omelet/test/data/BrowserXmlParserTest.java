@@ -23,7 +23,7 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import com.springer.omelet.data.BrowserConstant;
+import com.springer.omelet.data.DriverConfigurations;
 import com.springer.omelet.data.driverconf.IBrowserConf;
 import com.springer.omelet.data.xml.BrowserXmlParser;
 
@@ -32,9 +32,9 @@ public class BrowserXmlParserTest {
 	@BeforeMethod
 	public void beforeTest() {
 
-		System.setProperty(BrowserConstant.browserName.toString(), "");
-		System.setProperty(BrowserConstant.browserVersion.toString(), "");
-		System.setProperty(BrowserConstant.bs_key.toString(), "");
+		System.setProperty(DriverConfigurations.LocalEnvironmentConfig.browserName.toString(), "");
+		System.setProperty(DriverConfigurations.BrowserStackConfig.browserVersion.toString(), "");
+		System.setProperty(DriverConfigurations.BrowserStackConfig.bs_key.toString(), "");
 	}
 
 	@Test

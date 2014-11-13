@@ -26,6 +26,7 @@ public class RefinedBrowserConf {
 		setFrameworkProperties(standBylookUpFileName);
 
 	}
+	
 
 	private void setFrameworkProperties(String standBylookUpFileName) {
 		String pathOfFile = Utils.getResources(RefinedBrowserConf.class,

@@ -20,6 +20,11 @@ public class PrepareDriverConf {
 	public PrepareDriverConf(Map<String,String> clientBrowserConf){
 		this.clientBrowserConf = clientBrowserConf;
 	}
+	
+	public PrepareDriverConf(){
+		this.clientBrowserConf = new HashMap<String, String>();
+	}
+	
 	public PrepareDriverConf refineBrowserValues(){
 		RefinedBrowserConf rbc = new RefinedBrowserConf(clientBrowserConf, FILENAME);
 		for(DriverConfigurations.LocalEnvironmentConfig localConfig:DriverConfigurations.LocalEnvironmentConfig.values()){

@@ -12,7 +12,6 @@ import com.springer.omelet.exception.FrameworkException;
 
 public class LocalBrowserRuleTest {
 
-	private boolean remoteFlag=false;
 	Map<String,String> browserMap;
 	
 	@BeforeMethod

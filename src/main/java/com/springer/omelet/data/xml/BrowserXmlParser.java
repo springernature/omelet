@@ -35,7 +35,7 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import com.springer.omelet.common.Utils;
-import com.springer.omelet.data.BrowserConstant;
+import com.springer.omelet.data.DriverConfigurations;
 import com.springer.omelet.data.driverconf.IBrowserConf;
 import com.springer.omelet.data.driverconf.PrepareDriverConf;
 
@@ -129,11 +129,24 @@ public class BrowserXmlParser {
 	private HashMap<String, String> getKeyValue(Element keyElement) {
 
 		HashMap<String, String> browserData = new HashMap<String, String>();
-		Element element = keyElement;
-		for (BrowserConstant b : BrowserConstant.values()) {
-			browserData.put(b.toString(), element.getAttribute(b.toString()));
+		Element element = keyElement;	
+		HashMap<String, String> f_map = new HashMap<String, String>();
+		for (DriverConfigurations.LocalEnvironmentConfig localConfig : DriverConfigurations.LocalEnvironmentConfig.values()) {
+			browserData.put(localConfig.toString(), element.getAttribute(localConfig.toString()));
+		}
+		for (DriverConfigurations.BrowserStackConfig bsConfig : DriverConfigurations.BrowserStackConfig.values()) {
+			browserData.put(bsConfig.toString(), element.getAttribute(bsConfig.toString()));
+		}
+		for (DriverConfigurations.HubConfig hubConfig : DriverConfigurations.HubConfig.values()) {
+			browserData.put(hubConfig.toString(), element.getAttribute(hubConfig.toString()));
+		}
+		for (DriverConfigurations.FrameworkConfig frameworkConfig : DriverConfigurations.FrameworkConfig.values()) {
+			browserData.put(frameworkConfig.toString(), element.getAttribute(frameworkConfig.toString()));
 		}
 		return browserData;
+		
+		
+		
 	}
 
 }

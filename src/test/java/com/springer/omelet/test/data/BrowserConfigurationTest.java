@@ -65,7 +65,7 @@ public class BrowserConfigurationTest {
 		Assert.assertEquals(
 				DriverConfigurations.BrowserStackConfig.device.get(), DEVICE);
 		Assert.assertEquals(
-				DriverConfigurations.BrowserStackConfig.browserName.get(),
+				DriverConfigurations.LocalEnvironmentConfig.browserName.get(),
 				BROWSERNAME);
 		Assert.assertEquals(
 				DriverConfigurations.BrowserStackConfig.browserVersion.get(),

@@ -19,14 +19,14 @@ import com.google.gdata.data.spreadsheet.SpreadsheetFeed;
 import com.google.gdata.data.spreadsheet.WorksheetEntry;
 import com.google.gdata.util.AuthenticationException;
 import com.google.gdata.util.ServiceException;
-import com.springer.omelet.data.BrowserConfiguration;
-import com.springer.omelet.data.BrowserConstant;
+import com.springer.omelet.data.DriverConfigurations;
 import com.springer.omelet.data.IDataSource;
 import com.springer.omelet.data.IMappingData;
 import com.springer.omelet.data.IProperty;
 import com.springer.omelet.data.ImplementIMap;
 import com.springer.omelet.data.PropertyMapping;
 import com.springer.omelet.data.driverconf.IBrowserConf;
+import com.springer.omelet.data.driverconf.PrepareDriverConf;
 
 public class ReadGoogle implements IDataSource {
 
@@ -57,7 +57,7 @@ public class ReadGoogle implements IDataSource {
 			List<com.google.gdata.data.spreadsheet.SpreadsheetEntry> spreadsheets = feed
 					.getEntries();
 			for (SpreadsheetEntry sheet : spreadsheets) {
-			//	System.out.println(sheet.getTitle().getPlainText());
+				// System.out.println(sheet.getTitle().getPlainText());
 				if (sheet.getTitle().getPlainText().equalsIgnoreCase(sheetName)) {
 					return sheet;
 				}
@@ -86,15 +86,16 @@ public class ReadGoogle implements IDataSource {
 	}
 
 	/***
-	 * Get the primary data from the Mapping sheet in Google sheet,
-	 * This would be fed to MappedValue for refinement
+	 * Get the primary data from the Mapping sheet in Google sheet, This would
+	 * be fed to MappedValue for refinement
 	 */
 	@Override
 	public Map<String, IMappingData> getPrimaryData() {
 		Map<String, IMappingData> primaryData = new HashMap<String, IMappingData>();
 		URL listFeedURL;
 		try {
-			listFeedURL = getWorkSheet(GoogleSheetConstant.GOOGLE_MAP_SHEET_NAME).getListFeedUrl();
+			listFeedURL = getWorkSheet(
+					GoogleSheetConstant.GOOGLE_MAP_SHEET_NAME).getListFeedUrl();
 			ListFeed listFeed = service.getFeed(listFeedURL, ListFeed.class);
 			for (ListEntry row : listFeed.getEntries()) {
 				primaryData.put(row.getCustomElements().getValue("methodname"),
@@ -111,12 +112,14 @@ public class ReadGoogle implements IDataSource {
 
 	/**
 	 * get ImplementMap frmo the Mapping sheet for single row
+	 * 
 	 * @param row
 	 * @return
 	 */
 	private ImplementIMap getMap(ListEntry row) {
-		/*System.out.println("In preparing the Map:");
-		System.out.println();*/
+		/*
+		 * System.out.println("In preparing the Map:"); System.out.println();
+		 */
 		return new ImplementIMap.Builder()
 				.withClientEnvironment(
 						getList(row.getCustomElements()
@@ -137,8 +140,10 @@ public class ReadGoogle implements IDataSource {
 
 		List<String> returnedList = new ArrayList<String>();
 		if (StringUtils.isNotBlank(commaSepratedList)) {
-			if (commaSepratedList.contains(GoogleSheetConstant.GOOGLE_BROWSERSHEET_DELIMITER)) {
-				String array[] = commaSepratedList.split(GoogleSheetConstant.GOOGLE_BROWSERSHEET_DELIMITER);
+			if (commaSepratedList
+					.contains(GoogleSheetConstant.GOOGLE_BROWSERSHEET_DELIMITER)) {
+				String array[] = commaSepratedList
+						.split(GoogleSheetConstant.GOOGLE_BROWSERSHEET_DELIMITER);
 				for (int i = 0; i < array.length; i++)
 					returnedList.add(array[i]);
 			} else {
@@ -149,15 +154,15 @@ public class ReadGoogle implements IDataSource {
 	}
 
 	/***
-	 * Get the map having key as methodName of {@link IBrowserConf} for the refined data
+	 * Get the map having key as methodName of {@link IBrowserConf} for the
+	 * refined data
 	 * 
 	 * @param data
 	 * @return
 	 * @throws IOException
 	 * @throws ServiceException
 	 */
-	public List<IBrowserConf> getBrowserListForSheet(
-			IMappingData data)  {
+	public List<IBrowserConf> getBrowserListForSheet(IMappingData data) {
 		// Preferabbly send refined list to it
 		IMappingData methodData = data;
 		List<IBrowserConf> browserConfList = new ArrayList<IBrowserConf>();
@@ -165,42 +170,72 @@ public class ReadGoogle implements IDataSource {
 		String sheetNameHolder = null;
 		ListFeed browserFeed;
 
-			// get the browser sheet name
-			for (String browserSheet : methodData.getClientEnvironment()) {
-				sheetNameHolder = browserSheet;
-				try {
-					browserSheetURL = getWorkSheet(browserSheet)
-							.getListFeedUrl();
-					browserFeed = service.getFeed(browserSheetURL,
-							ListFeed.class);
-					for (ListEntry row : browserFeed.getEntries()) {
-						browserConfList.add(getBrowserConfFromRow(row));
-					}
-				} catch (NullPointerException ex) {
-					System.out.println("Not able to find sheet:"
-							+ sheetNameHolder);
-					LOGGER.error(ex);
-				} catch (IOException e) {
-					LOGGER.error(e);
-				} catch (ServiceException e) {
-					LOGGER.error(e);
+		// get the browser sheet name
+		for (String browserSheet : methodData.getClientEnvironment()) {
+			sheetNameHolder = browserSheet;
+			try {
+				browserSheetURL = getWorkSheet(browserSheet).getListFeedUrl();
+				browserFeed = service.getFeed(browserSheetURL, ListFeed.class);
+				for (ListEntry row : browserFeed.getEntries()) {
+					browserConfList.add(getBrowserConfFromRow(row));
 				}
+			} catch (NullPointerException ex) {
+				System.out.println("Not able to find sheet:" + sheetNameHolder);
+				LOGGER.error(ex);
+			} catch (IOException e) {
+				LOGGER.error(e);
+			} catch (ServiceException e) {
+				LOGGER.error(e);
 			}
+		}
 		return browserConfList;
 	}
 
 	/**
-	 * Get single Entry for {@link IBrowserConf} for single row in the Google sheet
+	 * Get single Entry for {@link IBrowserConf} for single row in the Google
+	 * sheet
+	 * 
 	 * @param row
 	 * @return
 	 */
 	private IBrowserConf getBrowserConfFromRow(ListEntry row) {
 		Map<String, String> browserMap = new HashMap<String, String>();
-		for (BrowserConstant colValue : BrowserConstant.values()) {
-			browserMap.put(colValue.toString(), row.getCustomElements()
-					.getValue(colValue.toString().toLowerCase().replace("_", "")));
+
+		for (DriverConfigurations.LocalEnvironmentConfig localConfig : DriverConfigurations.LocalEnvironmentConfig
+				.values()) {
+			browserMap.put(
+					localConfig.toString(),
+					row.getCustomElements().getValue(
+							localConfig.toString().toLowerCase()
+									.replace("_", "")));
 		}
-		return new BrowserConfiguration(browserMap);
+		for (DriverConfigurations.BrowserStackConfig bsConfig : DriverConfigurations.BrowserStackConfig
+				.values()) {
+			browserMap
+					.put(bsConfig.toString(),
+							row.getCustomElements().getValue(
+									bsConfig.toString().toLowerCase()
+											.replace("_", "")));
+		}
+		for (DriverConfigurations.HubConfig hubConfig : DriverConfigurations.HubConfig
+				.values()) {
+			browserMap.put(
+					hubConfig.toString(),
+					row.getCustomElements()
+							.getValue(
+									hubConfig.toString().toLowerCase()
+											.replace("_", "")));
+		}
+		for (DriverConfigurations.FrameworkConfig frameworkConfig : DriverConfigurations.FrameworkConfig
+				.values()) {
+			browserMap.put(
+					frameworkConfig.toString(),
+					row.getCustomElements().getValue(
+							frameworkConfig.toString().toLowerCase()
+									.replace("_", "")));
+		}
+		return new PrepareDriverConf(browserMap).refineBrowserValues()
+				.checkForRules().get();
 	}
 
 	/**
@@ -214,29 +249,29 @@ public class ReadGoogle implements IDataSource {
 	 * @throws IOException
 	 * @throws ServiceException
 	 */
-	public List<IProperty> getMethodData(String environment,
-			IMappingData data) {
+	public List<IProperty> getMethodData(String environment, IMappingData data) {
 		IMappingData mData = data;
-	
+
 		URL testDataSheetURL;
 		ListFeed testDataFeed = null;
 		// Here reading the method name and the WorkSheetName
-//			System.out.println(mData.getTestData());
-			try {
-				testDataSheetURL = getWorkSheet(mData.getTestData())
-						.getListFeedUrl();
-				testDataFeed = service.getFeed(testDataSheetURL, ListFeed.class);
-			} catch (IOException e) {
-				LOGGER.error(e);
-			} catch (ServiceException e) {
-				LOGGER.error(e);
-			}
-			
-			return getSingleMethodtData(environment, testDataFeed);
+		// System.out.println(mData.getTestData());
+		try {
+			testDataSheetURL = getWorkSheet(mData.getTestData())
+					.getListFeedUrl();
+			testDataFeed = service.getFeed(testDataSheetURL, ListFeed.class);
+		} catch (IOException e) {
+			LOGGER.error(e);
+		} catch (ServiceException e) {
+			LOGGER.error(e);
+		}
+
+		return getSingleMethodtData(environment, testDataFeed);
 	}
 
 	/**
 	 * return the property list for single methods
+	 * 
 	 * @param env
 	 * @param rows
 	 * @return
@@ -246,10 +281,11 @@ public class ReadGoogle implements IDataSource {
 		Map<String, String> keyValuePair = new HashMap<String, String>();
 		DataPerEnvironment testEnvHolder = null;
 		for (ListEntry row : rows.getEntries()) {
-		/*	System.out.println("Row is:"
-					+ row.getCustomElements().getValue("key") + "value:"
-					+ row.getCustomElements().getValue("value"));
-*/
+			/*
+			 * System.out.println("Row is:" +
+			 * row.getCustomElements().getValue("key") + "value:" +
+			 * row.getCustomElements().getValue("value"));
+			 */
 			if (row.getCustomElements().getValue("key").contains("Environment")) {
 				if (testEnvHolder != null) {
 					testEnvironmentMap.add(testEnvHolder);
@@ -320,9 +356,10 @@ public class ReadGoogle implements IDataSource {
 	}
 
 	/**
-	 * Hold the test data for the particular environment 
+	 * Hold the test data for the particular environment
+	 * 
 	 * @author kapil
-	 *
+	 * 
 	 */
 	private class DataPerEnvironment {
 		String environmentName;
@@ -330,7 +367,8 @@ public class ReadGoogle implements IDataSource {
 		Map<String, String> testDataForSingelEnvEntry = new HashMap<String, String>();
 
 		public DataPerEnvironment(String environmentName) {
-//			System.out.println("Environment for TestENvu:" + environmentName);
+			// System.out.println("Environment for TestENvu:" +
+			// environmentName);
 			/* System.out.println("Prop value:"+prop.getValue("Key1")); */
 			this.environmentName = environmentName;
 		}
