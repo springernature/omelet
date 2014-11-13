@@ -3,6 +3,8 @@ package com.springer.omelet.data;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.springer.omelet.exception.FrameworkException;
+
 public class ValidateBrowserRules {
 
 	Map<String, String> refinedBrowserConf = new HashMap<String, String>();
@@ -11,7 +13,7 @@ public class ValidateBrowserRules {
 
 	public ValidateBrowserRules(Map<String, String> refinedBrowserConf) {
 		this.refinedBrowserConf = refinedBrowserConf;
-		browserConf = new BrowserConfiguration(refinedBrowserConf);
+		browserConf = new BrowserConfR(refinedBrowserConf);
 	}
 
 	public void checkAndThrowExceptionForLocalBrowser() {
@@ -21,17 +23,19 @@ public class ValidateBrowserRules {
 		// chrome then exception
 		if (!browserConf.isRemoteFlag()) {
 			if (browserConf.getBrowser().toLowerCase().startsWith("i")
-					&& !"".equals(browserConf.getLocalIEServerPath())) {
+					&& browserConf.getLocalIEServerPath().isEmpty()) {
 				exceptionMessage
 						.append("Not able to find IE Serverpath , Please set it!!");
 			}
 
 			if (browserConf.getBrowser().toLowerCase().startsWith("c")
-					&& !"".equals(browserConf.getLocalChromeServerPath())) {
+					&& browserConf.getLocalChromeServerPath().isEmpty()) {
 				exceptionMessage
 						.append("Browser selected in Chrome and not able to find Chrome Server");
 			}
 		}
+
+		throwExceptionIfAny();
 
 	}
 
@@ -39,24 +43,26 @@ public class ValidateBrowserRules {
 		// if remoteFlag=true and remotURL = "" then Exception and bsSwitch =
 		// false
 		if (browserConf.isRemoteFlag() && !browserConf.isBrowserStackSwitch()) {
-			if ("".equals(browserConf.getRemoteURL())) {
+			if (browserConf.getRemoteURL().isEmpty()) {
 				exceptionMessage
 						.append("As the remote Flag is true , please set remoteURL");
 			}
 		}
+		throwExceptionIfAny();
 	}
 
 	public void checkAndThrowExceptionForBrowserStack() {
 		if (browserConf.isRemoteFlag() && browserConf.isBrowserStackSwitch()) {
 			if (!browserConf.isMobileTest()) {
-				checkForBrowserStackBrowser();
+				checkForBSBrowserOs();
 			} else {
-				checkForBrowserStackMobile();
+				checkForBSMobile();
 			}
 
 			if (browserConf.isBsLocalTesting()) {
-				checkForBrowserStackLocalTesting();
+				checkForBSLocalTesting();
 			}
+			throwExceptionIfAny();
 		}
 		// if remoteFlag = true and bsSwitch = true
 		// bskey and bsUserName and browserVersion , oS , os version
@@ -64,38 +70,48 @@ public class ValidateBrowserRules {
 		// if mobileTest the device platform and browser FireFox then exception
 	}
 
-	private void checkForBrowserStackBrowser() {
-		if ("".equals(browserConf.getBrowserVersion())) {
+	private void checkForBSBrowserOs() {
+		if (browserConf.getBrowserVersion().isEmpty()) {
 			exceptionMessage
 					.append("As BS switch is on ,Please enter browserVersion");
 		}
-		if ("".equals(browserConf.getOsName())) {
+		if (browserConf.getOsName().isEmpty()) {
 			exceptionMessage.append("As BS switch is on ,Please enter OsName");
 		}
-		if ("".equals(browserConf.getOsVersion())) {
+		if (browserConf.getOsVersion().isEmpty()) {
 			exceptionMessage
 					.append("As BS switch is on ,Please enter osversion");
 		}
+		throwExceptionIfAny();
 	}
 
-	private void checkForBrowserStackLocalTesting() {
-		if(browserConf.getBsURLs().isEmpty()){
-			exceptionMessage.append("Please provide your local testing url for tunnel setup");
+	private void checkForBSLocalTesting() {
+		if (browserConf.getBsURLs().isEmpty()) {
+			exceptionMessage
+					.append("Please provide your local testing url for tunnel setup");
 		}
 
 	}
 
-	private void checkForBrowserStackMobile() {
-		if(browserConf.getDevice().isEmpty()){
-			exceptionMessage.append("As we want to run on Mobile , please give the device");
+	private void checkForBSMobile() {
+		if (browserConf.getDevice().isEmpty()) {
+			exceptionMessage
+					.append("As we want to run on Mobile , please give the device");
 		}
-		if(browserConf.getPlatform().isEmpty()){
+		if (browserConf.getPlatform().isEmpty()) {
 			exceptionMessage.append("Please set platform");
 		}
-		if(!browserConf.getBrowser().equalsIgnoreCase("android") || !browserConf.getBrowser().equalsIgnoreCase("iphone")||!browserConf.getBrowser().equalsIgnoreCase("ipad")){
+		if (!browserConf.getBrowser().equalsIgnoreCase("android")
+				|| !browserConf.getBrowser().equalsIgnoreCase("iphone")
+				|| !browserConf.getBrowser().equalsIgnoreCase("ipad")) {
 			exceptionMessage.append("please set proper browserName for Mobile");
 		}
 	}
 
+	private void throwExceptionIfAny() {
+		if (exceptionMessage.length() != 0) {
+			throw new FrameworkException(exceptionMessage.toString());
+		}
+	}
 
 }
