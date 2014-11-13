@@ -92,7 +92,6 @@ public class RefineMappedData {
 				method.getDeclaringClass().getName().toString());
 		IMappingData packageRunStartegy = primaryDataMap.get(
 				method.getDeclaringClass().getPackage().getName().toString());
-		System.out.println(classRunStartegy.getRunStartegy());
 		if (methodRunStartegy != null && methodRunStartegy.getRunStartegy()!= null) {
 			return methodRunStartegy.getRunStartegy();
 		} else if (classRunStartegy != null && classRunStartegy.getRunStartegy() != null) {
