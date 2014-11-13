@@ -34,6 +34,10 @@ public class PrepareDriverConf {
 			updateRefinedMap(frameworkConfig.toString(), rbc.get(frameworkConfig.toString(), frameworkConfig.get()));
 		}
 		
+		for(DriverConfigurations.BrowserStackConfig bsConfig:DriverConfigurations.BrowserStackConfig.values()){
+			updateRefinedMap(bsConfig.toString(), rbc.get(bsConfig.toString(), bsConfig.get()));
+		}
+		
 		return this;
 		
 	}

@@ -28,7 +28,7 @@ import com.springer.omelet.testng.support.TestInterceptor;
 
 public class TestCheck {
 
-	@Test
+	/*@Test
 	public void createTestNgObject() {
 		TestNG testng = new TestNG();
 		testng.addInvokedMethodListener(new DriverInitialization());
@@ -60,5 +60,5 @@ public class TestCheck {
 		testng.setTestClasses(new Class[] { BeforeMethodPresentTest.class });
 		testng.run();
 		Assert.assertFalse(testng.hasFailure());
-	}
+	}*/
 }

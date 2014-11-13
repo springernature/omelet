@@ -35,9 +35,9 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import com.springer.omelet.common.Utils;
-import com.springer.omelet.data.BrowserConfiguration;
 import com.springer.omelet.data.BrowserConstant;
 import com.springer.omelet.data.driverconf.IBrowserConf;
+import com.springer.omelet.data.driverconf.PrepareDriverConf;
 
 /***
  * Return list of {@link IBrowserConf} given name of Xml file
@@ -115,7 +115,8 @@ public class BrowserXmlParser {
 		// Check if for xml there is Already a mapping in the
 		// Iterate over the complete list
 		for (HashMap<String, String> b_data : totalList) {
-			ibrowserList.add(new BrowserConfiguration(b_data));
+			ibrowserList.add(
+					new PrepareDriverConf(b_data).refineBrowserValues().checkForRules().get());
 		}
 		return ibrowserList;
 	}
