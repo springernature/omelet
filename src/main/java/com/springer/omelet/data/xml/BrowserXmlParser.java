@@ -37,7 +37,7 @@ import org.xml.sax.SAXException;
 import com.springer.omelet.common.Utils;
 import com.springer.omelet.data.BrowserConfiguration;
 import com.springer.omelet.data.BrowserConstant;
-import com.springer.omelet.data.IBrowserConf;
+import com.springer.omelet.data.driverconf.IBrowserConf;
 
 /***
  * Return list of {@link IBrowserConf} given name of Xml file

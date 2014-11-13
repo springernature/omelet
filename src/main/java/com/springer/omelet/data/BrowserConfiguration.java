@@ -25,6 +25,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 
 import com.springer.omelet.data.VerifyBrowserValues;
+import com.springer.omelet.data.driverconf.IBrowserConf;
 
 /***
  * Implementation of IBrowser takes Browser Data and make BrowserObject based on

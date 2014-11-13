@@ -35,7 +35,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
 
 import com.springer.omelet.browserstacktunnel.BrowserStackTunnel;
-import com.springer.omelet.data.IBrowserConf;
+import com.springer.omelet.data.driverconf.IBrowserConf;
 import com.springer.omelet.data.xml.MappingParserRevisit;
 
 /***

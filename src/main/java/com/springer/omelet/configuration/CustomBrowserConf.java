@@ -18,9 +18,9 @@ package com.springer.omelet.configuration;
 
 import org.apache.log4j.Logger;
 
-import com.springer.omelet.data.IBrowserConf;
 import com.springer.omelet.data.IProperty;
 import com.springer.omelet.data.PropertyMapping;
+import com.springer.omelet.data.driverconf.IBrowserConf;
 
 /***
  * Set Custom initialization of {@link IBrowserConf} using this class

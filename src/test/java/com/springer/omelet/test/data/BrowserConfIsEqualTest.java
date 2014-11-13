@@ -27,7 +27,7 @@ import org.testng.annotations.Test;
 
 import com.springer.omelet.data.BrowserConfiguration;
 import com.springer.omelet.data.BrowserConstant;
-import com.springer.omelet.data.IBrowserConf;
+import com.springer.omelet.data.driverconf.IBrowserConf;
 
 public class BrowserConfIsEqualTest {
 

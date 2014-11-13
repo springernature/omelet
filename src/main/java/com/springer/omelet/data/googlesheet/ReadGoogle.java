@@ -21,12 +21,12 @@ import com.google.gdata.util.AuthenticationException;
 import com.google.gdata.util.ServiceException;
 import com.springer.omelet.data.BrowserConfiguration;
 import com.springer.omelet.data.BrowserConstant;
-import com.springer.omelet.data.IBrowserConf;
 import com.springer.omelet.data.IDataSource;
 import com.springer.omelet.data.IMappingData;
 import com.springer.omelet.data.IProperty;
 import com.springer.omelet.data.ImplementIMap;
 import com.springer.omelet.data.PropertyMapping;
+import com.springer.omelet.data.driverconf.IBrowserConf;
 
 public class ReadGoogle implements IDataSource {
 

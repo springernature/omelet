@@ -1,10 +1,11 @@
-package com.springer.omelet.data;
+package com.springer.omelet.data.driverconf;
 
 import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
 
 import com.springer.omelet.common.Utils;
+import com.springer.omelet.data.PropertyValueMin;
 
 /**
  * Refine Browser data based on the Hierarchy
@@ -38,7 +39,7 @@ public class RefinedBrowserConf {
 		}
 	}
 
-	public String getRefined(String key, String defaultValue) {
+	public String get(String key, String defaultValue) {
 		String refinedValue = defaultValue;
 		refinedValue = getFromFrameworkProp(key, refinedValue);
 		refinedValue = getFromClientEnv(key, refinedValue);

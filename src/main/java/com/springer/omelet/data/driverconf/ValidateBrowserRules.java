@@ -1,4 +1,4 @@
-package com.springer.omelet.data;
+package com.springer.omelet.data.driverconf;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -112,6 +112,12 @@ public class ValidateBrowserRules {
 		if (exceptionMessage.length() != 0) {
 			throw new FrameworkException(exceptionMessage.toString());
 		}
+	}
+	
+	public void validate(){
+		checkAndThrowExceptionForLocalBrowser();
+		checkAndThrowExceptionForRemote();
+		checkAndThrowExceptionForBrowserStack();
 	}
 
 }

@@ -21,9 +21,7 @@ import org.xml.sax.SAXException;
 import com.springer.omelet.common.Utils;
 import com.springer.omelet.data.IDataSource;
 import com.springer.omelet.data.IMappingData;
-import com.springer.omelet.data.IProperty;
 import com.springer.omelet.data.ImplementIMap;
-import com.springer.omelet.data.PropertyMapping;
 import com.springer.omelet.data.PropertyValueMin;
 import com.springer.omelet.driver.SuiteConfiguration;
 

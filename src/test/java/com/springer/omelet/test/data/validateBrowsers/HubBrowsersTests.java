@@ -7,7 +7,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import com.springer.omelet.data.DriverConfigurations;
-import com.springer.omelet.data.ValidateBrowserRules;
+import com.springer.omelet.data.driverconf.ValidateBrowserRules;
 import com.springer.omelet.exception.FrameworkException;
 
 public class HubBrowsersTests {

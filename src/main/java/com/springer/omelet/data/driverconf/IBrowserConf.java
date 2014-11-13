@@ -14,7 +14,7 @@
  * 	See the License for the specific language governing permissions and
  * 	limitations under the License.
  *******************************************************************************/
-package com.springer.omelet.data;
+package com.springer.omelet.data.driverconf;
 
 import java.util.List;
 

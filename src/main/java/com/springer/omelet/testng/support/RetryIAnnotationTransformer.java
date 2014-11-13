@@ -37,11 +37,11 @@ import org.testng.annotations.IFactoryAnnotation;
 import org.testng.annotations.ITestAnnotation;
 
 import com.springer.omelet.data.DataProvider.mapStrategy;
-import com.springer.omelet.data.IBrowserConf;
 import com.springer.omelet.data.IMappingData;
 import com.springer.omelet.data.IProperty;
 import com.springer.omelet.data.PrettyMessage;
 import com.springer.omelet.data.RefineMappedData;
+import com.springer.omelet.data.driverconf.IBrowserConf;
 import com.springer.omelet.data.googlesheet.GoogleSheetConstant;
 import com.springer.omelet.data.googlesheet.ReadGoogle;
 import com.springer.omelet.data.xml.BrowserXmlParser;

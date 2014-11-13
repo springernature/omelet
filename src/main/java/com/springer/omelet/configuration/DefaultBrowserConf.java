@@ -22,8 +22,8 @@ import org.apache.log4j.Logger;
 
 import com.springer.omelet.data.BrowserConfiguration;
 import com.springer.omelet.data.BrowserConstant;
-import com.springer.omelet.data.IBrowserConf;
 import com.springer.omelet.data.IProperty;
+import com.springer.omelet.data.driverconf.IBrowserConf;
 
 /***
  * This class set the variable required to configure Driver either from Command

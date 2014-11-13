@@ -10,7 +10,7 @@ import org.testng.annotations.Test;
 import com.springer.omelet.common.Utils;
 import com.springer.omelet.data.IProperty;
 import com.springer.omelet.data.PropertyMapping;
-import com.springer.omelet.data.RefinedBrowserConf;
+import com.springer.omelet.data.driverconf.RefinedBrowserConf;
 
 public class RefinedBrowserConfTests {
 	String key = "bsUserName";
@@ -28,7 +28,7 @@ public class RefinedBrowserConfTests {
 		System.setProperty(key, commandLineValue);
 		clientMap.put(key, "bsUserTest");
 		RefinedBrowserConf rbf = new RefinedBrowserConf(clientMap, "test.properties");
-		Assert.assertEquals(rbf.getRefined("bsUserName", "defaultUserName"), commandLineValue);
+		Assert.assertEquals(rbf.get("bsUserName", "defaultUserName"), commandLineValue);
 	}
 	
 	@Test
@@ -39,7 +39,7 @@ public class RefinedBrowserConfTests {
 		System.setProperty(key, commandLineValue);
 		clientMap.put(key,clientValue );
 		RefinedBrowserConf rbf = new RefinedBrowserConf(clientMap, "test.properties");
-		Assert.assertEquals(rbf.getRefined(key, "defaultUserName"), clientValue);
+		Assert.assertEquals(rbf.get(key, "defaultUserName"), clientValue);
 	}
 	
 	@Test
@@ -52,7 +52,7 @@ public class RefinedBrowserConfTests {
 		System.setProperty(key, commandLineValue);
 		clientMap.put(key,clientValue );
 		RefinedBrowserConf rbf = new RefinedBrowserConf(clientMap, "test.properties");
-		Assert.assertEquals(rbf.getRefined(key, defaultValue), defaultValue);	
+		Assert.assertEquals(rbf.get(key, defaultValue), defaultValue);	
 	}
 	@Test
 	public void verifyCommandLineNotPresent(){
@@ -60,7 +60,7 @@ public class RefinedBrowserConfTests {
 		Map<String,String> clientMap = new HashMap<String, String>();
 		clientMap.put(key,clientValue);
 		RefinedBrowserConf rbf = new RefinedBrowserConf(clientMap, "test.properties");
-		Assert.assertEquals(rbf.getRefined(key, "defaultUserName"), clientValue);
+		Assert.assertEquals(rbf.get(key, "defaultUserName"), clientValue);
 	}
 	
 	@Test
@@ -69,7 +69,7 @@ public class RefinedBrowserConfTests {
 		Map<String,String> clientMap = new HashMap<String, String>();
 		IProperty frameworkProp = new PropertyMapping(Utils.getResources(this, dataFileName));
 		RefinedBrowserConf rbf = new RefinedBrowserConf(clientMap, dataFileName);
-		Assert.assertEquals(rbf.getRefined(key, "defaultUserName"), frameworkProp.getValue(key));
+		Assert.assertEquals(rbf.get(key, "defaultUserName"), frameworkProp.getValue(key));
 	}
 	
 	@Test
@@ -78,7 +78,7 @@ public class RefinedBrowserConfTests {
 		String defaultValue = "defaultKey";
 		Map<String,String> clientMap = new HashMap<String, String>();
 		RefinedBrowserConf rbf = new RefinedBrowserConf(clientMap, dataFileName);
-		Assert.assertEquals(rbf.getRefined(key1, defaultValue), defaultValue);
+		Assert.assertEquals(rbf.get(key1, defaultValue), defaultValue);
 	}
 
 }

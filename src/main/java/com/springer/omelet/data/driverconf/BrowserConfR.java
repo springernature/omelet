@@ -1,34 +1,30 @@
-package com.springer.omelet.data;
+package com.springer.omelet.data.driverconf;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import com.springer.omelet.data.BrowserConstant;
+
 public class BrowserConfR implements IBrowserConf {
-	
+
 	private Map<String, String> mappedValues;
 	private List<String> bsURLs = new ArrayList<String>();
 
-	public BrowserConfR(Map<String,String> completeBrowserMap){
+	public BrowserConfR(Map<String, String> completeBrowserMap) {
 		mappedValues = completeBrowserMap;
 	}
 
 	public String getBrowser() {
-		
 		return mappedValues.get(BrowserConstant.browserName.toString());
-
 	}
 
 	public String getBrowserVersion() {
-
 		return mappedValues.get(BrowserConstant.browserVersion.toString());
-
 	}
 
 	public String getOsName() {
-
 		return mappedValues.get(BrowserConstant.os.toString());
-
 	}
 
 	public String getOsVersion() {
@@ -36,7 +32,8 @@ public class BrowserConfR implements IBrowserConf {
 	}
 
 	public boolean isBrowserStackSwitch() {
-		return Boolean.valueOf(mappedValues.get(BrowserConstant.bsSwitch.toString()));
+		return Boolean.valueOf(mappedValues.get(BrowserConstant.bsSwitch
+				.toString()));
 	}
 
 	public String getBsUserName() {
@@ -48,7 +45,8 @@ public class BrowserConfR implements IBrowserConf {
 	}
 
 	public boolean isRemoteFlag() {
-		return Boolean.valueOf(mappedValues.get(BrowserConstant.remoteFlag.toString()));
+		return Boolean.valueOf(mappedValues.get(BrowserConstant.remoteFlag
+				.toString()));
 	}
 
 	public String getRemoteURL() {
@@ -56,7 +54,8 @@ public class BrowserConfR implements IBrowserConf {
 	}
 
 	public Integer getDriverTimeOut() {
-		return Integer.valueOf(mappedValues.get(BrowserConstant.driverTimeOut.toString()));
+		return Integer.valueOf(mappedValues.get(BrowserConstant.driverTimeOut
+				.toString()));
 	}
 
 	public Integer getRetryFailedTestCaseCount() {
@@ -65,8 +64,8 @@ public class BrowserConfR implements IBrowserConf {
 	}
 
 	public boolean isBsLocalTesting() {
-		return Boolean.valueOf(mappedValues
-				.get(BrowserConstant.bs_localTesting.toString()));
+		return Boolean.valueOf(mappedValues.get(BrowserConstant.bs_localTesting
+				.toString()));
 	}
 
 	public List<String> getBsURLs() {
@@ -93,7 +92,6 @@ public class BrowserConfR implements IBrowserConf {
 	}
 
 	public String getLocalIEServerPath() {
-
 		return mappedValues.get(BrowserConstant.ieServerPath.toString());
 	}
 
@@ -102,19 +100,18 @@ public class BrowserConfR implements IBrowserConf {
 	}
 
 	public boolean isHighLightElementFlag() {
-
 		return Boolean.valueOf(mappedValues
 				.get(BrowserConstant.highlightElementFlag.toString()));
 	}
 
 	public boolean isScreenShotFlag() {
-		return Boolean
-				.valueOf(mappedValues.get(BrowserConstant.screenShotFlag.toString()));
+		return Boolean.valueOf(mappedValues.get(BrowserConstant.screenShotFlag
+				.toString()));
 	}
 
 	public boolean isMobileTest() {
-		return Boolean.valueOf(mappedValues.get(BrowserConstant.mobileTest.toString()));
+		return Boolean.valueOf(mappedValues.get(BrowserConstant.mobileTest
+				.toString()));
 	}
-
 
 }

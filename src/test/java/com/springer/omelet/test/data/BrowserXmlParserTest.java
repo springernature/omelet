@@ -24,7 +24,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import com.springer.omelet.data.BrowserConstant;
-import com.springer.omelet.data.IBrowserConf;
+import com.springer.omelet.data.driverconf.IBrowserConf;
 import com.springer.omelet.data.xml.BrowserXmlParser;
 
 public class BrowserXmlParserTest {
