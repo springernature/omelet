@@ -106,6 +106,7 @@ public class ValidateBrowserRules {
 
 	private void throwExceptionIfAny() {
 		if (exceptionMessage.length() != 0) {
+			LOGGER.info("!!!!!!!! "+exceptionMessage.toString()+" !!!!!!!!");
 			throw new FrameworkException(exceptionMessage.toString());
 		}
 	}

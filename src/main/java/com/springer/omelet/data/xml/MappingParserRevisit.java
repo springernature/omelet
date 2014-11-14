@@ -47,8 +47,7 @@ public class MappingParserRevisit implements IDataSource {
 		this.xmlName = xmlName;
 		try {
 			builder = factory.newDocumentBuilder();
-			document = builder
-					.parse(Utils.getResources(this, xmlName));
+			document = builder.parse(Utils.getResources(this, xmlName));
 		} catch (ParserConfigurationException e) {
 
 		} catch (SAXException e) {
@@ -85,11 +84,10 @@ public class MappingParserRevisit implements IDataSource {
 		// get the root Element
 		walkInXml(document.getDocumentElement());
 		for (String key : bucket.keySet()) {
-			System.out.println("Key is:" + key + " TestData:"
-					+ bucket.get(key).getTestData() + "ClientEnv:"
-					+ bucket.get(key).getClientEnvironment());
-			System.out.println("Strategy is:"
-					+ bucket.get(key).getRunStartegy());
+			LOGGER.info("TestClass Name: " + key);
+			LOGGER.info(" TestData: " + bucket.get(key).getTestData());
+			LOGGER.info(" ClientEnv: " + bucket.get(key).getClientEnvironment());
+			LOGGER.info(" Strategy is: " + bucket.get(key).getRunStartegy());
 		}
 		return bucket;
 	}
@@ -100,7 +98,7 @@ public class MappingParserRevisit implements IDataSource {
 	 * @param element
 	 */
 	private void updateBucket(Element element) {
-		System.out.println(element.getAttribute("name"));
+		LOGGER.debug("TestClass Name: " + element.getAttribute("name"));
 		bucket.put(element.getAttribute("name"), getImap(element));
 	}
 
@@ -174,8 +172,9 @@ public class MappingParserRevisit implements IDataSource {
 
 	}
 
-	private static boolean isFrameworkProperties(){
-		if(Utils.getResources(MappingParserRevisit.class, "Framework.properties") != null){
+	private static boolean isFrameworkProperties() {
+		if (Utils.getResources(MappingParserRevisit.class,
+				"Framework.properties") != null) {
 			return true;
 		}
 		return false;

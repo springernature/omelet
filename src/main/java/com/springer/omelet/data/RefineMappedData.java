@@ -5,8 +5,10 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.log4j.Logger;
 
 import com.springer.omelet.data.DataProvider.mapStrategy;
+import com.springer.omelet.data.driverconf.ValidateBrowserRules;
 import com.springer.omelet.exception.FrameworkException;
 /**
  * Refine data based on the hierarchy method-->Class-->Package
@@ -15,14 +17,15 @@ import com.springer.omelet.exception.FrameworkException;
  *
  */
 public class RefineMappedData {
-
+	private static final Logger LOGGER = Logger.getLogger(RefineMappedData.class);
+			
 	private Map<String, IMappingData> primaryDataMap;
 
 	public RefineMappedData(IDataSource dataSource) {
 		primaryDataMap = dataSource.getPrimaryData();
 		//Primary Map value
 		for(String s :primaryDataMap.keySet()){
-			System.out.println("Primary key:"+s+"value:"+primaryDataMap.get(s).getRunStartegy());
+			LOGGER.debug("Primary key:"+s+"value:"+primaryDataMap.get(s).getRunStartegy());
 		}
 	}
 
