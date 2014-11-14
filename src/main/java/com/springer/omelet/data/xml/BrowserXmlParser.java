@@ -129,8 +129,7 @@ public class BrowserXmlParser {
 	private HashMap<String, String> getKeyValue(Element keyElement) {
 
 		HashMap<String, String> browserData = new HashMap<String, String>();
-		Element element = keyElement;	
-		HashMap<String, String> f_map = new HashMap<String, String>();
+		Element element = keyElement;
 		for (DriverConfigurations.LocalEnvironmentConfig localConfig : DriverConfigurations.LocalEnvironmentConfig.values()) {
 			browserData.put(localConfig.toString(), element.getAttribute(localConfig.toString()));
 		}

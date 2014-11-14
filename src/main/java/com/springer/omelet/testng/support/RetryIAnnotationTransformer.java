@@ -129,8 +129,7 @@ public class RetryIAnnotationTransformer implements IAnnotationTransformer,
 		try {
 			t.join();
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			LOGGER.error(e);
 		}
 		testDataPrepared = true;
 		}
