@@ -3,6 +3,8 @@ package com.springer.omelet.data.driverconf;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.log4j.Logger;
+
 import com.springer.omelet.exception.FrameworkException;
 
 /**
@@ -11,14 +13,15 @@ import com.springer.omelet.exception.FrameworkException;
  *
  */
 public class ValidateBrowserRules {
-
+	private static final Logger LOGGER = Logger.getLogger(ValidateBrowserRules.class);
+	
 	Map<String, String> refinedBrowserConf = new HashMap<String, String>();
 	StringBuilder exceptionMessage = new StringBuilder();
 	IBrowserConf browserConf;
 
 	public ValidateBrowserRules(Map<String, String> refinedBrowserConf) {
 		this.refinedBrowserConf = refinedBrowserConf;
-		browserConf = new BrowserConfR(refinedBrowserConf);
+		browserConf = new BrowserConfR(refinedBrowserConf);		
 	}
 
 	public void checkAndThrowExceptionForLocalBrowser() {

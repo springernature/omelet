@@ -49,7 +49,9 @@ public class BrowserStackTunnel {
 	private InputStream is;
 	private BufferedReader br;
 	private ProcessBuilder pb;
-	
+
+	String browserStackKey;
+	List<String> browserStackURLS;
 	// Hiding the constructor for Singleton
 	private BrowserStackTunnel() {
 
@@ -90,6 +92,9 @@ public class BrowserStackTunnel {
 	 */
 	public void createTunnel(String browserStackKey,
 			List<String> browserStackURLS) {
+		this.browserStackKey = browserStackKey;
+		this.browserStackURLS = browserStackURLS;
+		
 		if (!activeTunnels.contains(browserStackKey)) {
 			synchronized (browserStackTunnel) {
 
@@ -137,9 +142,12 @@ public class BrowserStackTunnel {
 		is = tunnelProcess.getInputStream();
 		br = new BufferedReader(new InputStreamReader(is));
 		String t = "";
-		while (!t.equalsIgnoreCase(waitForMessage) && t != null)
+		while (!waitForMessage.equalsIgnoreCase(t) && t != null)
 			try {
 				t = br.readLine();
+//				if(t == null) {
+//					createTunnel(browserStackKey, browserStackURLS);
+//				}
 				LOGGER.info("cmd Output:" + t);
 			} catch (IOException e) {
 				LOGGER.error(e);
