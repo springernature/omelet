@@ -20,7 +20,7 @@ import java.util.List;
 
 import com.springer.omelet.data.DataProvider.mapStrategy;
 /***
- * Return {@link IMappingData}
+ * Builder data class for {@link IMappingData}
  * @author kapilA
  *
  */
@@ -69,10 +69,12 @@ public class ImplementIMap implements IMappingData {
 		}
 
 		public Builder withRunStartegy(String runStrategy) {
-			if (runStrategy.equalsIgnoreCase("full"))
+			if ("full".equalsIgnoreCase(runStrategy))
 				this.runStrat = mapStrategy.Full;
-			else if (runStrategy.equalsIgnoreCase("optimal"))
+			else if ("optimal".equalsIgnoreCase(runStrategy))
 				this.runStrat = mapStrategy.Optimal;
+			else
+				this.runStrat = null;
 			return this;
 		}
 

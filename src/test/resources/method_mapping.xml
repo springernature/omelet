@@ -33,7 +33,7 @@
 
 	<Package name="testPackage" testData="testDataP" runStrategy="Optimal">
 		<Class name="testClass" clientEnvironment="testEnvironmentC">
-			<MethodName name="testMethod" testData="testDataM" clientEnvironment="testEnvironmentM" runStrategy="testRunM"/>
+			<MethodName name="testMethod" testData="testDataM" clientEnvironment="testEnvironmentM" runStrategy="Optimal"/>
 		</Class>
 
 	</Package>

@@ -16,19 +16,10 @@
  *******************************************************************************/
 package com.springer.omelet.test.test;
 
-import org.testng.Assert;
-import org.testng.TestNG;
-import org.testng.annotations.Test;
-
-import com.springer.omelet.driver.DriverInitialization;
-import com.springer.omelet.driver.SuiteConfiguration;
-import com.springer.omelet.test.browserup.BeforeMethodPresentTest;
-import com.springer.omelet.test.browserup.SimpleTest;
-import com.springer.omelet.testng.support.TestInterceptor;
 
 public class TestCheck {
 
-	@Test
+	/*@Test
 	public void createTestNgObject() {
 		TestNG testng = new TestNG();
 		testng.addInvokedMethodListener(new DriverInitialization());
@@ -60,5 +51,5 @@ public class TestCheck {
 		testng.setTestClasses(new Class[] { BeforeMethodPresentTest.class });
 		testng.run();
 		Assert.assertFalse(testng.hasFailure());
-	}
+	}*/
 }

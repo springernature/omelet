@@ -21,7 +21,7 @@ import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 
 import com.springer.omelet.configuration.DefaultBrowserConf;
-import com.springer.omelet.data.IBrowserConf;
+import com.springer.omelet.data.driverconf.IBrowserConf;
 
 /***
  * Driver class which returns Webdriver specific to configuration

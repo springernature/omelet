@@ -24,7 +24,7 @@ import java.util.regex.Pattern;
 
 import org.apache.log4j.Logger;
 
-import com.springer.omelet.browserstacktunnel.OsCheck;
+import com.springer.omelet.browserstacktunnel.OSName;
 /***
  * General Utility function
  * @author kapilA
@@ -92,7 +92,7 @@ public class Utils {
 
 		try {
 
-			switch (OsCheck.getOS()) {
+			switch (OSName.get()) {
 			case UNIX:
 				returFilePath = className.getClass()
 						.getResource("/" + fileName).getPath();

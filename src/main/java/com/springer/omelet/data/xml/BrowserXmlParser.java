@@ -14,7 +14,7 @@
  * 	See the License for the specific language governing permissions and
  * 	limitations under the License.
  *******************************************************************************/
-package com.springer.omelet.data;
+package com.springer.omelet.data.xml;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -35,6 +35,9 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import com.springer.omelet.common.Utils;
+import com.springer.omelet.data.DriverConfigurations;
+import com.springer.omelet.data.driverconf.IBrowserConf;
+import com.springer.omelet.data.driverconf.PrepareDriverConf;
 
 /***
  * Return list of {@link IBrowserConf} given name of Xml file
@@ -91,6 +94,10 @@ public class BrowserXmlParser {
 		return singleXMlList;
 	}
 
+	/**
+	 * Return list of {@link IBrowserConf} prepared from the list of the name of the xml recieved
+	 * @return
+	 */
 	public List<IBrowserConf> getBrowserConf() {
 
 		List<HashMap<String, String>> totalList = new ArrayList<HashMap<String, String>>();
@@ -108,19 +115,37 @@ public class BrowserXmlParser {
 		// Check if for xml there is Already a mapping in the
 		// Iterate over the complete list
 		for (HashMap<String, String> b_data : totalList) {
-			ibrowserList.add(new BrowserConfiguration(b_data));
+			ibrowserList.add(
+					new PrepareDriverConf(b_data).refineBrowserValues().checkForRules().get());
 		}
 		return ibrowserList;
 	}
 
+	/**
+	 * Return key values pair for the the tag ClientEnvironment of the Browser Xml
+	 * @param keyElement
+	 * @return
+	 */
 	private HashMap<String, String> getKeyValue(Element keyElement) {
 
 		HashMap<String, String> browserData = new HashMap<String, String>();
 		Element element = keyElement;
-		for (BrowserConstant b : BrowserConstant.values()) {
-			browserData.put(b.toString(), element.getAttribute(b.toString()));
+		for (DriverConfigurations.LocalEnvironmentConfig localConfig : DriverConfigurations.LocalEnvironmentConfig.values()) {
+			browserData.put(localConfig.toString(), element.getAttribute(localConfig.toString()));
+		}
+		for (DriverConfigurations.BrowserStackConfig bsConfig : DriverConfigurations.BrowserStackConfig.values()) {
+			browserData.put(bsConfig.toString(), element.getAttribute(bsConfig.toString()));
+		}
+		for (DriverConfigurations.HubConfig hubConfig : DriverConfigurations.HubConfig.values()) {
+			browserData.put(hubConfig.toString(), element.getAttribute(hubConfig.toString()));
+		}
+		for (DriverConfigurations.FrameworkConfig frameworkConfig : DriverConfigurations.FrameworkConfig.values()) {
+			browserData.put(frameworkConfig.toString(), element.getAttribute(frameworkConfig.toString()));
 		}
 		return browserData;
+		
+		
+		
 	}
 
 }

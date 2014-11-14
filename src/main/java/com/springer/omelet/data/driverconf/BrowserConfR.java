@@ -1,112 +1,79 @@
-/*******************************************************************************
- *
- * 	Copyright 2014 Springer Science+Business Media Deutschland GmbH
- * 	
- * 	Licensed under the Apache License, Version 2.0 (the "License");
- * 	you may not use this file except in compliance with the License.
- * 	You may obtain a copy of the License at
- * 	
- * 	    http://www.apache.org/licenses/LICENSE-2.0
- * 	
- * 	Unless required by applicable law or agreed to in writing, software
- * 	distributed under the License is distributed on an "AS IS" BASIS,
- * 	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * 	See the License for the specific language governing permissions and
- * 	limitations under the License.
- *******************************************************************************/
-package com.springer.omelet.data;
+package com.springer.omelet.data.driverconf;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.lang3.StringUtils;
-import org.apache.log4j.Logger;
 
-/***
- * Implementation of IBrowser takes Browser Data and make BrowserObject based on
- * the hierarchy CommandLine->XML -> {@link VerifyBrowserValues}
- * 
- * @author kapilA
- * 
- */
-public class BrowserConfiguration implements IBrowserConf {
+import com.springer.omelet.data.DriverConfigurations;
 
-	private Map<String, String> browerData;
+public class BrowserConfR implements IBrowserConf {
+
+	private Map<String, String> mappedValues;
 	private List<String> bsURLs = new ArrayList<String>();
-	private Map<BrowserConstant, String> mappedValues = new HashMap<BrowserConstant, String>();
-	@SuppressWarnings("unused")
-	private static final Logger LOGGER = Logger
-			.getLogger(BrowserConfiguration.class);
 
-	public BrowserConfiguration(Map<String, String> browserData) {
-		this.browerData = browserData;
-		initializeMap();
-	}
-
-	public BrowserConfiguration() {
-		initializeMap();
+	public BrowserConfR(Map<String, String> completeBrowserMap) {
+		mappedValues = completeBrowserMap;
 	}
 
 	public String getBrowser() {
-		return mappedValues.get(BrowserConstant.browserName);
-
+		return mappedValues.get(DriverConfigurations.LocalEnvironmentConfig.browserName.toString());
+		
 	}
 
 	public String getBrowserVersion() {
-
-		return mappedValues.get(BrowserConstant.browserVersion);
+		return mappedValues.get(DriverConfigurations.BrowserStackConfig.browserVersion.toString());
 
 	}
 
 	public String getOsName() {
-
-		return mappedValues.get(BrowserConstant.os);
-
+		return mappedValues.get(DriverConfigurations.BrowserStackConfig.os.toString());
 	}
 
 	public String getOsVersion() {
-		return mappedValues.get(BrowserConstant.osVersion);
+		return mappedValues.get(DriverConfigurations.BrowserStackConfig.osVersion.toString());
 	}
 
 	public boolean isBrowserStackSwitch() {
-		return Boolean.valueOf(mappedValues.get(BrowserConstant.bsSwitch));
+		return Boolean.valueOf(mappedValues.get(DriverConfigurations.BrowserStackConfig.bsSwitch
+				.toString()));
 	}
 
 	public String getBsUserName() {
-		return mappedValues.get(BrowserConstant.bs_userName);
+		return mappedValues.get(DriverConfigurations.BrowserStackConfig.bs_userName.toString());
 	}
 
 	public String getBsPassword() {
-		return mappedValues.get(BrowserConstant.bs_key);
+		return mappedValues.get(DriverConfigurations.BrowserStackConfig.bs_key.toString());
 	}
 
 	public boolean isRemoteFlag() {
-		return Boolean.valueOf(mappedValues.get(BrowserConstant.remoteFlag));
+		return Boolean.valueOf(mappedValues.get(DriverConfigurations.FrameworkConfig.remoteFlag
+				.toString()));
 	}
 
 	public String getRemoteURL() {
-		return mappedValues.get(BrowserConstant.remoteURL);
+		return mappedValues.get(DriverConfigurations.HubConfig.remoteURL.toString());
 	}
 
 	public Integer getDriverTimeOut() {
-		return Integer.valueOf(mappedValues.get(BrowserConstant.driverTimeOut));
+		return Integer.valueOf(mappedValues.get(DriverConfigurations.FrameworkConfig.driverTimeOut
+				.toString()));
 	}
 
 	public Integer getRetryFailedTestCaseCount() {
 		return Integer.valueOf(mappedValues
-				.get(BrowserConstant.retryFailedTestCase));
+				.get(DriverConfigurations.FrameworkConfig.retryFailedTestCase.toString()));
 	}
 
 	public boolean isBsLocalTesting() {
-		return Boolean.valueOf(mappedValues
-				.get(BrowserConstant.bs_localTesting));
+		return Boolean.valueOf(mappedValues.get(DriverConfigurations.BrowserStackConfig.bs_localTesting
+				.toString()));
 	}
 
 	public List<String> getBsURLs() {
 		if (bsURLs.isEmpty()) {
-			String url = mappedValues.get(BrowserConstant.bs_urls);
+			String url = mappedValues.get(DriverConfigurations.BrowserStackConfig.bs_urls.toString());
 			if (url.contains(";")) {
 				String[] urls = url.split(";");
 				for (int i = 0; i < urls.length; i++) {
@@ -120,70 +87,36 @@ public class BrowserConfiguration implements IBrowserConf {
 	}
 
 	public String getDevice() {
-		return mappedValues.get(BrowserConstant.device);
+		return mappedValues.get(DriverConfigurations.BrowserStackConfig.device.toString());
 	}
 
 	public String getPlatform() {
-		return mappedValues.get(BrowserConstant.platform);
+		return mappedValues.get(DriverConfigurations.BrowserStackConfig.platform.toString());
 	}
 
 	public String getLocalIEServerPath() {
-
-		return mappedValues.get(BrowserConstant.ieServerPath);
+		return mappedValues.get(DriverConfigurations.LocalEnvironmentConfig.ieServerPath.toString());
 	}
 
 	public String getLocalChromeServerPath() {
-		return mappedValues.get(BrowserConstant.chromeServerPath);
+		return mappedValues.get(DriverConfigurations.LocalEnvironmentConfig.chromeServerPath.toString());
 	}
 
 	public boolean isHighLightElementFlag() {
-
 		return Boolean.valueOf(mappedValues
-				.get(BrowserConstant.highlightElementFlag));
+				.get(DriverConfigurations.FrameworkConfig.highlightElementFlag.toString()));
 	}
 
 	public boolean isScreenShotFlag() {
-		return Boolean
-				.valueOf(mappedValues.get(BrowserConstant.screenShotFlag));
+		return Boolean.valueOf(mappedValues.get(DriverConfigurations.FrameworkConfig.screenShotFlag
+				.toString()));
 	}
 
 	public boolean isMobileTest() {
-		return Boolean.valueOf(mappedValues.get(BrowserConstant.mobileTest));
+		return Boolean.valueOf(mappedValues.get(DriverConfigurations.BrowserStackConfig.mobileTest
+				.toString()));
 	}
-
-	private void initializeMap() {
-
-		for (BrowserConstant b : BrowserConstant.values()) {
-			mappedValues.put(b, getValue(b.toString()));
-		}
-		// After all values are set do a simple verification on all keys
-		VerifyBrowserValues vbv = new VerifyBrowserValues(mappedValues);
-		mappedValues = vbv.verifiedValues();
-	}
-
-	/***
-	 * Main logic for setting the values
-	 * @param key
-	 * @return
-	 */
-	private String getValue(String key) {
-
-		// Check Command Line if yes set the value to commandLine
-		String sysVariable = System.getProperty(key);
-
-		if (sysVariable != null && !StringUtils.isBlank(sysVariable))
-			return sysVariable;
-		// Check XML Configuration
-		// CHeck of browserData is null for this
-		if (browerData != null) {
-			if (browerData.get(key) != null
-					&& !StringUtils.isBlank(browerData.get(key))) {
-				return browerData.get(key);
-			}
-		}
-		// FallBack Mechanism for initializing value
-		return null;
-	}
+	
 
 	/***
 	 * Implementing toString as Html reports will look good
@@ -251,7 +184,7 @@ public class BrowserConfiguration implements IBrowserConf {
 			return true;
 		if (obj == null || (obj.getClass() != this.getClass()))
 			return false;
-		BrowserConfiguration secondObj = (BrowserConfiguration) obj;
+		BrowserConfR secondObj = (BrowserConfR) obj;
 
 		if (this.isRemoteFlag() == secondObj.isRemoteFlag()) {
 			if (this.isRemoteFlag() == true) {

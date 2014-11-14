@@ -241,13 +241,15 @@ public class Email implements IEmail {
 		String line;
 
 		StringBuffer messageBody = new StringBuffer();
+		BufferedReader br = null;
 		try {
 			folder.open(Folder.READ_ONLY);
-			BufferedReader br = new BufferedReader(new InputStreamReader(
+			br = new BufferedReader(new InputStreamReader(
 					message.getInputStream()));
 			while ((line = br.readLine()) != null) {
 				messageBody.append(line);
 			}
+			br.close();
 			folder.close(true);
 		} catch (IOException e) {
 

@@ -21,7 +21,8 @@ import java.util.List;
 import com.springer.omelet.data.DataProvider.mapStrategy;
 
 /***
- * Interface having mapping data for single test method
+ * Interface having TestData,List of ClientEnvironment for Browser and run strategy
+ * for single test method
  * 
  * @author kapilA
  * 

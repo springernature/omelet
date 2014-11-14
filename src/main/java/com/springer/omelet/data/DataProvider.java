@@ -18,16 +18,15 @@ package com.springer.omelet.data;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Random;
 import java.util.Set;
 
-import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
+
+import com.springer.omelet.data.driverconf.IBrowserConf;
+import com.springer.omelet.testng.support.RetryIAnnotationTransformer;
 
 /***
  * Data Provider class for the @Test Methods
@@ -41,79 +40,79 @@ public class DataProvider {
 		Full, Optimal
 	};
 
-	static Map<String, List<IProperty>> methodData = Collections
-			.synchronizedMap(new HashMap<String, List<IProperty>>());
-	static Map<String, List<IBrowserConf>> methodBrowser = Collections
-			.synchronizedMap(new HashMap<String, List<IBrowserConf>>());
-	@SuppressWarnings("unused")
 	private static final Logger LOGGER = Logger.getLogger(DataProvider.class);
 
-	@org.testng.annotations.DataProvider(name = "Data", parallel = true)
-	public static Object[][] dataProvider(Method m) {
-		String environment = System.getProperty("env-type");
-
-		String methodName = m.getDeclaringClass().getName() + "." + m.getName();
-		IMappingData mapD = MappingParser.getInstance().getMethodData(m);
-		XmlApplicationData xmlapData = null;
-		if (environment != null && !StringUtils.isBlank(environment)) {
-			// get the xml name from MappingParser Static Method
-			xmlapData = new XmlApplicationData(mapD.getTestData(), environment);
-			methodData.put(methodName, xmlapData.getAppData());
-		} else {
-			xmlapData = new XmlApplicationData(mapD.getTestData());
-			methodData.put(methodName, xmlapData.getAppData());
-		}
-		BrowserXmlParser bxp = new BrowserXmlParser(mapD.getClientEnvironment());
-		methodBrowser.put(methodName, bxp.getBrowserConf());
-		return getData(mapD.getRunStartegy(), methodName);
+	private static String getFullMethodName(Method m){
+		return m.getDeclaringClass().getName() + "." + m.getName();
 	}
-
-	public static Object[][] getData(mapStrategy startegy, String methodName) {
-		Object[][] returnObject = null;
-		List<IBrowserConf> n_browserConf = methodBrowser.get(methodName);
-		// removing the duplicate via hashset
+	
+	@org.testng.annotations.DataProvider(name = "GoogleData", parallel = true)
+	public static Object[][] googleSheetDataProvider(Method m){
+		String testMethodName = getFullMethodName(m);
+		return getData(testMethodName);
+	}
+	
+	@org.testng.annotations.DataProvider(name = "XmlData", parallel = true)
+	public static Object[][] xmlDataProvider(Method m){
+		String methodName = getFullMethodName(m);
+		return getData(methodName);
+	}
+	
+	public static List<IBrowserConf> filterSameBrowsers(List<IBrowserConf> fullBrowserList){
 		Set<IBrowserConf> browserConfSet = new HashSet<IBrowserConf>(
-				n_browserConf);
-		List<IBrowserConf> browserConf = new ArrayList<IBrowserConf>(
+				fullBrowserList);
+		return new ArrayList<IBrowserConf>(
 				browserConfSet);
-		List<IProperty> prop = methodData.get(methodName);
-		int browserConfsize = browserConf.size();
-		int propSize = prop.size();
+	}
+	
+
+	/***
+	 * Removes duplicate browsers and prepare data based on the MapStrategy
+	 * @param methodName
+	 * @return
+	 */
+	public static Object[][] getData(String methodName) {
+		Object[][] testMethodData = null;
+		List<IBrowserConf> browserConfFilteredList = filterSameBrowsers(RetryIAnnotationTransformer.methodBrowser.get(methodName));
+		List<IProperty> testMData = RetryIAnnotationTransformer.methodData.get(methodName);
+		mapStrategy strategy = RetryIAnnotationTransformer.runStrategy.get(methodName);
+		int browserConfCount = browserConfFilteredList.size();
+		int testDataCount = testMData.size();
 		int loopCombination;
 		int k = 0;
-		switch (startegy) {
+		switch (strategy) {
 		case Full:
-			loopCombination = browserConfsize * propSize;
-			returnObject = new Object[loopCombination][2];
+			loopCombination = browserConfCount * testDataCount;
+			testMethodData = new Object[loopCombination][2];
 
-			for (int i = 0; i < browserConfsize; i++) {
+			for (int i = 0; i < browserConfCount; i++) {
 
-				for (int j = 0; j < propSize; j++) {
-					returnObject[k][0] = browserConf.get(i);
-					returnObject[k][1] = prop.get(j);
+				for (int j = 0; j < testDataCount; j++) {
+					testMethodData[k][0] = browserConfFilteredList.get(i);
+					testMethodData[k][1] = testMData.get(j);
 					k++;
 				}
 			}
 			break;
 		case Optimal:
-			if (browserConfsize >= propSize)
-				loopCombination = browserConfsize;
+			if (browserConfCount >= testDataCount)
+				loopCombination = browserConfCount;
 			else
-				loopCombination = propSize;
-			returnObject = new Object[loopCombination][2];
+				loopCombination = testDataCount;
+			testMethodData = new Object[loopCombination][2];
 			for (int i = 0; i < loopCombination; i++) {
 				Random r = new Random();
 				// check whose value is greater and start the loop
-				if (i >= browserConfsize) {
-					returnObject[i][0] = browserConf.get(r
-							.nextInt(browserConfsize));
+				if (i >= browserConfCount) {
+					testMethodData[i][0] = browserConfFilteredList.get(r
+							.nextInt(browserConfCount));
 				} else {
-					returnObject[i][0] = browserConf.get(i);
+					testMethodData[i][0] = browserConfFilteredList.get(i);
 				}
-				if (i >= propSize) {
-					returnObject[i][1] = prop.get(r.nextInt(propSize));
+				if (i >= testDataCount) {
+					testMethodData[i][1] = testMData.get(r.nextInt(testDataCount));
 				} else {
-					returnObject[i][1] = prop.get(i);
+					testMethodData[i][1] = testMData.get(i);
 				}
 
 			}
@@ -121,7 +120,7 @@ public class DataProvider {
 		default:
 			break;
 		}
-		return returnObject;
+		return testMethodData;
 	}
 
 }

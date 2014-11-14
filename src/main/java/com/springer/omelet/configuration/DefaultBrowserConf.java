@@ -20,10 +20,10 @@ import java.util.HashMap;
 
 import org.apache.log4j.Logger;
 
-import com.springer.omelet.data.BrowserConfiguration;
-import com.springer.omelet.data.BrowserConstant;
-import com.springer.omelet.data.IBrowserConf;
+import com.springer.omelet.data.DriverConfigurations;
 import com.springer.omelet.data.IProperty;
+import com.springer.omelet.data.driverconf.IBrowserConf;
+import com.springer.omelet.data.driverconf.PrepareDriverConf;
 
 /***
  * This class set the variable required to configure Driver either from Command
@@ -63,9 +63,9 @@ public class DefaultBrowserConf {
 				if (browserConf == null) {
 					setEscapePropertyForReportNG();
 					if (customProp == null)
-						browserConf = new BrowserConfiguration();
+						browserConf = new PrepareDriverConf().refineBrowserValues().checkForRules().get();
 					else
-						browserConf = new BrowserConfiguration(getKeyValue());
+						browserConf = new PrepareDriverConf(getKeyValue()).refineBrowserValues().checkForRules().get();
 				}
 			}
 		return browserConf;
@@ -87,8 +87,17 @@ public class DefaultBrowserConf {
 
 	private static HashMap<String, String> getKeyValue() {
 		HashMap<String, String> f_map = new HashMap<String, String>();
-		for (BrowserConstant b : BrowserConstant.values()) {
-			f_map.put(b.toString(), customProp.getValue(b));
+		for (DriverConfigurations.LocalEnvironmentConfig localConfig : DriverConfigurations.LocalEnvironmentConfig.values()) {
+			f_map.put(localConfig.toString(), customProp.getValue(localConfig));
+		}
+		for (DriverConfigurations.BrowserStackConfig bsConfig : DriverConfigurations.BrowserStackConfig.values()) {
+			f_map.put(bsConfig.toString(), customProp.getValue(bsConfig));
+		}
+		for (DriverConfigurations.HubConfig hubConfig : DriverConfigurations.HubConfig.values()) {
+			f_map.put(hubConfig.toString(), customProp.getValue(hubConfig));
+		}
+		for (DriverConfigurations.FrameworkConfig frameworkConfig : DriverConfigurations.FrameworkConfig.values()) {
+			f_map.put(frameworkConfig.toString(), customProp.getValue(frameworkConfig));
 		}
 		return f_map;
 	}

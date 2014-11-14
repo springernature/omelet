@@ -28,8 +28,8 @@ import java.util.Set;
 
 import org.apache.log4j.Logger;
 
-import com.springer.omelet.browserstacktunnel.OsCheck;
-import com.springer.omelet.browserstacktunnel.OsCheck.OsName;
+import com.springer.omelet.browserstacktunnel.OSName;
+import com.springer.omelet.browserstacktunnel.OSName.OSN;
 import com.springer.omelet.common.Utils;
 
 /**
@@ -39,17 +39,19 @@ import com.springer.omelet.common.Utils;
  */
 public class BrowserStackTunnel {
 
-	private static Set<String> tunnelList = Collections
+	private static Set<String> activeTunnels = Collections
 			.synchronizedSet(new HashSet<String>());
 	private static BrowserStackTunnel browserStackTunnel;
 	private static final Logger LOGGER = Logger
 			.getLogger(BrowserStackTunnel.class);
-	private static OsName environment;
+	private static OSN environment;
 	private Process tunnelProcess;
 	private InputStream is;
 	private BufferedReader br;
 	private ProcessBuilder pb;
-	
+
+	String browserStackKey;
+	List<String> browserStackURLS;
 	// Hiding the constructor for Singleton
 	private BrowserStackTunnel() {
 
@@ -65,7 +67,7 @@ public class BrowserStackTunnel {
 
 			}
 		}
-		environment = OsCheck.getOS();
+		environment = OSName.get();
 		return browserStackTunnel;
 	}
 
@@ -76,7 +78,7 @@ public class BrowserStackTunnel {
 	 */
 	public List<String> getOpenTunnelKeys() {
 		List<String> returnKeys = new ArrayList<String>();
-		for (String s : tunnelList) {
+		for (String s : activeTunnels) {
 			returnKeys.add(s);
 		}
 		return returnKeys;
@@ -90,10 +92,13 @@ public class BrowserStackTunnel {
 	 */
 	public void createTunnel(String browserStackKey,
 			List<String> browserStackURLS) {
-		if (!tunnelList.contains(browserStackKey)) {
+		this.browserStackKey = browserStackKey;
+		this.browserStackURLS = browserStackURLS;
+		
+		if (!activeTunnels.contains(browserStackKey)) {
 			synchronized (browserStackTunnel) {
 
-				if (!tunnelList.contains(browserStackKey)) {
+				if (!activeTunnels.contains(browserStackKey)) {
 					LOGGER.info("Starting tunnel for Key:" + browserStackKey);
 					pb = new ProcessBuilder();
 
@@ -104,7 +109,7 @@ public class BrowserStackTunnel {
 
 						tunnelProcess = pb.start();
 						waitforTunnelTobeUp("Press Ctrl-C to exit");
-						tunnelList.add(browserStackKey);
+						activeTunnels.add(browserStackKey);
 
 					} catch (IOException e) {
 
@@ -137,9 +142,12 @@ public class BrowserStackTunnel {
 		is = tunnelProcess.getInputStream();
 		br = new BufferedReader(new InputStreamReader(is));
 		String t = "";
-		while (!t.equalsIgnoreCase(waitForMessage) && t != null)
+		while (!waitForMessage.equalsIgnoreCase(t) && t != null)
 			try {
 				t = br.readLine();
+//				if(t == null) {
+//					createTunnel(browserStackKey, browserStackURLS);
+//				}
 				LOGGER.info("cmd Output:" + t);
 			} catch (IOException e) {
 				LOGGER.error(e);
@@ -150,15 +158,15 @@ public class BrowserStackTunnel {
 	 * Terminate tunnel
 	 * @param browserStackKey
 	 */
-	public void terminatedTunnel(String browserStackKey) {
+	public void terminateTunnel(String browserStackKey) {
 		// Check if it is present in the Hash Set
 		// if not , remove from the set
 
-		if (checkTunnelPresent(browserStackKey)) {
+		if (isTunnelPresent(browserStackKey)) {
 			LOGGER.debug("Starting termination of Tunnel for key:"
 					+ browserStackKey);
-			KillBrowserStack kbs = this.new KillBrowserStack(browserStackKey);
-			kbs.killBs();
+			KillTunnel kbs = this.new KillTunnel(browserStackKey);
+			kbs.kill();
 			LOGGER.info("Killing BrowserStack tunnel for Key:"
 					+ browserStackKey);
 		} else {
@@ -174,11 +182,11 @@ public class BrowserStackTunnel {
 	 * @param browserStackKey
 	 * @return
 	 */
-	private boolean checkTunnelPresent(String browserStackKey) {
-		if (tunnelList.contains(browserStackKey)) {
+	private boolean isTunnelPresent(String browserStackKey) {
+		if (activeTunnels.contains(browserStackKey)) {
 			synchronized (browserStackTunnel) {
-				if (tunnelList.contains(browserStackKey)) {
-					tunnelList.remove(browserStackKey);
+				if (activeTunnels.contains(browserStackKey)) {
+					activeTunnels.remove(browserStackKey);
 					return true;
 				} else {
 					return false;
@@ -241,7 +249,7 @@ public class BrowserStackTunnel {
 	 * @author kapilA
 	 * 
 	 */
-	private class KillBrowserStack {
+	private class KillTunnel {
 
 		// As of now key is not required because process name is taken and then
 		// killed
@@ -250,14 +258,14 @@ public class BrowserStackTunnel {
 		@SuppressWarnings("unused")
 		String browserStackKey;
 
-		public KillBrowserStack(String browserStackKey) {
+		public KillTunnel(String browserStackKey) {
 			this.browserStackKey = browserStackKey;
 		}
 
 		/***
 		 * Kills the tunnel
 		 */
-		public void killBs() {
+		public void kill() {
 			Process killProcess = null;
 			ProcessBuilder killpb = new ProcessBuilder();
 			killpb.command(getKillCommand());
@@ -289,6 +297,12 @@ public class BrowserStackTunnel {
 				killCommand.add("/IM");
 				killCommand.add("BrowserStackLocal.exe");
 				break;
+			case MAC:
+				killCommand.add("pkill");
+				killCommand.add("-f");
+				killCommand.add("BrowserStackLocal");
+				break;
+				
 			default:
 				break;
 			}

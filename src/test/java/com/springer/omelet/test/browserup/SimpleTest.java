@@ -19,14 +19,9 @@ package com.springer.omelet.test.browserup;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.openqa.selenium.WebDriver;
-import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
 
-import com.springer.omelet.data.BrowserConfiguration;
-import com.springer.omelet.data.BrowserConstant;
-import com.springer.omelet.driver.Driver;
+import com.springer.omelet.data.DriverConfigurations;
 
 public class SimpleTest {
 
@@ -56,59 +51,43 @@ public class SimpleTest {
 
 	public void setup() {
 		browserValues.clear();
-		browserValues.put(BrowserConstant.browserName.toString(), browserName);
-		browserValues.put(BrowserConstant.browserVersion.toString(),
+		browserValues.put(DriverConfigurations.LocalEnvironmentConfig.browserName.toString(), browserName);
+		browserValues.put(DriverConfigurations.BrowserStackConfig.browserVersion.toString(),
 				browserVersion);
-		browserValues.put(BrowserConstant.bs_key.toString(), bs_key);
-		browserValues.put(BrowserConstant.bs_localTesting.toString(),
+		browserValues.put(DriverConfigurations.BrowserStackConfig.bs_key.toString(), bs_key);
+		browserValues.put(DriverConfigurations.BrowserStackConfig.bs_localTesting.toString(),
 				bs_localTesting);
-		browserValues.put(BrowserConstant.bs_urls.toString(), browserStackURLS);
-		browserValues.put(BrowserConstant.bs_userName.toString(), bs_user);
-		browserValues.put(BrowserConstant.bsSwitch.toString(),
+		browserValues.put(DriverConfigurations.BrowserStackConfig.bs_urls.toString(), browserStackURLS);
+		browserValues.put(DriverConfigurations.BrowserStackConfig.bs_userName.toString(), bs_user);
+		browserValues.put(DriverConfigurations.BrowserStackConfig.bsSwitch.toString(),
 				browserStackSwitch);
-		browserValues.put(BrowserConstant.chromeServerPath.toString(),
+		browserValues.put(DriverConfigurations.LocalEnvironmentConfig.chromeServerPath.toString(),
 				chromePath);
-		browserValues.put(BrowserConstant.device.toString(), device);
-		browserValues.put(BrowserConstant.driverTimeOut.toString(),
+		browserValues.put(DriverConfigurations.BrowserStackConfig.device.toString(), device);
+		browserValues.put(DriverConfigurations.FrameworkConfig.driverTimeOut.toString(),
 				drivertimeout);
-		browserValues.put(BrowserConstant.highlightElementFlag.toString(),
+		browserValues.put(DriverConfigurations.FrameworkConfig.highlightElementFlag.toString(),
 				highlightElement);
-		browserValues.put(BrowserConstant.ieServerPath.toString(), ie_path);
-		browserValues.put(BrowserConstant.mobileTest.toString(), bs_mobileTest);
-		browserValues.put(BrowserConstant.os.toString(), osName);
-		browserValues.put(BrowserConstant.osVersion.toString(), osVersion);
-		browserValues.put(BrowserConstant.platform.toString(), platform);
-		browserValues.put(BrowserConstant.remoteFlag.toString(), remoteFlag);
+		browserValues.put(DriverConfigurations.LocalEnvironmentConfig.ieServerPath.toString(), ie_path);
+		browserValues.put(DriverConfigurations.BrowserStackConfig.mobileTest.toString(), bs_mobileTest);
+		browserValues.put(DriverConfigurations.BrowserStackConfig.os.toString(), osName);
+		browserValues.put(DriverConfigurations.BrowserStackConfig.osVersion.toString(), osVersion);
+		browserValues.put(DriverConfigurations.BrowserStackConfig.platform.toString(), platform);
+		browserValues.put(DriverConfigurations.FrameworkConfig.remoteFlag.toString(), remoteFlag);
 		browserValues
-				.put(BrowserConstant.screenShotFlag.toString(), screenShot);
-		browserValues.put(BrowserConstant.remoteURL.toString(), reomteURL);
-		browserValues.put(BrowserConstant.retryFailedTestCase.toString(),
+				.put(DriverConfigurations.FrameworkConfig.screenShotFlag.toString(), screenShot);
+		browserValues.put(DriverConfigurations.HubConfig.remoteURL.toString(), reomteURL);
+		browserValues.put(DriverConfigurations.FrameworkConfig.retryFailedTestCase.toString(),
 				retryFailedTestCount);
 
 	}
 
 	@BeforeMethod
 	public void cleanUp() {
-		System.setProperty(BrowserConstant.browserName.toString(), "");
-		System.setProperty(BrowserConstant.remoteFlag.toString(), "");
+		System.setProperty(DriverConfigurations.LocalEnvironmentConfig.browserName.toString(), "");
+		System.setProperty(DriverConfigurations.FrameworkConfig.remoteFlag.toString(), "");
 	}
 
-	@Test
-	public void default_BrowserUP() {
-		WebDriver driver = Driver.getDriver();
-		Assert.assertEquals(driver.getClass().getName(),
-				"org.openqa.selenium.firefox.FirefoxDriver");
-	}
-
-	// @Test
-	public void chrome_BrowserUP() {
-		// create
-		setup();
-		browserValues.put(BrowserConstant.chromeServerPath.toString(), "");
-		WebDriver driver = Driver.getDriver(new BrowserConfiguration(
-				browserValues));
-		Assert.assertEquals(driver.getClass().getName(),
-				"org.openqa.selenium.chrome.ChromeDriver");
-	}
+	
 
 }

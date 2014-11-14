@@ -14,7 +14,7 @@
  * 	See the License for the specific language governing permissions and
  * 	limitations under the License.
  *******************************************************************************/
-package com.springer.omelet.data;
+package com.springer.omelet.data.xml;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -35,6 +35,8 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import com.springer.omelet.common.Utils;
+import com.springer.omelet.data.IProperty;
+import com.springer.omelet.data.PropertyMapping;
 import com.springer.omelet.exception.FrameworkException;
 
 /***
@@ -43,7 +45,7 @@ import com.springer.omelet.exception.FrameworkException;
  * @author kapilA
  * 
  */
-class XmlApplicationData {
+public class XmlApplicationData {
 
 	private DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 	private DocumentBuilder builder = null;
