@@ -175,6 +175,7 @@ public class DriverUtility {
 									+ "evt.initMouseEvent('dblclick',true, true, window, 0, 0, 0, 0, 0, false, false, false, false, 0,null);"
 									+ "arguments[0].dispatchEvent(evt);",
 							element);
+			break;
 		default:
 			String clickStrategyParameter = "";
 			try {
