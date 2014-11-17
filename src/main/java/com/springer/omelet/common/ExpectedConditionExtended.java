@@ -51,7 +51,6 @@ public class ExpectedConditionExtended {
 	 * hiding the constructor
 	 */
 	private ExpectedConditionExtended() {
-
 	}
 
 	/***
@@ -102,15 +101,17 @@ public class ExpectedConditionExtended {
 					.visibilityOf(element);
 
 			public Boolean apply(WebDriver driver) {
+				boolean isDisabled = false;
 				WebElement element = visibilityOfElement.apply(driver);
 				try {
 					if (element != null && !(element.isEnabled())) {
-						return true;
-					} else {
-						return false;
+						isDisabled = true;
 					}
+					return isDisabled;
 				} catch (StaleElementReferenceException e) {
-					return false;
+					// TODO check if error, debug or warn
+					LOGGER.warn("Element not found: " + element.toString());
+					return isDisabled;
 				}
 			}
 
