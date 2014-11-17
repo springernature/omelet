@@ -98,11 +98,13 @@ public class RetryIAnnotationTransformer implements IAnnotationTransformer,
 	}
 
 	public void transform(IDataProviderAnnotation annotation, Method method) {
-
+		//TODO WHY?? Abstract?
+		LOGGER.warn("Missing implementation");
 	}
 
 	public void transform(IFactoryAnnotation annotation, Method method) {
-
+		//TODO WHY?? Abstract?
+		LOGGER.warn("Missing implementation");
 	}
 
 	@Override
