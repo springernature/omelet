@@ -19,6 +19,8 @@ package com.springer.omelet.common;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.Nonnull;
+
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
@@ -162,7 +164,7 @@ public class ExpectedConditionExtended {
 			final By locator) {
 		return new ExpectedCondition<Boolean>() {
 
-			public Boolean apply(WebDriver driver) {
+			public Boolean apply(@Nonnull WebDriver driver) {
 				try {
 					return driver.findElements(locator).isEmpty();
 				} catch (NoSuchElementException e) {
