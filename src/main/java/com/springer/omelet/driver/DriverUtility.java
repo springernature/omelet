@@ -47,7 +47,7 @@ public class DriverUtility {
 
 	public enum CHECK_UNCHECK {
 		CHECK, UNCHECK
-	};
+	}
 
 	private static final Logger LOGGER = Logger.getLogger(DriverUtility.class);
 

@@ -33,7 +33,7 @@ public class OSName {
 
 	public static enum OSN {
 		WIN, UNIX, MAC
-	};
+	}
 
 	public static OSN get() {
 		LOGGER.debug("OS Name is:" + OS);

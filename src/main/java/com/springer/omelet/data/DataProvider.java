@@ -38,7 +38,7 @@ public class DataProvider {
 
 	public static enum mapStrategy {
 		Full, Optimal
-	};
+	}
 
 	private static final Logger LOGGER = Logger.getLogger(DataProvider.class);
 

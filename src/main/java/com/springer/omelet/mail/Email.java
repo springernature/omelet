@@ -168,7 +168,7 @@ public class Email implements IEmail {
 
 	private enum EMAIL_FILTER {
 		TO_ADDR, FROM_ADD, SUBJECT
-	};
+	}
 
 	/***
 	 * Return List of Message filter by Subject,From_ADD,To_ADDR
