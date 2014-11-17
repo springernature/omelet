@@ -30,7 +30,6 @@ import com.springer.omelet.data.driverconf.IBrowserConf;
  * 
  */
 public class Driver {
-
 	@SuppressWarnings("unused")
 	private static final Logger LOGGER = Logger.getLogger(Driver.class);
 
@@ -42,17 +41,14 @@ public class Driver {
 	 */
 	protected static void setDriverValue() {
 		browserConf.set(DefaultBrowserConf.get());
-		DriverFactory df = new DriverFactory(
-				DefaultBrowserConf.get());
+		DriverFactory df = new DriverFactory(DefaultBrowserConf.get());
 		driver.set(df.intializeDriver());
-
 	}
 
 	protected static void setDriverValue(IBrowserConf b_conf) {
 		browserConf.set(b_conf);
 		DriverFactory df = new DriverFactory(b_conf);
 		driver.set(df.intializeDriver());
-
 	}
 
 	/***
@@ -75,11 +71,10 @@ public class Driver {
 
 			if (driver.get() == null) {
 				setDriverValue();
-
 			}
 			return driver.get();
 		} catch (Exception e) {
-
+			LOGGER.error(e);
 			return null;
 		}
 	}
@@ -96,7 +91,6 @@ public class Driver {
 			setDriverValue(browserConf);
 		}
 		return driver.get();
-
 	}
 
 	/***
@@ -107,7 +101,6 @@ public class Driver {
 			driver.get().quit();
 			driver.remove();
 		}
-
 	}
 
 	protected static boolean driverRemovedStatus() {
@@ -116,7 +109,5 @@ public class Driver {
 		if (d == null)
 			return true;
 		return false;
-
 	}
-
 }

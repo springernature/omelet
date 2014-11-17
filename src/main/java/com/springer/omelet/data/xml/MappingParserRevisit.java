@@ -49,13 +49,12 @@ public class MappingParserRevisit implements IDataSource {
 			builder = factory.newDocumentBuilder();
 			document = builder.parse(Utils.getResources(this, xmlName));
 		} catch (ParserConfigurationException e) {
-
+			LOGGER.error(e);
 		} catch (SAXException e) {
-
+			LOGGER.error(e);
 		} catch (IOException e) {
-
+			LOGGER.error(e);
 		}
-
 	}
 
 	/***
@@ -115,7 +114,6 @@ public class MappingParserRevisit implements IDataSource {
 				.withClientEnvironment(
 						getList(element.getAttribute("clientEnvironment")))
 				.build();
-
 	}
 
 	/**
@@ -153,7 +151,6 @@ public class MappingParserRevisit implements IDataSource {
 		} else {
 			return getFrameworkPropertyValue(key);
 		}
-
 	}
 
 	public static String getBuildNumber() {
@@ -169,7 +166,6 @@ public class MappingParserRevisit implements IDataSource {
 		} else {
 			return "";
 		}
-
 	}
 
 	private static boolean isFrameworkProperties() {
@@ -183,6 +179,5 @@ public class MappingParserRevisit implements IDataSource {
 	@Override
 	public String toString() {
 		return "Reading the Xml file with name:" + xmlName;
-
 	}
 }

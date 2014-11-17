@@ -180,7 +180,7 @@ public class ReadGoogle implements IDataSource {
 					browserConfList.add(getBrowserConfFromRow(row));
 				}
 			} catch (NullPointerException ex) {
-				System.out.println("Not able to find sheet:" + sheetNameHolder);
+				LOGGER.error("Not able to find sheet:" + sheetNameHolder);
 				LOGGER.error(ex);
 			} catch (IOException e) {
 				LOGGER.error(e);

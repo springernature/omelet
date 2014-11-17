@@ -104,6 +104,7 @@ public class PropertyMapping implements IProperty {
 				throw new NullPointerException();
 			return value;
 		} catch (NullPointerException e) {
+			LOGGER.error(e);
 			throw new FrameworkException("Value for key: " + key
 					+ " not specified in Data file");
 		}
@@ -121,6 +122,7 @@ public class PropertyMapping implements IProperty {
 				throw new NullPointerException();
 			return value;
 		} catch (NullPointerException e) {
+			LOGGER.error(e);
 			throw new FrameworkException("Value for key: " + key
 					+ " not specified in Data file");
 		}

@@ -70,7 +70,7 @@ public class DriverUtility {
 							expectedCondition);
 			return returnValue;
 		} catch (TimeoutException e) {
-
+			LOGGER.error(e);
 			return null;
 		} finally {
 			driver.manage()
@@ -127,7 +127,6 @@ public class DriverUtility {
 		File scrFile;
 		try {
 			if (driver != null) {
-
 				if (Driver.getBrowserConf().isRemoteFlag()) {
 					Augmenter augumenter = new Augmenter();
 					scrFile = ((TakesScreenshot) augumenter.augment(driver))
@@ -141,7 +140,6 @@ public class DriverUtility {
 				LOGGER.info("As the driver is null no point in taking screen shot");
 		} catch (Exception e) {
 			LOGGER.info("Not able to take Screen Shot", e);
-
 		}
 		return saved;
 	}
@@ -173,7 +171,6 @@ public class DriverUtility {
 									+ "arguments[0].dispatchEvent(evt);",
 							element);
 		}
-
 	}
 
 	public enum CLICK_STRATEGY {
@@ -215,9 +212,9 @@ public class DriverUtility {
 				"Text Entered to method should not be null and not empty");
 		Select s = new Select(webElement);
 		try {
-
 			s.selectByVisibleText(visibleText);
 		} catch (NoSuchElementException e) {
+			LOGGER.error(e);
 			s.selectByIndex(defaultIndex);
 		}
 	}
@@ -244,5 +241,4 @@ public class DriverUtility {
 			}
 		}
 	}
-
 }
