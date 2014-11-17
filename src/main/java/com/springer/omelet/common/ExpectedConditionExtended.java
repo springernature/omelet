@@ -164,7 +164,7 @@ public class ExpectedConditionExtended {
 
 			public Boolean apply(WebDriver driver) {
 				try {
-					return driver.findElements(locator).size() == 0;
+					return driver.findElements(locator).isEmpty();
 				} catch (NoSuchElementException e) {
 					LOGGER.error(e);
 					return true;
@@ -234,7 +234,7 @@ public class ExpectedConditionExtended {
 		final List<Boolean> statusList = new ArrayList<Boolean>();
 		return new ExpectedCondition<Boolean>() {
 			public Boolean apply(WebDriver driver) {
-				if (elements.size() == 0) {
+				if (elements.isEmpty()) {
 					return false;
 				}
 				statusList.clear();

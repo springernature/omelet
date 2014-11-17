@@ -98,7 +98,7 @@ public class DriverUtility {
 	public static boolean switchToWindow(WebDriver driver, String sString) {
 		String currentHandle = driver.getWindowHandle();
 		Set<String> handles = driver.getWindowHandles();
-		if (handles.size() >= 1) {
+		if (!handles.isEmpty()) {
 			for (String handle : handles) {
 				LOGGER.debug("Switching to other window");
 				driver.switchTo().window(handle);
