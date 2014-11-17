@@ -61,6 +61,7 @@ public class RefineMappedData {
 		//	System.out.println(packageVal.getTestData());
 			return packageVal.getTestData();
 		}
+		LOGGER.error("There is no mapping Defined for the method");
 		throw new FrameworkException(
 				"There is no mapping Defined for the method");
 	}
@@ -84,6 +85,7 @@ public class RefineMappedData {
 		} else if (packageClientData != null && !packageClientData.getClientEnvironment().isEmpty() && StringUtils.isNotBlank(packageClientData.getClientEnvironment().get(0))) {
 			return packageClientData.getClientEnvironment();
 		}
+		LOGGER.error("There is no mapping Defined for the method");
 		throw new FrameworkException(
 				"There is no mapping Defined for the method");
 	}
