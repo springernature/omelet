@@ -28,7 +28,7 @@ import com.springer.omelet.exception.FrameworkException;
  */
 public class OSName {
 
-	private final static Logger LOGGER = Logger.getLogger(OSName.class);
+	private static final Logger LOGGER = Logger.getLogger(OSName.class);
 	private static String OS = System.getProperty("os.name").toLowerCase();
 
 	public static enum OSN {
