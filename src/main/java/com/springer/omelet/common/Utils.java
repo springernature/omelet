@@ -111,8 +111,8 @@ public class Utils {
 
 			if (LOGGER.isDebugEnabled()) {
 				LOGGER.debug("Returned File Path is:::" + returFilePath);
-				return returFilePath;
 			}
+			return returFilePath;
 
 		} catch (NullPointerException e) {
 			LOGGER.error("Not able to find File with name:" + fileName
