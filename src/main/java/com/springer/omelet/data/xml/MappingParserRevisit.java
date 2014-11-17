@@ -128,8 +128,9 @@ public class MappingParserRevisit implements IDataSource {
 		if (StringUtils.isNotBlank(commaSepratedList)) {
 			if (commaSepratedList.contains(DELIMITTER)) {
 				String array[] = commaSepratedList.split(";");
-				for (int i = 0; i < array.length; i++)
+				for (int i = 0; i < array.length; i++) {
 					returnedList.add(array[i]);
+				}
 			} else {
 				returnedList.add(commaSepratedList);
 			}

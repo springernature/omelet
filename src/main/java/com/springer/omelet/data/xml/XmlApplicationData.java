@@ -47,7 +47,8 @@ import com.springer.omelet.exception.FrameworkException;
  */
 public class XmlApplicationData {
 
-	private DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+	private DocumentBuilderFactory factory = DocumentBuilderFactory
+			.newInstance();
 	private DocumentBuilder builder = null;
 	private Document document = null;
 	private String envType = null;
@@ -100,11 +101,12 @@ public class XmlApplicationData {
 			if (node instanceof Element) {
 				Element data = (Element) node;
 				if (envType != null) {
-					if (data.getAttribute("environment").equals(envType))
+					if (data.getAttribute("environment").equals(envType)) {
 						dataList.add(data);
-				} else
+					}
+				} else {
 					dataList.add(data);
-
+				}
 			}
 		}
 

@@ -234,8 +234,9 @@ public class ExpectedConditionExtended {
 		final List<Boolean> statusList = new ArrayList<Boolean>();
 		return new ExpectedCondition<Boolean>() {
 			public Boolean apply(WebDriver driver) {
-				if (elements.size() == 0)
+				if (elements.size() == 0) {
 					return false;
+				}
 				statusList.clear();
 				for (WebElement w : elements) {
 					try {

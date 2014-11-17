@@ -66,7 +66,8 @@ public class RetryIAnnotationTransformer implements IAnnotationTransformer,
 	public static Set<String> afterMethodClasses = new HashSet<String>();
 	public static Map<String, List<IProperty>> methodData = new HashMap<String, List<IProperty>>();
 	public static Map<String, List<IBrowserConf>> methodBrowser = new HashMap<String, List<IBrowserConf>>();
-	public static Map<String,mapStrategy> runStrategy = new HashMap<String, mapStrategy>();
+	public static Map<String, mapStrategy> runStrategy = new HashMap<String, mapStrategy>();
+
 	@SuppressWarnings("rawtypes")
 	public void transform(ITestAnnotation annotation, Class testClass,
 			Constructor testConstructor, Method testMethod) {
@@ -84,15 +85,16 @@ public class RetryIAnnotationTransformer implements IAnnotationTransformer,
 			Constructor testConstructor, Method testMethod) {
 		if (testMethod != null) {
 			if (testMethod
-					.getAnnotation(org.testng.annotations.BeforeMethod.class) != null)
+					.getAnnotation(org.testng.annotations.BeforeMethod.class) != null) {
 				beforeMethodClasses.add(testMethod.getDeclaringClass()
 						.getName());
+			}
 			if (testMethod
-					.getAnnotation(org.testng.annotations.AfterMethod.class) != null)
+					.getAnnotation(org.testng.annotations.AfterMethod.class) != null) {
 				afterMethodClasses
 						.add(testMethod.getDeclaringClass().getName());
+			}
 		}
-
 	}
 
 	public void transform(IDataProviderAnnotation annotation, Method method) {
@@ -106,40 +108,43 @@ public class RetryIAnnotationTransformer implements IAnnotationTransformer,
 	@Override
 	public List<IMethodInstance> intercept(List<IMethodInstance> methods,
 			ITestContext context) {
-		if(!testDataPrepared){
-		PrettyMessage prettyMessage = new PrettyMessage();
-		Thread t = new Thread(prettyMessage);
-		t.start();
-		String evironment = System.getProperty("env-type");
-		// here we can check if the method have any DataProvider
-		for (IMethodInstance method : methods) {
-			String dataProviderName = method.getMethod()
-					.getConstructorOrMethod().getMethod()
-					.getAnnotation(org.testng.annotations.Test.class)
-					.dataProvider();
-			Method methodReflect = method.getMethod().getConstructorOrMethod()
-					.getMethod();
-			if (dataProviderName.equals("GoogleData")) {
-				updateGooglSheet(methodReflect, evironment);
-			} else if (dataProviderName.equals("XmlData")) {
-				updateXml(methodReflect, evironment);
+		if (!testDataPrepared) {
+			PrettyMessage prettyMessage = new PrettyMessage();
+			Thread t = new Thread(prettyMessage);
+			t.start();
+			String evironment = System.getProperty("env-type");
+			// here we can check if the method have any DataProvider
+			for (IMethodInstance method : methods) {
+				String dataProviderName = method.getMethod()
+						.getConstructorOrMethod().getMethod()
+						.getAnnotation(org.testng.annotations.Test.class)
+						.dataProvider();
+				Method methodReflect = method.getMethod()
+						.getConstructorOrMethod().getMethod();
+				if (dataProviderName.equals("GoogleData")) {
+					updateGooglSheet(methodReflect, evironment);
+				} else if (dataProviderName.equals("XmlData")) {
+					updateXml(methodReflect, evironment);
+				}
 			}
-		}
-		prettyMessage.swtichOffLogging();
-		try {
-			t.join();
-		} catch (InterruptedException e) {
-			LOGGER.error(e);
-		}
-		testDataPrepared = true;
+			prettyMessage.swtichOffLogging();
+			try {
+				t.join();
+			} catch (InterruptedException e) {
+				LOGGER.error(e);
+			}
+			testDataPrepared = true;
 		}
 		return methods;
 	}
 
 	private void checkGoogleUserNameAndPassword(String methodName) {
-		if (StringUtils.isBlank(System.getProperty(GoogleSheetConstant.GOOGLEUSERNAME))
-				&& StringUtils.isBlank(System.getProperty(GoogleSheetConstant.GOOGLEPASSWD))
-				&& StringUtils.isBlank(System.getProperty(GoogleSheetConstant.GOOGLESHEETNAME))) {
+		if (StringUtils.isBlank(System
+				.getProperty(GoogleSheetConstant.GOOGLEUSERNAME))
+				&& StringUtils.isBlank(System
+						.getProperty(GoogleSheetConstant.GOOGLEPASSWD))
+				&& StringUtils.isBlank(System
+						.getProperty(GoogleSheetConstant.GOOGLESHEETNAME))) {
 			throw new FrameworkException(
 					"Method with name:"
 							+ methodName
@@ -151,7 +156,7 @@ public class RetryIAnnotationTransformer implements IAnnotationTransformer,
 		String methodName = method.getDeclaringClass().getName() + "."
 				+ method.getName();
 		checkGoogleUserNameAndPassword(methodName);
-		//System.out.println(System.getProperty(googleUsername));
+		// System.out.println(System.getProperty(googleUsername));
 		ReadGoogle readGoogle = new ReadGoogle(
 				System.getProperty(GoogleSheetConstant.GOOGLEUSERNAME),
 				System.getProperty(GoogleSheetConstant.GOOGLEPASSWD),
@@ -184,5 +189,4 @@ public class RetryIAnnotationTransformer implements IAnnotationTransformer,
 		methodBrowser.put(methodName, bxp.getBrowserConf());
 		runStrategy.put(methodName, mapD.getRunStartegy());
 	}
-
 }

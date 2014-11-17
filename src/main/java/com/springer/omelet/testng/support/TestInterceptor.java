@@ -107,7 +107,6 @@ public class TestInterceptor implements ITestListener {
 	public void onStart(ITestContext context) {
 		Reporter.log("Starting with suite :: "
 				+ context.getSuite().getParallel());
-
 	}
 
 	/***
@@ -135,7 +134,6 @@ public class TestInterceptor implements ITestListener {
 	 * TestLink will also get Updated Based on the input Params
 	 */
 	public void onFinish(ITestContext context) {
-
 		List<ITestResult> testsToBeRemoved = new ArrayList<ITestResult>();
 		Set<Integer> passedTest = new HashSet<Integer>();
 		// Create passTest List
@@ -149,10 +147,11 @@ public class TestInterceptor implements ITestListener {
 		for (ITestResult failTest : context.getFailedTests().getAllResults()) {
 			int failTestID = getId(failTest);
 			if (failedTestID.contains(failTestID)
-					|| passedTest.contains(failTestID))
+					|| passedTest.contains(failTestID)) {
 				testsToBeRemoved.add(failTest);
-			else
+			} else {
 				failedTestID.add(failTestID);
+			}
 		}
 		// update the context
 		for (Iterator<ITestResult> iterator = context.getFailedTests()
@@ -162,7 +161,6 @@ public class TestInterceptor implements ITestListener {
 				iterator.remove();
 			}
 		}
-
 	}
 
 	private String getTimeReport() {
@@ -172,5 +170,4 @@ public class TestInterceptor implements ITestListener {
 		int seconds = calendar.get(Calendar.SECOND);
 		return ":: " + hour + ":" + minutes + ":" + seconds;
 	}
-
 }

@@ -144,8 +144,9 @@ public class ReadGoogle implements IDataSource {
 					.contains(GoogleSheetConstant.GOOGLE_BROWSERSHEET_DELIMITER)) {
 				String array[] = commaSepratedList
 						.split(GoogleSheetConstant.GOOGLE_BROWSERSHEET_DELIMITER);
-				for (int i = 0; i < array.length; i++)
+				for (int i = 0; i < array.length; i++) {
 					returnedList.add(array[i]);
+				}
 			} else {
 				returnedList.add(commaSepratedList);
 			}

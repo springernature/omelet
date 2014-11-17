@@ -29,7 +29,6 @@ import com.springer.omelet.driver.Driver;
  * 
  */
 public class HtmlTable {
-
 	private boolean screenShotFlag = Driver.getBrowserConf().isScreenShotFlag();
 	private StringBuilder sb = new StringBuilder();
 	private Map<IAssert, String> assertMap;
@@ -52,8 +51,9 @@ public class HtmlTable {
 				+ "</tr>" + "<tr>" + "<th>Step No</th>"
 				+ "<th>Description</th>" + "<th>Status</th>"
 				+ "<th>Expected</th>" + "<th>Actual</th>");
-		if (screenShotFlag)
+		if (screenShotFlag) {
 			sb.append("<th>ScreenShot</th>");
+		}
 		sb.append("</tr>");
 		int i = 0;
 		for (Map.Entry<IAssert, String> assertM : assertMap.entrySet()) {
@@ -63,17 +63,19 @@ public class HtmlTable {
 			i++;
 			sb.append("<tr>" + "<td>" + i + "</td>" + "<td>"
 					+ assertM.getKey().getMessage() + "</td>");
-			if (result)
+			if (result) {
 				sb.append("<td style=\"color: #000080\">" + printResult
 						+ "</td>");
-			else
+			} else {
 				sb.append("<td style=\"color: #FF0000\">" + printResult
 						+ "</td>");
+			}
 			sb.append("<td>" + assertM.getKey().getExpected() + "</td>"
 					+ "<td>" + assertM.getKey().getActual() + "</td>");
-			if (!result && screenShotFlag)
+			if (!result && screenShotFlag) {
 				sb.append("<td>" + "<a href='" + assertM.getValue()
 						+ "' target='_blank'>screenShotLink</a>" + "</td>");
+			}
 			sb.append("</tr>");
 		}
 		sb.append("</table>");

@@ -52,11 +52,15 @@ public class DriverUtility {
 	private static final Logger LOGGER = Logger.getLogger(DriverUtility.class);
 
 	/***
-	 * Generic waitFor Function which waits for condition to be successful else return null
+	 * Generic waitFor Function which waits for condition to be successful else
+	 * return null
 	 * 
-	 * @param expectedCondition:ExpectedCondition<T>
-	 * @param driver:WebDriver
-	 * @param timeout in seconds
+	 * @param expectedCondition
+	 *            :ExpectedCondition<T>
+	 * @param driver
+	 *            :WebDriver
+	 * @param timeout
+	 *            in seconds
 	 * @return <T> or null
 	 */
 	public static <T> T waitFor(ExpectedCondition<T> expectedCondition,
@@ -136,8 +140,9 @@ public class DriverUtility {
 							.getScreenshotAs(OutputType.FILE);
 				}
 				FileUtils.moveFile(scrFile, saved);
-			} else
+			} else {
 				LOGGER.info("As the driver is null no point in taking screen shot");
+			}
 		} catch (Exception e) {
 			LOGGER.info("Not able to take Screen Shot", e);
 		}

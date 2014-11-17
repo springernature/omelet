@@ -32,7 +32,6 @@ import com.springer.omelet.data.driverconf.PrepareDriverConf;
  * @author kapilA
  * 
  */
-
 public class DefaultBrowserConf {
 	@SuppressWarnings("unused")
 	private static final Logger LOGGER = Logger
@@ -48,8 +47,8 @@ public class DefaultBrowserConf {
 	}
 
 	/***
-	 * Return {@link IBrowserConf} depending on if {@link CustomBrowserConf} is used or 
-	 * Default values set configured
+	 * Return {@link IBrowserConf} depending on if {@link CustomBrowserConf} is
+	 * used or Default values set configured
 	 * 
 	 * @param browserConf
 	 */
@@ -57,17 +56,20 @@ public class DefaultBrowserConf {
 		// TODO: this browserConf is set once in complete execution , which
 		// means if we do Driver.getDriver() multiple times then we get the same
 		// conf
-		if (browserConf == null)
+		if (browserConf == null) {
 			synchronized (DefaultBrowserConf.class) {
-
 				if (browserConf == null) {
 					setEscapePropertyForReportNG();
-					if (customProp == null)
-						browserConf = new PrepareDriverConf().refineBrowserValues().checkForRules().get();
-					else
-						browserConf = new PrepareDriverConf(getKeyValue()).refineBrowserValues().checkForRules().get();
+					if (customProp == null) {
+						browserConf = new PrepareDriverConf()
+								.refineBrowserValues().checkForRules().get();
+					} else {
+						browserConf = new PrepareDriverConf(getKeyValue())
+								.refineBrowserValues().checkForRules().get();
+					}
 				}
 			}
+		}
 		return browserConf;
 	}
 
@@ -82,22 +84,26 @@ public class DefaultBrowserConf {
 		// Set Custom property
 		browserConf = null;
 		customProp = prop;
-
 	}
 
 	private static HashMap<String, String> getKeyValue() {
 		HashMap<String, String> f_map = new HashMap<String, String>();
-		for (DriverConfigurations.LocalEnvironmentConfig localConfig : DriverConfigurations.LocalEnvironmentConfig.values()) {
+		for (DriverConfigurations.LocalEnvironmentConfig localConfig : DriverConfigurations.LocalEnvironmentConfig
+				.values()) {
 			f_map.put(localConfig.toString(), customProp.getValue(localConfig));
 		}
-		for (DriverConfigurations.BrowserStackConfig bsConfig : DriverConfigurations.BrowserStackConfig.values()) {
+		for (DriverConfigurations.BrowserStackConfig bsConfig : DriverConfigurations.BrowserStackConfig
+				.values()) {
 			f_map.put(bsConfig.toString(), customProp.getValue(bsConfig));
 		}
-		for (DriverConfigurations.HubConfig hubConfig : DriverConfigurations.HubConfig.values()) {
+		for (DriverConfigurations.HubConfig hubConfig : DriverConfigurations.HubConfig
+				.values()) {
 			f_map.put(hubConfig.toString(), customProp.getValue(hubConfig));
 		}
-		for (DriverConfigurations.FrameworkConfig frameworkConfig : DriverConfigurations.FrameworkConfig.values()) {
-			f_map.put(frameworkConfig.toString(), customProp.getValue(frameworkConfig));
+		for (DriverConfigurations.FrameworkConfig frameworkConfig : DriverConfigurations.FrameworkConfig
+				.values()) {
+			f_map.put(frameworkConfig.toString(),
+					customProp.getValue(frameworkConfig));
 		}
 		return f_map;
 	}
@@ -107,5 +113,4 @@ public class DefaultBrowserConf {
 		final String ESCAPE_PROPERTY = "org.uncommons.reportng.escape-output";
 		System.setProperty(ESCAPE_PROPERTY, "false");
 	}
-
 }

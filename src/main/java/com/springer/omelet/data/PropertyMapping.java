@@ -33,7 +33,7 @@ import org.apache.log4j.Logger;
 import com.springer.omelet.exception.FrameworkException;
 
 /***
- * Load properties file 
+ * Load properties file
  * 
  * @author kapilA
  * 
@@ -60,7 +60,6 @@ public class PropertyMapping implements IProperty {
 	}
 
 	private void loadFile(String filePath) {
-
 		try {
 			fis = new FileInputStream(new File(filePath));
 			prop.load(fis);
@@ -74,7 +73,6 @@ public class PropertyMapping implements IProperty {
 		} finally {
 			IOUtils.closeQuietly(fis);
 		}
-
 	}
 
 	public PropertyMapping(String filePath) {
@@ -95,13 +93,14 @@ public class PropertyMapping implements IProperty {
 	 * Return values of the Key
 	 */
 	public <E extends Enum<E>> String getValue(E key) {
-		//TODO : check if it is not producing unexpected
-		//checkEnumMapping(key);
+		// TODO : check if it is not producing unexpected
+		// checkEnumMapping(key);
 		String value;
 		try {
 			value = propertiesValue.get(key.toString());
-			if (value == null)
+			if (value == null) {
 				throw new NullPointerException();
+			}
 			return value;
 		} catch (NullPointerException e) {
 			LOGGER.error(e);
@@ -118,8 +117,9 @@ public class PropertyMapping implements IProperty {
 		String value;
 		try {
 			value = propertiesValue.get(key);
-			if (value == null)
+			if (value == null) {
 				throw new NullPointerException();
+			}
 			return value;
 		} catch (NullPointerException e) {
 			LOGGER.error(e);
@@ -170,13 +170,11 @@ public class PropertyMapping implements IProperty {
 				throw new FrameworkException(sb.toString());
 			}
 			classEnumCheck.add(key.getClass().getName());
-
 		}
 	}
 
 	@Override
 	public String toString() {
-
 		StringBuilder sb = new StringBuilder();
 		sb.append("<script language='JavaScript'>");
 		sb.append("function change(text){testData.innerHTML=text}");
@@ -192,5 +190,4 @@ public class PropertyMapping implements IProperty {
 		sb.append("<div id='testData'></div>");
 		return sb.toString();
 	}
-
 }

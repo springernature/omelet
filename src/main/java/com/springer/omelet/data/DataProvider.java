@@ -42,40 +42,43 @@ public class DataProvider {
 
 	private static final Logger LOGGER = Logger.getLogger(DataProvider.class);
 
-	private static String getFullMethodName(Method m){
+	private static String getFullMethodName(Method m) {
 		return m.getDeclaringClass().getName() + "." + m.getName();
 	}
-	
+
 	@org.testng.annotations.DataProvider(name = "GoogleData", parallel = true)
-	public static Object[][] googleSheetDataProvider(Method m){
+	public static Object[][] googleSheetDataProvider(Method m) {
 		String testMethodName = getFullMethodName(m);
 		return getData(testMethodName);
 	}
-	
+
 	@org.testng.annotations.DataProvider(name = "XmlData", parallel = true)
-	public static Object[][] xmlDataProvider(Method m){
+	public static Object[][] xmlDataProvider(Method m) {
 		String methodName = getFullMethodName(m);
 		return getData(methodName);
 	}
-	
-	public static List<IBrowserConf> filterSameBrowsers(List<IBrowserConf> fullBrowserList){
+
+	public static List<IBrowserConf> filterSameBrowsers(
+			List<IBrowserConf> fullBrowserList) {
 		Set<IBrowserConf> browserConfSet = new HashSet<IBrowserConf>(
 				fullBrowserList);
-		return new ArrayList<IBrowserConf>(
-				browserConfSet);
+		return new ArrayList<IBrowserConf>(browserConfSet);
 	}
-	
 
 	/***
 	 * Removes duplicate browsers and prepare data based on the MapStrategy
+	 * 
 	 * @param methodName
 	 * @return
 	 */
 	public static Object[][] getData(String methodName) {
 		Object[][] testMethodData = null;
-		List<IBrowserConf> browserConfFilteredList = filterSameBrowsers(RetryIAnnotationTransformer.methodBrowser.get(methodName));
-		List<IProperty> testMData = RetryIAnnotationTransformer.methodData.get(methodName);
-		mapStrategy strategy = RetryIAnnotationTransformer.runStrategy.get(methodName);
+		List<IBrowserConf> browserConfFilteredList = filterSameBrowsers(RetryIAnnotationTransformer.methodBrowser
+				.get(methodName));
+		List<IProperty> testMData = RetryIAnnotationTransformer.methodData
+				.get(methodName);
+		mapStrategy strategy = RetryIAnnotationTransformer.runStrategy
+				.get(methodName);
 		int browserConfCount = browserConfFilteredList.size();
 		int testDataCount = testMData.size();
 		int loopCombination;
@@ -86,7 +89,6 @@ public class DataProvider {
 			testMethodData = new Object[loopCombination][2];
 
 			for (int i = 0; i < browserConfCount; i++) {
-
 				for (int j = 0; j < testDataCount; j++) {
 					testMethodData[k][0] = browserConfFilteredList.get(i);
 					testMethodData[k][1] = testMData.get(j);
@@ -95,10 +97,11 @@ public class DataProvider {
 			}
 			break;
 		case Optimal:
-			if (browserConfCount >= testDataCount)
+			if (browserConfCount >= testDataCount) {
 				loopCombination = browserConfCount;
-			else
+			} else {
 				loopCombination = testDataCount;
+			}
 			testMethodData = new Object[loopCombination][2];
 			for (int i = 0; i < loopCombination; i++) {
 				Random r = new Random();
@@ -110,11 +113,11 @@ public class DataProvider {
 					testMethodData[i][0] = browserConfFilteredList.get(i);
 				}
 				if (i >= testDataCount) {
-					testMethodData[i][1] = testMData.get(r.nextInt(testDataCount));
+					testMethodData[i][1] = testMData.get(r
+							.nextInt(testDataCount));
 				} else {
 					testMethodData[i][1] = testMData.get(i);
 				}
-
 			}
 			break;
 		default:
@@ -122,5 +125,4 @@ public class DataProvider {
 		}
 		return testMethodData;
 	}
-
 }
