@@ -56,7 +56,6 @@ public class BrowserStackTunnel {
 
 	// Hiding the constructor for Singleton
 	private BrowserStackTunnel() {
-
 	}
 
 	public static BrowserStackTunnel getInstance() {
@@ -247,7 +246,6 @@ public class BrowserStackTunnel {
 		// killed
 		// Expectation is that there should be only one BrowserStackLocal task
 		// running
-		@SuppressWarnings("unused")
 		String browserStackKey;
 
 		public KillTunnel(String browserStackKey) {
@@ -265,9 +263,11 @@ public class BrowserStackTunnel {
 				killProcess = killpb.start();
 				killProcess.waitFor();
 			} catch (IOException e) {
-				LOGGER.error(e);
+				LOGGER.error("Kill process start failed for BrowserStackKey Tunnel: "
+						+ browserStackKey + " : " + e);
 			} catch (InterruptedException e) {
-				LOGGER.error(e);
+				LOGGER.error("Kill process start failed for BrowserStackKey Tunnel: "
+						+ browserStackKey + " : " + e);
 			} finally {
 				if (killProcess != null) {
 					killProcess.destroy();
