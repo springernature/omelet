@@ -175,6 +175,15 @@ public class DriverUtility {
 									+ "evt.initMouseEvent('dblclick',true, true, window, 0, 0, 0, 0, 0, false, false, false, false, 0,null);"
 									+ "arguments[0].dispatchEvent(evt);",
 							element);
+		default:
+			String clickStrategyParameter = "";
+			try {
+				clickStrategyParameter = clickStrategy.toString();
+			} catch (Exception e) {
+				clickStrategyParameter = "null";
+			}
+			LOGGER.error("Parameter missmatch: Unknown click strategy. "
+					+ clickStrategyParameter);
 		}
 	}
 
