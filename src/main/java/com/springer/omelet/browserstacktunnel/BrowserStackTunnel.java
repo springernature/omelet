@@ -263,11 +263,11 @@ public class BrowserStackTunnel {
 				killProcess = killpb.start();
 				killProcess.waitFor();
 			} catch (IOException e) {
-				LOGGER.error("Kill process start failed for BrowserStackKey Tunnel: "
-						+ browserStackKey + " : " + e);
+				LOGGER.error("Kill process for BrowserStack Tunnel having key: "
+						+ browserStackKey + " failed to start. " + e);
 			} catch (InterruptedException e) {
-				LOGGER.error("Kill process start failed for BrowserStackKey Tunnel: "
-						+ browserStackKey + " : " + e);
+				LOGGER.error("Kill process for BrowserStack Tunnel having key: "
+						+ browserStackKey + " failed to start. " + e);
 			} finally {
 				if (killProcess != null) {
 					killProcess.destroy();
