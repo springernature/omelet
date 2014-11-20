@@ -47,16 +47,20 @@ public class DriverUtility {
 
 	public enum CHECK_UNCHECK {
 		CHECK, UNCHECK
-	};
+	}
 
 	private static final Logger LOGGER = Logger.getLogger(DriverUtility.class);
 
 	/***
-	 * Generic waitFor Function which waits for condition to be successful else return null
+	 * Generic waitFor Function which waits for condition to be successful else
+	 * return null
 	 * 
-	 * @param expectedCondition:ExpectedCondition<T>
-	 * @param driver:WebDriver
-	 * @param timeout in seconds
+	 * @param expectedCondition
+	 *            :ExpectedCondition<T>
+	 * @param driver
+	 *            :WebDriver
+	 * @param timeout
+	 *            in seconds
 	 * @return <T> or null
 	 */
 	public static <T> T waitFor(ExpectedCondition<T> expectedCondition,
@@ -70,7 +74,7 @@ public class DriverUtility {
 							expectedCondition);
 			return returnValue;
 		} catch (TimeoutException e) {
-
+			LOGGER.error(e);
 			return null;
 		} finally {
 			driver.manage()
@@ -94,7 +98,7 @@ public class DriverUtility {
 	public static boolean switchToWindow(WebDriver driver, String sString) {
 		String currentHandle = driver.getWindowHandle();
 		Set<String> handles = driver.getWindowHandles();
-		if (handles.size() >= 1) {
+		if (!handles.isEmpty()) {
 			for (String handle : handles) {
 				LOGGER.debug("Switching to other window");
 				driver.switchTo().window(handle);
@@ -127,7 +131,6 @@ public class DriverUtility {
 		File scrFile;
 		try {
 			if (driver != null) {
-
 				if (Driver.getBrowserConf().isRemoteFlag()) {
 					Augmenter augumenter = new Augmenter();
 					scrFile = ((TakesScreenshot) augumenter.augment(driver))
@@ -137,11 +140,11 @@ public class DriverUtility {
 							.getScreenshotAs(OutputType.FILE);
 				}
 				FileUtils.moveFile(scrFile, saved);
-			} else
+			} else {
 				LOGGER.info("As the driver is null no point in taking screen shot");
+			}
 		} catch (Exception e) {
 			LOGGER.info("Not able to take Screen Shot", e);
-
 		}
 		return saved;
 	}
@@ -172,8 +175,17 @@ public class DriverUtility {
 									+ "evt.initMouseEvent('dblclick',true, true, window, 0, 0, 0, 0, 0, false, false, false, false, 0,null);"
 									+ "arguments[0].dispatchEvent(evt);",
 							element);
+			break;
+		default:
+			String clickStrategyParameter = "";
+			try {
+				clickStrategyParameter = clickStrategy.toString();
+			} catch (Exception e) {
+				clickStrategyParameter = "null";
+			}
+			LOGGER.error("Parameter missmatch: Unknown click strategy. "
+					+ clickStrategyParameter);
 		}
-
 	}
 
 	public enum CLICK_STRATEGY {
@@ -215,9 +227,9 @@ public class DriverUtility {
 				"Text Entered to method should not be null and not empty");
 		Select s = new Select(webElement);
 		try {
-
 			s.selectByVisibleText(visibleText);
 		} catch (NoSuchElementException e) {
+			LOGGER.error(e);
 			s.selectByIndex(defaultIndex);
 		}
 	}
@@ -244,5 +256,4 @@ public class DriverUtility {
 			}
 		}
 	}
-
 }

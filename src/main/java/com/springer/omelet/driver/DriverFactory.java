@@ -99,7 +99,6 @@ class DriverFactory {
 	 * @return
 	 */
 	public WebDriver intializeDriver() {
-
 		if (remoteFlag) {
 			RemoteBrowser rb = this.new RemoteBrowser();
 			webDriver = rb.returnRemoteDriver();
@@ -118,23 +117,20 @@ class DriverFactory {
 			LOGGER.info("Browser is HTMLUNIT");
 			webDriver = new HtmlUnitDriver();
 		}
-
 		// For maximizing driver windows and wait
 		if (webDriver != null) {
 			if (this.isMobileTest == false) {
-				webDriver.manage().window().maximize();	
+				webDriver.manage().window().maximize();
 			}
 			webDriver.manage().timeouts()
 					.implicitlyWait(driverTimeOut, TimeUnit.SECONDS);
 		}
-
 		if (ishiglightElementFlag) {
 			EventFiringWebDriver efw = new EventFiringWebDriver(webDriver);
 			efw.register(new MyWebDriverListner());
 			webDriver = efw;
 		}
 		return webDriver;
-
 	}
 
 	/***
@@ -147,30 +143,27 @@ class DriverFactory {
 		private BrowserStackTunnel bs;
 
 		public RemoteBrowser() {
-
 			setDesiredCapability();
 		}
 
 		public void setUpTunnel() {
-
 			bs = BrowserStackTunnel.getInstance();
 			bs.createTunnel(AUTOMATE_KEY, bsURLS);
 		}
 
 		public WebDriver returnRemoteDriver() {
-
 			String c_remoteURL;
 			String browserStackURL = "http://" + USERNAME + ":" + AUTOMATE_KEY
 					+ "@hub.browserstack.com/wd/hub";
 			if (browserStackSwitch) {
 				c_remoteURL = browserStackURL;
 				// check if tunnel needs to be setup
-				if (isBSLocalTesting)
+				if (isBSLocalTesting) {
 					setUpTunnel();
+				}
 			} else {
 				c_remoteURL = remoteURL;
 			}
-
 			try {
 				RemoteWebDriver driver = new RemoteWebDriver(new URL(
 						c_remoteURL), dc);
@@ -181,17 +174,16 @@ class DriverFactory {
 				LOGGER.error(e);
 				return null;
 			}
-
 		}
 
 		private void setDesiredCapability() {
-
 			if (browserStackSwitch) {
-
-				dc.setCapability("project", MappingParserRevisit
-						.getProjectName());
-				if (StringUtils.isNotBlank(MappingParserRevisit.getBuildNumber())) {
-					dc.setCapability("build", MappingParserRevisit.getBuildNumber());
+				dc.setCapability("project",
+						MappingParserRevisit.getProjectName());
+				if (StringUtils.isNotBlank(MappingParserRevisit
+						.getBuildNumber())) {
+					dc.setCapability("build",
+							MappingParserRevisit.getBuildNumber());
 				}
 				dc.setCapability("platform", platform);
 				dc.setCapability("acceptSslCerts", "true");
@@ -208,30 +200,23 @@ class DriverFactory {
 					dc.setCapability("browser_version", browser_version);
 					dc.setCapability("os", os_name);
 					dc.setCapability("osVersion", os_version);
-
 				}
 				if (isBSLocalTesting) {
-
 					dc.setCapability("browserstack.tunnel", "true");
 					dc.setCapability("browserstack.tunnelIdentifier",
 							AUTOMATE_KEY);
 				}
-
 				dc.setCapability("browserTimeout", "200");
 				dc.setCapability("browserstack.debug", "true");
-			}
-
-			else {
+			} else {
 				if (browser.toLowerCase().startsWith("f")) {
 					dc = DesiredCapabilities.firefox();
 				} else if (browser.toLowerCase().startsWith("i")) {
 					dc = DesiredCapabilities.internetExplorer();
-
 				} else if (browser.toLowerCase().startsWith("c")) {
 					dc = DesiredCapabilities.chrome();
 				}
 			}
 		}
-
 	}
 }

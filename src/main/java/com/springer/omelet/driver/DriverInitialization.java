@@ -52,8 +52,9 @@ public class DriverInitialization implements IInvokedMethodListener {
 	 */
 	public void beforeInvocation(IInvokedMethod method, ITestResult testResult) {
 		// Setting the output directory
-		if (outPutDir == null)
+		if (outPutDir == null) {
 			outPutDir = testResult.getTestContext().getOutputDirectory();
+		}
 		if (method.getTestMethod().isBeforeMethodConfiguration()) {
 			LOGGER.info("Setting the WebDriver in Before Method");
 			// Initializing browser so that will be same across all the child
@@ -66,14 +67,13 @@ public class DriverInitialization implements IInvokedMethodListener {
 			// need as otherwise will produce unexpected output
 			SAssert.m_errors.get();
 			SAssert.assertMap.get();
-
 		}
 	}
 
 	/***
-	 * Quits Driver and generate table report, if @BeforeMethod
-	 * is not present and @AfterMethod is present in TestClass then Driver.getDriver() in
-	 * after method will be null
+	 * Quits Driver and generate table report, if @BeforeMethod is not present
+	 * and @AfterMethod is present in TestClass then Driver.getDriver() in after
+	 * method will be null
 	 * 
 	 * @author kapilA
 	 */
@@ -101,12 +101,11 @@ public class DriverInitialization implements IInvokedMethodListener {
 				cleanup(method, testResult);
 			}
 		}
-
 	}
 
 	/***
-	 * Check for BeforeMethod in the given class and All super class
-	 * till java.lang.Object
+	 * Check for BeforeMethod in the given class and All super class till
+	 * java.lang.Object
 	 * 
 	 * @param className
 	 * @return
@@ -118,9 +117,9 @@ public class DriverInitialization implements IInvokedMethodListener {
 			Class<?> classN = className;
 			while (!cName.contains("java.lang.Object")) {
 				if (RetryIAnnotationTransformer.beforeMethodClasses
-						.contains(cName))
+						.contains(cName)) {
 					return true;
-				else {
+				} else {
 					classN = classN.getSuperclass();
 					cName = classN.getName();
 				}
@@ -130,15 +129,13 @@ public class DriverInitialization implements IInvokedMethodListener {
 			LOGGER.info(
 					"Catching exception in checkBeforeMethod and returning false",
 					e);
-
 			return false;
-
 		}
 	}
 
 	/***
-	 * Driver quit and clearing AssertMap in Soft Assert, Cleaning
-	 * BrowserStack Tunnel if at all present
+	 * Driver quit and clearing AssertMap in Soft Assert, Cleaning BrowserStack
+	 * Tunnel if at all present
 	 * 
 	 * @param method
 	 * @param testResult
@@ -149,26 +146,25 @@ public class DriverInitialization implements IInvokedMethodListener {
 			Reporter.setCurrentTestResult(testResult);
 			LOGGER.info("Quiting Driver for Method:"
 					+ method.getTestMethod().getMethodName());
-			if (!Driver.driverRemovedStatus())
+			if (!Driver.driverRemovedStatus()) {
 				Driver.tearDown();
+			}
 		} catch (Exception e) {
 			LOGGER.info(
 					"Catching Exception in After Invocation So test Result are not altered due to it",
 					e);
-
 		} finally {
-			if (!Driver.driverRemovedStatus())
+			if (!Driver.driverRemovedStatus()) {
 				Driver.tearDown();
+			}
 			SAssert.m_errors.get().clear();
 			SAssert.assertMap.get().clear();
-
 		}
-
 	}
 
 	/**
-	 * Check for AfterMethod in the given class and All super class
-	 * till java.lang.Object
+	 * Check for AfterMethod in the given class and All super class till
+	 * java.lang.Object
 	 * 
 	 * @param className
 	 * @return
@@ -180,9 +176,9 @@ public class DriverInitialization implements IInvokedMethodListener {
 			Class<?> classN = className;
 			while (!cName.contains("java.lang.Object")) {
 				if (RetryIAnnotationTransformer.afterMethodClasses
-						.contains(cName))
+						.contains(cName)) {
 					return true;
-				else {
+				} else {
 					classN = classN.getSuperclass();
 					cName = classN.getName();
 				}
@@ -208,14 +204,13 @@ public class DriverInitialization implements IInvokedMethodListener {
 					testResult.getName());
 			Reporter.log("Table Report is:::" + report.getTable());
 		} catch (Exception e) {
-
 			LOGGER.info("Catching exception in public HTML Method", e);
 		}
 	}
 
 	/***
-	 * Add the screen shot to test case due to throwable exception
-	 * other than Soft Assert
+	 * Add the screen shot to test case due to throwable exception other than
+	 * Soft Assert
 	 * 
 	 * @param testResult
 	 * @author kapilA
@@ -245,14 +240,11 @@ public class DriverInitialization implements IInvokedMethodListener {
 								+ SuiteConfiguration.suiteName
 								+ "/"
 								+ screenShotName + "\"></div>");
-
 					}
 				}
 			}
 		} catch (Exception e) {
-
 			LOGGER.info("Catching exception in add screen shot Method", e);
 		}
 	}
-
 }

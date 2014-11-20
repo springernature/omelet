@@ -34,6 +34,7 @@ import com.springer.omelet.common.Utils;
 
 /**
  * For Setting and terminating BrowserStack Tunnel
+ * 
  * @author kapilA
  *
  */
@@ -52,9 +53,9 @@ public class BrowserStackTunnel {
 
 	String browserStackKey;
 	List<String> browserStackURLS;
+
 	// Hiding the constructor for Singleton
 	private BrowserStackTunnel() {
-
 	}
 
 	public static BrowserStackTunnel getInstance() {
@@ -62,9 +63,7 @@ public class BrowserStackTunnel {
 			synchronized (BrowserStackTunnel.class) {
 				if (browserStackTunnel == null) {
 					browserStackTunnel = new BrowserStackTunnel();
-
 				}
-
 			}
 		}
 		environment = OSName.get();
@@ -94,38 +93,29 @@ public class BrowserStackTunnel {
 			List<String> browserStackURLS) {
 		this.browserStackKey = browserStackKey;
 		this.browserStackURLS = browserStackURLS;
-		
+
 		if (!activeTunnels.contains(browserStackKey)) {
 			synchronized (browserStackTunnel) {
-
 				if (!activeTunnels.contains(browserStackKey)) {
 					LOGGER.info("Starting tunnel for Key:" + browserStackKey);
 					pb = new ProcessBuilder();
 
 					pb.command(getSetUpCommand(browserStackKey,
 							browserStackURLS));
-
 					try {
-
 						tunnelProcess = pb.start();
 						waitforTunnelTobeUp("Press Ctrl-C to exit");
 						activeTunnels.add(browserStackKey);
-
 					} catch (IOException e) {
-
 						LOGGER.error(e);
 					} catch (InterruptedException e) {
-
 						LOGGER.error(e);
 					}
-
 				} else {
 					LOGGER.info("Tunnel Already exsist for they key:"
 							+ browserStackKey);
 				}
-
 			}
-
 		} else {
 			LOGGER.info("Tunnel Already exsist for key:" + browserStackKey);
 		}
@@ -133,6 +123,7 @@ public class BrowserStackTunnel {
 
 	/***
 	 * wait for tunnel to be up
+	 * 
 	 * @param waitForMessage
 	 * @throws IOException
 	 * @throws InterruptedException
@@ -142,26 +133,27 @@ public class BrowserStackTunnel {
 		is = tunnelProcess.getInputStream();
 		br = new BufferedReader(new InputStreamReader(is));
 		String t = "";
-		while (!waitForMessage.equalsIgnoreCase(t) && t != null)
+		while (!waitForMessage.equalsIgnoreCase(t) && t != null) {
 			try {
 				t = br.readLine();
-//				if(t == null) {
-//					createTunnel(browserStackKey, browserStackURLS);
-//				}
+				// if(t == null) {
+				// createTunnel(browserStackKey, browserStackURLS);
+				// }
 				LOGGER.info("cmd Output:" + t);
 			} catch (IOException e) {
 				LOGGER.error(e);
 			}
+		}
 	}
 
 	/***
 	 * Terminate tunnel
+	 * 
 	 * @param browserStackKey
 	 */
 	public void terminateTunnel(String browserStackKey) {
 		// Check if it is present in the Hash Set
 		// if not , remove from the set
-
 		if (isTunnelPresent(browserStackKey)) {
 			LOGGER.debug("Starting termination of Tunnel for key:"
 					+ browserStackKey);
@@ -191,7 +183,6 @@ public class BrowserStackTunnel {
 				} else {
 					return false;
 				}
-
 			}
 		}
 		return false;
@@ -199,6 +190,7 @@ public class BrowserStackTunnel {
 
 	/***
 	 * Return the set up command for setting the browserstack tunnel
+	 * 
 	 * @param browserStackKey
 	 * @param bsURLS
 	 * @return
@@ -217,8 +209,8 @@ public class BrowserStackTunnel {
 				urls.append(s);
 				urls.append(",");
 			}
-
 		}
+
 		urls.deleteCharAt(urls.length() - 1);
 		switch (environment) {
 		case UNIX:
@@ -250,12 +242,10 @@ public class BrowserStackTunnel {
 	 * 
 	 */
 	private class KillTunnel {
-
 		// As of now key is not required because process name is taken and then
 		// killed
 		// Expectation is that there should be only one BrowserStackLocal task
 		// running
-		@SuppressWarnings("unused")
 		String browserStackKey;
 
 		public KillTunnel(String browserStackKey) {
@@ -273,14 +263,16 @@ public class BrowserStackTunnel {
 				killProcess = killpb.start();
 				killProcess.waitFor();
 			} catch (IOException e) {
-				LOGGER.error(e);
+				LOGGER.error("Kill process for BrowserStack Tunnel having key: "
+						+ browserStackKey + " failed to start. " + e);
 			} catch (InterruptedException e) {
-				LOGGER.error(e);
+				LOGGER.error("Kill process for BrowserStack Tunnel having key: "
+						+ browserStackKey + " failed to start. " + e);
 			} finally {
-				if (killProcess != null)
+				if (killProcess != null) {
 					killProcess.destroy();
+				}
 			}
-
 		}
 
 		private List<String> getKillCommand() {
@@ -302,14 +294,10 @@ public class BrowserStackTunnel {
 				killCommand.add("-f");
 				killCommand.add("BrowserStackLocal");
 				break;
-				
 			default:
 				break;
 			}
-
 			return killCommand;
 		}
-
 	}
-
 }

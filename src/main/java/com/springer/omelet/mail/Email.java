@@ -38,13 +38,14 @@ import org.apache.log4j.Logger;
 import org.testng.Reporter;
 
 import com.google.common.base.Stopwatch;
+
 /***
  * Checking email using pop3 protocol
+ * 
  * @author kapilA
  *
  */
 public class Email implements IEmail {
-
 	private String host;
 	private String port;
 	private String userName;
@@ -89,14 +90,11 @@ public class Email implements IEmail {
 			props.setProperty(portPropertyKey, port);
 			session = Session.getInstance(props, null);
 			connectToStore("pop3", session);
-
 			break;
 		}
-
 	}
 
 	private void connectToStore(String protocol, Session session) {
-
 		try {
 			store = session.getStore(protocol);
 			store.connect(userName, password);
@@ -106,7 +104,6 @@ public class Email implements IEmail {
 		} catch (MessagingException e) {
 			LOGGER.error(e);
 		}
-
 	}
 
 	/***
@@ -151,7 +148,6 @@ public class Email implements IEmail {
 		public Email build() {
 			return new Email(this);
 		}
-
 	}
 
 	/***
@@ -159,8 +155,8 @@ public class Email implements IEmail {
 	 */
 	@Override
 	public String getMailFormat(Message msg) {
-
 		String format = null;
+
 		try {
 			format = msg.getContentType();
 		} catch (MessagingException e) {
@@ -172,13 +168,14 @@ public class Email implements IEmail {
 
 	private enum EMAIL_FILTER {
 		TO_ADDR, FROM_ADD, SUBJECT
-	};
+	}
 
-	
 	/***
 	 * Return List of Message filter by Subject,From_ADD,To_ADDR
+	 * 
 	 * @param emailFilter
-	 * @param filterText:text present in Subject of email
+	 * @param filterText
+	 *            :text present in Subject of email
 	 * @return
 	 */
 	public List<Message> getMessages(EMAIL_FILTER emailFilter, String filterText) {
@@ -188,34 +185,36 @@ public class Email implements IEmail {
 		List<Message> returnMessage = new ArrayList<Message>();
 		int loopCount;
 		try {
-
 			folder.open(Folder.READ_ONLY);
 			Message[] msgs = folder.getMessages();
 			int inboMessageCount = folder.getMessageCount();
 			LOGGER.info("Message count is:" + inboMessageCount);
-			if (inboMessageCount < maxcountEMailCheck)
+			if (inboMessageCount < maxcountEMailCheck) {
 				loopCount = 0;
-			else
+			} else {
 				loopCount = inboMessageCount - maxcountEMailCheck;
-
+			}
 			for (int i = inboMessageCount - 1; i >= loopCount; i--) {
 				switch (emailFilter) {
 				case SUBJECT:
 					if (msgs[i].getSubject().toString()
-							.equalsIgnoreCase(filterText))
+							.equalsIgnoreCase(filterText)) {
 						returnMessage.add(msgs[i]);
+					}
 					break;
 				case FROM_ADD:
 					// Assumption is from address is only one
-					if (msgs[i].getFrom()[0].toString().contains(filterText))
+					if (msgs[i].getFrom()[0].toString().contains(filterText)) {
 						returnMessage.add(msgs[i]);
+					}
 					break;
 				case TO_ADDR:
 					for (Address addr : msgs[i].getRecipients(RecipientType.TO)) {
 						LOGGER.info("Sno:" + i + "To Email Add is"
 								+ addr.toString());
-						if (addr.toString().contains(filterText))
+						if (addr.toString().contains(filterText)) {
 							returnMessage.add(msgs[i]);
+						}
 					}
 					break;
 				default:
@@ -239,9 +238,9 @@ public class Email implements IEmail {
 	@Override
 	public String getEmailBody(Message message) {
 		String line;
-
 		StringBuffer messageBody = new StringBuffer();
 		BufferedReader br = null;
+
 		try {
 			folder.open(Folder.READ_ONLY);
 			br = new BufferedReader(new InputStreamReader(
@@ -252,7 +251,6 @@ public class Email implements IEmail {
 			br.close();
 			folder.close(true);
 		} catch (IOException e) {
-
 			LOGGER.error(e);
 		} catch (MessagingException e) {
 			LOGGER.error(e);
@@ -280,7 +278,6 @@ public class Email implements IEmail {
 		} else {
 			Reporter.log(text);
 		}
-
 		return httpLink;
 	}
 
@@ -290,7 +287,6 @@ public class Email implements IEmail {
 	 */
 	@Override
 	public void setFolder(String folderName) {
-
 		this.folderName = folderName;
 	}
 
@@ -300,10 +296,8 @@ public class Email implements IEmail {
 		switch (searchCat) {
 		case FROM:
 			return getMessages(EMAIL_FILTER.FROM_ADD, emailAddress);
-
 		case TO:
 			return getMessages(EMAIL_FILTER.TO_ADDR, emailAddress);
-
 		default:
 			break;
 		}
@@ -329,15 +323,17 @@ public class Email implements IEmail {
 			switch (searchCat) {
 			case FROM:
 				for (Message msg : messages) {
-					if (msg.getFrom()[0].toString().contains(emailAddress))
+					if (msg.getFrom()[0].toString().contains(emailAddress)) {
 						returnMessage.add(msg);
+					}
 				}
 				break;
 			case TO:
 				for (Message msg : messages) {
 					for (Address addr : msg.getRecipients(RecipientType.TO)) {
-						if (addr.toString().contains(emailAddress))
+						if (addr.toString().contains(emailAddress)) {
 							returnMessage.add(msg);
+						}
 					}
 				}
 				break;
@@ -361,8 +357,9 @@ public class Email implements IEmail {
 				+ message.size());
 		for (Message msg : message) {
 			try {
-				if (msg.getSubject().equalsIgnoreCase(emailSubject))
+				if (msg.getSubject().equalsIgnoreCase(emailSubject)) {
 					returnMessage.add(msg);
+				}
 			} catch (MessagingException e) {
 				// TODO Auto-generated catch block
 				LOGGER.error(e);
@@ -372,7 +369,6 @@ public class Email implements IEmail {
 		LOGGER.info("Time Taken by Filter EmailBy Subjects is:"
 				+ sw.elapsedTime(TimeUnit.SECONDS));
 		return returnMessage;
-
 	}
 
 	@Override
@@ -381,5 +377,4 @@ public class Email implements IEmail {
 		String messageBody = getEmailBody(message);
 		return Pattern.matches(messageBody, patterToMatch);
 	}
-
 }

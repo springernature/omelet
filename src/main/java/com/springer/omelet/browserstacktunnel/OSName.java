@@ -27,25 +27,26 @@ import com.springer.omelet.exception.FrameworkException;
  * 
  */
 public class OSName {
-	
-	private final static Logger LOGGER = Logger.getLogger(OSName.class);
+
+	private static final Logger LOGGER = Logger.getLogger(OSName.class);
 	private static String OS = System.getProperty("os.name").toLowerCase();
+
 	public static enum OSN {
 		WIN, UNIX, MAC
-	};
+	}
 
 	public static OSN get() {
 		LOGGER.debug("OS Name is:" + OS);
-		if (OS.indexOf("win") >= 0)
+		if (OS.indexOf("win") >= 0) {
 			return OSN.WIN;
-		else if (OS.indexOf("mac") >= 0)
+		} else if (OS.indexOf("mac") >= 0) {
 			return OSN.MAC;
-		else if (OS.indexOf("nix") >= 0 || OS.indexOf("nux") >= 0
-				|| OS.indexOf("aix") > 0)
+		} else if (OS.indexOf("nix") >= 0 || OS.indexOf("nux") >= 0
+				|| OS.indexOf("aix") > 0) {
 			return OSN.UNIX;
-		else
+		} else {
 			throw new FrameworkException("Cannot find OS name ,Java returned:"
 					+ OS);
+		}
 	}
-
 }
