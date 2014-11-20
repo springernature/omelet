@@ -47,7 +47,7 @@
 		<dependency>
 			<groupId>org.testng</groupId>
 			<artifactId>testng</artifactId>
-			<version>6.8.7</version>
+			<version>6.8.8</version>
 		</dependency>
 		<dependency>
 			<groupId>org.uncommons</groupId>
@@ -139,6 +139,15 @@
 				<version>2.9.1</version>
 			</plugin>
 		</plugins>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<includes>
+					<include>**/*</include>
+				</includes>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
 	</build>
 	<distributionManagement>
 		<repository>

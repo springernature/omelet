@@ -44,6 +44,7 @@ public class SuiteConfiguration implements ISuiteListener {
 	}
 
 	public void onStart(ISuite arg0) {
+		Logo.getInstance().printLogoAndVersion();
 		suiteName = arg0.getName();
 		//ReportNG property 
 		System.setProperty("org.uncommons.reportng.coverage-report", "true");
