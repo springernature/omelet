@@ -217,19 +217,20 @@ public class BrowserConfR implements IBrowserConf {
 				if (this.isBrowserStackSwitch() == secondObj
 						.isBrowserStackSwitch()) {
 					if (this.isBrowserStackSwitch() == true) {
-						return (this.getBrowser() == secondObj.getBrowser()
-								&& this.getBrowserVersion() == secondObj
-										.getBrowserVersion()
-								&& this.getOsName() == secondObj.getOsName() && this
-									.getOsVersion() == secondObj.getOsVersion());
+						return (this.getBrowser().equals(secondObj.getBrowser())
+								&& this.getBrowserVersion().equals(secondObj
+										.getBrowserVersion())
+								&& this.getOsName().equals(secondObj.getOsName()) && this
+									.getOsVersion().equals(secondObj.getOsVersion()));
 					} else {
-						return (this.getBrowser() == secondObj.getBrowser());
+						return (this.getBrowser().equals(secondObj.getBrowser()));
 					}
 				} else {
 					return false;
 				}
 			} else {
-				return this.getBrowser() == secondObj.getBrowser();
+				
+				return this.getBrowser().equals(secondObj.getBrowser());
 			}
 		}
 		return false;

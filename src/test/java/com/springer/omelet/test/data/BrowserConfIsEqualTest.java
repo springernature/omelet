@@ -23,30 +23,38 @@ import java.util.List;
 import java.util.Set;
 
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+
 import com.springer.omelet.data.DriverConfigurations;
 import com.springer.omelet.data.driverconf.BrowserConfR;
 import com.springer.omelet.data.driverconf.IBrowserConf;
 
 public class BrowserConfIsEqualTest {
 
-	private HashMap<String, String> browserConfValues1 = new HashMap<String, String>();
-	private HashMap<String, String> browserConfValues2 = new HashMap<String, String>();
+	private HashMap<String, String> browserConfValues1;
+	private HashMap<String, String> browserConfValues2;
 	List<IBrowserConf> browserConfList = new ArrayList<IBrowserConf>();
+	
+	@BeforeMethod
+	public void setup(){
+		browserConfValues1 = null;
+		browserConfValues2 = null;
+		browserConfValues1 = new HashMap<String, String>();
+		browserConfValues2 = new HashMap<String, String>();
+	}
 
 	@Test(enabled = true, description = "same browser -->remote flag off-->filtering using set and List")
 	public void checkBrowserConfEquality_RemoteFlagOFF() {
-		browserConfValues1.clear();
-		browserConfValues2.clear();
 		browserConfValues1.put(DriverConfigurations.LocalEnvironmentConfig.browserName.toString(),
-				"firefox");
+				new String("firefox"));
 		browserConfValues1.put(DriverConfigurations.FrameworkConfig.remoteFlag.toString(), "false");
 
 		browserConfValues2.put(DriverConfigurations.LocalEnvironmentConfig.browserName.toString(),
-				"firefox");
+				new String("firefox"));
 		browserConfValues2.put(DriverConfigurations.FrameworkConfig.remoteFlag.toString(), "false");
-		BrowserConfR obj1 = new BrowserConfR(browserConfValues1);
-		BrowserConfR obj2 = new BrowserConfR(browserConfValues2);
+		IBrowserConf obj1 = new BrowserConfR(browserConfValues1);
+		IBrowserConf obj2 = new BrowserConfR(browserConfValues2);
 
 		browserConfList.add(obj1);
 		browserConfList.add(obj2);
