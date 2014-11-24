@@ -19,6 +19,8 @@ package com.springer.omelet.common;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.Nonnull;
+
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
@@ -29,11 +31,11 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 /***
- * Class having function similar to {@link ExpectedConditions}
- * Should be used in DriverUtility.waitFor(). Assumption of
- * the methods in this class is that they all will be used in WebDriverWait as
- * we are not catching NoSuchElementException ,If at all Custom FluentWait is
- * the be used then catch {@link NoSuchElementException}
+ * Class having function similar to {@link ExpectedConditions} Should be used in
+ * DriverUtility.waitFor(). Assumption of the methods in this class is that they
+ * all will be used in WebDriverWait as we are not catching
+ * NoSuchElementException ,If at all Custom FluentWait is the be used then catch
+ * {@link NoSuchElementException}
  * 
  * Method are used in {@link DriverUtility}
  * 
@@ -49,7 +51,6 @@ public class ExpectedConditionExtended {
 	 * hiding the constructor
 	 */
 	private ExpectedConditionExtended() {
-
 	}
 
 	/***
@@ -64,7 +65,6 @@ public class ExpectedConditionExtended {
 		return new ExpectedCondition<WebElement>() {
 
 			public WebElement apply(WebDriver driver) {
-
 				try {
 					if (element.isDisplayed() && element.isEnabled()) {
 						return element;
@@ -72,8 +72,10 @@ public class ExpectedConditionExtended {
 						return null;
 					}
 				} catch (StaleElementReferenceException e) {
+					LOGGER.error(e);
 					return null;
 				} catch (NoSuchElementException e) {
+					LOGGER.error(e);
 					return null;
 				}
 			}
@@ -99,15 +101,17 @@ public class ExpectedConditionExtended {
 					.visibilityOf(element);
 
 			public Boolean apply(WebDriver driver) {
+				boolean isDisabled = false;
 				WebElement element = visibilityOfElement.apply(driver);
 				try {
 					if (element != null && !(element.isEnabled())) {
-						return true;
-					} else {
-						return false;
+						isDisabled = true;
 					}
+					return isDisabled;
 				} catch (StaleElementReferenceException e) {
-					return false;
+					// TODO check if error, debug or warn
+					LOGGER.warn("Element not found: " + element.toString());
+					return isDisabled;
 				}
 			}
 
@@ -133,9 +137,11 @@ public class ExpectedConditionExtended {
 				try {
 					return !(webelement.isDisplayed());
 				} catch (NoSuchElementException e) {
+					LOGGER.error(e);
 					return true;
 				} catch (StaleElementReferenceException e) {
 					// Returns true , need to check if stale means invisible
+					LOGGER.error(e);
 					return true;
 				}
 			}
@@ -159,13 +165,15 @@ public class ExpectedConditionExtended {
 			final By locator) {
 		return new ExpectedCondition<Boolean>() {
 
-			public Boolean apply(WebDriver driver) {
+			public Boolean apply(@Nonnull WebDriver driver) {
 				try {
-					return driver.findElements(locator).size() == 0;
+					return driver.findElements(locator).isEmpty();
 				} catch (NoSuchElementException e) {
+					LOGGER.error(e);
 					return true;
 				} catch (StaleElementReferenceException e) {
 					// Returns true , need to check if stale means invisible
+					LOGGER.error(e);
 					return true;
 				}
 			}
@@ -178,8 +186,8 @@ public class ExpectedConditionExtended {
 	}
 
 	/***
-	 * This method accepts n number of WebElements and check for click ability if
-	 * any of the WebElement is not click able will return false
+	 * This method accepts n number of WebElements and check for click ability
+	 * if any of the WebElement is not click able will return false
 	 * 
 	 * @param elements
 	 * @return
@@ -200,9 +208,9 @@ public class ExpectedConditionExtended {
 							statusList.add(false);
 						}
 					} catch (StaleElementReferenceException e) {
+						LOGGER.error(e);
 						statusList.add(false);
 					}
-
 				}
 				if (statusList.contains(false)) {
 					statusList.clear();
@@ -220,6 +228,7 @@ public class ExpectedConditionExtended {
 
 	/***
 	 * Check clikability for the list of WebElement
+	 * 
 	 * @param elements
 	 * @return
 	 */
@@ -228,8 +237,9 @@ public class ExpectedConditionExtended {
 		final List<Boolean> statusList = new ArrayList<Boolean>();
 		return new ExpectedCondition<Boolean>() {
 			public Boolean apply(WebDriver driver) {
-				if (elements.size() == 0)
+				if (elements.isEmpty()) {
 					return false;
+				}
 				statusList.clear();
 				for (WebElement w : elements) {
 					try {
@@ -239,6 +249,7 @@ public class ExpectedConditionExtended {
 							return false;
 						}
 					} catch (StaleElementReferenceException e) {
+						LOGGER.error(e);
 						return false;
 					}
 				}
@@ -253,8 +264,10 @@ public class ExpectedConditionExtended {
 			}
 		};
 	}
+
 	/***
 	 * Check if all the element in the List are displayed
+	 * 
 	 * @param elements
 	 * @return
 	 */
@@ -272,6 +285,7 @@ public class ExpectedConditionExtended {
 							return null;
 						}
 					} catch (StaleElementReferenceException e) {
+						LOGGER.error(e);
 						return null;
 					}
 				}

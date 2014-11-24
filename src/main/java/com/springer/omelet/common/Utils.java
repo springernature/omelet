@@ -25,8 +25,10 @@ import java.util.regex.Pattern;
 import org.apache.log4j.Logger;
 
 import com.springer.omelet.browserstacktunnel.OSName;
+
 /***
  * General Utility function
+ * 
  * @author kapilA
  *
  */
@@ -40,7 +42,6 @@ public class Utils {
 	 * @param text
 	 * @return
 	 */
-
 	public static String getUniqueName(String text) {
 		return text + UUID.randomUUID();
 	}
@@ -71,7 +72,6 @@ public class Utils {
 		while (matcher.find()) {
 			integerList.add(matcher.group());
 		}
-
 		return integerList;
 	}
 
@@ -91,7 +91,6 @@ public class Utils {
 		String returFilePath = null;
 
 		try {
-
 			switch (OSName.get()) {
 			case UNIX:
 				returFilePath = className.getClass()
@@ -110,16 +109,17 @@ public class Utils {
 				break;
 			}
 
-			if (LOGGER.isDebugEnabled())
+			if (LOGGER.isDebugEnabled()) {
 				LOGGER.debug("Returned File Path is:::" + returFilePath);
+			}
 			return returFilePath;
 
 		} catch (NullPointerException e) {
 			LOGGER.error("Not able to find File with name:" + fileName
 					+ " in classPath. Class looking for this file is:"
 					+ className.toString() + ". Hence returning Null");
+			LOGGER.error(e);
 			return null;
 		}
 	}
-
 }
