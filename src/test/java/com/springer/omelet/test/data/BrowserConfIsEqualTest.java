@@ -101,6 +101,7 @@ public class BrowserConfIsEqualTest {
 				"firefox");
 		browserConfValues1.put(DriverConfigurations.FrameworkConfig.remoteFlag.toString(), "true");
 		browserConfValues1.put(DriverConfigurations.BrowserStackConfig.bsSwitch.toString(), "true");
+		browserConfValues1.put(DriverConfigurations.BrowserStackConfig.mobileTest.toString(), "false");
 		browserConfValues1.put(DriverConfigurations.BrowserStackConfig.browserVersion.toString(), "11");
 		browserConfValues1.put(DriverConfigurations.BrowserStackConfig.os.toString(), "Windows");
 		browserConfValues1.put(DriverConfigurations.BrowserStackConfig.osVersion.toString(), "XP");
@@ -111,6 +112,7 @@ public class BrowserConfIsEqualTest {
 				"firefox");
 		browserConfValues2.put(DriverConfigurations.FrameworkConfig.remoteFlag.toString(), "true");
 		browserConfValues2.put(DriverConfigurations.BrowserStackConfig.bsSwitch.toString(), "true");
+		browserConfValues2.put(DriverConfigurations.BrowserStackConfig.mobileTest.toString(), "false");
 		browserConfValues2.put(DriverConfigurations.BrowserStackConfig.browserVersion.toString(), "11");
 		browserConfValues2.put(DriverConfigurations.BrowserStackConfig.os.toString(), "Windows");
 		browserConfValues2.put(DriverConfigurations.BrowserStackConfig.osVersion.toString(), "XP");
@@ -132,6 +134,7 @@ public class BrowserConfIsEqualTest {
 				"firefox");
 		browserConfValues1.put(DriverConfigurations.FrameworkConfig.remoteFlag.toString(), "true");
 		browserConfValues1.put(DriverConfigurations.BrowserStackConfig.bsSwitch.toString(), "true");
+		browserConfValues1.put(DriverConfigurations.BrowserStackConfig.mobileTest.toString(), "false");
 		browserConfValues1.put(DriverConfigurations.BrowserStackConfig.browserVersion.toString(), "11");
 		browserConfValues1.put(DriverConfigurations.BrowserStackConfig.os.toString(), "Mac");
 		browserConfValues1.put(DriverConfigurations.BrowserStackConfig.osVersion.toString(), "XP");
@@ -142,6 +145,7 @@ public class BrowserConfIsEqualTest {
 				"firefox");
 		browserConfValues2.put(DriverConfigurations.FrameworkConfig.remoteFlag.toString(), "true");
 		browserConfValues2.put(DriverConfigurations.BrowserStackConfig.bsSwitch.toString(), "true");
+		browserConfValues2.put(DriverConfigurations.BrowserStackConfig.mobileTest.toString(), "false");
 		browserConfValues2.put(DriverConfigurations.BrowserStackConfig.browserVersion.toString(), "11");
 		browserConfValues2.put(DriverConfigurations.BrowserStackConfig.os.toString(), "Windows");
 		browserConfValues2.put(DriverConfigurations.BrowserStackConfig.osVersion.toString(), "XP");
@@ -162,7 +166,6 @@ public class BrowserConfIsEqualTest {
 
 	@Test(description = "remote Flag on ->bsswitch off-->browser equals")
 	public void remoteFlag_4() {
-
 		browserConfValues1.clear();
 		browserConfValues2.clear();
 
@@ -170,6 +173,7 @@ public class BrowserConfIsEqualTest {
 				"firefox");
 		browserConfValues1.put(DriverConfigurations.FrameworkConfig.remoteFlag.toString(), "true");
 		browserConfValues1.put(DriverConfigurations.BrowserStackConfig.bsSwitch.toString(), "false");
+		browserConfValues1.put(DriverConfigurations.BrowserStackConfig.mobileTest.toString(), "false");
 		browserConfValues1.put(DriverConfigurations.BrowserStackConfig.browserVersion.toString(), "11");
 		browserConfValues1.put(DriverConfigurations.BrowserStackConfig.os.toString(), "Mac");
 		browserConfValues1.put(DriverConfigurations.BrowserStackConfig.osVersion.toString(), "XP");
@@ -180,6 +184,7 @@ public class BrowserConfIsEqualTest {
 				"firefox");
 		browserConfValues2.put(DriverConfigurations.FrameworkConfig.remoteFlag.toString(), "true");
 		browserConfValues2.put(DriverConfigurations.BrowserStackConfig.bsSwitch.toString(), "false");
+		browserConfValues2.put(DriverConfigurations.BrowserStackConfig.mobileTest.toString(), "false");
 		browserConfValues2.put(DriverConfigurations.BrowserStackConfig.browserVersion.toString(), "11");
 		browserConfValues2.put(DriverConfigurations.BrowserStackConfig.os.toString(), "Windows");
 		browserConfValues2.put(DriverConfigurations.BrowserStackConfig.osVersion.toString(), "XP");
@@ -190,7 +195,62 @@ public class BrowserConfIsEqualTest {
 		BrowserConfR obj2 = new BrowserConfR(browserConfValues2);
 		Assert.assertEquals(obj1, obj2);
 		Assert.assertEquals(obj1.hashCode(), obj2.hashCode());
-
 	}
+	
+	@Test(description = "remote Flag on -> bsswitch on -> mobile on -> devices not equals -> browser equals")
+	public void remoteBsMobileOnDevicesNotEqualsBrowserEquals() {
+		browserConfValues1.clear();
+		browserConfValues2.clear();
 
+		browserConfValues1.put(DriverConfigurations.LocalEnvironmentConfig.browserName.toString(),
+				"iPhone");
+		browserConfValues1.put(DriverConfigurations.FrameworkConfig.remoteFlag.toString(), "true");
+		browserConfValues1.put(DriverConfigurations.BrowserStackConfig.bsSwitch.toString(), "true");
+		browserConfValues1.put(DriverConfigurations.BrowserStackConfig.mobileTest.toString(), "true");
+		browserConfValues1.put(DriverConfigurations.BrowserStackConfig.platform.toString(), "MAC");
+		browserConfValues1.put(DriverConfigurations.BrowserStackConfig.device.toString(), "iPhone 5S");
+		browserConfValues1.put(DriverConfigurations.BrowserStackConfig.bs_localTesting.toString(),
+				"true");
+
+		browserConfValues2.put(DriverConfigurations.LocalEnvironmentConfig.browserName.toString(),
+				"iPhone");
+		browserConfValues2.put(DriverConfigurations.FrameworkConfig.remoteFlag.toString(), "true");
+		browserConfValues2.put(DriverConfigurations.BrowserStackConfig.bsSwitch.toString(), "true");
+		browserConfValues2.put(DriverConfigurations.BrowserStackConfig.mobileTest.toString(), "true");
+		browserConfValues2.put(DriverConfigurations.BrowserStackConfig.platform.toString(), "MAC");
+		browserConfValues2.put(DriverConfigurations.BrowserStackConfig.device.toString(), "iPhone 5C");
+		browserConfValues2.put(DriverConfigurations.BrowserStackConfig.bs_localTesting.toString(), "true");
+
+		BrowserConfR obj1 = new BrowserConfR(browserConfValues1);
+		BrowserConfR obj2 = new BrowserConfR(browserConfValues2);
+		Assert.assertNotEquals(obj1, obj2);
+	}
+	
+	@Test(description = "remote Flag on -> bsswitch on -> mobile on -> devices equals -> browser equals")
+	public void remoteBsMobileOnDevicesEqualsBrowserEquals() {
+		browserConfValues1.clear();
+		browserConfValues2.clear();
+
+		browserConfValues1.put(DriverConfigurations.LocalEnvironmentConfig.browserName.toString(),
+				"iPhone");
+		browserConfValues1.put(DriverConfigurations.FrameworkConfig.remoteFlag.toString(), "true");
+		browserConfValues1.put(DriverConfigurations.BrowserStackConfig.bsSwitch.toString(), "true");
+		browserConfValues1.put(DriverConfigurations.BrowserStackConfig.mobileTest.toString(), "true");
+		browserConfValues1.put(DriverConfigurations.BrowserStackConfig.platform.toString(), "MAC");
+		browserConfValues1.put(DriverConfigurations.BrowserStackConfig.device.toString(), "iPhone 5S");
+		browserConfValues1.put(DriverConfigurations.BrowserStackConfig.bs_localTesting.toString(), "true");
+
+		browserConfValues2.put(DriverConfigurations.LocalEnvironmentConfig.browserName.toString(),
+				"iPhone");
+		browserConfValues2.put(DriverConfigurations.FrameworkConfig.remoteFlag.toString(), "true");
+		browserConfValues2.put(DriverConfigurations.BrowserStackConfig.bsSwitch.toString(), "true");
+		browserConfValues2.put(DriverConfigurations.BrowserStackConfig.mobileTest.toString(), "true");
+		browserConfValues2.put(DriverConfigurations.BrowserStackConfig.platform.toString(), "MAC");
+		browserConfValues2.put(DriverConfigurations.BrowserStackConfig.device.toString(), "iPhone 5S");
+		browserConfValues2.put(DriverConfigurations.BrowserStackConfig.bs_localTesting.toString(), "true");
+
+		BrowserConfR obj1 = new BrowserConfR(browserConfValues1);
+		BrowserConfR obj2 = new BrowserConfR(browserConfValues2);
+		Assert.assertEquals(obj1, obj2);
+	}
 }
