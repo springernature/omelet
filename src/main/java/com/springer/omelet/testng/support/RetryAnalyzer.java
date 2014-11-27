@@ -20,7 +20,7 @@ import org.apache.log4j.Logger;
 import org.testng.IRetryAnalyzer;
 import org.testng.ITestResult;
 
-import com.springer.omelet.configuration.DefaultBrowserConf;
+import com.springer.omelet.driver.Driver;
 
 /***
  * For Re-Running Failed Test Cases
@@ -35,7 +35,7 @@ public class RetryAnalyzer implements IRetryAnalyzer {
 	private int maxCount;
 
 	public boolean retry(ITestResult result) {
-		maxCount = DefaultBrowserConf.get()
+		maxCount = Driver.getBrowserConf()
 				.getRetryFailedTestCaseCount();
 		LOGGER.debug("Max retry count for a Test case is: " + maxCount);
 		if (count < maxCount) {
