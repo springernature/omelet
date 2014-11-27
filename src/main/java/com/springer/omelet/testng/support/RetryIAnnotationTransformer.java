@@ -99,12 +99,12 @@ public class RetryIAnnotationTransformer implements IAnnotationTransformer,
 
 	public void transform(IDataProviderAnnotation annotation, Method method) {
 		//TODO WHY?? Abstract?
-		LOGGER.warn("Missing implementation");
+		//No need to add any implementation as we are overriding testng interface
 	}
 
 	public void transform(IFactoryAnnotation annotation, Method method) {
 		//TODO WHY?? Abstract?
-		LOGGER.warn("Missing implementation");
+		//No need to add any implementation as we are overriding testng interface
 	}
 
 	@Override
