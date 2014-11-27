@@ -36,7 +36,7 @@ copy omelet dependency and add to your pom.xml
         <dependency>
 	      <groupId>com.springer</groupId>
           <artifactId>omelet</artifactId>
-          <version>1.0.0</version>
+          <version>1.0.xxx</version>
         </dependency>
  
 
