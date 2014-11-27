@@ -9,7 +9,7 @@ import com.springer.omelet.data.DriverConfigurations;
 public class BrowserConfR implements IBrowserConf {
 
 	private Map<String, String> mappedValues;
-	private List<String> bsURLs = new ArrayList<String>();
+	//private List<String> bsURLs = new ArrayList<String>();
 
 	public BrowserConfR(Map<String, String> completeBrowserMap) {
 		mappedValues = completeBrowserMap;
@@ -86,6 +86,7 @@ public class BrowserConfR implements IBrowserConf {
 	}
 
 	public List<String> getBsURLs() {
+		List<String> bsURLs = new ArrayList<String>();
 		if (bsURLs.isEmpty()) {
 			String url = mappedValues
 					.get(DriverConfigurations.BrowserStackConfig.bs_urls
@@ -93,10 +94,10 @@ public class BrowserConfR implements IBrowserConf {
 			if (url.contains(";")) {
 				String[] urls = url.split(";");
 				for (int i = 0; i < urls.length; i++) {
-					this.bsURLs.add(urls[i].trim());
+					bsURLs.add(urls[i].trim());
 				}
 			} else {
-				this.bsURLs.add(url);
+				bsURLs.add(url);
 			}
 		}
 		return bsURLs;

@@ -30,9 +30,8 @@ import com.springer.omelet.data.driverconf.IBrowserConf;
  * 
  */
 public class Driver {
-	@SuppressWarnings("unused")
-	private static final Logger LOGGER = Logger.getLogger(Driver.class);
 
+	private static final Logger LOGGER = Logger.getLogger(Driver.class);
 	protected static InheritableThreadLocal<IBrowserConf> browserConf = new InheritableThreadLocal<IBrowserConf>();
 	protected static InheritableThreadLocal<WebDriver> driver = new InheritableThreadLocal<WebDriver>();
 

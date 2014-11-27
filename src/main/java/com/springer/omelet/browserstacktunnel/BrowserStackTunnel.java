@@ -25,10 +25,10 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.UUID;
 
 import org.apache.log4j.Logger;
 
-import com.springer.omelet.browserstacktunnel.OSName;
 import com.springer.omelet.browserstacktunnel.OSName.OSN;
 import com.springer.omelet.common.Utils;
 
@@ -50,6 +50,7 @@ public class BrowserStackTunnel {
 	private InputStream is;
 	private BufferedReader br;
 	private ProcessBuilder pb;
+	private String tunnelIdentifier = UUID.randomUUID().toString();
 
 	String browserStackKey;
 	List<String> browserStackURLS;
@@ -66,7 +67,7 @@ public class BrowserStackTunnel {
 				}
 			}
 		}
-		environment = OSName.get();
+		environment = OSName.get();	
 		return browserStackTunnel;
 	}
 
@@ -215,26 +216,29 @@ public class BrowserStackTunnel {
 		switch (environment) {
 		case UNIX:
 			command.add(Utils.getResources(this, "BrowserStackLocal"));
-			command.add(browserStackKey);
-			command.add(urls.toString());
-			command.add("-tunnelIdentifier");
-			command.add("-force");
-			command.add(browserStackKey);
+			
 			break;
 		case WIN:
 			command.add("cmd");
 			command.add("/c");
 			command.add('"' + Utils.getResources(this, "BrowserStackLocal.exe") + '"');
-			command.add(browserStackKey);
-			command.add(urls.toString());
-			command.add("-tunnelIdentifier");
-			command.add("-force");
-			command.add(browserStackKey);
+			break;
+		case MAC:
+			command.add(Utils.getResources(this, "BrowserStackLocal"));
 			break;
 		default:
 			break;
 		}
+		command.add(browserStackKey);
+		command.add(urls.toString());
+		command.add("-force");
+		command.add("-tunnelIdentifier");
+		command.add(tunnelIdentifier);
 		return command;
+	}
+	
+	public String getTunnelIdentifier(){
+		return tunnelIdentifier;
 	}
 
 	/***

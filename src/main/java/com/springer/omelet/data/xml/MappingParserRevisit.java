@@ -82,12 +82,12 @@ public class MappingParserRevisit implements IDataSource {
 	public Map<String, IMappingData> getPrimaryData() {
 		// get the root Element
 		walkInXml(document.getDocumentElement());
-		for (String key : bucket.keySet()) {
+		/*for (String key : bucket.keySet()) {
 			LOGGER.info("TestClass Name: " + key);
 			LOGGER.info(" TestData: " + bucket.get(key).getTestData());
 			LOGGER.info(" ClientEnv: " + bucket.get(key).getClientEnvironment());
 			LOGGER.info(" Strategy is: " + bucket.get(key).getRunStartegy());
-		}
+		}*/
 		return bucket;
 	}
 

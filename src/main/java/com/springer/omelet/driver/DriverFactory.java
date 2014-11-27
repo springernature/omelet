@@ -204,7 +204,7 @@ class DriverFactory {
 				if (isBSLocalTesting) {
 					dc.setCapability("browserstack.tunnel", "true");
 					dc.setCapability("browserstack.tunnelIdentifier",
-							AUTOMATE_KEY);
+							BrowserStackTunnel.getInstance().getTunnelIdentifier());
 				}
 				dc.setCapability("browserTimeout", "200");
 				dc.setCapability("browserstack.debug", "true");

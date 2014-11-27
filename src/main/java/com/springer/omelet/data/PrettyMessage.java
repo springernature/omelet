@@ -19,14 +19,14 @@ public class PrettyMessage implements Runnable {
 	public void run() {
 		Stopwatch sw = new Stopwatch();
 		sw.start();
-		LOGGER.info("Please wait while we are building your testData..");
+		LOGGER.info("Please wait while we are building your testData");
 		StringBuilder sb = new StringBuilder();
 		while(keepRunning){
 			sb.append(".");
 			LOGGER.info(sb.toString());
 			sleep(1);
 		}
-		LOGGER.info("Time taken to build data in milliseconds is:"+sw.elapsedTime(TimeUnit.SECONDS));
+		LOGGER.info("Time taken to build data in seconds is:"+sw.elapsedTime(TimeUnit.SECONDS));
 		sw.stop();
 		
 	}

@@ -2,14 +2,11 @@ package com.springer.omelet.driver;
 
 import org.apache.log4j.Logger;
 
-import com.springer.omelet.common.Utils;
-import com.springer.omelet.data.PropertyValueMin;
-
 public class Logo {
 
 	private static final Logger LOGGER = Logger.getLogger(Logo.class);
-	private final PropertyValueMin prop = new PropertyValueMin(Utils.getResources(this,
-			"omelet-builtin.properties"));
+	/*private final PropertyValueMin prop = new PropertyValueMin(Utils.getResources(this,
+			"omelet-builtin.properties"));*/
 	private static Logo instance;
 
 	private static final String LOGO = "\n"

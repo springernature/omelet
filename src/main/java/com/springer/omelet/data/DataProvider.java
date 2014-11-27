@@ -40,6 +40,7 @@ public class DataProvider {
 		Full, Optimal
 	}
 
+	@SuppressWarnings("unused")
 	private static final Logger LOGGER = Logger.getLogger(DataProvider.class);
 
 	private static String getFullMethodName(Method m) {

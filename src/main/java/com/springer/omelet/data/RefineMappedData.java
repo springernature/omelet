@@ -8,7 +8,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 
 import com.springer.omelet.data.DataProvider.mapStrategy;
-import com.springer.omelet.data.driverconf.ValidateBrowserRules;
 import com.springer.omelet.exception.FrameworkException;
 /**
  * Refine data based on the hierarchy method-->Class-->Package
