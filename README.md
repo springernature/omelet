@@ -36,7 +36,7 @@ Salient Features
 Build
 -------
 1. mvn clean install
-2. Jar will be created in target folder with name :**omelet-1.0.0.jar**
+2. Jar will be created in target folder with name :**omelet-1.0.xxx.jar**
 
 Quick Start
 ----------
@@ -54,7 +54,7 @@ copy omelet dependency and add to your pom.xml
         </dependency>
  
 
-
+Latest version can be checked on maven central over [here](http://maven-repository.com/search?q=omelet)
 
 And reportNG dependency
 
@@ -108,8 +108,13 @@ You may face issue with dependencies related to ReportNG, do read this [blog](ht
 
 Data
 ----------
-Currently omelet supports xml and simple properties file and very soon it will be supporting Google Sheets
+* Simple Properties file
+* Xml 
+* And now Google Sheets as well 
 
+Discussions
+------------
+Google Grooups: https://groups.google.com/forum/#!forum/omelet
 Example Projects
 --------------
  [omelet-example-dataset](https://github.com/springer-opensource/omelet-example-dataset)
