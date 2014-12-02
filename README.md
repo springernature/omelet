@@ -31,12 +31,15 @@ Salient Features
 * Command Line support for CI integration
 * ExpectedConditionsExtended for PageObjects Design pattern
 * Auto Re-Run failed test cases
- and many more ...
+ and many more ... 
 
 Build
--------
+------
 1. mvn clean install
 2. Jar will be created in target folder with name :**omelet-1.0.xxx.jar**
+3. Simple and StraightForward use omelet archetype run below command in console/Terminal(dont forgot to change groupId and artifactId in the command:))
+    
+	**mvn archetype:generate -DgroupId=com.yourGroupId -DartifactId=my-app 			  -DarchetypeArtifactId=omelet-archetype-simple -DarchetypeGroupId=com.springer**
 
 Quick Start
 ----------
