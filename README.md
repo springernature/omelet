@@ -37,14 +37,22 @@ Build
 ------
 1. mvn clean install
 2. Jar will be created in target folder with name :**omelet-1.0.xxx.jar**
-3. Simple and StraightForward use omelet archetype run below command in console/Terminal(dont forgot to change groupId and artifactId in the command:))
     
-	**mvn archetype:generate -DgroupId=com.yourGroupId -DartifactId=my-app 			  -DarchetypeArtifactId=omelet-archetype-simple -DarchetypeGroupId=com.springer**
+
 
 Quick Start
 ----------
-* install maven 
-* copy dependency in your project
+* Simple and StraightForward use omelet archetype run below command in console/Terminal(dont forgot to change groupId and artifactId in the command:))
+Simply use below archType
+
+	**mvn archetype:generate -DgroupId=com.yourGroupId -DartifactId=my-app 			  -DarchetypeArtifactId=omelet-archetype-simple -DarchetypeGroupId=com.springer**
+	
+Cd into the created folder , and then run **mvn clean install**
+	
+	
+
+* Or if you want to start manaully then follow below procedure 
+
  
 
 ####For mavenised project
