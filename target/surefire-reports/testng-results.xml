@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" total="31" passed="31">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Omlete Suite" duration-ms="218" started-at="2014-11-27T07:26:35Z" finished-at="2014-11-27T07:26:35Z">
+    <groups>
+    </groups>
+    <test name="Browser Conf Test" duration-ms="218" started-at="2014-11-27T07:26:35Z" finished-at="2014-11-27T07:26:35Z">
+      <class name="com.springer.omelet.test.data.BrowserConfMethodTest">
+        <test-method status="PASS" signature="setup()[pri:0, instance:com.springer.omelet.test.data.BrowserConfMethodTest@432dbb4b]" name="setup" is-config="true" duration-ms="1" started-at="2014-11-27T12:56:35Z" finished-at="2014-11-27T12:56:35Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method status="PASS" signature="verifyMapValues()[pri:0, instance:com.springer.omelet.test.data.BrowserConfMethodTest@432dbb4b]" name="verifyMapValues" duration-ms="9" started-at="2014-11-27T12:56:35Z" description="All Values set by HashMap" finished-at="2014-11-27T12:56:35Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifyMapValues -->
+        <test-method status="PASS" signature="setup()[pri:0, instance:com.springer.omelet.test.data.BrowserConfMethodTest@432dbb4b]" name="setup" is-config="true" duration-ms="0" started-at="2014-11-27T12:56:35Z" finished-at="2014-11-27T12:56:35Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method status="PASS" signature="verifyMapValueEmpty()[pri:0, instance:com.springer.omelet.test.data.BrowserConfMethodTest@432dbb4b]" name="verifyMapValueEmpty" duration-ms="1" started-at="2014-11-27T12:56:35Z" depends-on-methods="com.springer.omelet.test.data.BrowserConfMethodTest.verifyMapValues" finished-at="2014-11-27T12:56:35Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifyMapValueEmpty -->
+        <test-method status="PASS" signature="setup()[pri:0, instance:com.springer.omelet.test.data.BrowserConfMethodTest@432dbb4b]" name="setup" is-config="true" duration-ms="0" started-at="2014-11-27T12:56:35Z" finished-at="2014-11-27T12:56:35Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method status="PASS" signature="verifyCmd_Map_Mix()[pri:0, instance:com.springer.omelet.test.data.BrowserConfMethodTest@432dbb4b]" name="verifyCmd_Map_Mix" duration-ms="1" started-at="2014-11-27T12:56:35Z" description="Some Values by cmd and all by map" depends-on-methods="com.springer.omelet.test.data.BrowserConfMethodTest.verifyMapValueEmpty" finished-at="2014-11-27T12:56:35Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifyCmd_Map_Mix -->
+        <test-method status="PASS" signature="verifyCmdEmpty()[pri:0, instance:com.springer.omelet.test.data.BrowserConfMethodTest@432dbb4b]" name="verifyCmdEmpty" duration-ms="1" started-at="2014-11-27T12:56:35Z" description="cmd empty  " depends-on-methods="com.springer.omelet.test.data.BrowserConfMethodTest.verifyCmd_Map_Mix" finished-at="2014-11-27T12:56:35Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifyCmdEmpty -->
+        <test-method status="PASS" signature="setup()[pri:0, instance:com.springer.omelet.test.data.BrowserConfMethodTest@432dbb4b]" name="setup" is-config="true" duration-ms="0" started-at="2014-11-27T12:56:35Z" finished-at="2014-11-27T12:56:35Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+      </class> <!-- com.springer.omelet.test.data.BrowserConfMethodTest -->
+      <class name="com.springer.omelet.test.data.BrowserXmlParserTest">
+        <test-method status="PASS" signature="beforeTest()[pri:0, instance:com.springer.omelet.test.data.BrowserXmlParserTest@f530ff3]" name="beforeTest" is-config="true" duration-ms="0" started-at="2014-11-27T12:56:35Z" finished-at="2014-11-27T12:56:35Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeTest -->
+        <test-method status="PASS" signature="mutipleXml()[pri:0, instance:com.springer.omelet.test.data.BrowserXmlParserTest@f530ff3]" name="mutipleXml" duration-ms="148" started-at="2014-11-27T12:56:35Z" finished-at="2014-11-27T12:56:35Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- mutipleXml -->
+        <test-method status="PASS" signature="verifyBrowserConf_singleXml()[pri:0, instance:com.springer.omelet.test.data.BrowserXmlParserTest@f530ff3]" name="verifyBrowserConf_singleXml" duration-ms="2" started-at="2014-11-27T12:56:35Z" finished-at="2014-11-27T12:56:35Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifyBrowserConf_singleXml -->
+        <test-method status="PASS" signature="beforeTest()[pri:0, instance:com.springer.omelet.test.data.BrowserXmlParserTest@f530ff3]" name="beforeTest" is-config="true" duration-ms="0" started-at="2014-11-27T12:56:35Z" finished-at="2014-11-27T12:56:35Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeTest -->
+        <test-method status="PASS" signature="beforeTest()[pri:0, instance:com.springer.omelet.test.data.BrowserXmlParserTest@f530ff3]" name="beforeTest" is-config="true" duration-ms="1" started-at="2014-11-27T12:56:35Z" finished-at="2014-11-27T12:56:35Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeTest -->
+        <test-method status="PASS" signature="verifySingleXMLMultiBrowser()[pri:0, instance:com.springer.omelet.test.data.BrowserXmlParserTest@f530ff3]" name="verifySingleXMLMultiBrowser" duration-ms="2" started-at="2014-11-27T12:56:35Z" finished-at="2014-11-27T12:56:35Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifySingleXMLMultiBrowser -->
+      </class> <!-- com.springer.omelet.test.data.BrowserXmlParserTest -->
+      <class name="com.springer.omelet.test.data.PropertyMappingTest">
+        <test-method status="PASS" signature="expectException_keyMissing_String()[pri:0, instance:com.springer.omelet.test.data.PropertyMappingTest@45f519ae]" name="expectException_keyMissing_String" duration-ms="1" started-at="2014-11-27T12:56:35Z" finished-at="2014-11-27T12:56:35Z">
+          <exception class="com.springer.omelet.exception.FrameworkException">
+            <message>
+              <![CDATA[Value for key: key1_4 not specified in Data file]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[com.springer.omelet.exception.FrameworkException: Value for key: key1_4 not specified in Data file
+	at com.springer.omelet.data.PropertyMapping.getValue(PropertyMapping.java:126)
+	at com.springer.omelet.test.data.PropertyMappingTest.expectException_keyMissing_String(PropertyMappingTest.java:110)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:84)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:714)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:901)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1231)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:127)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:111)
+	at org.testng.TestRunner.privateRun(TestRunner.java:767)
+	at org.testng.TestRunner.run(TestRunner.java:617)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:348)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:343)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:305)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:254)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1224)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1149)
+	at org.testng.TestNG.run(TestNG.java:1057)
+	at org.apache.maven.surefire.testng.TestNGExecutor.run(TestNGExecutor.java:217)
+	at org.apache.maven.surefire.testng.TestNGXmlTestSuite.execute(TestNGXmlTestSuite.java:84)
+	at org.apache.maven.surefire.testng.TestNGProvider.invoke(TestNGProvider.java:92)
+	at org.apache.maven.surefire.booter.ForkedBooter.invokeProviderInSameClassLoader(ForkedBooter.java:200)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:153)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:103)
+]]>
+            </full-stacktrace>
+          </exception> <!-- com.springer.omelet.exception.FrameworkException -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- expectException_keyMissing_String -->
+        <test-method status="PASS" signature="expectException_keyMissing_enum()[pri:0, instance:com.springer.omelet.test.data.PropertyMappingTest@45f519ae]" name="expectException_keyMissing_enum" duration-ms="1" started-at="2014-11-27T12:56:35Z" finished-at="2014-11-27T12:56:35Z">
+          <exception class="com.springer.omelet.exception.FrameworkException">
+            <message>
+              <![CDATA[Value for key: key2_5 not specified in Data file]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[com.springer.omelet.exception.FrameworkException: Value for key: key2_5 not specified in Data file
+	at com.springer.omelet.data.PropertyMapping.getValue(PropertyMapping.java:107)
+	at com.springer.omelet.test.data.PropertyMappingTest.expectException_keyMissing_enum(PropertyMappingTest.java:121)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:84)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:714)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:901)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1231)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:127)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:111)
+	at org.testng.TestRunner.privateRun(TestRunner.java:767)
+	at org.testng.TestRunner.run(TestRunner.java:617)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:348)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:343)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:305)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:254)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1224)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1149)
+	at org.testng.TestNG.run(TestNG.java:1057)
+	at org.apache.maven.surefire.testng.TestNGExecutor.run(TestNGExecutor.java:217)
+	at org.apache.maven.surefire.testng.TestNGXmlTestSuite.execute(TestNGXmlTestSuite.java:84)
+	at org.apache.maven.surefire.testng.TestNGProvider.invoke(TestNGProvider.java:92)
+	at org.apache.maven.surefire.booter.ForkedBooter.invokeProviderInSameClassLoader(ForkedBooter.java:200)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:153)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:103)
+]]>
+            </full-stacktrace>
+          </exception> <!-- com.springer.omelet.exception.FrameworkException -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- expectException_keyMissing_enum -->
+        <test-method status="PASS" signature="hashMapConstructor()[pri:0, instance:com.springer.omelet.test.data.PropertyMappingTest@45f519ae]" name="hashMapConstructor" duration-ms="0" started-at="2014-11-27T12:56:35Z" finished-at="2014-11-27T12:56:35Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- hashMapConstructor -->
+        <test-method status="PASS" signature="multipleFilePathConstructor()[pri:0, instance:com.springer.omelet.test.data.PropertyMappingTest@45f519ae]" name="multipleFilePathConstructor" duration-ms="0" started-at="2014-11-27T12:56:35Z" finished-at="2014-11-27T12:56:35Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- multipleFilePathConstructor -->
+        <test-method status="PASS" signature="propConstuctor()[pri:0, instance:com.springer.omelet.test.data.PropertyMappingTest@45f519ae]" name="propConstuctor" duration-ms="0" started-at="2014-11-27T12:56:35Z" finished-at="2014-11-27T12:56:35Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- propConstuctor -->
+        <test-method status="PASS" signature="singleFilePathConstructor()[pri:0, instance:com.springer.omelet.test.data.PropertyMappingTest@45f519ae]" name="singleFilePathConstructor" duration-ms="1" started-at="2014-11-27T12:56:35Z" finished-at="2014-11-27T12:56:35Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- singleFilePathConstructor -->
+      </class> <!-- com.springer.omelet.test.data.PropertyMappingTest -->
+      <class name="com.springer.omelet.test.data.RefinedBrowserConfTests">
+        <test-method status="PASS" signature="frameworkBlanAndCheckDefault()[pri:0, instance:com.springer.omelet.test.data.RefinedBrowserConfTests@482ef8a9]" name="frameworkBlanAndCheckDefault" duration-ms="1" started-at="2014-11-27T12:56:35Z" finished-at="2014-11-27T12:56:35Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- frameworkBlanAndCheckDefault -->
+        <test-method status="PASS" signature="setup()[pri:0, instance:com.springer.omelet.test.data.RefinedBrowserConfTests@482ef8a9]" name="setup" is-config="true" duration-ms="0" started-at="2014-11-27T12:56:35Z" finished-at="2014-11-27T12:56:35Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method status="PASS" signature="ifCommandLineAndOtherPresent()[pri:0, instance:com.springer.omelet.test.data.RefinedBrowserConfTests@482ef8a9]" name="ifCommandLineAndOtherPresent" duration-ms="1" started-at="2014-11-27T12:56:35Z" finished-at="2014-11-27T12:56:35Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- ifCommandLineAndOtherPresent -->
+        <test-method status="PASS" signature="setup()[pri:0, instance:com.springer.omelet.test.data.RefinedBrowserConfTests@482ef8a9]" name="setup" is-config="true" duration-ms="0" started-at="2014-11-27T12:56:35Z" finished-at="2014-11-27T12:56:35Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method status="PASS" signature="setup()[pri:0, instance:com.springer.omelet.test.data.RefinedBrowserConfTests@482ef8a9]" name="setup" is-config="true" duration-ms="0" started-at="2014-11-27T12:56:35Z" finished-at="2014-11-27T12:56:35Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method status="PASS" signature="verifyCommandLineNotPresent()[pri:0, instance:com.springer.omelet.test.data.RefinedBrowserConfTests@482ef8a9]" name="verifyCommandLineNotPresent" duration-ms="1" started-at="2014-11-27T12:56:35Z" finished-at="2014-11-27T12:56:35Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifyCommandLineNotPresent -->
+        <test-method status="PASS" signature="setup()[pri:0, instance:com.springer.omelet.test.data.RefinedBrowserConfTests@482ef8a9]" name="setup" is-config="true" duration-ms="0" started-at="2014-11-27T12:56:35Z" finished-at="2014-11-27T12:56:35Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method status="PASS" signature="verifyFrameworkPropertiesValueSet()[pri:0, instance:com.springer.omelet.test.data.RefinedBrowserConfTests@482ef8a9]" name="verifyFrameworkPropertiesValueSet" duration-ms="1" started-at="2014-11-27T12:56:35Z" finished-at="2014-11-27T12:56:35Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifyFrameworkPropertiesValueSet -->
+        <test-method status="PASS" signature="verifyIfClientEnvPresentAndCommandLineBlank()[pri:0, instance:com.springer.omelet.test.data.RefinedBrowserConfTests@482ef8a9]" name="verifyIfClientEnvPresentAndCommandLineBlank" duration-ms="1" started-at="2014-11-27T12:56:35Z" finished-at="2014-11-27T12:56:35Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifyIfClientEnvPresentAndCommandLineBlank -->
+        <test-method status="PASS" signature="setup()[pri:0, instance:com.springer.omelet.test.data.RefinedBrowserConfTests@482ef8a9]" name="setup" is-config="true" duration-ms="0" started-at="2014-11-27T12:56:35Z" finished-at="2014-11-27T12:56:35Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method status="PASS" signature="verifyIfClient_CommandLine_Blank()[pri:0, instance:com.springer.omelet.test.data.RefinedBrowserConfTests@482ef8a9]" name="verifyIfClient_CommandLine_Blank" duration-ms="1" started-at="2014-11-27T12:56:35Z" finished-at="2014-11-27T12:56:35Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifyIfClient_CommandLine_Blank -->
+        <test-method status="PASS" signature="setup()[pri:0, instance:com.springer.omelet.test.data.RefinedBrowserConfTests@482ef8a9]" name="setup" is-config="true" duration-ms="0" started-at="2014-11-27T12:56:35Z" finished-at="2014-11-27T12:56:35Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+      </class> <!-- com.springer.omelet.test.data.RefinedBrowserConfTests -->
+      <class name="com.springer.omelet.test.data.BrowserConfIsEqualTest">
+        <test-method status="PASS" signature="setup()[pri:0, instance:com.springer.omelet.test.data.BrowserConfIsEqualTest@5e691263]" name="setup" is-config="true" duration-ms="0" started-at="2014-11-27T12:56:35Z" finished-at="2014-11-27T12:56:35Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method status="PASS" signature="checkBrowserConfEquality_RemoteFlagOFF()[pri:0, instance:com.springer.omelet.test.data.BrowserConfIsEqualTest@5e691263]" name="checkBrowserConfEquality_RemoteFlagOFF" duration-ms="0" started-at="2014-11-27T12:56:35Z" description="same browser --&gt;remote flag off--&gt;filtering using set and List" finished-at="2014-11-27T12:56:35Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- checkBrowserConfEquality_RemoteFlagOFF -->
+        <test-method status="PASS" signature="setup()[pri:0, instance:com.springer.omelet.test.data.BrowserConfIsEqualTest@5e691263]" name="setup" is-config="true" duration-ms="0" started-at="2014-11-27T12:56:35Z" finished-at="2014-11-27T12:56:35Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method status="PASS" signature="remoteBsMobileOnDevicesEqualsBrowserEquals()[pri:0, instance:com.springer.omelet.test.data.BrowserConfIsEqualTest@5e691263]" name="remoteBsMobileOnDevicesEqualsBrowserEquals" duration-ms="0" started-at="2014-11-27T12:56:35Z" description="remote Flag on -&gt; bsswitch on -&gt; mobile on -&gt; devices equals -&gt; browser equals" finished-at="2014-11-27T12:56:35Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- remoteBsMobileOnDevicesEqualsBrowserEquals -->
+        <test-method status="PASS" signature="setup()[pri:0, instance:com.springer.omelet.test.data.BrowserConfIsEqualTest@5e691263]" name="setup" is-config="true" duration-ms="0" started-at="2014-11-27T12:56:35Z" finished-at="2014-11-27T12:56:35Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method status="PASS" signature="remoteBsMobileOnDevicesNotEqualsBrowserEquals()[pri:0, instance:com.springer.omelet.test.data.BrowserConfIsEqualTest@5e691263]" name="remoteBsMobileOnDevicesNotEqualsBrowserEquals" duration-ms="1" started-at="2014-11-27T12:56:35Z" description="remote Flag on -&gt; bsswitch on -&gt; mobile on -&gt; devices not equals -&gt; browser equals" finished-at="2014-11-27T12:56:35Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- remoteBsMobileOnDevicesNotEqualsBrowserEquals -->
+        <test-method status="PASS" signature="remoteFlagOn()[pri:0, instance:com.springer.omelet.test.data.BrowserConfIsEqualTest@5e691263]" name="remoteFlagOn" duration-ms="1" started-at="2014-11-27T12:56:35Z" description="Remote Flag on and required values equal" finished-at="2014-11-27T12:56:35Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- remoteFlagOn -->
+        <test-method status="PASS" signature="setup()[pri:0, instance:com.springer.omelet.test.data.BrowserConfIsEqualTest@5e691263]" name="setup" is-config="true" duration-ms="0" started-at="2014-11-27T12:56:35Z" finished-at="2014-11-27T12:56:35Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method status="PASS" signature="setup()[pri:0, instance:com.springer.omelet.test.data.BrowserConfIsEqualTest@5e691263]" name="setup" is-config="true" duration-ms="0" started-at="2014-11-27T12:56:35Z" finished-at="2014-11-27T12:56:35Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method status="PASS" signature="remoteFlagOn_2()[pri:0, instance:com.springer.omelet.test.data.BrowserConfIsEqualTest@5e691263]" name="remoteFlagOn_2" duration-ms="1" started-at="2014-11-27T12:56:35Z" description="Remote Flag on and required values equal and not required not equal" finished-at="2014-11-27T12:56:35Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- remoteFlagOn_2 -->
+        <test-method status="PASS" signature="setup()[pri:0, instance:com.springer.omelet.test.data.BrowserConfIsEqualTest@5e691263]" name="setup" is-config="true" duration-ms="0" started-at="2014-11-27T12:56:35Z" finished-at="2014-11-27T12:56:35Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method status="PASS" signature="remoteFlagOn_3()[pri:0, instance:com.springer.omelet.test.data.BrowserConfIsEqualTest@5e691263]" name="remoteFlagOn_3" duration-ms="1" started-at="2014-11-27T12:56:35Z" description="Remote Flag on and required values not equal and not required not equal" finished-at="2014-11-27T12:56:35Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- remoteFlagOn_3 -->
+        <test-method status="PASS" signature="setup()[pri:0, instance:com.springer.omelet.test.data.BrowserConfIsEqualTest@5e691263]" name="setup" is-config="true" duration-ms="0" started-at="2014-11-27T12:56:35Z" finished-at="2014-11-27T12:56:35Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method status="PASS" signature="remoteFlag_4()[pri:0, instance:com.springer.omelet.test.data.BrowserConfIsEqualTest@5e691263]" name="remoteFlag_4" duration-ms="0" started-at="2014-11-27T12:56:35Z" description="remote Flag on -&gt;bsswitch off--&gt;browser equals" finished-at="2014-11-27T12:56:35Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- remoteFlag_4 -->
+      </class> <!-- com.springer.omelet.test.data.BrowserConfIsEqualTest -->
+      <class name="com.springer.omelet.test.data.BrowserConfigurationTest">
+        <test-method status="PASS" signature="verifyBrowserStackConfigDefaults()[pri:0, instance:com.springer.omelet.test.data.BrowserConfigurationTest@4ba43077]" name="verifyBrowserStackConfigDefaults" duration-ms="1" started-at="2014-11-27T12:56:35Z" finished-at="2014-11-27T12:56:35Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifyBrowserStackConfigDefaults -->
+        <test-method status="PASS" signature="verifyLocalConfigDefaults()[pri:0, instance:com.springer.omelet.test.data.BrowserConfigurationTest@4ba43077]" name="verifyLocalConfigDefaults" duration-ms="0" started-at="2014-11-27T12:56:35Z" finished-at="2014-11-27T12:56:35Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifyLocalConfigDefaults -->
+        <test-method status="PASS" signature="verifyHubConfigDefaults()[pri:0, instance:com.springer.omelet.test.data.BrowserConfigurationTest@4ba43077]" name="verifyHubConfigDefaults" duration-ms="0" started-at="2014-11-27T12:56:35Z" finished-at="2014-11-27T12:56:35Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifyHubConfigDefaults -->
+        <test-method status="PASS" signature="verifyFrameworkConfigDefaults()[pri:0, instance:com.springer.omelet.test.data.BrowserConfigurationTest@4ba43077]" name="verifyFrameworkConfigDefaults" duration-ms="0" started-at="2014-11-27T12:56:35Z" finished-at="2014-11-27T12:56:35Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifyFrameworkConfigDefaults -->
+      </class> <!-- com.springer.omelet.test.data.BrowserConfigurationTest -->
+      <class name="com.springer.omelet.test.libraries.UtilsTest">
+        <test-method status="PASS" signature="verifyIntegerListFromString()[pri:0, instance:com.springer.omelet.test.libraries.UtilsTest@3c74445]" name="verifyIntegerListFromString" duration-ms="9" started-at="2014-11-27T12:56:35Z" finished-at="2014-11-27T12:56:35Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifyIntegerListFromString -->
+      </class> <!-- com.springer.omelet.test.libraries.UtilsTest -->
+    </test> <!-- Browser Conf Test -->
+  </suite> <!-- Omlete Suite -->
+</testng-results>

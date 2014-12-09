@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- <!DOCTYPE Mapping [ <!ELEMENT Mapping (MethodName+)> <!ATTLIST MethodName 
+	name CDATA #REQUIRED> <!ATTLIST MethodName testData CDATA #REQUIRED> <!ATTLIST 
+	MethodName clientEnvironment CDATA #REQUIRED> <!ATTLIST MethodName runStrategy 
+	CDATA #IMPLIED> ]> -->
+
+<!DOCTYPE Mapping [ <!ELEMENT Mapping (Package+)> 
+<!ATTLIST Package name CDATA #REQUIRED>
+<!ATTLIST Package testData CDATA #IMPLIED> 
+<!ATTLIST Package clientEnvironment CDATA #IMPLIED>
+<!ATTLIST Package runStrategy (Full|Optimal) #IMPLIED> 
+<!ELEMENT Package (Class*)>
+<!ATTLIST Class name CDATA #REQUIRED>
+<!ATTLIST Class clientEnvironment CDATA #IMPLIED>
+<!ATTLIST Class testData CDATA #IMPLIED> 
+<!ATTLIST Class runStrategy (Full|Optimal) #IMPLIED>
+<!ELEMENT Class (MethodName*)>
+<!ATTLIST MethodName name CDATA #REQUIRED> 
+<!ATTLIST MethodName testData CDATA #IMPLIED> 
+<!ATTLIST MethodName clientEnvironment CDATA #IMPLIED> 
+<!ATTLIST MethodName runStrategy (Full|Optimal) #IMPLIED>]>
+
+
+
+<!-- <Mapping> <MethodName name = "com.springer.tests.LoginTests.simpleLoginTest" 
+	testData = "Login_Data.xml" clientEnvironment = "Desktop.xml" runStrategy 
+	= "Optimal"/> <MethodName name = "com.springer.tests.CheckOutTests.checkOutProcess" 
+	testData = "Login_Data.xml" clientEnvironment = "Desktop.xml" runStrategy 
+	= "Optimal"/> <MethodName name = "com.springer.tests.CheckOutTests.checkOutProcessSearchBook" 
+	testData = "Login_Data.xml" clientEnvironment = "Desktop.xml" /> </Mapping> -->
+
+<Mapping>
+
+	<Package name="testPackage" testData="testDataP" runStrategy="Optimal">
+		<Class name="testClass" clientEnvironment="testEnvironmentC">
+			<MethodName name="testMethod" testData="testDataM" clientEnvironment="testEnvironmentM" runStrategy="Optimal"/>
+		</Class>
+
+	</Package>
+</Mapping>
+

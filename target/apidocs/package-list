@@ -1,0 +1,11 @@
+com.springer.omelet.browserstacktunnel
+com.springer.omelet.common
+com.springer.omelet.configuration
+com.springer.omelet.data
+com.springer.omelet.data.driverconf
+com.springer.omelet.data.googlesheet
+com.springer.omelet.data.xml
+com.springer.omelet.driver
+com.springer.omelet.exception
+com.springer.omelet.mail
+com.springer.omelet.testng.support

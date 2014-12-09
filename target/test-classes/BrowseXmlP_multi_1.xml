@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE ClientEnvironments [
+<!ELEMENT ClientEnvironments (ClientEnvironment+)>
+<!ATTLIST ClientEnvironment platform CDATA #IMPLIED>
+<!ATTLIST ClientEnvironment mobileTest CDATA #IMPLIED>
+<!ATTLIST ClientEnvironment device CDATA #IMPLIED>
+<!ATTLIST ClientEnvironment os CDATA #IMPLIED>
+<!ATTLIST ClientEnvironment osVersion CDATA #IMPLIED>
+<!ATTLIST ClientEnvironment remoteFlag CDATA #IMPLIED>
+<!ATTLIST ClientEnvironment browserName CDATA #IMPLIED>
+<!ATTLIST ClientEnvironment browserVersion CDATA #IMPLIED>
+<!ATTLIST ClientEnvironment remoteURL CDATA #IMPLIED>
+<!ATTLIST ClientEnvironment driverTimeOut CDATA #IMPLIED>
+<!ATTLIST ClientEnvironment bsSwitch CDATA #IMPLIED>
+<!ATTLIST ClientEnvironment bs_userName CDATA #IMPLIED>
+<!ATTLIST ClientEnvironment bs_key CDATA #IMPLIED>
+<!ATTLIST ClientEnvironment bs_localTesting CDATA #IMPLIED>
+<!ATTLIST ClientEnvironment bs_urls CDATA #IMPLIED>
+<!ATTLIST ClientEnvironment name CDATA #IMPLIED>
+
+]>
+<ClientEnvironments>
+    <!--   <ClientEnvironment
+     	platform = "MAC"
+     	mobileTest = "false"
+     	device = "None"
+    	os="OS X"
+        osVersion="Snow Leopard"
+        browserName="Safari"
+        browserVersion="5.1"
+    	remoteFlag = "true"
+    	remoteURL = ""
+    	bsSwitch = "true"
+    	bs_userName = "TeamMaintenance"
+    	bs_key = "hXRspWXVxWeAnx3YpoGx"
+    	bs_localTesting = "false"
+    	bs_urls = "http://www.springerprofessional.de/spr-prof-preview-cae/servlet/segment/springer-professional/"
+        name="iPad 3"/> -->
+  <!-- <ClientEnvironment
+     	platform = "WINDOWS"
+     	mobileTest = "false"
+     	device = "None"
+    	os="WINDOWS"
+        osVersion="7"
+        browserName="chrome"
+        browserVersion="34"
+    	remoteFlag = "true"
+    	remoteURL = ""
+    	bsSwitch = "true"
+    	bs_userName = "TeamMaintenance"
+    	bs_key = "hXRspWXVxWeAnx3YpoGx"
+    	bs_localTesting = "false"
+        name="iPad 3"/> -->
+
+          <!-- <ClientEnvironment
+
+     	platform = "MAC"
+     	mobileTest = "false"
+     	device = "None"
+    	os="OS X"
+        osVersion="Mavericks"
+        browserName="Safari"
+        browserVersion="7"
+    	remoteFlag = "true"
+    	remoteURL = ""
+    	bsSwitch = "true"
+    	bs_userName = "TeamMaintenance"
+    	bs_key = "hXRspWXVxWeAnx3YpoGx"
+        name="iPad 3"/> -->
+
+        <ClientEnvironment
+     	platform = "WINDOWS"
+     	mobileTest = "false"
+     	device = "None"
+    	os="WINDOWS"
+        osVersion="xp"
+        browserName="firefox"
+        browserVersion="25"
+    	remoteFlag = "true"
+    	remoteURL = "http:testRemoteURL"
+    	bsSwitch = "false"
+    	driverTimeOut = "10"
+    	bs_userName = "testusername"
+    	bs_key = "testkey"
+    	bs_urls = "https:test1;https:test2"
+        name="iPad 3"/>
+        
+        <ClientEnvironment
+     	platform = "LINUX"
+     	mobileTest = "false"
+     	device = "None"
+    	os="LINUX"
+        osVersion="15"
+        browserName="chrome"
+        browserVersion="32"
+    	remoteFlag = "false"
+    	remoteURL = ""
+    	bsSwitch = "true"
+    	bs_userName = "testusername1"
+    	bs_key = "testkey1"
+        name="iPad 4"/>
+       <!--  <ClientEnvironment
+
+     	platform = "WINDOWS"
+     	mobileTest = "false"
+     	device = "None"
+    	os="WINDOWS"
+        osVersion="xp"
+        browserName="chrome"
+        browserVersion="34"
+    	remoteFlag = "true"
+    	remoteURL = ""
+    	bsSwitch = "true"
+    	bs_userName = "TeamMaintenance"
+    	bs_key = "hXRspWXVxWeAnx3YpoGx"
+        name="iPad 3"/> -->
+       <!--  <ClientEnvironment
+     	platform = "WINDOWS"
+     	mobileTest = "false"
+     	device = "None"
+    	os="WINDOWS"
+        osVersion="xp"
+        browserName="chrome"
+        browserVersion="33"
+    	remoteFlag = "true"
+    	remoteURL = ""
+    	bsSwitch = "true"
+    	bs_userName = "TeamMaintenance"
+    	bs_key = "hXRspWXVxWeAnx3YpoGx"
+        name="iPad 3"/> -->
+       
+</ClientEnvironments>

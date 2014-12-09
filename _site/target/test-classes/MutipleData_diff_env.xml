@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE Conf [
+<!ELEMENT Conf (Data+)>
+<!ATTLIST Data environment CDATA #REQUIRED>
+<!ELEMENT Data (Pages)>
+<!ELEMENT Pages (Page+)>
+<!ATTLIST Page name CDATA #REQUIRED>
+]>
+
+
+<Conf>
+	<Data environment="staging">
+		<Pages>
+			<Page name="HomePage">
+				<URL>http://www.test.com/</URL>
+				<PageTimeOut>150</PageTimeOut>
+			</Page>
+			<Page name="Login">
+				<UserName>testuser</UserName>
+			</Page>
+		</Pages>
+
+	</Data>
+</Conf>
