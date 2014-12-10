@@ -5,8 +5,8 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en"><!--<![endif]-->
 <head>
 <meta charset="utf-8">
-<title>All Posts &#8211; Omelet</title>
-<meta name="description" content="An archive of posts.">
+<title>Configurations &#8211; Omelet</title>
+<meta name="description" content="Automation Framework for Selenium">
 
 
 
@@ -14,16 +14,16 @@
 <!-- Open Graph -->
 <meta property="og:locale" content="en_US">
 <meta property="og:type" content="article">
-<meta property="og:title" content="All Posts">
-<meta property="og:description" content="An archive of posts.">
-<meta property="og:url" content="http://localhost:4000/News/index.html">
+<meta property="og:title" content="Configurations">
+<meta property="og:description" content="Automation Framework for Selenium">
+<meta property="og:url" content="http://localhost:4000/Documentation/Configuration/index.html">
 <meta property="og:site_name" content="Omelet">
 
 
 
 
 
-<link rel="canonical" href="http://localhost:4000/News/">
+<link rel="canonical" href="http://localhost:4000/Documentation/Configuration/">
 <link href="http://localhost:4000/feed.xml" type="application/atom+xml" rel="alternate" title="Omelet Feed">
 <link rel="author" href="https://google.com/+kapil.aggarwal1?rel=author">
 
@@ -60,7 +60,7 @@
 
 </head>
 
-<body id="post-index" >
+<body id="page" >
 
 <!--[if lt IE 9]><div class="upgrade"><strong><a href="http://whatbrowser.org/">Your browser is quite old!</strong> Why not upgrade to a different browser to better enjoy this site?</a></div><![endif]-->
 <nav id="dl-menu" class="dl-menuwrapper" role="navigation">
@@ -129,19 +129,65 @@
 </nav><!-- /.dl-menuwrapper -->
 
 
-<div class="entry-header">
-  
-  
-  <div class="header-title">
-    <div class="header-title-wrap">
-      <h1>Omelet</h1>
-      <h2>All Posts</h2>
-    </div><!-- /.header-title-wrap -->
-  </div><!-- /.header-title -->
-</div><!-- /.entry-header -->
+
 
 <div id="main" role="main">
-  
+  <article class="entry">
+    <header class="header-title">
+      <div class="header-title-wrap">
+        <h1 class="entry-title">Configurations</h1>
+        
+        <p class="entry-reading-time">
+          <i class="fa fa-clock-o"></i>
+          
+          Reading time ~1 minute
+        </p><!-- /.entry-reading-time -->
+        
+      </div><!-- /.header-title-wrap -->
+    </header>
+    <div class="entry-content">
+      <p><strong><em>Omelet configuration are very intutive</em></strong></p>
+
+<p>For a Test to work we need to tell omelet which <strong>BrowserConfiguration</strong> , what <strong>TestData</strong> for a method. Which mean we need at least 3 different Configurations which can either be in Xml or on Google Sheets</p>
+
+<p>However there is a FallBack Mechanism for Browser Configuration which you will see later why it is required </p>
+
+<p>Why We required Framework Properties check <a href="http://localhost:4000/Documentation/Configuration/FrameworkProperties">here</a></p>
+
+<h2 id="browserconfiguration"><em>BrowserConfiguration</em></h2>
+
+<ul>
+<li><a href="">Xml BrowserConfiguration</a></li>
+<li><a href="http://localhost:4000/Documentation/Data">GoogleSheet BrowserConfiguration</a></li>
+</ul>
+
+<h2 id="testdata"><em>TestData</em></h2>
+
+<ul>
+<li><a href="">Xml TestData</a></li>
+<li><a href="http://localhost:4000/Documentation/Data">GoogleSheet TestData</a></li>
+</ul>
+
+<h2 id="mapping"><em>Mapping</em></h2>
+
+<ul>
+<li><a href="">Xml Mapping</a></li>
+<li><a href="">Google Sheet Mapping</a></li>
+</ul>
+
+      <footer class="entry-meta">
+        
+        <div class="social-share">
+  <ul class="socialcount socialcount-small inline-list">
+    <li class="facebook"><a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/Documentation/Configuration/index.html" title="Share on Facebook"><span class="count"><i class="fa fa-facebook-square"></i> Like</span></a></li>
+    <li class="twitter"><a href="https://twitter.com/intent/tweet?text=http://localhost:4000/Documentation/Configuration/index.html" title="Share on Twitter"><span class="count"><i class="fa fa-twitter-square"></i> Tweet</span></a></li>
+    <li class="googleplus"><a href="https://plus.google.com/share?url=http://localhost:4000/Documentation/Configuration/index.html" title="Share on Google Plus"><span class="count"><i class="fa fa-google-plus-square"></i> +1</span></a></li>
+  </ul>
+</div><!-- /.social-share -->
+      </footer>
+    </div><!-- /.entry-content -->
+    <section id="disqus_thread"></section><!-- /#disqus_thread -->
+  </article>
 </div><!-- /#main -->
 
 <div class="footer-wrapper">
@@ -156,6 +202,28 @@
 
 
 
+
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'omelet'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function () {
+            var s = document.createElement('script'); s.async = true;
+            s.type = 'text/javascript';
+            s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+            (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+        }());
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
           
 
 </body>

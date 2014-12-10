@@ -44,6 +44,23 @@ Salient Features
 * Auto Re-Run failed test cases
  and many more ... 
 
+ Data
+----------
+* Simple Properties file
+* Xml 
+* And now Google Sheets as well 
+
+Reports
+-----------
+
+Omelet uses reportNG for reporting and there has to be guice dependency for reportNG to work 
+You may face issue with dependencies related to ReportNG, do read this [blog](http://solidsoft.wordpress.com/2011/01/23/better-looking-html-test-reports-for-testng-with-reportng-maven-guide/)
+### Reports Path 
+
+* If we do mvn test(or clean install ) then reports will be generated in target/surefire-reports/html/index.html
+
+* if we run via TestNg then report can be found in test-output/html/index.html
+
 Discussions
 ------------
 Google Grooups: https://groups.google.com/forum/#!forum/omelet

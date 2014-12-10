@@ -5,7 +5,7 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en"><!--<![endif]-->
 <head>
 <meta charset="utf-8">
-<title>Google Sheet Usage &#8211; Omelet</title>
+<title>Framework.properties &#8211; Omelet</title>
 <meta name="description" content="Automation Framework for Selenium">
 
 
@@ -14,16 +14,16 @@
 <!-- Open Graph -->
 <meta property="og:locale" content="en_US">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Google Sheet Usage">
+<meta property="og:title" content="Framework.properties">
 <meta property="og:description" content="Automation Framework for Selenium">
-<meta property="og:url" content="http://localhost:4000/Documentation/Data/index.html">
+<meta property="og:url" content="http://localhost:4000/Documentation/Configuration/FrameworkProperties/index.html">
 <meta property="og:site_name" content="Omelet">
 
 
 
 
 
-<link rel="canonical" href="http://localhost:4000/Documentation/Data/">
+<link rel="canonical" href="http://localhost:4000/Documentation/Configuration/FrameworkProperties/">
 <link href="http://localhost:4000/feed.xml" type="application/atom+xml" rel="alternate" title="Omelet Feed">
 <link rel="author" href="https://google.com/+kapil.aggarwal1?rel=author">
 
@@ -135,149 +135,60 @@
   <article class="entry">
     <header class="header-title">
       <div class="header-title-wrap">
-        <h1 class="entry-title">Google Sheet Usage</h1>
+        <h1 class="entry-title">Framework.properties</h1>
         
         <p class="entry-reading-time">
           <i class="fa fa-clock-o"></i>
           
-          Reading time ~3 minutes
+          Reading time ~1 minute
         </p><!-- /.entry-reading-time -->
         
       </div><!-- /.header-title-wrap -->
     </header>
     <div class="entry-content">
-      <h1 id="how-to-use-google-sheets-as-data">How to use Google Sheets as Data</h1>
+      <p>Framework.properties is the fallback properties file for all the BrowserConfiguration, All these values can be overrider from command line by providing as Jvm arguments with syntax something like below.</p>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">mvn clean install -DbrowserName=firefox -DremoteFlag=True =Dbs_Switch=false</code></pre></div>
+
+<p><strong><em>Please note it is always good to have but purely optional</em></strong></p>
+
+<h3 id="why-we-need">Why we need</h3>
+
+<p>Consider a scenario where most of the configuration are repeated like <strong>screenShotFlag</strong>, <strong>driverTimeOut</strong> and may be we want to run all our test cases in <strong>BrowserStack</strong> and if all the keys once configured here need not to be present in ClientEnvironment(BrowserXml) xml or Google sheet Browser Configuration at all </p>
+
+<p>There are always some default values associated with the mandatory key, By default omelet is configured to run on firefox on local system with screenshot true and driverTimeout of 30 seconds</p>
 
 <hr>
 
-<h2 id="why-google-sheets-over-excel">Why Google Sheets over Excel</h2>
-
-<p>Excel sheets are brilliant way to maintain your data but from my experience,r every single data change we have to open excel make some changes and then again push it to git or any scm, thats anyways no much of work</p>
-
-<h3 id="what-if?"><strong>what if?</strong></h3>
-
-<ul>
-<li>someone ask us to change a data quickly and check if the test case is working fine.</li>
-<li>We have to change the browser or want to run same test case for different browsers.</li>
-<li>Some Business oriented person like BA wants to look at data and change them , are you gonna do copy paste of the chages and push? </li>
-</ul>
-
-<p>All these <strong>&quot;whatifs&quot;</strong> encouraged us to add Google sheet as Data </p>
-
-<p>Now if we have googleSheets with us then we can easily configure data at run time, even BA need not to depend on QA to make some change + you have access to your data from anywhere from any devicde and google sheets gives the same functionality and clarity which excel provides.</p>
-
-<h2 id="how-to-use-googlesheets-with-omelet">How to Use GoogleSheets with Omelet</h2>
+<p><strong>browserName</strong> - (FireFox|Chrome|IE|HTML)<br>
+<strong>remoteFlag</strong> - Whether we want to run on Remote - remote can be HUB or BrowserStack<br>
+<strong>remoteURL</strong> - HUB url if at all bsSwitch is false(that is we do not want to run on BrowserStack)<br>
+<strong>bsSwitch</strong> - Whether we want to run on browserStack<br>
+<strong>bs_userName</strong> - Username for browser Stack<br>
+<strong>browserVersion</strong> - which is required for running on Browserstack(like 25)<br>
+<strong>bs_key</strong> - key for the browser stack which we can get after logging into it<br>
+<strong>os</strong> - name of the os which is required for running test case on BrowserStack(like Windows).<br>
+<strong>osVersion</strong> - version of Os which is required for running test case on BrowserStack(like XP).<br>
+<strong>driverTimeOut</strong> - Integer value which is implicit wait for our driver<br>
+<strong>bs_localTesting</strong> - Boolean - BrowserStack local testing flag for testing localhost or internal application.<br>
+<strong>bs_urls</strong>- url which will configured for setting tunnel for local testing on browser stack(multiple can be added by &quot;;&quot; sepration.<br>
+<strong>mobileTest</strong> - if we want to run test cases on Mobile browser on BrowserStack instead on Desktop<br>
+<strong>device</strong> = required to configure test cases to run on BrowserStack mobile(device = ipad 3rd)<br>
+<strong>platform</strong> - required to configure test cases to run on BrowserStack mobile(platform = android)<br>
+<strong>chromeServerPath</strong> - if remoteFlag = false and browserName=Chrome , then location of Chrome Server<br>
+<strong>ieServerPath</strong> -if remoteFlag = false and browserName=IE , then location of ieServer<br>
+<strong>screenShotFlag</strong> - Boolean value to take screenshot of the failure test cases<br>
+<strong>highlightElementFlag</strong> - utility to higlight clicking of element before clicking and entering text in webelement  </p>
 
 <hr>
-
-<p>Easy- create Google account and add sheet :)</p>
-
-<p>Either you can follow sample GoogleSheet over <a href="https://docs.google.com/spreadsheets/d/14sD0Z6OR0pMogx32KrBXCwpxRVvMPfG2Othf0HHnd5w/edit#gid=2060834450">here</a> and run below command which is self explantory </p>
-
-<div class="highlight"><pre><code class="language-text" data-lang="text">mvn clean install -DgoogleUserName=yourGmailID -DgooglePassword=YourGmailPasswd -DgoogleSheetName=yourGoogleSHeetName</code></pre></div>
-
-<p>or continue reading.</p>
-
-<h2 id="mapping-sheet">Mapping Sheet</h2>
-
-<p>Most important data for omelet is Mapping which actually tells omelet which all browsers , which all data and which all environment to run 
-Create a sheet with name Mapping and add following coloum to sheet</p>
-
-<ul>
-<li>MethodName - Name of the method/Package/Class</li>
-<li>TestData - Name of the Sheet which will be holding the test data</li>
-<li>BrowserSheet - Name of the Browser sheet which will be holding the Client Environment/Browser Configuration</li>
-<li>Run Strategy - Run strategy which is Full/Optimal </li>
-</ul>
-
-<h2 id="browser-sheet">Browser Sheet</h2>
-
-<p>Create a one or multiple browser Sheet and name it as per your convienence. Add any or all the browserConfiguration keys to the coloum and your are done .</p>
-
-<p>Please not single browser Sheet can have mutliple rows of browsers which will tell omelet to run mapped test case on multiple browser 
-After you have given the name , do remember to add the browser sheet name in the  Mapping sheet coloum : BrowserSheet</p>
-
-<p>More over different Browser sheet can also be provided to a test method in the Mapping with &quot;;&quot; seprated like BrowserSheet1;BrowserSheet2</p>
-
-<h2 id="test-data">Test Data</h2>
-
-<p>Test Data is designed to support your complete testing on different environments and complementing page object design pattern </p>
-
-<p>TestData sheet should have minimum two coloum with name as Key|Value and data can be seprated by key as&quot;Environment&quot;</p>
-
-<table><thead>
-<tr>
-<th>Key</th>
-<th style="text-align: center">value</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><strong>Enrionment</strong></td>
-<td style="text-align: center"><strong>live</strong></td>
-</tr>
-<tr>
-<td>testKey1</td>
-<td style="text-align: center">value1</td>
-</tr>
-<tr>
-<td>testKey2</td>
-<td style="text-align: center">value2</td>
-</tr>
-<tr>
-<td><strong>Enrionment</strong></td>
-<td style="text-align: center"><strong>Stage</strong></td>
-</tr>
-<tr>
-<td>testKey1</td>
-<td style="text-align: center">valueStage1</td>
-</tr>
-<tr>
-<td>testKey2</td>
-<td style="text-align: center">valueStage2</td>
-</tr>
-<tr>
-<td>testKey3</td>
-<td style="text-align: center">valueStage3</td>
-</tr>
-<tr>
-<td>testKey4</td>
-<td style="text-align: center">valueStage4</td>
-</tr>
-<tr>
-<td><strong>Enrionment</strong></td>
-<td style="text-align: center"><strong>live</strong></td>
-</tr>
-<tr>
-<td>testKey1</td>
-<td style="text-align: center">value1</td>
-</tr>
-<tr>
-<td>testKey2</td>
-<td style="text-align: center">value2</td>
-</tr>
-<tr>
-<td>testKey3</td>
-<td style="text-align: center">value3</td>
-</tr>
-<tr>
-<td>testKey4</td>
-<td style="text-align: center">value4</td>
-</tr>
-</tbody></table>
-
-<h2 id="what-next">What next</h2>
-
-<p>Now all the data has been configured what we need to do is to run our command and see the magic , we can filter the test data by simply addind -Denv-type , if this argument is not present then test cases will run on all the environment </p>
-
-<div class="highlight"><pre><code class="language-text" data-lang="text">mvn clean install -DgoogleUserName=yourGmailID -DgooglePassword=YourGmailPasswd -DgoogleSheetName=yourGoogleSHeetName -Denv-type=Stage</code></pre></div>
 
       <footer class="entry-meta">
         
         <div class="social-share">
   <ul class="socialcount socialcount-small inline-list">
-    <li class="facebook"><a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/Documentation/Data/index.html" title="Share on Facebook"><span class="count"><i class="fa fa-facebook-square"></i> Like</span></a></li>
-    <li class="twitter"><a href="https://twitter.com/intent/tweet?text=http://localhost:4000/Documentation/Data/index.html" title="Share on Twitter"><span class="count"><i class="fa fa-twitter-square"></i> Tweet</span></a></li>
-    <li class="googleplus"><a href="https://plus.google.com/share?url=http://localhost:4000/Documentation/Data/index.html" title="Share on Google Plus"><span class="count"><i class="fa fa-google-plus-square"></i> +1</span></a></li>
+    <li class="facebook"><a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/Documentation/Configuration/FrameworkProperties/index.html" title="Share on Facebook"><span class="count"><i class="fa fa-facebook-square"></i> Like</span></a></li>
+    <li class="twitter"><a href="https://twitter.com/intent/tweet?text=http://localhost:4000/Documentation/Configuration/FrameworkProperties/index.html" title="Share on Twitter"><span class="count"><i class="fa fa-twitter-square"></i> Tweet</span></a></li>
+    <li class="googleplus"><a href="https://plus.google.com/share?url=http://localhost:4000/Documentation/Configuration/FrameworkProperties/index.html" title="Share on Google Plus"><span class="count"><i class="fa fa-google-plus-square"></i> +1</span></a></li>
   </ul>
 </div><!-- /.social-share -->
       </footer>
