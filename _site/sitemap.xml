@@ -1,1019 +1,1019 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>http://localhost:4000/404.html</loc>
-    <lastmod>2014-12-13T01:26:16-05:00</lastmod>
+    <loc>http://springer-opensource.github.io/omelet/404.html</loc>
+    <lastmod>2014-12-13T04:51:17-05:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/tags/</loc>
-    <lastmod>2014-12-13T01:26:16-05:00</lastmod>
+    <loc>http://springer-opensource.github.io/omelet/tags/</loc>
+    <lastmod>2014-12-13T04:51:17-05:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/</loc>
-    <lastmod>2014-12-13T01:26:16-05:00</lastmod>
+    <loc>http://springer-opensource.github.io/omelet/</loc>
+    <lastmod>2014-12-13T04:51:17-05:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/about/</loc>
-    <lastmod>2014-12-13T01:26:16-05:00</lastmod>
+    <loc>http://springer-opensource.github.io/omelet/about/</loc>
+    <lastmod>2014-12-13T04:51:17-05:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/News/</loc>
-    <lastmod>2014-12-13T01:26:16-05:00</lastmod>
+    <loc>http://springer-opensource.github.io/omelet/News/</loc>
+    <lastmod>2014-12-13T04:51:17-05:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/Documentation/Configuration/</loc>
-    <lastmod>2014-12-13T01:26:16-05:00</lastmod>
+    <loc>http://springer-opensource.github.io/omelet/Documentation/Configuration/</loc>
+    <lastmod>2014-12-13T04:51:17-05:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/Documentation/Data/</loc>
-    <lastmod>2014-12-13T01:26:16-05:00</lastmod>
+    <loc>http://springer-opensource.github.io/omelet/Documentation/Data/</loc>
+    <lastmod>2014-12-13T04:51:17-05:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/Quick-Start/</loc>
-    <lastmod>2014-12-13T01:26:16-05:00</lastmod>
+    <loc>http://springer-opensource.github.io/omelet/Quick-Start/</loc>
+    <lastmod>2014-12-13T04:51:17-05:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/Videos/</loc>
-    <lastmod>2014-12-13T01:26:16-05:00</lastmod>
+    <loc>http://springer-opensource.github.io/omelet/Videos/</loc>
+    <lastmod>2014-12-13T04:51:17-05:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/Documentation/Data/XMLData/</loc>
-    <lastmod>2014-12-13T01:26:16-05:00</lastmod>
+    <loc>http://springer-opensource.github.io/omelet/Documentation/Data/XMLData/</loc>
+    <lastmod>2014-12-13T04:51:17-05:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/Documentation/Configuration/FrameworkProperties/</loc>
-    <lastmod>2014-12-13T01:26:16-05:00</lastmod>
+    <loc>http://springer-opensource.github.io/omelet/Documentation/Configuration/FrameworkProperties/</loc>
+    <lastmod>2014-12-13T04:51:17-05:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/index_1.html</loc>
-    <lastmod>2014-12-13T01:26:16-05:00</lastmod>
+    <loc>http://springer-opensource.github.io/omelet/index_1.html</loc>
+    <lastmod>2014-12-13T04:51:17-05:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/allclasses-noframe.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/allclasses-noframe.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/overview-frame.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/overview-frame.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/overview-tree.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/overview-tree.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/constant-values.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/constant-values.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/index.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/index.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/index-all.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/index-all.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/exception/class-use/FrameworkException.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/exception/class-use/FrameworkException.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/exception/package-summary.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/exception/package-summary.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/exception/package-use.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/exception/package-use.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/exception/package-tree.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/exception/package-tree.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/exception/package-frame.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/exception/package-frame.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/exception/FrameworkException.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/exception/FrameworkException.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/common/class-use/ExpectedConditionExtended.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/common/class-use/ExpectedConditionExtended.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/common/class-use/Utils.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/common/class-use/Utils.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/common/package-summary.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/common/package-summary.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/common/ExpectedConditionExtended.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/common/ExpectedConditionExtended.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/common/package-use.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/common/package-use.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/common/package-tree.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/common/package-tree.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/common/Utils.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/common/Utils.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/common/package-frame.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/common/package-frame.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/browserstacktunnel/OSName.OSN.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/browserstacktunnel/OSName.OSN.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/browserstacktunnel/class-use/OSName.OSN.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/browserstacktunnel/class-use/OSName.OSN.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/browserstacktunnel/class-use/OSName.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/browserstacktunnel/class-use/OSName.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/browserstacktunnel/class-use/BrowserStackTunnel.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/browserstacktunnel/class-use/BrowserStackTunnel.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/browserstacktunnel/package-summary.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/browserstacktunnel/package-summary.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/browserstacktunnel/OSName.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/browserstacktunnel/OSName.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/browserstacktunnel/BrowserStackTunnel.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/browserstacktunnel/BrowserStackTunnel.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/browserstacktunnel/package-use.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/browserstacktunnel/package-use.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/browserstacktunnel/package-tree.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/browserstacktunnel/package-tree.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/browserstacktunnel/package-frame.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/browserstacktunnel/package-frame.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/testng/support/RetryIAnnotationTransformer.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/testng/support/RetryIAnnotationTransformer.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/testng/support/class-use/RetryIAnnotationTransformer.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/testng/support/class-use/RetryIAnnotationTransformer.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/testng/support/class-use/TestInterceptor.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/testng/support/class-use/TestInterceptor.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/testng/support/class-use/RetryAnalyzer.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/testng/support/class-use/RetryAnalyzer.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/testng/support/class-use/HtmlTable.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/testng/support/class-use/HtmlTable.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/testng/support/class-use/SAssert.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/testng/support/class-use/SAssert.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/testng/support/package-summary.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/testng/support/package-summary.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/testng/support/TestInterceptor.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/testng/support/TestInterceptor.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/testng/support/RetryAnalyzer.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/testng/support/RetryAnalyzer.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/testng/support/package-use.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/testng/support/package-use.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/testng/support/package-tree.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/testng/support/package-tree.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/testng/support/HtmlTable.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/testng/support/HtmlTable.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/testng/support/package-frame.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/testng/support/package-frame.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/testng/support/SAssert.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/testng/support/SAssert.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/data/ImplementIMap.Builder.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/data/ImplementIMap.Builder.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/data/class-use/ImplementIMap.Builder.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/data/class-use/ImplementIMap.Builder.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/data/class-use/DriverConfigurations.LocalEnvironmentConfig.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/data/class-use/DriverConfigurations.LocalEnvironmentConfig.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/data/class-use/DataProvider.mapStrategy.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/data/class-use/DataProvider.mapStrategy.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/data/class-use/RefineMappedData.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/data/class-use/RefineMappedData.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/data/class-use/IProperty.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/data/class-use/IProperty.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/data/class-use/IDataSource.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/data/class-use/IDataSource.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/data/class-use/DriverConfigurations.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/data/class-use/DriverConfigurations.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/data/class-use/DriverConfigurations.HubConfig.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/data/class-use/DriverConfigurations.HubConfig.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/data/class-use/ImplementIMap.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/data/class-use/ImplementIMap.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/data/class-use/PrettyMessage.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/data/class-use/PrettyMessage.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/data/class-use/IMappingData.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/data/class-use/IMappingData.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/data/class-use/DriverConfigurations.BrowserStackConfig.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/data/class-use/DriverConfigurations.BrowserStackConfig.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/data/class-use/DriverConfigurations.FrameworkConfig.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/data/class-use/DriverConfigurations.FrameworkConfig.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/data/class-use/PropertyMapping.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/data/class-use/PropertyMapping.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/data/class-use/DataProvider.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/data/class-use/DataProvider.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/data/class-use/PropertyValueMin.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/data/class-use/PropertyValueMin.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/data/package-summary.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/data/package-summary.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/data/DriverConfigurations.LocalEnvironmentConfig.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/data/DriverConfigurations.LocalEnvironmentConfig.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/data/DataProvider.mapStrategy.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/data/DataProvider.mapStrategy.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/data/RefineMappedData.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/data/RefineMappedData.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/data/IProperty.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/data/IProperty.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/data/IDataSource.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/data/IDataSource.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/data/DriverConfigurations.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/data/DriverConfigurations.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/data/DriverConfigurations.HubConfig.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/data/DriverConfigurations.HubConfig.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/data/googlesheet/class-use/ReadGoogle.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/data/googlesheet/class-use/ReadGoogle.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/data/googlesheet/class-use/GoogleSheetConstant.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/data/googlesheet/class-use/GoogleSheetConstant.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/data/googlesheet/package-summary.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/data/googlesheet/package-summary.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/data/googlesheet/package-use.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/data/googlesheet/package-use.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/data/googlesheet/ReadGoogle.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/data/googlesheet/ReadGoogle.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/data/googlesheet/GoogleSheetConstant.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/data/googlesheet/GoogleSheetConstant.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/data/googlesheet/package-tree.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/data/googlesheet/package-tree.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/data/googlesheet/package-frame.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/data/googlesheet/package-frame.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/data/ImplementIMap.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/data/ImplementIMap.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/data/PrettyMessage.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/data/PrettyMessage.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/data/package-use.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/data/package-use.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/data/xml/class-use/BrowserXmlParser.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/data/xml/class-use/BrowserXmlParser.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/data/xml/class-use/MappingParserRevisit.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/data/xml/class-use/MappingParserRevisit.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/data/xml/class-use/XmlApplicationData.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/data/xml/class-use/XmlApplicationData.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/data/xml/BrowserXmlParser.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/data/xml/BrowserXmlParser.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/data/xml/package-summary.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/data/xml/package-summary.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/data/xml/package-use.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/data/xml/package-use.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/data/xml/package-tree.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/data/xml/package-tree.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/data/xml/MappingParserRevisit.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/data/xml/MappingParserRevisit.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/data/xml/package-frame.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/data/xml/package-frame.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/data/xml/XmlApplicationData.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/data/xml/XmlApplicationData.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/data/IMappingData.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/data/IMappingData.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/data/DriverConfigurations.BrowserStackConfig.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/data/DriverConfigurations.BrowserStackConfig.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/data/package-tree.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/data/package-tree.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/data/DriverConfigurations.FrameworkConfig.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/data/DriverConfigurations.FrameworkConfig.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/data/PropertyMapping.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/data/PropertyMapping.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/data/DataProvider.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/data/DataProvider.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/data/driverconf/ValidateBrowserRules.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/data/driverconf/ValidateBrowserRules.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/data/driverconf/class-use/ValidateBrowserRules.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/data/driverconf/class-use/ValidateBrowserRules.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/data/driverconf/class-use/BrowserConfR.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/data/driverconf/class-use/BrowserConfR.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/data/driverconf/class-use/PrepareDriverConf.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/data/driverconf/class-use/PrepareDriverConf.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/data/driverconf/class-use/IBrowserConf.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/data/driverconf/class-use/IBrowserConf.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/data/driverconf/class-use/RefinedBrowserConf.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/data/driverconf/class-use/RefinedBrowserConf.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/data/driverconf/package-summary.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/data/driverconf/package-summary.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/data/driverconf/BrowserConfR.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/data/driverconf/BrowserConfR.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/data/driverconf/PrepareDriverConf.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/data/driverconf/PrepareDriverConf.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/data/driverconf/package-use.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/data/driverconf/package-use.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/data/driverconf/IBrowserConf.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/data/driverconf/IBrowserConf.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/data/driverconf/package-tree.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/data/driverconf/package-tree.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/data/driverconf/RefinedBrowserConf.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/data/driverconf/RefinedBrowserConf.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/data/driverconf/package-frame.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/data/driverconf/package-frame.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/data/package-frame.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/data/package-frame.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/data/PropertyValueMin.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/data/PropertyValueMin.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/configuration/DefaultBrowserConf.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/configuration/DefaultBrowserConf.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/configuration/class-use/DefaultBrowserConf.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/configuration/class-use/DefaultBrowserConf.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/configuration/class-use/CustomBrowserConf.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/configuration/class-use/CustomBrowserConf.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/configuration/package-summary.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/configuration/package-summary.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/configuration/package-use.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/configuration/package-use.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/configuration/package-tree.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/configuration/package-tree.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/configuration/CustomBrowserConf.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/configuration/CustomBrowserConf.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/configuration/package-frame.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/configuration/package-frame.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/mail/class-use/Email.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/mail/class-use/Email.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/mail/class-use/FilterEmails.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/mail/class-use/FilterEmails.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/mail/class-use/MailProtocol.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/mail/class-use/MailProtocol.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/mail/class-use/IEmail.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/mail/class-use/IEmail.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/mail/class-use/Email.Builder.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/mail/class-use/Email.Builder.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/mail/Email.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/mail/Email.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/mail/package-summary.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/mail/package-summary.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/mail/FilterEmails.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/mail/FilterEmails.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/mail/MailProtocol.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/mail/MailProtocol.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/mail/package-use.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/mail/package-use.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/mail/IEmail.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/mail/IEmail.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/mail/package-tree.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/mail/package-tree.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/mail/package-frame.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/mail/package-frame.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/mail/Email.Builder.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/mail/Email.Builder.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/driver/ConfigureDesiredCapability.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/driver/ConfigureDesiredCapability.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/driver/class-use/ConfigureDesiredCapability.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/driver/class-use/ConfigureDesiredCapability.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/driver/class-use/Logo.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/driver/class-use/Logo.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/driver/class-use/DriverUtility.CLICK_STRATEGY.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/driver/class-use/DriverUtility.CLICK_STRATEGY.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/driver/class-use/DriverInitialization.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/driver/class-use/DriverInitialization.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/driver/class-use/DriverUtility.CHECK_UNCHECK.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/driver/class-use/DriverUtility.CHECK_UNCHECK.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/driver/class-use/SuiteConfiguration.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/driver/class-use/SuiteConfiguration.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/driver/class-use/Driver.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/driver/class-use/Driver.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/driver/class-use/MyWebDriverListner.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/driver/class-use/MyWebDriverListner.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/driver/class-use/DriverUtility.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/driver/class-use/DriverUtility.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/driver/package-summary.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/driver/package-summary.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/driver/Logo.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/driver/Logo.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/driver/DriverUtility.CLICK_STRATEGY.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/driver/DriverUtility.CLICK_STRATEGY.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/driver/DriverInitialization.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/driver/DriverInitialization.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/driver/DriverUtility.CHECK_UNCHECK.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/driver/DriverUtility.CHECK_UNCHECK.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/driver/SuiteConfiguration.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/driver/SuiteConfiguration.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/driver/package-use.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/driver/package-use.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/driver/Driver.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/driver/Driver.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/driver/package-tree.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/driver/package-tree.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/driver/MyWebDriverListner.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/driver/MyWebDriverListner.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/driver/DriverUtility.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/driver/DriverUtility.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/com/springer/omelet/driver/package-frame.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/com/springer/omelet/driver/package-frame.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/help-doc.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/help-doc.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/allclasses-frame.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/allclasses-frame.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/deprecated-list.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/deprecated-list.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/overview-summary.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/overview-summary.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/apidocs/serialized-form.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/apidocs/serialized-form.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/site/distribution-management.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/site/distribution-management.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/site/plugin-management.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/site/plugin-management.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/site/dependency-info.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/site/dependency-info.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/site/index.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/site/index.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/site/issue-tracking.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/site/issue-tracking.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/site/plugins.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/site/plugins.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/site/source-repository.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/site/source-repository.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/site/team-list.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/site/team-list.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/site/license.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/site/license.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/site/integration.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/site/integration.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/site/dependencies.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/site/dependencies.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/site/project-summary.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/site/project-summary.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/site/project-info.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/site/project-info.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/site/mail-lists.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/site/mail-lists.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/surefire-reports/index.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/surefire-reports/index.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/surefire-reports/Omlete Suite/Browser Conf Test.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/surefire-reports/Omlete Suite/Browser Conf Test.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/surefire-reports/old/index.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/surefire-reports/old/index.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/surefire-reports/old/Omlete Suite/methods-alphabetical.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/surefire-reports/old/Omlete Suite/methods-alphabetical.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/surefire-reports/old/Omlete Suite/index.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/surefire-reports/old/Omlete Suite/index.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/surefire-reports/old/Omlete Suite/main.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/surefire-reports/old/Omlete Suite/main.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/surefire-reports/old/Omlete Suite/testng.xml.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/surefire-reports/old/Omlete Suite/testng.xml.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/surefire-reports/old/Omlete Suite/reporter-output.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/surefire-reports/old/Omlete Suite/reporter-output.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/surefire-reports/old/Omlete Suite/methods.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/surefire-reports/old/Omlete Suite/methods.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/surefire-reports/old/Omlete Suite/classes.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/surefire-reports/old/Omlete Suite/classes.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/surefire-reports/old/Omlete Suite/toc.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/surefire-reports/old/Omlete Suite/toc.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/surefire-reports/old/Omlete Suite/methods-not-run.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/surefire-reports/old/Omlete Suite/methods-not-run.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/surefire-reports/old/Omlete Suite/groups.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/surefire-reports/old/Omlete Suite/groups.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>http://localhost:4000/target/surefire-reports/emailable-report.html</loc>
+    <loc>http://springer-opensource.github.io/omelet/target/surefire-reports/emailable-report.html</loc>
     <lastmod>2014-12-12T05:53:15-05:00</lastmod>
     <priority>0.6</priority>
   </url>

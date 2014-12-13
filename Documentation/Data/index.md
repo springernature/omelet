@@ -40,7 +40,7 @@ Create a sheet with name Mapping and add following coloum to sheet
 * BrowserSheet - Name of the Browser sheet which will be holding the Client Environment/Browser Configuration
 * Run Strategy - Run strategy which is Full/Optimal 
 
-## Browser Sheet
+## BrowserSheet
 
 Create a one or multiple browser Sheet and name it as per your convienence. Add any or all the browserConfiguration keys to the coloum and your are done .
 
