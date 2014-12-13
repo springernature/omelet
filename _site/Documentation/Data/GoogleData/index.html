@@ -5,7 +5,7 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en"><!--<![endif]-->
 <head>
 <meta charset="utf-8">
-<title>Quick Start &#8211; Omelet</title>
+<title>Google Sheet Usage &#8211; Omelet</title>
 <meta name="description" content="Automation Framework for Selenium">
 
 
@@ -14,16 +14,16 @@
 <!-- Open Graph -->
 <meta property="og:locale" content="en_US">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Quick Start">
+<meta property="og:title" content="Google Sheet Usage">
 <meta property="og:description" content="Automation Framework for Selenium">
-<meta property="og:url" content="http://springer-opensource.github.io/omelet/Quick-Start/index.html">
+<meta property="og:url" content="http://springer-opensource.github.io/omelet/Documentation/Data/GoogleData/index.html">
 <meta property="og:site_name" content="Omelet">
 
 
 
 
 
-<link rel="canonical" href="http://springer-opensource.github.io/omelet/Quick-Start/">
+<link rel="canonical" href="http://springer-opensource.github.io/omelet/Documentation/Data/GoogleData/">
 <link href="http://springer-opensource.github.io/omelet/feed.xml" type="application/atom+xml" rel="alternate" title="Omelet Feed">
 <link rel="author" href="https://google.com/+kapil.aggarwal1?rel=author">
 
@@ -136,65 +136,149 @@
   <article class="entry">
     <header class="header-title">
       <div class="header-title-wrap">
-        <h1 class="entry-title">Quick Start</h1>
+        <h1 class="entry-title">Google Sheet Usage</h1>
         
         <p class="entry-reading-time">
           <i class="fa fa-clock-o"></i>
           
-          Reading time ~1 minute
+          Reading time ~3 minutes
         </p><!-- /.entry-reading-time -->
         
       </div><!-- /.header-title-wrap -->
     </header>
     <div class="entry-content">
-      <h1 id="5-min-tutorial">5 min Tutorial</h1>
+      <h1 id="how-to-use-google-sheets-as-data">How to use Google Sheets as Data</h1>
 
 <hr>
 
-<p>Omelet framework involves some static files to be present before actually start using it.
-In order to start with omelet , one of the pre-requisite is maven should be installed(which can be checked by running mvn -version)</p>
+<h2 id="why-google-sheets-over-excel">Why Google Sheets over Excel</h2>
 
-<p>Once we are sure maven is insall simply run the below command in you shell</p>
+<p>Excel sheets are brilliant way to maintain your data but from my experience,r every single data change we have to open excel make some changes and then again push it to git or any scm, thats anyways no much of work</p>
 
-<div class="highlight"><pre><code class="language-text" data-lang="text">mvn archetype:generate -DgroupId=com.yourGroupId -DartifactId=my-app -DarchetypeArtifactId=omelet-archetype-simple -DarchetypeGroupId=com.springer</code></pre></div>
+<h3 id="what-if?"><strong>what if?</strong></h3>
 
-<p><strong>Do remember to change -DartifactId and -DgroupId which would be your project name and group name respectively.</strong></p>
+<ul>
+<li>someone ask us to change a data quickly and check if the test case is working fine.</li>
+<li>We have to change the browser or want to run same test case for different browsers.</li>
+<li>Some Business oriented person like BA wants to look at data and change them , are you gonna do copy paste of the chages and push? </li>
+</ul>
 
-<h2 id="what-will-happen">What will happen</h2>
+<p>All these <strong>&quot;whatifs&quot;</strong> encouraged us to add Google sheet as Data </p>
 
-<p>Sample project is created for you which will be having a test case for simple selenium tests using XML as data provider. 
-You can simple CD into your folder and then run command </p>
+<p>Now if we have googleSheets with us then we can easily configure data at run time, even BA need not to depend on QA to make some change + you have access to your data from anywhere from any devicde and google sheets gives the same functionality and clarity which excel provides.</p>
 
-<div class="highlight"><pre><code class="language-text" data-lang="text">mvn clean install</code></pre></div>
- 
+<h2 id="how-to-use-googlesheets-with-omelet">How to Use GoogleSheets with Omelet</h2>
 
-<h2 id="then-what-?">Then What ?</h2>
+<hr>
 
-<p>Few windows will open for firefox and you have run your very first test case with omelet. Do remember to check the reports in sure-fire/html/index.html and click on the tests in order to check detailed step level report</p>
+<p>Easy- create Google account and add sheet :)</p>
 
-<h2 id="now-?">Now ?</h2>
+<p>Either you can follow sample GoogleSheet over <a href="https://docs.google.com/spreadsheets/d/14sD0Z6OR0pMogx32KrBXCwpxRVvMPfG2Othf0HHnd5w/edit#gid=2060834450">here</a> and run below command which is self explantory </p>
 
-<p>Now as you have your skeletone ready with few folders , either you can start automating your application or try the same test with different option like running test case on BrowserStack which can be done by </p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">mvn clean install -DgoogleUserName=yourGmailID -DgooglePassword=YourGmailPasswd -DgoogleSheetName=yourGoogleSHeetName</code></pre></div>
 
-<p><strong>BrowserStack</strong></p>
+<p>or continue reading.</p>
 
-<div class="highlight"><pre><code class="language-text" data-lang="text">mvn clean install -DremoteFlag=true -DbsSwitch=true -Dbs_key=yourBrowserStackKey -Dbs_UserName=yourBSName</code></pre></div>
- 
+<h2 id="mapping-sheet">Mapping Sheet</h2>
 
-<p>or you can run on your test cases on grid using below command</p>
+<p>Most important data for omelet is Mapping which actually tells omelet which all browsers , which all data and which all environment to run 
+Create a sheet with name Mapping and add following coloum to sheet</p>
 
-<p><strong>Grid</strong></p>
+<ul>
+<li>MethodName - Name of the method/Package/Class</li>
+<li>TestData - Name of the Sheet which will be holding the test data</li>
+<li>BrowserSheet - Name of the Browser sheet which will be holding the Client Environment/Browser Configuration</li>
+<li>Run Strategy - Run strategy which is Full/Optimal </li>
+</ul>
 
-<div class="highlight"><pre><code class="language-text" data-lang="text">mvn clean install -DremoteFlag=true -DremoteUrl=https://yourHubURL</code></pre></div>
- 
+<h2 id="browsersheet">BrowserSheet</h2>
+
+<p>Create a one or multiple browser Sheet and name it as per your convienence. Add any or all the browserConfiguration keys to the coloum and your are done .</p>
+
+<p>Please not single browser Sheet can have mutliple rows of browsers which will tell omelet to run mapped test case on multiple browser 
+After you have given the name , do remember to add the browser sheet name in the  Mapping sheet coloum : BrowserSheet</p>
+
+<p>More over different Browser sheet can also be provided to a test method in the Mapping with &quot;;&quot; seprated like BrowserSheet1;BrowserSheet2</p>
+
+<h2 id="test-data">Test Data</h2>
+
+<p>Test Data is designed to support your complete testing on different environments and complementing page object design pattern </p>
+
+<p>TestData sheet should have minimum two coloum with name as Key|Value and data can be seprated by key as&quot;Environment&quot;</p>
+
+<table><thead>
+<tr>
+<th>Key</th>
+<th style="text-align: center">value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>Enrionment</strong></td>
+<td style="text-align: center"><strong>live</strong></td>
+</tr>
+<tr>
+<td>testKey1</td>
+<td style="text-align: center">value1</td>
+</tr>
+<tr>
+<td>testKey2</td>
+<td style="text-align: center">value2</td>
+</tr>
+<tr>
+<td><strong>Enrionment</strong></td>
+<td style="text-align: center"><strong>Stage</strong></td>
+</tr>
+<tr>
+<td>testKey1</td>
+<td style="text-align: center">valueStage1</td>
+</tr>
+<tr>
+<td>testKey2</td>
+<td style="text-align: center">valueStage2</td>
+</tr>
+<tr>
+<td>testKey3</td>
+<td style="text-align: center">valueStage3</td>
+</tr>
+<tr>
+<td>testKey4</td>
+<td style="text-align: center">valueStage4</td>
+</tr>
+<tr>
+<td><strong>Enrionment</strong></td>
+<td style="text-align: center"><strong>live</strong></td>
+</tr>
+<tr>
+<td>testKey1</td>
+<td style="text-align: center">value1</td>
+</tr>
+<tr>
+<td>testKey2</td>
+<td style="text-align: center">value2</td>
+</tr>
+<tr>
+<td>testKey3</td>
+<td style="text-align: center">value3</td>
+</tr>
+<tr>
+<td>testKey4</td>
+<td style="text-align: center">value4</td>
+</tr>
+</tbody></table>
+
+<h2 id="what-next">What next</h2>
+
+<p>Now all the data has been configured what we need to do is to run our command and see the magic , we can filter the test data by simply addind -Denv-type , if this argument is not present then test cases will run on all the environment </p>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">mvn clean install -DgoogleUserName=yourGmailID -DgooglePassword=YourGmailPasswd -DgoogleSheetName=yourGoogleSHeetName -Denv-type=Stage</code></pre></div>
 
       <footer class="entry-meta">
         
         <div class="social-share">
   <ul class="socialcount socialcount-small inline-list">
-    <li class="facebook"><a href="https://www.facebook.com/sharer/sharer.php?u=http://springer-opensource.github.io/omelet/Quick-Start/index.html" title="Share on Facebook"><span class="count"><i class="fa fa-facebook-square"></i> Like</span></a></li>
-    <li class="twitter"><a href="https://twitter.com/intent/tweet?text=http://springer-opensource.github.io/omelet/Quick-Start/index.html" title="Share on Twitter"><span class="count"><i class="fa fa-twitter-square"></i> Tweet</span></a></li>
-    <li class="googleplus"><a href="https://plus.google.com/share?url=http://springer-opensource.github.io/omelet/Quick-Start/index.html" title="Share on Google Plus"><span class="count"><i class="fa fa-google-plus-square"></i> +1</span></a></li>
+    <li class="facebook"><a href="https://www.facebook.com/sharer/sharer.php?u=http://springer-opensource.github.io/omelet/Documentation/Data/GoogleData/index.html" title="Share on Facebook"><span class="count"><i class="fa fa-facebook-square"></i> Like</span></a></li>
+    <li class="twitter"><a href="https://twitter.com/intent/tweet?text=http://springer-opensource.github.io/omelet/Documentation/Data/GoogleData/index.html" title="Share on Twitter"><span class="count"><i class="fa fa-twitter-square"></i> Tweet</span></a></li>
+    <li class="googleplus"><a href="https://plus.google.com/share?url=http://springer-opensource.github.io/omelet/Documentation/Data/GoogleData/index.html" title="Share on Google Plus"><span class="count"><i class="fa fa-google-plus-square"></i> +1</span></a></li>
   </ul>
 </div><!-- /.social-share -->
       </footer>

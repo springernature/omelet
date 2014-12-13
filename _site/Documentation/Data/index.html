@@ -5,7 +5,7 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en"><!--<![endif]-->
 <head>
 <meta charset="utf-8">
-<title>Google Sheet Usage &#8211; Omelet</title>
+<title>Data Sources &#8211; Omelet</title>
 <meta name="description" content="Automation Framework for Selenium">
 
 
@@ -14,7 +14,7 @@
 <!-- Open Graph -->
 <meta property="og:locale" content="en_US">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Google Sheet Usage">
+<meta property="og:title" content="Data Sources">
 <meta property="og:description" content="Automation Framework for Selenium">
 <meta property="og:url" content="http://springer-opensource.github.io/omelet/Documentation/Data/index.html">
 <meta property="og:site_name" content="Omelet">
@@ -71,8 +71,8 @@
 			<a href="#">Documentation</a>
 			<ul class="dl-submenu">
 				<li><a href="http://springer-opensource.github.io/omelet/Quick-Start/">5 min Tutorial</a></li>
-				<li><a href="http://springer-opensource.github.io/omelet/Documentation/Data">Data-GoogleSheet</a></li>
 				<li><a href="http://springer-opensource.github.io/omelet/Documentation/Configuration">Configurations</a></li>
+				<li><a href="http://springer-opensource.github.io/omelet/Documentation/Data">Data Sources</a></li>
 			</ul>
 		</li>
 		<li><a href="http://springer-opensource.github.io/omelet/Videos">Videos</a></li>
@@ -136,141 +136,24 @@
   <article class="entry">
     <header class="header-title">
       <div class="header-title-wrap">
-        <h1 class="entry-title">Google Sheet Usage</h1>
+        <h1 class="entry-title">Data Sources</h1>
         
         <p class="entry-reading-time">
           <i class="fa fa-clock-o"></i>
           
-          Reading time ~3 minutes
+          Reading time ~1 minute
         </p><!-- /.entry-reading-time -->
         
       </div><!-- /.header-title-wrap -->
     </header>
     <div class="entry-content">
-      <h1 id="how-to-use-google-sheets-as-data">How to use Google Sheets as Data</h1>
-
-<hr>
-
-<h2 id="why-google-sheets-over-excel">Why Google Sheets over Excel</h2>
-
-<p>Excel sheets are brilliant way to maintain your data but from my experience,r every single data change we have to open excel make some changes and then again push it to git or any scm, thats anyways no much of work</p>
-
-<h3 id="what-if?"><strong>what if?</strong></h3>
+      <p>Omelet supports 3 data sources which are properties File, Xmls, GoogleSheets.
+Below are the link for the data source </p>
 
 <ul>
-<li>someone ask us to change a data quickly and check if the test case is working fine.</li>
-<li>We have to change the browser or want to run same test case for different browsers.</li>
-<li>Some Business oriented person like BA wants to look at data and change them , are you gonna do copy paste of the chages and push? </li>
+<li><a href="../Data/GoogleData">Google Sheets</a></li>
+<li><a href="../Data/XMLData">XMl Data</a></li>
 </ul>
-
-<p>All these <strong>&quot;whatifs&quot;</strong> encouraged us to add Google sheet as Data </p>
-
-<p>Now if we have googleSheets with us then we can easily configure data at run time, even BA need not to depend on QA to make some change + you have access to your data from anywhere from any devicde and google sheets gives the same functionality and clarity which excel provides.</p>
-
-<h2 id="how-to-use-googlesheets-with-omelet">How to Use GoogleSheets with Omelet</h2>
-
-<hr>
-
-<p>Easy- create Google account and add sheet :)</p>
-
-<p>Either you can follow sample GoogleSheet over <a href="https://docs.google.com/spreadsheets/d/14sD0Z6OR0pMogx32KrBXCwpxRVvMPfG2Othf0HHnd5w/edit#gid=2060834450">here</a> and run below command which is self explantory </p>
-
-<div class="highlight"><pre><code class="language-text" data-lang="text">mvn clean install -DgoogleUserName=yourGmailID -DgooglePassword=YourGmailPasswd -DgoogleSheetName=yourGoogleSHeetName</code></pre></div>
-
-<p>or continue reading.</p>
-
-<h2 id="mapping-sheet">Mapping Sheet</h2>
-
-<p>Most important data for omelet is Mapping which actually tells omelet which all browsers , which all data and which all environment to run 
-Create a sheet with name Mapping and add following coloum to sheet</p>
-
-<ul>
-<li>MethodName - Name of the method/Package/Class</li>
-<li>TestData - Name of the Sheet which will be holding the test data</li>
-<li>BrowserSheet - Name of the Browser sheet which will be holding the Client Environment/Browser Configuration</li>
-<li>Run Strategy - Run strategy which is Full/Optimal </li>
-</ul>
-
-<h2 id="browsersheet">BrowserSheet</h2>
-
-<p>Create a one or multiple browser Sheet and name it as per your convienence. Add any or all the browserConfiguration keys to the coloum and your are done .</p>
-
-<p>Please not single browser Sheet can have mutliple rows of browsers which will tell omelet to run mapped test case on multiple browser 
-After you have given the name , do remember to add the browser sheet name in the  Mapping sheet coloum : BrowserSheet</p>
-
-<p>More over different Browser sheet can also be provided to a test method in the Mapping with &quot;;&quot; seprated like BrowserSheet1;BrowserSheet2</p>
-
-<h2 id="test-data">Test Data</h2>
-
-<p>Test Data is designed to support your complete testing on different environments and complementing page object design pattern </p>
-
-<p>TestData sheet should have minimum two coloum with name as Key|Value and data can be seprated by key as&quot;Environment&quot;</p>
-
-<table><thead>
-<tr>
-<th>Key</th>
-<th style="text-align: center">value</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><strong>Enrionment</strong></td>
-<td style="text-align: center"><strong>live</strong></td>
-</tr>
-<tr>
-<td>testKey1</td>
-<td style="text-align: center">value1</td>
-</tr>
-<tr>
-<td>testKey2</td>
-<td style="text-align: center">value2</td>
-</tr>
-<tr>
-<td><strong>Enrionment</strong></td>
-<td style="text-align: center"><strong>Stage</strong></td>
-</tr>
-<tr>
-<td>testKey1</td>
-<td style="text-align: center">valueStage1</td>
-</tr>
-<tr>
-<td>testKey2</td>
-<td style="text-align: center">valueStage2</td>
-</tr>
-<tr>
-<td>testKey3</td>
-<td style="text-align: center">valueStage3</td>
-</tr>
-<tr>
-<td>testKey4</td>
-<td style="text-align: center">valueStage4</td>
-</tr>
-<tr>
-<td><strong>Enrionment</strong></td>
-<td style="text-align: center"><strong>live</strong></td>
-</tr>
-<tr>
-<td>testKey1</td>
-<td style="text-align: center">value1</td>
-</tr>
-<tr>
-<td>testKey2</td>
-<td style="text-align: center">value2</td>
-</tr>
-<tr>
-<td>testKey3</td>
-<td style="text-align: center">value3</td>
-</tr>
-<tr>
-<td>testKey4</td>
-<td style="text-align: center">value4</td>
-</tr>
-</tbody></table>
-
-<h2 id="what-next">What next</h2>
-
-<p>Now all the data has been configured what we need to do is to run our command and see the magic , we can filter the test data by simply addind -Denv-type , if this argument is not present then test cases will run on all the environment </p>
-
-<div class="highlight"><pre><code class="language-text" data-lang="text">mvn clean install -DgoogleUserName=yourGmailID -DgooglePassword=YourGmailPasswd -DgoogleSheetName=yourGoogleSHeetName -Denv-type=Stage</code></pre></div>
 
       <footer class="entry-meta">
         
