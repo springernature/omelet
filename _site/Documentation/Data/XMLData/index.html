@@ -141,7 +141,7 @@
         <p class="entry-reading-time">
           <i class="fa fa-clock-o"></i>
           
-          Reading time ~2 minutes
+          Reading time ~3 minutes
         </p><!-- /.entry-reading-time -->
         
       </div><!-- /.header-title-wrap -->
@@ -151,34 +151,74 @@
 
 <hr>
 
-<p>Xmls are one of the DataSource in which we can store all the test data and Different BrowserConfiguration.</p>
+<p>Xmls are one of the DataSource in which we can store all the Test Data and different BrowserConfiguration and offcource very own Mapping.</p>
 
 <h2 id="why-xmls">Why Xmls</h2>
 
-<p>With xml one can have complex mapping for a testmethod with different data and different browsers.
-Google Sheets test data involves network call and hence are bound to take some time intially while catching the data , but as Xml as sitting right next to code ,so they are pretty fast </p>
+<p>With xml one can have complex mapping for a testmethod with different data and different browsers(offcourse same is not compromised in GoogleSheets).
+Google Sheets test data involves network call and hence are bound to take some time depending on your internet speed atleast in the  intially phase of caching the data , but as Xml as sitting right next to code ,so they are pretty fast </p>
 
-<p>Mapping.xml</p>
+<h3 id="mapping.xml">Mapping.xml</h3>
 
-<p>Mapping.xml is the mapping sheet which maps your test method with testData and BrowserConfiguration. A single test case can be run with n number of different data and n number of Browser configuration.</p>
+<p>As the name suggests <strong>Mapping.xml</strong> file contains all the mapping of test cases with test data and BrowserConfiguration (ClientEnvironment) , for example
+if I have to run my test case named &quot;com.springer.test.GoogleTests.VerifySelenium&quot; on <strong>&quot;FireFox, Chrome&quot;</strong> with certain <strong>&quot;TestData.xml&quot;</strong> then we need to map those values in Mapping.xml </p>
 
-<h2 id="what-if-i-have-100-test-methods-?-do-i-need-to-provide-configuration-for-all-100-methods-?">What if I have 100 test methods ? Do i need to provide configuration for all 100 methods ?</h2>
+<h2 id="how-?">How ?</h2>
 
-<p>No dont be scared , mapping xml follows a clear hierarchy of package --&gt; class --&gt;method , which mean if I know all the test classes and inturn testMethod of package will be using BrowserConfiguration:x.xml and TestData:data.xml then i just need to provide these configuration at the package level , test class and method will inherit from the package </p>
+<p>There is a DTD defined but still for the sake of simplicity </p>
 
-<p>However if you want to have more control over classes and method then feel free to add configuration at class/Method level </p>
+<div class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="nt">&lt;Mapping&gt;</span>
+    <span class="nt">&lt;Package</span> <span class="na">name=</span><span class="s">&quot;com.springer.test&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;Class</span> <span class="na">name=</span><span class="s">&quot;com.springer.test.GoogleTest&quot;</span><span class="nt">&gt;</span>
+             <span class="nt">&lt;MethodName</span> <span class="na">name=</span><span class="s">&quot;verifySeleniumTitle&quot;</span> <span class="na">testData=</span><span class="s">&quot;data/TestData_1.xml&quot;</span> <span class="na">clientEnvironment=</span><span class="s">&quot;browsers/FireFoxLocal.xml/</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;/Class&gt;</span>
+    <span class="nt">&lt;/Package&gt;</span>
+<span class="nt">&lt;/Mapping&gt;</span></code></pre></div>
 
-<p>Omelet basically follows method --&gt;Class --&gt;package hierarchy and looks till package level before throwing any excpetion </p>
+<p>if at all we feel that all the test cases under particular class uses the same browser and data configuration then Mapping configuration would look something like below and all the test cases under the class &quot;GoogleTest&quot; will take the configuration defined at class level</p>
 
-<h2 id="what-is-browserconfiguration">What is BrowserConfiguration</h2>
+<div class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="nt">&lt;Mapping&gt;</span>
+    <span class="nt">&lt;Package</span> <span class="na">name=</span><span class="s">&quot;com.springer.test&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;Class</span> <span class="na">name=</span><span class="s">&quot;com.springer.test.GoogleTest&quot;</span> <span class="na">testData=</span><span class="s">&quot;data/TestData_1.xml&quot;</span> <span class="na">clientEnvironment=</span><span class="s">&quot;browsers/FireFoxLocal.xml/</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;/Package&gt;</span>
+<span class="nt">&lt;/Mapping&gt;</span></code></pre></div>
 
-<p>Nothing but Client Environments and we can have multiple ClientEnvironment inside the ClientEnvironments or Different ClientEnvironment for different purpose , like one for Mobile other for Desktop something like </p>
+<p>And similarly if we know all the classes under same package will be having the same configuration then we can omit class as well and simply have package as configuration , and all the test cases under the package will take the same configuration</p>
+
+<div class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="nt">&lt;Mapping&gt;</span>
+    <span class="nt">&lt;Package</span> <span class="na">name=</span><span class="s">&quot;com.springer.test&quot;</span>  <span class="na">testData=</span><span class="s">&quot;data/TestData_1.xml&quot;</span> <span class="na">clientEnvironment=</span><span class="s">&quot;browsers/FireFoxLocal.xml</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;/Package&gt;</span>
+<span class="nt">&lt;/Mapping&gt;</span></code></pre></div>
+
+<p>PS: We can have mix match of configurations as well , example being if we know Test Data file will remain same for all the test cases but BrowserConfiguration changes then we can simple add clientEnvironment at the method/Class level </p>
+
+<h2 id="browserconfiguration">BrowserConfiguration</h2>
+
+<p>As suggested in the configuration documentation over <a href="">here</a>
+Nothing but Client Environments and we can have multiple ClientEnvironment inside the ClientEnvironments or Different ClientEnvironment for different purpose , like one for Mobile other for Desktop something like </p>
 
 <p>Sample XMl is below </p>
 
-<p>All the Framework.properties configuration can be configured inside ClientEnvironment , however if you have some static values like driverTimeout , consider adding them in Framework.properties file </p>
+<div class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="nt">&lt;ClientEnvironments&gt;</span>
+        <span class="nt">&lt;ClientEnvironment</span>
+        <span class="na">platform =</span> <span class="s">&quot;WINDOWS&quot;</span>
+        <span class="na">mobileTest =</span> <span class="s">&quot;false&quot;</span>
+        <span class="na">device =</span> <span class="s">&quot;None&quot;</span>
+        <span class="na">os=</span><span class="s">&quot;WINDOWS&quot;</span>
+        <span class="na">osVersion=</span><span class="s">&quot;xp&quot;</span>
+        <span class="na">browserName=</span><span class="s">&quot;firefox&quot;</span>
+        <span class="na">browserVersion=</span><span class="s">&quot;25&quot;</span>
+        <span class="na">remoteFlag =</span> <span class="s">&quot;true&quot;</span>
+        <span class="na">remoteURL =</span> <span class="s">&quot;http:testRemoteURL&quot;</span>
+        <span class="na">bsSwitch =</span> <span class="s">&quot;false&quot;</span>
+        <span class="na">driverTimeOut =</span> <span class="s">&quot;10&quot;</span>
+        <span class="na">bs_userName =</span> <span class="s">&quot;testusername&quot;</span>
+        <span class="na">bs_key =</span> <span class="s">&quot;testkey&quot;</span>
+        <span class="na">bs_urls =</span> <span class="s">&quot;https:test1;https:test2&quot;</span>
+        <span class="na">name=</span><span class="s">&quot;iPad 3&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/ClientEnvironments&gt;</span></code></pre></div>
 
-<p>Omelet Follows Hierarchy for clientEnvironment as CommandLine--&gt;ClientXmls--&gt;FrameworkProperties--&gt;DefaultConfigs</p>
+<p>All the Framework.properties configuration can be configured inside ClientEnvironment , however if you have some static values like driverTimeout , consider adding them in Framework.properties file </p>
 
 <h2 id="what-is-testdata-xml">What is TestData xml</h2>
 

@@ -5,32 +5,77 @@ title: Google Sheet Usage
 # How to use Xmls as Data
 ------------
 
-Xmls are one of the DataSource in which we can store all the test data and Different BrowserConfiguration.
+Xmls are one of the DataSource in which we can store all the Test Data and different BrowserConfiguration and offcource very own Mapping.
 
 ##Why Xmls
-With xml one can have complex mapping for a testmethod with different data and different browsers.
-Google Sheets test data involves network call and hence are bound to take some time intially while catching the data , but as Xml as sitting right next to code ,so they are pretty fast 
+With xml one can have complex mapping for a testmethod with different data and different browsers(offcourse same is not compromised in GoogleSheets).
+Google Sheets test data involves network call and hence are bound to take some time depending on your internet speed atleast in the  intially phase of caching the data , but as Xml as sitting right next to code ,so they are pretty fast 
 
-Mapping.xml
+### Mapping.xml 
+As the name suggests **Mapping.xml** file contains all the mapping of test cases with test data and BrowserConfiguration (ClientEnvironment) , for example
+if I have to run my test case named "com.springer.test.GoogleTests.VerifySelenium" on **"FireFox, Chrome"** with certain **"TestData.xml"** then we need to map those values in Mapping.xml 
+How ?
+-----
+There is a DTD defined but still for the sake of simplicity 
+{%highlight xml%}
+<Mapping>
+	<Package name="com.springer.test">
+		<Class name="com.springer.test.GoogleTest">
+			 <MethodName name="verifySeleniumTitle" testData="data/TestData_1.xml" clientEnvironment="browsers/FireFoxLocal.xml/>
+		</Class>
+	</Package>
+</Mapping>
+{%endhighlight%}
 
-Mapping.xml is the mapping sheet which maps your test method with testData and BrowserConfiguration. A single test case can be run with n number of different data and n number of Browser configuration.
+if at all we feel that all the test cases under particular class uses the same browser and data configuration then Mapping configuration would look something like below and all the test cases under the class "GoogleTest" will take the configuration defined at class level
+{%highlight xml%}
+<Mapping>
+    <Package name="com.springer.test">
+	<Class name="com.springer.test.GoogleTest" testData="data/TestData_1.xml" clientEnvironment="browsers/FireFoxLocal.xml/>
+	</Package>
+</Mapping>
+{%endhighlight%}
 
-##What if I have 100 test methods ? Do i need to provide configuration for all 100 methods ?
-No dont be scared , mapping xml follows a clear hierarchy of package --> class -->method , which mean if I know all the test classes and inturn testMethod of package will be using BrowserConfiguration:x.xml and TestData:data.xml then i just need to provide these configuration at the package level , test class and method will inherit from the package 
+And similarly if we know all the classes under same package will be having the same configuration then we can omit class as well and simply have package as configuration , and all the test cases under the package will take the same configuration
 
-However if you want to have more control over classes and method then feel free to add configuration at class/Method level 
+{%highlight xml%}
+<Mapping>
+    <Package name="com.springer.test"  testData="data/TestData_1.xml" clientEnvironment="browsers/FireFoxLocal.xml>
+	</Package>
+</Mapping>
+{%endhighlight%}
 
-Omelet basically follows method -->Class -->package hierarchy and looks till package level before throwing any excpetion 
+PS: We can have mix match of configurations as well , example being if we know Test Data file will remain same for all the test cases but BrowserConfiguration changes then we can simple add clientEnvironment at the method/Class level 
 
-##What is BrowserConfiguration 
+##BrowserConfiguration 
 
+As suggested in the configuration documentation over [here]()
 Nothing but Client Environments and we can have multiple ClientEnvironment inside the ClientEnvironments or Different ClientEnvironment for different purpose , like one for Mobile other for Desktop something like 
 
 Sample XMl is below 
-
+{%highlight xml%}
+<ClientEnvironments>
+        <ClientEnvironment
+     	platform = "WINDOWS"
+     	mobileTest = "false"
+     	device = "None"
+    	os="WINDOWS"
+        osVersion="xp"
+        browserName="firefox"
+        browserVersion="25"
+    	remoteFlag = "true"
+    	remoteURL = "http:testRemoteURL"
+    	bsSwitch = "false"
+    	driverTimeOut = "10"
+    	bs_userName = "testusername"
+    	bs_key = "testkey"
+    	bs_urls = "https:test1;https:test2"
+        name="iPad 3"/>
+</ClientEnvironments>
+{%endhighlight%}
 All the Framework.properties configuration can be configured inside ClientEnvironment , however if you have some static values like driverTimeout , consider adding them in Framework.properties file 
 
-Omelet Follows Hierarchy for clientEnvironment as CommandLine-->ClientXmls-->FrameworkProperties-->DefaultConfigs
+
 
 ##What is TestData xml
 
