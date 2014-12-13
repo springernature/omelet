@@ -5,7 +5,7 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en"><!--<![endif]-->
 <head>
 <meta charset="utf-8">
-<title>About the Theme &#8211; Omelet</title>
+<title>Google Sheet Usage &#8211; Omelet</title>
 <meta name="description" content="Automation Framework for Selenium">
 
 
@@ -14,16 +14,16 @@
 <!-- Open Graph -->
 <meta property="og:locale" content="en_US">
 <meta property="og:type" content="article">
-<meta property="og:title" content="About the Theme">
+<meta property="og:title" content="Google Sheet Usage">
 <meta property="og:description" content="Automation Framework for Selenium">
-<meta property="og:url" content="http://localhost:4000/about/index.html">
+<meta property="og:url" content="http://localhost:4000/Documentation/Data/XMLData/index.html">
 <meta property="og:site_name" content="Omelet">
 
 
 
 
 
-<link rel="canonical" href="http://localhost:4000/about/">
+<link rel="canonical" href="http://localhost:4000/Documentation/Data/XMLData/">
 <link href="http://localhost:4000/feed.xml" type="application/atom+xml" rel="alternate" title="Omelet Feed">
 <link rel="author" href="https://google.com/+kapil.aggarwal1?rel=author">
 
@@ -60,7 +60,7 @@
 
 </head>
 
-<body id="page" class="feature">
+<body id="page" >
 
 <!--[if lt IE 9]><div class="upgrade"><strong><a href="http://whatbrowser.org/">Your browser is quite old!</strong> Why not upgrade to a different browser to better enjoy this site?</a></div><![endif]-->
 <nav id="dl-menu" class="dl-menuwrapper" role="navigation">
@@ -131,65 +131,76 @@
 
 
 
-<div class="entry-header">
-  <div class="image-credit">Image source: <a href="http://www.dargadgetz.com/ios-7-abstract-wallpaper-pack-for-iphone-5-and-ipod-touch-retina/">dargadgetz</a></div><!-- /.image-credit -->
-  <div class="entry-image">
-    <img src="http://localhost:4000/images/abstract-5.jpg" alt="About the Theme">
-  </div><!-- /.entry-image -->
-</div><!-- /.entry-header -->
-
 
 <div id="main" role="main">
   <article class="entry">
     <header class="header-title">
       <div class="header-title-wrap">
-        <h1 class="entry-title">About the Theme</h1>
+        <h1 class="entry-title">Google Sheet Usage</h1>
         
         <p class="entry-reading-time">
           <i class="fa fa-clock-o"></i>
           
-          Reading time ~1 minute
+          Reading time ~2 minutes
         </p><!-- /.entry-reading-time -->
         
       </div><!-- /.header-title-wrap -->
     </header>
     <div class="entry-content">
-      <p>They say three times the charm, so here is another free responsive Jekyll theme for you. I&#39;ve learned a ton since open sourcing my first two themes <a href="http://github.com/mmistakes">on Github</a>, and wanted to try a few new things this time around. If you&#39;ve used my previous themes most of this should be familiar territory...</p>
+      <h1 id="how-to-use-xmls-as-data">How to use Xmls as Data</h1>
 
-<h2 id="what-hpstr-brings-to-the-table:">What HPSTR brings to the table:</h2>
+<hr>
 
-<ul>
-<li>Responsive templates for post, page, and post index <code>_layouts</code>. Looks great on mobile, tablet, and desktop devices.</li>
-<li>Gracefully degrads in older browsers. Compatible with Internet Explorer 8+ and all modern browsers.<br></li>
-<li>Modern and minimal design.</li>
-<li>Sweet animated menu.</li>
-<li>Background image support.</li>
-<li>Readable typography to make your words shine.</li>
-<li>Support for large images to call out your favorite posts.</li>
-<li>Comments powered by <a href="http://disqus.com">Disqus</a> if you choose to enable.</li>
-<li>Simple and clear permalink structure[^1].</li>
-<li><a href="https://developers.facebook.com/docs/opengraph/">Open Graph</a> and <a href="https://dev.twitter.com/docs/cards">Twitter Cards</a> support for a better social sharing experience.</li>
-<li>Simple <a href="http://localhost:4000/404.html">custom 404 page</a> to get you started.</li>
-<li>Stylesheets for Pygments and Coderay <a href="http://localhost:4000/code-highlighting-post/">syntax highlighting</a> to make your code examples look snazzy</li>
-<li><a href="http://gruntjs.com">Grunt</a> build script for easy theme development</li>
-</ul>
+<p>Xmls are one of the DataSource in which we can store all the test data and Different BrowserConfiguration.</p>
 
-<div markdown="0"><a href="http://localhost:4000/theme-setup" class="btn btn-info">Install the Theme</a></div>
+<h2 id="why-xmls">Why Xmls</h2>
 
-<p>[^1]: Example: <em>domain.com/category-name/post-title</em></p>
+<p>With xml one can have complex mapping for a testmethod with different data and different browsers.
+Google Sheets test data involves network call and hence are bound to take some time intially while catching the data , but as Xml as sitting right next to code ,so they are pretty fast </p>
+
+<p>Mapping.xml</p>
+
+<p>Mapping.xml is the mapping sheet which maps your test method with testData and BrowserConfiguration. A single test case can be run with n number of different data and n number of Browser configuration.</p>
+
+<h2 id="what-if-i-have-100-test-methods-?-do-i-need-to-provide-configuration-for-all-100-methods-?">What if I have 100 test methods ? Do i need to provide configuration for all 100 methods ?</h2>
+
+<p>No dont be scared , mapping xml follows a clear hierarchy of package --&gt; class --&gt;method , which mean if I know all the test classes and inturn testMethod of package will be using BrowserConfiguration:x.xml and TestData:data.xml then i just need to provide these configuration at the package level , test class and method will inherit from the package </p>
+
+<p>However if you want to have more control over classes and method then feel free to add configuration at class/Method level </p>
+
+<p>Omelet basically follows method --&gt;Class --&gt;package hierarchy and looks till package level before throwing any excpetion </p>
+
+<h2 id="what-is-browserconfiguration">What is BrowserConfiguration</h2>
+
+<p>Nothing but Client Environments and we can have multiple ClientEnvironment inside the ClientEnvironments or Different ClientEnvironment for different purpose , like one for Mobile other for Desktop something like </p>
+
+<p>Sample XMl is below </p>
+
+<p>All the Framework.properties configuration can be configured inside ClientEnvironment , however if you have some static values like driverTimeout , consider adding them in Framework.properties file </p>
+
+<p>Omelet Follows Hierarchy for clientEnvironment as CommandLine--&gt;ClientXmls--&gt;FrameworkProperties--&gt;DefaultConfigs</p>
+
+<h2 id="what-is-testdata-xml">What is TestData xml</h2>
+
+<p>TestData xml basically compliments Pageobject design pattern and <Data> is the tag which actually seprate different data , we can have as many Data objects in <Data> tag and those will be delieverd to your testMethod in IProperty interface and can be accessed using PageName_TagName , we have an extra mandate attributes to Data tag which helps in filtering of your data for different environments </p>
+
+<p>Sample Test Data is below</p>
+
+<p>Now?
+All in all Xml is the first preference to use omelet for me , but feel free to explore google sheets as well as those are having there own advantages</p>
 
       <footer class="entry-meta">
         
         <div class="social-share">
   <ul class="socialcount socialcount-small inline-list">
-    <li class="facebook"><a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/about/index.html" title="Share on Facebook"><span class="count"><i class="fa fa-facebook-square"></i> Like</span></a></li>
-    <li class="twitter"><a href="https://twitter.com/intent/tweet?text=http://localhost:4000/about/index.html" title="Share on Twitter"><span class="count"><i class="fa fa-twitter-square"></i> Tweet</span></a></li>
-    <li class="googleplus"><a href="https://plus.google.com/share?url=http://localhost:4000/about/index.html" title="Share on Google Plus"><span class="count"><i class="fa fa-google-plus-square"></i> +1</span></a></li>
+    <li class="facebook"><a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/Documentation/Data/XMLData/index.html" title="Share on Facebook"><span class="count"><i class="fa fa-facebook-square"></i> Like</span></a></li>
+    <li class="twitter"><a href="https://twitter.com/intent/tweet?text=http://localhost:4000/Documentation/Data/XMLData/index.html" title="Share on Twitter"><span class="count"><i class="fa fa-twitter-square"></i> Tweet</span></a></li>
+    <li class="googleplus"><a href="https://plus.google.com/share?url=http://localhost:4000/Documentation/Data/XMLData/index.html" title="Share on Google Plus"><span class="count"><i class="fa fa-google-plus-square"></i> +1</span></a></li>
   </ul>
 </div><!-- /.social-share -->
       </footer>
     </div><!-- /.entry-content -->
-    
+    <section id="disqus_thread"></section><!-- /#disqus_thread -->
   </article>
 </div><!-- /#main -->
 
@@ -205,6 +216,28 @@
 
 
 
+
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'omelet'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function () {
+            var s = document.createElement('script'); s.async = true;
+            s.type = 'text/javascript';
+            s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+            (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+        }());
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
           
 
 </body>

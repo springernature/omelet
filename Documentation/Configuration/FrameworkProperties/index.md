@@ -3,7 +3,7 @@ layout: page
 title: Framework.properties
 ---
 
-Framework.properties is the fallback properties file for all the BrowserConfiguration, All these values can be overrider from command line by providing as Jvm arguments with syntax something like below.
+Framework.properties is the fallback properties file for all the BrowserConfiguration, All these values can be overriden from command line by providing as Jvm arguments with syntax something like below.
 
 {%highlight text%}
 mvn clean install -DbrowserName=firefox -DremoteFlag=True =Dbs_Switch=false

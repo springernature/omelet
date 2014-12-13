@@ -34,7 +34,7 @@ Now as you have your skeletone ready with few folders , either you can start aut
 
 **BrowserStack**
 {%highlight text %}
-mvn clean install -DremoteFlag=true -Dbs_Switch=true -Dbs_key=yourBrowserStackKey -Dbs_UserName=yourBSName
+mvn clean install -DremoteFlag=true -DbsSwitch=true -Dbs_key=yourBrowserStackKey -Dbs_UserName=yourBSName
 {%endhighlight%} 
 
 or you can run on your test cases on grid using below command
