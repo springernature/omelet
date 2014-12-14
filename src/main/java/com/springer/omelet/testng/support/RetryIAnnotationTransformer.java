@@ -42,6 +42,7 @@ import com.springer.omelet.data.IProperty;
 import com.springer.omelet.data.PrettyMessage;
 import com.springer.omelet.data.RefineMappedData;
 import com.springer.omelet.data.driverconf.IBrowserConf;
+import com.springer.omelet.data.driverconf.PrepareDriverConf;
 import com.springer.omelet.data.googlesheet.GoogleSheetConstant;
 import com.springer.omelet.data.googlesheet.ReadGoogle;
 import com.springer.omelet.data.xml.BrowserXmlParser;
@@ -61,6 +62,8 @@ public class RetryIAnnotationTransformer implements IAnnotationTransformer,
 	private static final Logger LOGGER = Logger
 			.getLogger(RetryIAnnotationTransformer.class);
 	private static boolean testDataPrepared = false;
+	private boolean dataSourceCalculated = false;
+	private String GlobaldataSourceValue;
 
 	public static Set<String> beforeMethodClasses = new HashSet<String>();
 	public static Set<String> afterMethodClasses = new HashSet<String>();
@@ -71,11 +74,24 @@ public class RetryIAnnotationTransformer implements IAnnotationTransformer,
 	@SuppressWarnings("rawtypes")
 	public void transform(ITestAnnotation annotation, Class testClass,
 			Constructor testConstructor, Method testMethod) {
+		
+		if(!dataSourceCalculated){
+			Map<String, String> tempMap = new HashMap<String, String>();
+			PrepareDriverConf configuration = new PrepareDriverConf(tempMap);
+			GlobaldataSourceValue = configuration.refineBrowserValues().checkForRules().get().getDataSource();
+		}
+		
 		if (testMethod != null) {
 			if (annotation.getRetryAnalyzer() == null) {
 				annotation.setRetryAnalyzer(RetryAnalyzer.class);
 				LOGGER.debug("Setting Retry Analyzer for Method:"
 						+ testMethod.getName());
+			}
+			
+			if(StringUtils.isBlank(annotation.getDataProvider()))
+			{
+				annotation.setDataProvider(GlobaldataSourceValue);
+				LOGGER.debug("Setting Data provider for method: " + testMethod.getName() + " value: " + GlobaldataSourceValue);
 			}
 		}
 	}
@@ -116,18 +132,25 @@ public class RetryIAnnotationTransformer implements IAnnotationTransformer,
 			t.start();
 			String evironment = System.getProperty("env-type");
 			// here we can check if the method have any DataProvider
-			for (IMethodInstance method : methods) {
-				String dataProviderName = method.getMethod()
+
+			for (IMethodInstance method : methods) {				
+				String methodDataProviderName = method.getMethod()
 						.getConstructorOrMethod().getMethod()
 						.getAnnotation(org.testng.annotations.Test.class)
 						.dataProvider();
 				Method methodReflect = method.getMethod()
 						.getConstructorOrMethod().getMethod();
-				if (dataProviderName.equals("GoogleData")) {
+				
+				if(StringUtils.isNotBlank(methodDataProviderName)){
+					GlobaldataSourceValue = methodDataProviderName;
+				}				
+
+				if (GlobaldataSourceValue.equals("GoogleData")) {
 					updateGooglSheet(methodReflect, evironment);
-				} else if (dataProviderName.equals("XmlData")) {
+				} else if (GlobaldataSourceValue.equals("XmlData")) {
 					updateXml(methodReflect, evironment);
 				}
+				
 			}
 			prettyMessage.swtichOffLogging();
 			try {
