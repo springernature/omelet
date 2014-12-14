@@ -129,11 +129,7 @@ public class RetryIAnnotationTransformer implements IAnnotationTransformer,
 				Method methodReflect = method.getMethod()
 						.getConstructorOrMethod().getMethod();
 				
-<<<<<<< HEAD
 				if(StringUtils.isNotBlank(methodDataProviderName)){
-=======
-				if(!StringUtils.isNotBlank(methodDataProviderName)){
->>>>>>> a0b263d13a3810465e0424ce086d8cf8f63d0035
 					propertiesDataProviderName = methodDataProviderName;
 				}
 				

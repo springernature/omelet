@@ -249,4 +249,9 @@ public class BrowserConfR implements IBrowserConf {
 		}
 		return false;
 	}
+	
+	public String getDataSource()
+	{
+		return mappedValues.get(DriverConfigurations.FrameworkConfig.dataSource.toString());
+	}
 }
