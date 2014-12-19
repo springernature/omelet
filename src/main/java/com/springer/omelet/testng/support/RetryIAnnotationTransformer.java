@@ -42,6 +42,7 @@ import com.springer.omelet.data.IProperty;
 import com.springer.omelet.data.PrettyMessage;
 import com.springer.omelet.data.RefineMappedData;
 import com.springer.omelet.data.driverconf.IBrowserConf;
+import com.springer.omelet.data.driverconf.PrepareDriverConf;
 import com.springer.omelet.data.googlesheet.GoogleSheetConstant;
 import com.springer.omelet.data.googlesheet.ReadGoogle;
 import com.springer.omelet.data.xml.BrowserXmlParser;
@@ -61,6 +62,8 @@ public class RetryIAnnotationTransformer implements IAnnotationTransformer,
 	private static final Logger LOGGER = Logger
 			.getLogger(RetryIAnnotationTransformer.class);
 	private static boolean testDataPrepared = false;
+	private boolean dataSourceCalculated = false;
+	private String globaldataSourceValue;
 
 	public static Set<String> beforeMethodClasses = new HashSet<String>();
 	public static Set<String> afterMethodClasses = new HashSet<String>();
@@ -71,11 +74,44 @@ public class RetryIAnnotationTransformer implements IAnnotationTransformer,
 	@SuppressWarnings("rawtypes")
 	public void transform(ITestAnnotation annotation, Class testClass,
 			Constructor testConstructor, Method testMethod) {
+		
+		if(!dataSourceCalculated){
+			Map<String, String> tempMap = new HashMap<String, String>();
+			PrepareDriverConf configuration = new PrepareDriverConf(tempMap);
+			globaldataSourceValue = configuration.refineBrowserValues().checkForRules().get().getDataSource();
+			dataSourceCalculated = true;
+		}
+		
 		if (testMethod != null) {
 			if (annotation.getRetryAnalyzer() == null) {
 				annotation.setRetryAnalyzer(RetryAnalyzer.class);
 				LOGGER.debug("Setting Retry Analyzer for Method:"
 						+ testMethod.getName());
+			}
+			
+			
+			/* Check to see if method is using omelete data source or not
+			 * Assumption
+			 * - User will not create its on data source with (IBrowserConf, IProperty) signature
+			 * - If dataProvider annotation is present, then data provider class has to be present
+			 * @TO DO: We can have a separate data validation rules set. Future item
+			 */
+			if(testMethod.getGenericParameterTypes().length == 2 &&
+			   testMethod.getGenericParameterTypes()[0].equals(IBrowserConf.class) && 
+			   testMethod.getGenericParameterTypes()[1].equals(IProperty.class) &&
+			   StringUtils.isNotBlank(globaldataSourceValue))
+			{
+					if((StringUtils.isBlank(annotation.getDataProvider()))){
+						
+						if(annotation.getDataProviderClass() == null){
+							  annotation.setDataProviderClass(com.springer.omelet.data.DataProvider.class);	
+							  LOGGER.debug("Setting Data provider class for method: " + testMethod.getName() + " value " +
+									  annotation.getDataProviderClass().getName());
+							}
+						
+						annotation.setDataProvider(globaldataSourceValue);
+						LOGGER.debug("Setting Data provider for method: " + testMethod.getName() + " value: " + annotation.getDataProvider());
+					}
 			}
 		}
 	}
@@ -116,13 +152,14 @@ public class RetryIAnnotationTransformer implements IAnnotationTransformer,
 			t.start();
 			String evironment = System.getProperty("env-type");
 			// here we can check if the method have any DataProvider
-			for (IMethodInstance method : methods) {
+			for (IMethodInstance method : methods) {				
 				String dataProviderName = method.getMethod()
 						.getConstructorOrMethod().getMethod()
 						.getAnnotation(org.testng.annotations.Test.class)
 						.dataProvider();
 				Method methodReflect = method.getMethod()
 						.getConstructorOrMethod().getMethod();
+
 				if (dataProviderName.equals("GoogleData")) {
 					updateGooglSheet(methodReflect, evironment);
 				} else if (dataProviderName.equals("XmlData")) {
