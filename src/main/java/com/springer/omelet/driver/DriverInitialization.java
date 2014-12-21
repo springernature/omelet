@@ -25,9 +25,8 @@ import org.testng.IInvokedMethod;
 import org.testng.IInvokedMethodListener;
 import org.testng.ITestResult;
 import org.testng.Reporter;
-
+import com.springer.omelet.data.MethodContextCollection;
 import com.springer.omelet.testng.support.HtmlTable;
-import com.springer.omelet.testng.support.RetryIAnnotationTransformer;
 import com.springer.omelet.testng.support.SAssert;
 
 /***
@@ -43,7 +42,8 @@ public class DriverInitialization implements IInvokedMethodListener {
 			.getLogger(DriverInitialization.class);
 	// output dir of TestNg currently being used in SAssert
 	public static String outPutDir;
-
+	private MethodContextCollection methodContextCollection = MethodContextCollection.getInstance();
+	
 	/***
 	 * This Method Set the driver if @BeforeMethod Configuration present if not
 	 * then set the driver for @Test Methods
@@ -116,8 +116,7 @@ public class DriverInitialization implements IInvokedMethodListener {
 			String cName = className.getName();
 			Class<?> classN = className;
 			while (!cName.contains("java.lang.Object")) {
-				if (RetryIAnnotationTransformer.beforeMethodClasses
-						.contains(cName)) {
+				if (methodContextCollection.getMethodContext(className.getName()).getBeforeMethod().contains(cName)) {
 					return true;
 				} else {
 					classN = classN.getSuperclass();
@@ -175,8 +174,7 @@ public class DriverInitialization implements IInvokedMethodListener {
 			String cName = className.getName();
 			Class<?> classN = className;
 			while (!cName.contains("java.lang.Object")) {
-				if (RetryIAnnotationTransformer.afterMethodClasses
-						.contains(cName)) {
+				if (methodContextCollection.getMethodContext(className.getName()).getAfterMethod().contains(cName)) {
 					return true;
 				} else {
 					classN = classN.getSuperclass();
