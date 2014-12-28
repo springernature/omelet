@@ -31,7 +31,7 @@ public class DriverConfigurations {
 	 */
 	public enum FrameworkConfig {
 		remoteFlag("false"), driverTimeOut("30"), retryFailedTestCase("0"), highlightElementFlag(
-				"false"), screenShotFlag("true"), dataSource("");
+				"false"), screenShotFlag("true");
 		private String defaultValue;
 
 		FrameworkConfig(String defaultValue) {
