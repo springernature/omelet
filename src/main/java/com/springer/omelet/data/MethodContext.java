@@ -2,17 +2,14 @@ package com.springer.omelet.data;
 
 import java.lang.reflect.Method;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import org.apache.commons.lang3.StringUtils;
 import org.testng.IRetryAnalyzer;
 import org.testng.annotations.ITestAnnotation;
 import org.testng.log4testng.Logger;
 
-import com.springer.omelet.data.DataSource;
 import com.springer.omelet.data.DataProvider.mapStrategy;
 import com.springer.omelet.data.driverconf.IBrowserConf;
 import com.springer.omelet.data.driverconf.PrepareDriverConf;
@@ -99,11 +96,13 @@ public class MethodContext implements IMethodContext {
 			PrepareDriverConf configuration = new PrepareDriverConf(tempMap);
 			try
 			{
+				//no need for CheckforRules as it only adds confusion
 				dataSource = DataSource.valueOf(configuration.refineBrowserValues().checkForRules().get().getDataSource());
 			}
 			catch(Exception exp) 
 			{
-				dataSource = DataSource.Invalid;
+				throw new FrameworkException("it seems there is no DatSource provided for the testMethod:"+methodName);
+				//dataSource = DataSource.Invalid;
 			}
 			isDataSourceCalculated = true;
 		}
@@ -153,9 +152,12 @@ public class MethodContext implements IMethodContext {
 			updateXml(testMethod, evironment);
 		}
 	}
+	
+	
 
     private void verifyDataProviderName(ITestAnnotation testAnnotation,
             Method testMethod) {
+    	
         if (StringUtils.isNotBlank(testAnnotation.getDataProvider())) {
             if (!(testAnnotation.getDataProvider().equalsIgnoreCase(DataSource.GoogleData.toString()) || testAnnotation
                     .getDataProvider().equalsIgnoreCase(DataSource.XmlData.toString()))) {
@@ -175,7 +177,8 @@ public class MethodContext implements IMethodContext {
 
     private void verifyDataProviderClass(ITestAnnotation testAnnotation,
             Method testMethod) {
-        if (StringUtils.isNotBlank(testAnnotation.getDataProviderClass()
+    	
+        if (testAnnotation.getDataProviderClass() != null && StringUtils.isNotBlank(testAnnotation.getDataProviderClass()
                 .toString())) {
             if (!testAnnotation.getDataProviderClass().equals(
                     com.springer.omelet.data.DataProvider.class)) {

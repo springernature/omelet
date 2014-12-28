@@ -26,7 +26,6 @@ import java.util.Set;
 import org.apache.log4j.Logger;
 
 import com.springer.omelet.data.driverconf.IBrowserConf;
-import com.springer.omelet.testng.support.RetryIAnnotationTransformer;
 
 /***
  * Data Provider class for the @Test Methods

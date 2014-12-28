@@ -4,6 +4,11 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * 
+ * Class for Holding MethodContext per TestMethod
+ *
+ */
 public class MethodContextCollection {
 	
 	private static MethodContextCollection instance;

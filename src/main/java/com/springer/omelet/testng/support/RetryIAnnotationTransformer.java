@@ -31,7 +31,6 @@ import org.testng.annotations.IDataProviderAnnotation;
 import org.testng.annotations.IFactoryAnnotation;
 import org.testng.annotations.ITestAnnotation;
 
-import com.springer.omelet.data.IMethodContext;
 import com.springer.omelet.data.MethodContext;
 import com.springer.omelet.data.MethodContextCollection;
 import com.springer.omelet.data.PrettyMessage;
@@ -52,14 +51,21 @@ public class RetryIAnnotationTransformer implements IAnnotationTransformer,
 	@SuppressWarnings("rawtypes")
 	public void transform(ITestAnnotation annotation, Class testClass,
 			Constructor testConstructor, Method testMethod){
-		MethodContext context = new MethodContext(testMethod.getName());
+		
 		if(testMethod != null)
 		{
+			MethodContext context = new MethodContext(getFullMethodName(testMethod));
 			context.setRetryAnalyser(annotation);
 			context.setDataProvider(annotation, testMethod);
-			context.setDataProvider(annotation, testMethod);
 			context.setBeforeAfterMethod(testMethod);
+			//update methodContextCollection
+			methodContextCollection.updateMethodContext(getFullMethodName(testMethod), context);
 		}
+		
+	}
+	
+	private static String getFullMethodName(Method m) {
+		return m.getDeclaringClass().getName() + "." + m.getName();
 	}
 
 	@SuppressWarnings("rawtypes")
@@ -89,7 +95,7 @@ public class RetryIAnnotationTransformer implements IAnnotationTransformer,
 			for (IMethodInstance method : methods) {	
 				Method methodReflect = method.getMethod()
 						.getConstructorOrMethod().getMethod();
-				methodContextCollection.getMethodContext(methodReflect.getName()).updateTestData(methodReflect);
+				methodContextCollection.getMethodContext(getFullMethodName(methodReflect)).updateTestData(methodReflect);
 			}
 			prettyMessage.swtichOffLogging();
 			try {
