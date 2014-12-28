@@ -59,5 +59,7 @@ public interface IBrowserConf {
 	public boolean isScreenShotFlag();
 
 	public boolean isMobileTest();
+	
+	public String getDataSource();
 
 }

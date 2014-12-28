@@ -1,3 +1,17 @@
+
+	**********************************************
+	**********************************************
+	                      .__          __
+	  ____   _____   ____ |  |   _____/  |_
+	/  _  \ /     \_/ __ \|  | _/ __ \   __\
+	( <_>  )  Y Y  \  ___/|  |_\  ___/|  |
+	\____ /|__|_|  /\___  >____/\___  >__|
+	        \/     \/          \/
+	**********************************************
+	           LET'S COOK SOME TESTS!
+	**********************************************
+ 
+
 omelet
 ======
 [![Build Status](https://travis-ci.org/springer-opensource/omelet.svg?branch=master)](https://travis-ci.org/springer-opensource/omelet)
@@ -17,17 +31,28 @@ Salient Features
 * Command Line support for CI integration
 * ExpectedConditionsExtended for PageObjects Design pattern
 * Auto Re-Run failed test cases
- and many more ...
+ and many more ... 
 
 Build
--------
+------
 1. mvn clean install
-2. Jar will be created in target folder with name :**omelet-1.0.0.jar**
+2. Jar will be created in target folder with name :**omelet-1.0.xxx.jar**
+    
+
 
 Quick Start
 ----------
-* install maven 
-* copy dependency in your project
+* Simple and StraightForward use omelet archetype run below command in console/Terminal(dont forgot to change groupId and artifactId in the command:))
+Simply use below archType
+
+	**mvn archetype:generate -DgroupId=com.yourGroupId -DartifactId=my-app 			  -DarchetypeArtifactId=omelet-archetype-simple -DarchetypeGroupId=com.springer**
+	
+Cd into the created folder , and then run **mvn clean install**
+	
+	
+
+* Or if you want to start manaully then follow below procedure 
+
  
 
 ####For mavenised project
@@ -40,7 +65,7 @@ copy omelet dependency and add to your pom.xml
         </dependency>
  
 
-
+Latest version can be checked on maven central over [here](http://maven-repository.com/search?q=omelet)
 
 And reportNG dependency
 
@@ -94,8 +119,13 @@ You may face issue with dependencies related to ReportNG, do read this [blog](ht
 
 Data
 ----------
-Currently omelet supports xml and simple properties file and very soon it will be supporting Google Sheets
+* Simple Properties file
+* Xml 
+* And now Google Sheets as well 
 
+Discussions
+------------
+Google Grooups: https://groups.google.com/forum/#!forum/omelet
 Example Projects
 --------------
  [omelet-example-dataset](https://github.com/springer-opensource/omelet-example-dataset)
