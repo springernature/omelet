@@ -25,6 +25,7 @@ import java.util.Set;
 
 import org.apache.log4j.Logger;
 
+import com.springer.omelet.common.Utils;
 import com.springer.omelet.data.driverconf.IBrowserConf;
 import com.springer.omelet.testng.support.MethodContextCollection;
 
@@ -43,19 +44,16 @@ public class DataProvider {
 	@SuppressWarnings("unused")
 	private static final Logger LOGGER = Logger.getLogger(DataProvider.class);
 	
-	private static String getFullMethodName(Method m) {
-		return m.getDeclaringClass().getName() + "." + m.getName();
-	}
 
 	@org.testng.annotations.DataProvider(name = "GoogleData", parallel = true)
 	public static Object[][] googleSheetDataProvider(Method m) {
-		String testMethodName = getFullMethodName(m);
+		String testMethodName = Utils.getFullMethodName(m);
 		return getData(testMethodName);
 	}
 
 	@org.testng.annotations.DataProvider(name = "XmlData", parallel = true)
 	public static Object[][] xmlDataProvider(Method m) {
-		String methodName = getFullMethodName(m);
+		String methodName = Utils.getFullMethodName(m);
 		return getData(methodName);
 	}
 
