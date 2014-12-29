@@ -243,7 +243,6 @@ public class MethodContext implements IMethodContext {
 
 	@Override
 	public boolean isAfterMethod() {
-		// TODO Auto-generated method stub
 		return afterMethod;
 	}
 
@@ -258,7 +257,6 @@ public class MethodContext implements IMethodContext {
 
 	@Override
 	public boolean isBeforeMethod() {
-		// TODO Auto-generated method stub
 		return beforeMethod;
 	}
 

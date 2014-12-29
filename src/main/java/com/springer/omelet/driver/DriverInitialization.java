@@ -26,7 +26,10 @@ import org.testng.IInvokedMethodListener;
 import org.testng.ITestResult;
 import org.testng.Reporter;
 
+import com.springer.omelet.common.Utils;
+import com.springer.omelet.data.IMethodContext;
 import com.springer.omelet.testng.support.HtmlTable;
+import com.springer.omelet.testng.support.MethodContextCollection;
 import com.springer.omelet.testng.support.SAssert;
 
 /***
@@ -78,10 +81,9 @@ public class DriverInitialization implements IInvokedMethodListener {
 	 */
 	public void afterInvocation(IInvokedMethod method, ITestResult testResult) {
 		if (method.isTestMethod()) {
-			Class<?> className = method.getTestMethod()
-					.getConstructorOrMethod().getDeclaringClass();
-			boolean beforeMethodPresent = checkBeforeMethod(className);
-			boolean afterMethodShouldbePresent = checkAfterMethod(className);
+			IMethodContext methodContext = MethodContextCollection.getMethodContext(Utils.getFullMethodName(method.getTestMethod().getConstructorOrMethod().getMethod()));
+			boolean beforeMethodPresent = methodContext.isBeforeMethod();
+			boolean afterMethodShouldbePresent = methodContext.isAfterMethod();
 
 			publishHtmlTable(testResult);
 			addScreenShot(testResult);
@@ -102,34 +104,7 @@ public class DriverInitialization implements IInvokedMethodListener {
 		}
 	}
 
-	/***
-	 * Check for BeforeMethod in the given class and All super class till
-	 * java.lang.Object
-	 * 
-	 * @param className
-	 * @return
-	 * @author kapilA
-	 */
-	private boolean checkBeforeMethod(Class<?> className) {
-		try {
-			String cName = className.getName();
-			Class<?> classN = className;
-			/*while (!cName.contains("java.lang.Object")) {
-				if (MethodContextCollection.getMethodContext(className.getName()).getBeforeMethod().contains(cName)) {
-					return true;
-				} else {
-					classN = classN.getSuperclass();
-					cName = classN.getName();
-				}
-			}*/
-			return false;
-		} catch (Exception e) {
-			LOGGER.info(
-					"Catching exception in checkBeforeMethod and returning false",
-					e);
-			return false;
-		}
-	}
+	
 
 	/***
 	 * Driver quit and clearing AssertMap in Soft Assert, Cleaning BrowserStack
@@ -160,34 +135,7 @@ public class DriverInitialization implements IInvokedMethodListener {
 		}
 	}
 
-	/**
-	 * Check for AfterMethod in the given class and All super class till
-	 * java.lang.Object
-	 * 
-	 * @param className
-	 * @return
-	 * @author kapilA
-	 */
-	private boolean checkAfterMethod(Class<?> className) {
-		try {
-			String cName = className.getName();
-			Class<?> classN = className;
-			/*while (!cName.contains("java.lang.Object")) {
-				if (MethodContextCollection.getMethodContext(className.getName()).getAfterMethod().contains(cName)) {
-					return true;
-				} else {
-					classN = classN.getSuperclass();
-					cName = classN.getName();
-				}
-			}*/
-			return false;
-		} catch (Exception e) {
-			LOGGER.info(
-					"Catching exception in CheckAfterMethod and returnig false",
-					e);
-			return false;
-		}
-	}
+	
 
 	/***
 	 * Adds HTML Table with data in the output report

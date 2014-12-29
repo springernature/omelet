@@ -34,6 +34,7 @@ import org.testng.annotations.IDataProviderAnnotation;
 import org.testng.annotations.IFactoryAnnotation;
 import org.testng.annotations.ITestAnnotation;
 
+import com.springer.omelet.common.Utils;
 import com.springer.omelet.data.IMappingData;
 import com.springer.omelet.data.MethodContext;
 import com.springer.omelet.data.PrettyMessage;
@@ -70,14 +71,12 @@ public class RetryIAnnotationTransformer implements IAnnotationTransformer,
 			context.setDataProvider(annotation, testMethod);
 			//update methodContextCollection
 			//methodContextCollection.updateMethodContext(getFullMethodName(testMethod), context);
-			methodContextHolder.put(getFullMethodName(testMethod), context);
+			methodContextHolder.put(Utils.getFullMethodName(testMethod), context);
 		}
 		
 	}
 	
-	private static String getFullMethodName(Method m) {
-		return m.getDeclaringClass().getName() + "." + m.getName();
-	}
+	
 
 	@SuppressWarnings("rawtypes")
 	public void transform(IConfigurationAnnotation annotation, Class testClass,
@@ -106,12 +105,12 @@ public class RetryIAnnotationTransformer implements IAnnotationTransformer,
 			for (IMethodInstance method : methods) {	
 				Method methodReflect = method.getMethod()
 						.getConstructorOrMethod().getMethod();
-				switch(methodContextHolder.get(getFullMethodName(methodReflect)).getDataProvider()){
+				switch(methodContextHolder.get(Utils.getFullMethodName(methodReflect)).getDataProvider()){
 				case GoogleData:
-					updateGoogleSheet(methodReflect, System.getProperty("env-type"), methodContextHolder.get(getFullMethodName(methodReflect)));
+					updateGoogleSheet(methodReflect, System.getProperty("env-type"), methodContextHolder.get(Utils.getFullMethodName(methodReflect)));
 					break;
 				case XmlData:
-					updateXml(methodReflect, System.getProperty("env-type"), methodContextHolder.get(getFullMethodName(methodReflect)));
+					updateXml(methodReflect, System.getProperty("env-type"), methodContextHolder.get(Utils.getFullMethodName(methodReflect)));
 					break;
 					default:
 						break;
