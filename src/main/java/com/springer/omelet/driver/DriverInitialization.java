@@ -25,7 +25,7 @@ import org.testng.IInvokedMethod;
 import org.testng.IInvokedMethodListener;
 import org.testng.ITestResult;
 import org.testng.Reporter;
-import com.springer.omelet.data.MethodContextCollection;
+
 import com.springer.omelet.testng.support.HtmlTable;
 import com.springer.omelet.testng.support.SAssert;
 
@@ -42,7 +42,6 @@ public class DriverInitialization implements IInvokedMethodListener {
 			.getLogger(DriverInitialization.class);
 	// output dir of TestNg currently being used in SAssert
 	public static String outPutDir;
-	private MethodContextCollection methodContextCollection = MethodContextCollection.getInstance();
 	
 	/***
 	 * This Method Set the driver if @BeforeMethod Configuration present if not
@@ -115,14 +114,14 @@ public class DriverInitialization implements IInvokedMethodListener {
 		try {
 			String cName = className.getName();
 			Class<?> classN = className;
-			while (!cName.contains("java.lang.Object")) {
-				if (methodContextCollection.getMethodContext(className.getName()).getBeforeMethod().contains(cName)) {
+			/*while (!cName.contains("java.lang.Object")) {
+				if (MethodContextCollection.getMethodContext(className.getName()).getBeforeMethod().contains(cName)) {
 					return true;
 				} else {
 					classN = classN.getSuperclass();
 					cName = classN.getName();
 				}
-			}
+			}*/
 			return false;
 		} catch (Exception e) {
 			LOGGER.info(
@@ -173,14 +172,14 @@ public class DriverInitialization implements IInvokedMethodListener {
 		try {
 			String cName = className.getName();
 			Class<?> classN = className;
-			while (!cName.contains("java.lang.Object")) {
-				if (methodContextCollection.getMethodContext(className.getName()).getAfterMethod().contains(cName)) {
+			/*while (!cName.contains("java.lang.Object")) {
+				if (MethodContextCollection.getMethodContext(className.getName()).getAfterMethod().contains(cName)) {
 					return true;
 				} else {
 					classN = classN.getSuperclass();
 					cName = classN.getName();
 				}
-			}
+			}*/
 			return false;
 		} catch (Exception e) {
 			LOGGER.info(

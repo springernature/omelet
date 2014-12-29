@@ -18,8 +18,11 @@ package com.springer.omelet.testng.support;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.testng.IAnnotationTransformer;
 import org.testng.IAnnotationTransformer2;
@@ -31,9 +34,16 @@ import org.testng.annotations.IDataProviderAnnotation;
 import org.testng.annotations.IFactoryAnnotation;
 import org.testng.annotations.ITestAnnotation;
 
+import com.springer.omelet.data.IMappingData;
 import com.springer.omelet.data.MethodContext;
-import com.springer.omelet.data.MethodContextCollection;
 import com.springer.omelet.data.PrettyMessage;
+import com.springer.omelet.data.RefineMappedData;
+import com.springer.omelet.data.googlesheet.GoogleSheetConstant;
+import com.springer.omelet.data.googlesheet.ReadGoogle;
+import com.springer.omelet.data.xml.BrowserXmlParser;
+import com.springer.omelet.data.xml.MappingParserRevisit;
+import com.springer.omelet.data.xml.XmlApplicationData;
+import com.springer.omelet.exception.FrameworkException;
 
 /***
  * For Appending Retry Annotation on All Test Cases and creating Map of classes
@@ -46,7 +56,8 @@ public class RetryIAnnotationTransformer implements IAnnotationTransformer,
 		IAnnotationTransformer2, IMethodInterceptor {
 	private static final Logger LOGGER = Logger
 			.getLogger(RetryIAnnotationTransformer.class);
-	private MethodContextCollection methodContextCollection = MethodContextCollection.getInstance();
+	//private MethodContextCollection methodContextCollection = MethodContextCollection.getInstance();
+	protected static final Map<String,MethodContext> methodContextHolder = new HashMap<String, MethodContext>();
 	
 	@SuppressWarnings("rawtypes")
 	public void transform(ITestAnnotation annotation, Class testClass,
@@ -54,12 +65,12 @@ public class RetryIAnnotationTransformer implements IAnnotationTransformer,
 		
 		if(testMethod != null)
 		{
-			MethodContext context = new MethodContext(getFullMethodName(testMethod));
+			MethodContext context = new MethodContext(testMethod);
 			context.setRetryAnalyser(annotation);
 			context.setDataProvider(annotation, testMethod);
-			context.setBeforeAfterMethod(testMethod);
 			//update methodContextCollection
-			methodContextCollection.updateMethodContext(getFullMethodName(testMethod), context);
+			//methodContextCollection.updateMethodContext(getFullMethodName(testMethod), context);
+			methodContextHolder.put(getFullMethodName(testMethod), context);
 		}
 		
 	}
@@ -95,7 +106,17 @@ public class RetryIAnnotationTransformer implements IAnnotationTransformer,
 			for (IMethodInstance method : methods) {	
 				Method methodReflect = method.getMethod()
 						.getConstructorOrMethod().getMethod();
-				methodContextCollection.getMethodContext(getFullMethodName(methodReflect)).updateTestData(methodReflect);
+				switch(methodContextHolder.get(getFullMethodName(methodReflect)).getDataProvider()){
+				case GoogleData:
+					updateGoogleSheet(methodReflect, System.getProperty("env-type"), methodContextHolder.get(getFullMethodName(methodReflect)));
+					break;
+				case XmlData:
+					updateXml(methodReflect, System.getProperty("env-type"), methodContextHolder.get(getFullMethodName(methodReflect)));
+					break;
+					default:
+						break;
+				}
+				//methodContextCollection.getMethodContext(getFullMethodName(methodReflect))
 			}
 			prettyMessage.swtichOffLogging();
 			try {
@@ -104,5 +125,58 @@ public class RetryIAnnotationTransformer implements IAnnotationTransformer,
 				LOGGER.error(e);
 			}
 		return methods;
+	}
+	
+	private void checkGoogleUserNameAndPassword(String methodName) {
+		if (StringUtils.isBlank(System
+				.getProperty(GoogleSheetConstant.GOOGLEUSERNAME))
+				&& StringUtils.isBlank(System
+						.getProperty(GoogleSheetConstant.GOOGLEPASSWD))
+				&& StringUtils.isBlank(System
+						.getProperty(GoogleSheetConstant.GOOGLESHEETNAME))) {
+			//This is not the solution as TestNG is not logging the exception hence setting it here
+			LOGGER.info("Method with name:"
+							+ methodName
+							+ "required Google Sheet as Test Data , please provide arguments -DgoogleUsername and -DgoogelPassword");
+			throw new FrameworkException(
+					"Method with name:"
+							+ methodName
+							+ "required Google Sheet as Test Data , please provide arguments -DgoogleUsername and -DgoogelPassword");
+		}
+	}
+    
+	private void updateGoogleSheet(Method method, String environment,MethodContext methodContext) {
+		String methodName = method.getDeclaringClass().getName() + "."
+				+ method.getName();
+		checkGoogleUserNameAndPassword(methodName);
+		// System.out.println(System.getProperty(googleUsername));
+		ReadGoogle readGoogle = new ReadGoogle(
+				System.getProperty(GoogleSheetConstant.GOOGLEUSERNAME),
+				System.getProperty(GoogleSheetConstant.GOOGLEPASSWD),
+				System.getProperty(GoogleSheetConstant.GOOGLESHEETNAME));
+		RefineMappedData refinedData = new RefineMappedData(readGoogle);
+		IMappingData mapData = refinedData.getMethodData(method);
+		methodContext.setBrowserConf(readGoogle.getBrowserListForSheet(mapData));
+		methodContext.setTestData(readGoogle.getMethodData(environment, mapData));
+        methodContext.setRunStrategy(mapData.getRunStartegy());
+
+	}
+	
+	private void updateXml(Method method, String environment,MethodContext methodContext) {
+		MappingParserRevisit mpr = new MappingParserRevisit("Mapping.xml");
+		RefineMappedData refinedMappedData = new RefineMappedData(mpr);
+		IMappingData mapD = refinedMappedData.getMethodData(method);
+		XmlApplicationData xmlapData = null;
+		if (environment != null && !StringUtils.isBlank(environment)) {
+			// get the xml name from MappingParser Static Method
+			xmlapData = new XmlApplicationData(mapD.getTestData(), environment);
+			methodContext.setTestData(xmlapData.getAppData()); 
+		} else {
+			xmlapData = new XmlApplicationData(mapD.getTestData());
+			methodContext.setTestData(xmlapData.getAppData());
+		}
+		BrowserXmlParser bxp = new BrowserXmlParser(mapD.getClientEnvironment());		 
+		methodContext.setBrowserConf(bxp.getBrowserConf());
+		methodContext.setRunStrategy(mapD.getRunStartegy());
 	}
 }

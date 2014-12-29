@@ -26,6 +26,7 @@ import java.util.Set;
 import org.apache.log4j.Logger;
 
 import com.springer.omelet.data.driverconf.IBrowserConf;
+import com.springer.omelet.testng.support.MethodContextCollection;
 
 /***
  * Data Provider class for the @Test Methods
@@ -41,7 +42,6 @@ public class DataProvider {
 
 	@SuppressWarnings("unused")
 	private static final Logger LOGGER = Logger.getLogger(DataProvider.class);
-	private static MethodContextCollection methodContextCollection = MethodContextCollection.getInstance();
 	
 	private static String getFullMethodName(Method m) {
 		return m.getDeclaringClass().getName() + "." + m.getName();
@@ -74,11 +74,11 @@ public class DataProvider {
 	 */
 	public static Object[][] getData(String methodName) {
 		Object[][] testMethodData = null;
-		List<IBrowserConf> browserConfFilteredList = filterSameBrowsers(methodContextCollection.getMethodContext(methodName).
+		List<IBrowserConf> browserConfFilteredList = filterSameBrowsers(MethodContextCollection.getMethodContext(methodName).
 				getBrowserConf());
 
-		List<IProperty> testMData = methodContextCollection.getMethodContext(methodName).getMethodTestData();
-		mapStrategy strategy = methodContextCollection.getMethodContext(methodName).getRunStrategy();
+		List<IProperty> testMData = MethodContextCollection.getMethodContext(methodName).getMethodTestData();
+		mapStrategy strategy = MethodContextCollection.getMethodContext(methodName).getRunStrategy();
 		int browserConfCount = browserConfFilteredList.size();
 		int testDataCount = testMData.size();
 		int loopCombination;

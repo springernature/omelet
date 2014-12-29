@@ -1,6 +1,5 @@
 package com.springer.omelet.data;
 
-import java.lang.reflect.Method;
 import java.util.List;
 
 import org.testng.IRetryAnalyzer;
@@ -14,8 +13,7 @@ public interface IMethodContext {
 	public List<IBrowserConf> getBrowserConf();
 	public mapStrategy getRunStrategy();
 	public DataSource getDataProvider();
-	public String getAfterMethod();
-	public String getBeforeMethod();
+	public boolean isAfterMethod();
+	public boolean isBeforeMethod();
 	public IRetryAnalyzer getRetryAnalyzer();
-	public void updateTestData(Method testMethod);
 }
