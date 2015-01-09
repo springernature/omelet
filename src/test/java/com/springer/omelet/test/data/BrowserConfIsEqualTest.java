@@ -74,18 +74,18 @@ public class BrowserConfIsEqualTest {
 		browserConfValues1.put(DriverConfigurations.LocalEnvironmentConfig.browserName.toString(),
 				"firefox");
 		browserConfValues1.put(DriverConfigurations.FrameworkConfig.remoteFlag.toString(), "true");
-		browserConfValues1.put(DriverConfigurations.BrowserStackConfig.bsSwitch.toString(), "true");
-		browserConfValues1.put(DriverConfigurations.BrowserStackConfig.browserVersion.toString(), "11");
-		browserConfValues1.put(DriverConfigurations.BrowserStackConfig.os.toString(), "Windows");
-		browserConfValues1.put(DriverConfigurations.BrowserStackConfig.osVersion.toString(), "XP");
+		browserConfValues1.put(DriverConfigurations.CloudConfig.bsSwitch.toString(), "true");
+		browserConfValues1.put(DriverConfigurations.CloudConfig.browserVersion.toString(), "11");
+		browserConfValues1.put(DriverConfigurations.CloudConfig.os.toString(), "Windows");
+		browserConfValues1.put(DriverConfigurations.CloudConfig.osVersion.toString(), "XP");
 
 		browserConfValues2.put(DriverConfigurations.LocalEnvironmentConfig.browserName.toString(),
 				"firefox");
 		browserConfValues2.put(DriverConfigurations.FrameworkConfig.remoteFlag.toString(), "true");
-		browserConfValues2.put(DriverConfigurations.BrowserStackConfig.bsSwitch.toString(), "true");
-		browserConfValues2.put(DriverConfigurations.BrowserStackConfig.browserVersion.toString(), "11");
-		browserConfValues2.put(DriverConfigurations.BrowserStackConfig.os.toString(), "Windows");
-		browserConfValues2.put(DriverConfigurations.BrowserStackConfig.osVersion.toString(), "XP");
+		browserConfValues2.put(DriverConfigurations.CloudConfig.bsSwitch.toString(), "true");
+		browserConfValues2.put(DriverConfigurations.CloudConfig.browserVersion.toString(), "11");
+		browserConfValues2.put(DriverConfigurations.CloudConfig.os.toString(), "Windows");
+		browserConfValues2.put(DriverConfigurations.CloudConfig.osVersion.toString(), "XP");
 
 		BrowserConfR obj1 = new BrowserConfR(browserConfValues1);
 		BrowserConfR obj2 = new BrowserConfR(browserConfValues2);
@@ -100,23 +100,23 @@ public class BrowserConfIsEqualTest {
 		browserConfValues1.put(DriverConfigurations.LocalEnvironmentConfig.browserName.toString(),
 				"firefox");
 		browserConfValues1.put(DriverConfigurations.FrameworkConfig.remoteFlag.toString(), "true");
-		browserConfValues1.put(DriverConfigurations.BrowserStackConfig.bsSwitch.toString(), "true");
-		browserConfValues1.put(DriverConfigurations.BrowserStackConfig.mobileTest.toString(), "false");
-		browserConfValues1.put(DriverConfigurations.BrowserStackConfig.browserVersion.toString(), "11");
-		browserConfValues1.put(DriverConfigurations.BrowserStackConfig.os.toString(), "Windows");
-		browserConfValues1.put(DriverConfigurations.BrowserStackConfig.osVersion.toString(), "XP");
-		browserConfValues1.put(DriverConfigurations.BrowserStackConfig.bs_localTesting.toString(),
+		browserConfValues1.put(DriverConfigurations.CloudConfig.bsSwitch.toString(), "true");
+		browserConfValues1.put(DriverConfigurations.CloudConfig.mobileTest.toString(), "false");
+		browserConfValues1.put(DriverConfigurations.CloudConfig.browserVersion.toString(), "11");
+		browserConfValues1.put(DriverConfigurations.CloudConfig.os.toString(), "Windows");
+		browserConfValues1.put(DriverConfigurations.CloudConfig.osVersion.toString(), "XP");
+		browserConfValues1.put(DriverConfigurations.CloudConfig.bs_localTesting.toString(),
 				"true");
 
 		browserConfValues2.put(DriverConfigurations.LocalEnvironmentConfig.browserName.toString(),
 				"firefox");
 		browserConfValues2.put(DriverConfigurations.FrameworkConfig.remoteFlag.toString(), "true");
-		browserConfValues2.put(DriverConfigurations.BrowserStackConfig.bsSwitch.toString(), "true");
-		browserConfValues2.put(DriverConfigurations.BrowserStackConfig.mobileTest.toString(), "false");
-		browserConfValues2.put(DriverConfigurations.BrowserStackConfig.browserVersion.toString(), "11");
-		browserConfValues2.put(DriverConfigurations.BrowserStackConfig.os.toString(), "Windows");
-		browserConfValues2.put(DriverConfigurations.BrowserStackConfig.osVersion.toString(), "XP");
-		browserConfValues2.put(DriverConfigurations.BrowserStackConfig.bs_localTesting.toString(),
+		browserConfValues2.put(DriverConfigurations.CloudConfig.bsSwitch.toString(), "true");
+		browserConfValues2.put(DriverConfigurations.CloudConfig.mobileTest.toString(), "false");
+		browserConfValues2.put(DriverConfigurations.CloudConfig.browserVersion.toString(), "11");
+		browserConfValues2.put(DriverConfigurations.CloudConfig.os.toString(), "Windows");
+		browserConfValues2.put(DriverConfigurations.CloudConfig.osVersion.toString(), "XP");
+		browserConfValues2.put(DriverConfigurations.CloudConfig.bs_localTesting.toString(),
 				"false");
 
 		BrowserConfR obj1 = new BrowserConfR(browserConfValues1);
@@ -133,23 +133,23 @@ public class BrowserConfIsEqualTest {
 		browserConfValues1.put(DriverConfigurations.LocalEnvironmentConfig.browserName.toString(),
 				"firefox");
 		browserConfValues1.put(DriverConfigurations.FrameworkConfig.remoteFlag.toString(), "true");
-		browserConfValues1.put(DriverConfigurations.BrowserStackConfig.bsSwitch.toString(), "true");
-		browserConfValues1.put(DriverConfigurations.BrowserStackConfig.mobileTest.toString(), "false");
-		browserConfValues1.put(DriverConfigurations.BrowserStackConfig.browserVersion.toString(), "11");
-		browserConfValues1.put(DriverConfigurations.BrowserStackConfig.os.toString(), "Mac");
-		browserConfValues1.put(DriverConfigurations.BrowserStackConfig.osVersion.toString(), "XP");
-		browserConfValues1.put(DriverConfigurations.BrowserStackConfig.bs_localTesting.toString(),
+		browserConfValues1.put(DriverConfigurations.CloudConfig.bsSwitch.toString(), "true");
+		browserConfValues1.put(DriverConfigurations.CloudConfig.mobileTest.toString(), "false");
+		browserConfValues1.put(DriverConfigurations.CloudConfig.browserVersion.toString(), "11");
+		browserConfValues1.put(DriverConfigurations.CloudConfig.os.toString(), "Mac");
+		browserConfValues1.put(DriverConfigurations.CloudConfig.osVersion.toString(), "XP");
+		browserConfValues1.put(DriverConfigurations.CloudConfig.bs_localTesting.toString(),
 				"true");
 
 		browserConfValues2.put(DriverConfigurations.LocalEnvironmentConfig.browserName.toString(),
 				"firefox");
 		browserConfValues2.put(DriverConfigurations.FrameworkConfig.remoteFlag.toString(), "true");
-		browserConfValues2.put(DriverConfigurations.BrowserStackConfig.bsSwitch.toString(), "true");
-		browserConfValues2.put(DriverConfigurations.BrowserStackConfig.mobileTest.toString(), "false");
-		browserConfValues2.put(DriverConfigurations.BrowserStackConfig.browserVersion.toString(), "11");
-		browserConfValues2.put(DriverConfigurations.BrowserStackConfig.os.toString(), "Windows");
-		browserConfValues2.put(DriverConfigurations.BrowserStackConfig.osVersion.toString(), "XP");
-		browserConfValues2.put(DriverConfigurations.BrowserStackConfig.bs_localTesting.toString(),
+		browserConfValues2.put(DriverConfigurations.CloudConfig.bsSwitch.toString(), "true");
+		browserConfValues2.put(DriverConfigurations.CloudConfig.mobileTest.toString(), "false");
+		browserConfValues2.put(DriverConfigurations.CloudConfig.browserVersion.toString(), "11");
+		browserConfValues2.put(DriverConfigurations.CloudConfig.os.toString(), "Windows");
+		browserConfValues2.put(DriverConfigurations.CloudConfig.osVersion.toString(), "XP");
+		browserConfValues2.put(DriverConfigurations.CloudConfig.bs_localTesting.toString(),
 				"false");
 
 		BrowserConfR obj1 = new BrowserConfR(browserConfValues1);
@@ -172,23 +172,23 @@ public class BrowserConfIsEqualTest {
 		browserConfValues1.put(DriverConfigurations.LocalEnvironmentConfig.browserName.toString(),
 				"firefox");
 		browserConfValues1.put(DriverConfigurations.FrameworkConfig.remoteFlag.toString(), "true");
-		browserConfValues1.put(DriverConfigurations.BrowserStackConfig.bsSwitch.toString(), "false");
-		browserConfValues1.put(DriverConfigurations.BrowserStackConfig.mobileTest.toString(), "false");
-		browserConfValues1.put(DriverConfigurations.BrowserStackConfig.browserVersion.toString(), "11");
-		browserConfValues1.put(DriverConfigurations.BrowserStackConfig.os.toString(), "Mac");
-		browserConfValues1.put(DriverConfigurations.BrowserStackConfig.osVersion.toString(), "XP");
-		browserConfValues1.put(DriverConfigurations.BrowserStackConfig.bs_localTesting.toString(),
+		browserConfValues1.put(DriverConfigurations.CloudConfig.bsSwitch.toString(), "false");
+		browserConfValues1.put(DriverConfigurations.CloudConfig.mobileTest.toString(), "false");
+		browserConfValues1.put(DriverConfigurations.CloudConfig.browserVersion.toString(), "11");
+		browserConfValues1.put(DriverConfigurations.CloudConfig.os.toString(), "Mac");
+		browserConfValues1.put(DriverConfigurations.CloudConfig.osVersion.toString(), "XP");
+		browserConfValues1.put(DriverConfigurations.CloudConfig.bs_localTesting.toString(),
 				"true");
 
 		browserConfValues2.put(DriverConfigurations.LocalEnvironmentConfig.browserName.toString(),
 				"firefox");
 		browserConfValues2.put(DriverConfigurations.FrameworkConfig.remoteFlag.toString(), "true");
-		browserConfValues2.put(DriverConfigurations.BrowserStackConfig.bsSwitch.toString(), "false");
-		browserConfValues2.put(DriverConfigurations.BrowserStackConfig.mobileTest.toString(), "false");
-		browserConfValues2.put(DriverConfigurations.BrowserStackConfig.browserVersion.toString(), "11");
-		browserConfValues2.put(DriverConfigurations.BrowserStackConfig.os.toString(), "Windows");
-		browserConfValues2.put(DriverConfigurations.BrowserStackConfig.osVersion.toString(), "XP");
-		browserConfValues2.put(DriverConfigurations.BrowserStackConfig.bs_localTesting.toString(),
+		browserConfValues2.put(DriverConfigurations.CloudConfig.bsSwitch.toString(), "false");
+		browserConfValues2.put(DriverConfigurations.CloudConfig.mobileTest.toString(), "false");
+		browserConfValues2.put(DriverConfigurations.CloudConfig.browserVersion.toString(), "11");
+		browserConfValues2.put(DriverConfigurations.CloudConfig.os.toString(), "Windows");
+		browserConfValues2.put(DriverConfigurations.CloudConfig.osVersion.toString(), "XP");
+		browserConfValues2.put(DriverConfigurations.CloudConfig.bs_localTesting.toString(),
 				"false");
 
 		BrowserConfR obj1 = new BrowserConfR(browserConfValues1);
@@ -205,21 +205,21 @@ public class BrowserConfIsEqualTest {
 		browserConfValues1.put(DriverConfigurations.LocalEnvironmentConfig.browserName.toString(),
 				"iPhone");
 		browserConfValues1.put(DriverConfigurations.FrameworkConfig.remoteFlag.toString(), "true");
-		browserConfValues1.put(DriverConfigurations.BrowserStackConfig.bsSwitch.toString(), "true");
-		browserConfValues1.put(DriverConfigurations.BrowserStackConfig.mobileTest.toString(), "true");
-		browserConfValues1.put(DriverConfigurations.BrowserStackConfig.platform.toString(), "MAC");
-		browserConfValues1.put(DriverConfigurations.BrowserStackConfig.device.toString(), "iPhone 5S");
-		browserConfValues1.put(DriverConfigurations.BrowserStackConfig.bs_localTesting.toString(),
+		browserConfValues1.put(DriverConfigurations.CloudConfig.bsSwitch.toString(), "true");
+		browserConfValues1.put(DriverConfigurations.CloudConfig.mobileTest.toString(), "true");
+		browserConfValues1.put(DriverConfigurations.CloudConfig.platform.toString(), "MAC");
+		browserConfValues1.put(DriverConfigurations.CloudConfig.device.toString(), "iPhone 5S");
+		browserConfValues1.put(DriverConfigurations.CloudConfig.bs_localTesting.toString(),
 				"true");
 
 		browserConfValues2.put(DriverConfigurations.LocalEnvironmentConfig.browserName.toString(),
 				"iPhone");
 		browserConfValues2.put(DriverConfigurations.FrameworkConfig.remoteFlag.toString(), "true");
-		browserConfValues2.put(DriverConfigurations.BrowserStackConfig.bsSwitch.toString(), "true");
-		browserConfValues2.put(DriverConfigurations.BrowserStackConfig.mobileTest.toString(), "true");
-		browserConfValues2.put(DriverConfigurations.BrowserStackConfig.platform.toString(), "MAC");
-		browserConfValues2.put(DriverConfigurations.BrowserStackConfig.device.toString(), "iPhone 5C");
-		browserConfValues2.put(DriverConfigurations.BrowserStackConfig.bs_localTesting.toString(), "true");
+		browserConfValues2.put(DriverConfigurations.CloudConfig.bsSwitch.toString(), "true");
+		browserConfValues2.put(DriverConfigurations.CloudConfig.mobileTest.toString(), "true");
+		browserConfValues2.put(DriverConfigurations.CloudConfig.platform.toString(), "MAC");
+		browserConfValues2.put(DriverConfigurations.CloudConfig.device.toString(), "iPhone 5C");
+		browserConfValues2.put(DriverConfigurations.CloudConfig.bs_localTesting.toString(), "true");
 
 		BrowserConfR obj1 = new BrowserConfR(browserConfValues1);
 		BrowserConfR obj2 = new BrowserConfR(browserConfValues2);
@@ -234,20 +234,20 @@ public class BrowserConfIsEqualTest {
 		browserConfValues1.put(DriverConfigurations.LocalEnvironmentConfig.browserName.toString(),
 				"iPhone");
 		browserConfValues1.put(DriverConfigurations.FrameworkConfig.remoteFlag.toString(), "true");
-		browserConfValues1.put(DriverConfigurations.BrowserStackConfig.bsSwitch.toString(), "true");
-		browserConfValues1.put(DriverConfigurations.BrowserStackConfig.mobileTest.toString(), "true");
-		browserConfValues1.put(DriverConfigurations.BrowserStackConfig.platform.toString(), "MAC");
-		browserConfValues1.put(DriverConfigurations.BrowserStackConfig.device.toString(), "iPhone 5S");
-		browserConfValues1.put(DriverConfigurations.BrowserStackConfig.bs_localTesting.toString(), "true");
+		browserConfValues1.put(DriverConfigurations.CloudConfig.bsSwitch.toString(), "true");
+		browserConfValues1.put(DriverConfigurations.CloudConfig.mobileTest.toString(), "true");
+		browserConfValues1.put(DriverConfigurations.CloudConfig.platform.toString(), "MAC");
+		browserConfValues1.put(DriverConfigurations.CloudConfig.device.toString(), "iPhone 5S");
+		browserConfValues1.put(DriverConfigurations.CloudConfig.bs_localTesting.toString(), "true");
 
 		browserConfValues2.put(DriverConfigurations.LocalEnvironmentConfig.browserName.toString(),
 				"iPhone");
 		browserConfValues2.put(DriverConfigurations.FrameworkConfig.remoteFlag.toString(), "true");
-		browserConfValues2.put(DriverConfigurations.BrowserStackConfig.bsSwitch.toString(), "true");
-		browserConfValues2.put(DriverConfigurations.BrowserStackConfig.mobileTest.toString(), "true");
-		browserConfValues2.put(DriverConfigurations.BrowserStackConfig.platform.toString(), "MAC");
-		browserConfValues2.put(DriverConfigurations.BrowserStackConfig.device.toString(), "iPhone 5S");
-		browserConfValues2.put(DriverConfigurations.BrowserStackConfig.bs_localTesting.toString(), "true");
+		browserConfValues2.put(DriverConfigurations.CloudConfig.bsSwitch.toString(), "true");
+		browserConfValues2.put(DriverConfigurations.CloudConfig.mobileTest.toString(), "true");
+		browserConfValues2.put(DriverConfigurations.CloudConfig.platform.toString(), "MAC");
+		browserConfValues2.put(DriverConfigurations.CloudConfig.device.toString(), "iPhone 5S");
+		browserConfValues2.put(DriverConfigurations.CloudConfig.bs_localTesting.toString(), "true");
 
 		BrowserConfR obj1 = new BrowserConfR(browserConfValues1);
 		BrowserConfR obj2 = new BrowserConfR(browserConfValues2);

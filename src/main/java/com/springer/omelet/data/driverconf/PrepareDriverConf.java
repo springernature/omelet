@@ -15,18 +15,18 @@ public class PrepareDriverConf {
 	IBrowserConf browserValue;
 	private static final String FILENAME = "Framework.properties";
 	private Map<String,String> refinedBrowserConf = new HashMap<String, String>();
-	private Map<String,String> clientBrowserConf = new HashMap<String, String>();
+	RefinedBrowserConf rbc;
 	
 	public PrepareDriverConf(Map<String,String> clientBrowserConf){
-		this.clientBrowserConf = clientBrowserConf;
+		rbc = new RefinedBrowserConf(clientBrowserConf, FILENAME);
+		
 	}
 	
 	public PrepareDriverConf(){
-		this.clientBrowserConf = new HashMap<String, String>();
+		this(new HashMap<String, String>());
 	}
 	
 	public PrepareDriverConf refineBrowserValues(){
-		RefinedBrowserConf rbc = new RefinedBrowserConf(clientBrowserConf, FILENAME);
 		for(DriverConfigurations.LocalEnvironmentConfig localConfig:DriverConfigurations.LocalEnvironmentConfig.values()){
 			updateRefinedMap(localConfig.toString(), rbc.get(localConfig.toString(), localConfig.get()));
 		}
@@ -39,7 +39,7 @@ public class PrepareDriverConf {
 			updateRefinedMap(frameworkConfig.toString(), rbc.get(frameworkConfig.toString(), frameworkConfig.get()));
 		}
 		
-		for(DriverConfigurations.BrowserStackConfig bsConfig:DriverConfigurations.BrowserStackConfig.values()){
+		for(DriverConfigurations.CloudConfig bsConfig:DriverConfigurations.CloudConfig.values()){
 			updateRefinedMap(bsConfig.toString(), rbc.get(bsConfig.toString(), bsConfig.get()));
 		}
 		
@@ -59,7 +59,7 @@ public class PrepareDriverConf {
 	}
 	
 	public IBrowserConf get(){
-		return new BrowserConfR(refinedBrowserConf);	
+		return new BrowserConfR(refinedBrowserConf,rbc.getDesiredCapabilities());	
 	}
 
 }

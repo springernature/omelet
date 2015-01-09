@@ -42,7 +42,7 @@ public class ValidateBrowserRules {
 		throwExceptionIfAny();
 	}
 
-	public void checkAndThrowExceptionForRemote() {
+	/*public void checkAndThrowExceptionForRemote() {
 		if (browserConf.isRemoteFlag() && !browserConf.isBrowserStackSwitch()) {
 			if (browserConf.getRemoteURL().isEmpty()) {
 				exceptionMessage
@@ -50,9 +50,9 @@ public class ValidateBrowserRules {
 			}
 		}
 		throwExceptionIfAny();
-	}
+	}*/
 
-	public void checkAndThrowExceptionForBrowserStack() {
+/*	public void checkAndThrowExceptionForBrowserStack() {
 		if (browserConf.isRemoteFlag() && browserConf.isBrowserStackSwitch()) {
 			if (!browserConf.isMobileTest()) {
 				checkForBSBrowserOs();
@@ -65,9 +65,9 @@ public class ValidateBrowserRules {
 			}
 			throwExceptionIfAny();
 		}
-	}
+	}*/
 
-	private void checkForBSBrowserOs() {
+	/*private void checkForBSBrowserOs() {
 		if (browserConf.getBrowserVersion().isEmpty()) {
 			exceptionMessage
 					.append("As BS switch is on ,Please enter browserVersion");
@@ -80,16 +80,16 @@ public class ValidateBrowserRules {
 					.append("As BS switch is on ,Please enter osversion");
 		}
 		throwExceptionIfAny();
-	}
+	}*/
 
-	private void checkForBSLocalTesting() {
+	/*private void checkForBSLocalTesting() {
 		if (browserConf.getBsURLs().get(0).isEmpty()) {
 			exceptionMessage
 					.append("Please provide your local testing url for tunnel setup");
 		}
-	}
+	}*/
 
-	private void checkForBSMobile() {
+/*	private void checkForBSMobile() {
 		if (browserConf.getDevice().isEmpty()) {
 			exceptionMessage
 					.append("As we want to run on Mobile , please give the device");
@@ -102,7 +102,7 @@ public class ValidateBrowserRules {
 				.getBrowser().equalsIgnoreCase("ipad"))) {
 			exceptionMessage.append("please set proper browserName for Mobile");
 		}
-	}
+	}*/
 
 	private void throwExceptionIfAny() {
 		if (exceptionMessage.length() != 0) {
@@ -114,8 +114,8 @@ public class ValidateBrowserRules {
 	
 	public void validate(){
 		checkAndThrowExceptionForLocalBrowser();
-		checkAndThrowExceptionForRemote();
-		checkAndThrowExceptionForBrowserStack();
+		/*checkAndThrowExceptionForRemote();
+		checkAndThrowExceptionForBrowserStack();*/
 	}
 
 }

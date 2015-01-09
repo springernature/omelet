@@ -18,23 +18,20 @@ package com.springer.omelet.data.driverconf;
 
 import java.util.List;
 
+import org.openqa.selenium.remote.DesiredCapabilities;
+
 public interface IBrowserConf {
 
 	public String getBrowser();
 
-	public String getBrowserVersion();
 
-	public String getOsName();
+	public String getuserName();
 
-	public String getOsVersion();
-
-	public boolean isBrowserStackSwitch();
-
-	public String getBsUserName();
-
-	public String getBsPassword();
-
-	public boolean isBsLocalTesting();
+	public String getKey();
+	
+	public String host();
+	
+	public String port();
 
 	public List<String> getBsURLs();
 
@@ -43,10 +40,6 @@ public interface IBrowserConf {
 	public String getRemoteURL();
 
 	public Integer getDriverTimeOut();
-
-	public String getDevice();
-
-	public String getPlatform();
 
 	public Integer getRetryFailedTestCaseCount();
 
@@ -57,9 +50,9 @@ public interface IBrowserConf {
 	public boolean isHighLightElementFlag();
 
 	public boolean isScreenShotFlag();
-
-	public boolean isMobileTest();
 	
 	public String getDataSource();
+	
+	public DesiredCapabilities getCapabilities();
 
 }

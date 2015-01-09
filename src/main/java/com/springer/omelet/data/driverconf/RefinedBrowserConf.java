@@ -1,8 +1,15 @@
 package com.springer.omelet.data.driverconf;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Map;
+import java.util.Properties;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.log4j.Logger;
+import org.openqa.selenium.remote.DesiredCapabilities;
 
 import com.springer.omelet.common.Utils;
 import com.springer.omelet.data.PropertyValueMin;
@@ -19,14 +26,16 @@ public class RefinedBrowserConf {
 	private Map<String, String> clientBrowserData;
 	private boolean isFrameworkProperties;
 	private PropertyValueMin frameworkPropData = null;
+	private static final Logger LOGGER = Logger.getLogger(RefinedBrowserConf.class);
+	private String fileName;
 
 	public RefinedBrowserConf(Map<String, String> clientBrowserData,
 			String standBylookUpFileName) {
 		this.clientBrowserData = clientBrowserData;
+		this.fileName = standBylookUpFileName;
 		setFrameworkProperties(standBylookUpFileName);
 
 	}
-	
 
 	private void setFrameworkProperties(String standBylookUpFileName) {
 		String pathOfFile = Utils.getResources(RefinedBrowserConf.class,
@@ -56,6 +65,50 @@ public class RefinedBrowserConf {
 			}
 		}
 		return value;
+	}
+
+	public DesiredCapabilities getDesiredCapabilities() {
+		DesiredCapabilities dc = new DesiredCapabilities();
+		if(isFrameworkProperties){
+			dc.merge(getDCFrameworkProp());
+		}
+		dc.merge(getDCClient());
+		dc.merge(getDCJvm());
+		return dc;
+	}
+	
+	private DesiredCapabilities getDCFrameworkProp(){
+		if(isFrameworkProperties){
+			if (isFrameworkProperties) {
+				Properties prop = new Properties();
+				try {
+					prop.load(new FileInputStream(new File(Utils.getResources(this,
+							fileName))));
+				} catch (FileNotFoundException e) {
+					// TODO Auto-generated catch block
+					LOGGER.error(e);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					LOGGER.error(e);
+				}
+				PrepareDesiredCapability pdcFrameworkProperties = new PrepareDesiredCapability(
+						prop);
+				return pdcFrameworkProperties.get();
+			}
+		}
+		return null;
+	}
+	
+	private DesiredCapabilities getDCJvm(){
+		PrepareDesiredCapability systemCapa = new PrepareDesiredCapability(
+				System.getProperties());
+		return systemCapa.get();
+	}
+	
+	private DesiredCapabilities getDCClient(){
+		PrepareDesiredCapability clientBrowserCap = new PrepareDesiredCapability(
+				clientBrowserData);
+		return clientBrowserCap.get();
 	}
 
 	private String getFromClientEnv(String key, String value) {

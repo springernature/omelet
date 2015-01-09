@@ -33,8 +33,8 @@ public class BrowserXmlParserTest {
 	public void beforeTest() {
 
 		System.setProperty(DriverConfigurations.LocalEnvironmentConfig.browserName.toString(), "");
-		System.setProperty(DriverConfigurations.BrowserStackConfig.browserVersion.toString(), "");
-		System.setProperty(DriverConfigurations.BrowserStackConfig.bs_key.toString(), "");
+		System.setProperty(DriverConfigurations.CloudConfig.browserVersion.toString(), "");
+		System.setProperty(DriverConfigurations.CloudConfig.key.toString(), "");
 	}
 
 	@Test
@@ -47,10 +47,10 @@ public class BrowserXmlParserTest {
 		IBrowserConf browserI = browserIs.get(0);
 		Assert.assertEquals("firefox", browserI.getBrowser());
 		Assert.assertEquals("25", browserI.getBrowserVersion());
-		Assert.assertEquals("testkey", browserI.getBsPassword());
+		Assert.assertEquals("testkey", browserI.getKey());
 		Assert.assertEquals("https:test1", browserI.getBsURLs().get(0));
 		Assert.assertEquals("https:test2", browserI.getBsURLs().get(1));
-		Assert.assertEquals("testusername", browserI.getBsUserName());
+		Assert.assertEquals("testusername", browserI.getuserName());
 		Assert.assertEquals("None", browserI.getDevice());
 		Assert.assertEquals("WINDOWS", browserI.getOsName());
 		Assert.assertEquals("xp", browserI.getOsVersion());
@@ -76,10 +76,10 @@ public class BrowserXmlParserTest {
 		IBrowserConf browserConf2 = browserConfList.get(1);
 		Assert.assertEquals("firefox", browserConf1.getBrowser());
 		Assert.assertEquals("25", browserConf1.getBrowserVersion());
-		Assert.assertEquals("testkey", browserConf1.getBsPassword());
+		Assert.assertEquals("testkey", browserConf1.getKey());
 		Assert.assertEquals("https:test1", browserConf1.getBsURLs().get(0));
 		Assert.assertEquals("https:test2", browserConf1.getBsURLs().get(1));
-		Assert.assertEquals("testusername", browserConf1.getBsUserName());
+		Assert.assertEquals("testusername", browserConf1.getuserName());
 		Assert.assertEquals("None", browserConf1.getDevice());
 		Assert.assertEquals("WINDOWS", browserConf1.getOsName());
 		Assert.assertEquals("xp", browserConf1.getOsVersion());
@@ -93,8 +93,8 @@ public class BrowserXmlParserTest {
 		// Second XML
 		Assert.assertEquals("chrome", browserConf2.getBrowser());
 		Assert.assertEquals("32", browserConf2.getBrowserVersion());
-		Assert.assertEquals("testkey1", browserConf2.getBsPassword());
-		Assert.assertEquals("testusername1", browserConf2.getBsUserName());
+		Assert.assertEquals("testkey1", browserConf2.getKey());
+		Assert.assertEquals("testusername1", browserConf2.getuserName());
 		Assert.assertEquals("None", browserConf2.getDevice());
 		Assert.assertEquals("LINUX", browserConf2.getOsName());
 		Assert.assertEquals("15", browserConf2.getOsVersion());
@@ -121,10 +121,10 @@ public class BrowserXmlParserTest {
 		IBrowserConf browserConf3 = browserConfList.get(2);
 		Assert.assertEquals("firefox", browserConf1.getBrowser());
 		Assert.assertEquals("25", browserConf1.getBrowserVersion());
-		Assert.assertEquals("testkey", browserConf1.getBsPassword());
+		Assert.assertEquals("testkey", browserConf1.getKey());
 		Assert.assertEquals("https:test1", browserConf1.getBsURLs().get(0));
 		Assert.assertEquals("https:test2", browserConf1.getBsURLs().get(1));
-		Assert.assertEquals("testusername", browserConf1.getBsUserName());
+		Assert.assertEquals("testusername", browserConf1.getuserName());
 		Assert.assertEquals("None", browserConf1.getDevice());
 		Assert.assertEquals("WINDOWS", browserConf1.getOsName());
 		Assert.assertEquals("xp", browserConf1.getOsVersion());
@@ -138,8 +138,8 @@ public class BrowserXmlParserTest {
 		// Second XML
 		Assert.assertEquals("chrome", browserConf2.getBrowser());
 		Assert.assertEquals("32", browserConf2.getBrowserVersion());
-		Assert.assertEquals("testkey1", browserConf2.getBsPassword());
-		Assert.assertEquals("testusername1", browserConf2.getBsUserName());
+		Assert.assertEquals("testkey1", browserConf2.getKey());
+		Assert.assertEquals("testusername1", browserConf2.getuserName());
 		Assert.assertEquals("None", browserConf2.getDevice());
 		Assert.assertEquals("LINUX", browserConf2.getOsName());
 		Assert.assertEquals("15", browserConf2.getOsVersion());
@@ -154,10 +154,10 @@ public class BrowserXmlParserTest {
 		// 3rd XML Browser
 		Assert.assertEquals("firefox", browserConf3.getBrowser());
 		Assert.assertEquals("25", browserConf3.getBrowserVersion());
-		Assert.assertEquals("testkey", browserConf3.getBsPassword());
+		Assert.assertEquals("testkey", browserConf3.getKey());
 		Assert.assertEquals("https:test1", browserConf3.getBsURLs().get(0));
 		Assert.assertEquals("https:test2", browserConf3.getBsURLs().get(1));
-		Assert.assertEquals("testusername", browserConf3.getBsUserName());
+		Assert.assertEquals("testusername", browserConf3.getuserName());
 		Assert.assertEquals("None", browserConf3.getDevice());
 		Assert.assertEquals("WINDOWS", browserConf3.getOsName());
 		Assert.assertEquals("xp", browserConf3.getOsVersion());

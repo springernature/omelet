@@ -210,7 +210,7 @@ public class ReadGoogle implements IDataSource {
 							localConfig.toString().toLowerCase()
 									.replace("_", "")));
 		}
-		for (DriverConfigurations.BrowserStackConfig bsConfig : DriverConfigurations.BrowserStackConfig
+		for (DriverConfigurations.CloudConfig bsConfig : DriverConfigurations.CloudConfig
 				.values()) {
 			browserMap
 					.put(bsConfig.toString(),

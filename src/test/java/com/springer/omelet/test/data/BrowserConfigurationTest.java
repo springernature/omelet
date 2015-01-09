@@ -46,38 +46,17 @@ public class BrowserConfigurationTest {
 	
 	@Test
 	public void verifyBrowserStackConfigDefaults() {
+	
 		Assert.assertEquals(
-				DriverConfigurations.BrowserStackConfig.bsSwitch.get(),
-				BSSWITCH);
-		Assert.assertEquals(
-				DriverConfigurations.BrowserStackConfig.bs_localTesting.get(),
-				BSLOCALTESTING);
-		Assert.assertEquals(
-				DriverConfigurations.BrowserStackConfig.mobileTest.get(),
-				MOBILETEST);
-		Assert.assertEquals(
-				DriverConfigurations.BrowserStackConfig.bs_userName.get(),
+				DriverConfigurations.CloudConfig.userName.get(),
 				BSUSERNAME);
 		Assert.assertEquals(
-				DriverConfigurations.BrowserStackConfig.bs_key.get(), BSKEY);
+				DriverConfigurations.CloudConfig.key.get(), BSKEY);
 		Assert.assertEquals(
-				DriverConfigurations.BrowserStackConfig.bs_urls.get(), BSURLS);
-		Assert.assertEquals(
-				DriverConfigurations.BrowserStackConfig.device.get(), DEVICE);
+				DriverConfigurations.CloudConfig.bs_urls.get(), BSURLS);
 		Assert.assertEquals(
 				DriverConfigurations.LocalEnvironmentConfig.browserName.get(),
 				BROWSERNAME);
-		Assert.assertEquals(
-				DriverConfigurations.BrowserStackConfig.browserVersion.get(),
-				BROWSERVERSION);
-		Assert.assertEquals(DriverConfigurations.BrowserStackConfig.os.get(),
-				OS);
-		Assert.assertEquals(
-				DriverConfigurations.BrowserStackConfig.osVersion.get(),
-				OSVERSION);
-		Assert.assertEquals(
-				DriverConfigurations.BrowserStackConfig.platform.get(),
-				PLATFORM);
 	}
 
 	@Test
@@ -92,7 +71,7 @@ public class BrowserConfigurationTest {
 	
 	@Test
 	public void verifyHubConfigDefaults() {
-		Assert.assertEquals(DriverConfigurations.HubConfig.remoteURL.get(),
+		Assert.assertEquals(DriverConfigurations.HubConfig.host.get(),
 				REMOTEURL);
 	}
 }

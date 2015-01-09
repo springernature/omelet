@@ -52,31 +52,31 @@ public class SimpleTest {
 	public void setup() {
 		browserValues.clear();
 		browserValues.put(DriverConfigurations.LocalEnvironmentConfig.browserName.toString(), browserName);
-		browserValues.put(DriverConfigurations.BrowserStackConfig.browserVersion.toString(),
+		browserValues.put(DriverConfigurations.CloudConfig.browserVersion.toString(),
 				browserVersion);
-		browserValues.put(DriverConfigurations.BrowserStackConfig.bs_key.toString(), bs_key);
-		browserValues.put(DriverConfigurations.BrowserStackConfig.bs_localTesting.toString(),
+		browserValues.put(DriverConfigurations.CloudConfig.key.toString(), bs_key);
+		browserValues.put(DriverConfigurations.CloudConfig.bs_localTesting.toString(),
 				bs_localTesting);
-		browserValues.put(DriverConfigurations.BrowserStackConfig.bs_urls.toString(), browserStackURLS);
-		browserValues.put(DriverConfigurations.BrowserStackConfig.bs_userName.toString(), bs_user);
-		browserValues.put(DriverConfigurations.BrowserStackConfig.bsSwitch.toString(),
+		browserValues.put(DriverConfigurations.CloudConfig.bs_urls.toString(), browserStackURLS);
+		browserValues.put(DriverConfigurations.CloudConfig.userName.toString(), bs_user);
+		browserValues.put(DriverConfigurations.CloudConfig.bsSwitch.toString(),
 				browserStackSwitch);
 		browserValues.put(DriverConfigurations.LocalEnvironmentConfig.chromeServerPath.toString(),
 				chromePath);
-		browserValues.put(DriverConfigurations.BrowserStackConfig.device.toString(), device);
+		browserValues.put(DriverConfigurations.CloudConfig.device.toString(), device);
 		browserValues.put(DriverConfigurations.FrameworkConfig.driverTimeOut.toString(),
 				drivertimeout);
 		browserValues.put(DriverConfigurations.FrameworkConfig.highlightElementFlag.toString(),
 				highlightElement);
 		browserValues.put(DriverConfigurations.LocalEnvironmentConfig.ieServerPath.toString(), ie_path);
-		browserValues.put(DriverConfigurations.BrowserStackConfig.mobileTest.toString(), bs_mobileTest);
-		browserValues.put(DriverConfigurations.BrowserStackConfig.os.toString(), osName);
-		browserValues.put(DriverConfigurations.BrowserStackConfig.osVersion.toString(), osVersion);
-		browserValues.put(DriverConfigurations.BrowserStackConfig.platform.toString(), platform);
+		browserValues.put(DriverConfigurations.CloudConfig.mobileTest.toString(), bs_mobileTest);
+		browserValues.put(DriverConfigurations.CloudConfig.os.toString(), osName);
+		browserValues.put(DriverConfigurations.CloudConfig.osVersion.toString(), osVersion);
+		browserValues.put(DriverConfigurations.CloudConfig.platform.toString(), platform);
 		browserValues.put(DriverConfigurations.FrameworkConfig.remoteFlag.toString(), remoteFlag);
 		browserValues
 				.put(DriverConfigurations.FrameworkConfig.screenShotFlag.toString(), screenShot);
-		browserValues.put(DriverConfigurations.HubConfig.remoteURL.toString(), reomteURL);
+		browserValues.put(DriverConfigurations.HubConfig.host.toString(), reomteURL);
 		browserValues.put(DriverConfigurations.FrameworkConfig.retryFailedTestCase.toString(),
 				retryFailedTestCount);
 
