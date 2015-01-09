@@ -25,7 +25,7 @@ import com.springer.omelet.data.DriverConfigurations;
 
 public class SimpleTest {
 
-	String browserName = "chrome";
+	/*String browserName = "chrome";
 	String browserVersion = "11";
 	String osName = "Windows";
 	String osVersion = "XP";
@@ -89,5 +89,5 @@ public class SimpleTest {
 	}
 
 	
-
+*/
 }

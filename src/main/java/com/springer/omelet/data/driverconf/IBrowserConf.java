@@ -54,5 +54,6 @@ public interface IBrowserConf {
 	public String getDataSource();
 	
 	public DesiredCapabilities getCapabilities();
+	
 
 }

@@ -16,7 +16,7 @@ import com.springer.omelet.exception.FrameworkException;
  *
  */
 public class BrowserStackRuleTest {
-	Map<String, String> browserMap;
+	/*Map<String, String> browserMap;
 
 	@BeforeMethod
 	public void setup() {
@@ -239,5 +239,5 @@ public class BrowserStackRuleTest {
 		vbr.checkAndThrowExceptionForLocalBrowser();
 		vbr.checkAndThrowExceptionForBrowserStack();
 		vbr.checkAndThrowExceptionForRemote();
-	}
+	}*/
 }

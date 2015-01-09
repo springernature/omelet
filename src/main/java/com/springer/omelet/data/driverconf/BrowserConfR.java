@@ -14,7 +14,7 @@ public class BrowserConfR implements IBrowserConf {
 	private DesiredCapabilities dc;
 
 	public BrowserConfR(Map<String, String> completeBrowserMap) {
-		mappedValues = completeBrowserMap;
+		this(completeBrowserMap,new DesiredCapabilities());
 	}
 	
 	public BrowserConfR(Map<String, String> completeBrowserMap,DesiredCapabilities dc){
@@ -118,6 +118,9 @@ public class BrowserConfR implements IBrowserConf {
 		StringBuilder sb = new StringBuilder();
 		sb.append("Browser:" + "<span style='font-weight:normal'>"
 				+ getBrowser() + "</span>");
+		sb.append(", Capabilities:"
+				+ "<span style='font-weight:normal'>"
+				+ this.getCapabilities().toString() + "</span>");
 	/*	if (isRemoteFlag()) {
 			if (isBrowserStackSwitch()) {
 				sb.append(",BrowserVersion:"
@@ -150,24 +153,48 @@ public class BrowserConfR implements IBrowserConf {
 	@Override
 	public int hashCode() {
 		int hash = 7;
-/*
+
 		if (this.isRemoteFlag() == true) {
-			if (this.isBrowserStackSwitch() == true) {
+			
 				hash = 31 * hash + this.getBrowser().hashCode();
-				hash = 31 * hash + this.getBrowserVersion().hashCode();
-				hash = 31 * hash + this.getOsName().hashCode();
-				hash = 31 * hash + this.getOsVersion().hashCode();
-			} else {
-				hash = 31 * hash + this.getBrowser().hashCode();
-			}
+				hash = 31 * hash + this.getCapabilities().hashCode();
 		} else {
 			hash = 31 * hash + this.getBrowser().hashCode();
-		}*/
+		}
 		return hash;
 	}
 
 	@Override
 	public boolean equals(Object obj) {
+		//Check if remoteFlag=false then comparison of BrowserName
+		//else if true then if DesiredCapability are same and BrowserName is same if 
+		if(this == obj){
+			return true;
+		}
+		if(obj == null || obj.getClass() != this.getClass()){
+			return false;
+		}
+		BrowserConfR secondObj = (BrowserConfR)obj;
+		if(this.isRemoteFlag() == secondObj.isRemoteFlag()){
+			if(this.isRemoteFlag() == true){
+				if(this.getBrowser().equals(secondObj.getBrowser())){
+					if(this.getCapabilities().equals(secondObj.getCapabilities())){
+						return true;
+					}else{
+						return false;
+					}
+				}else{
+					return false;
+				}
+			}else{
+				if(this.getBrowser().equals(secondObj.getBrowser())){
+					return true;
+				}else{
+					return false;
+				}
+			}
+		}
+		return false;
 		/*if (this == obj) {
 			return true;
 		}
@@ -211,7 +238,6 @@ public class BrowserConfR implements IBrowserConf {
 				return this.getBrowser().equals(secondObj.getBrowser());
 			}
 		}*/
-		return false;
 	}
 	
 	public String getDataSource()

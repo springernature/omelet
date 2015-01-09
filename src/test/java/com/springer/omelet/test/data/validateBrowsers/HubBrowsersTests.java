@@ -12,7 +12,7 @@ import com.springer.omelet.exception.FrameworkException;
 
 public class HubBrowsersTests {
 	
-	Map<String,String> browserMap;
+	/*Map<String,String> browserMap;
 	@BeforeMethod
 	public void setup(){
 		browserMap = new HashMap<String, String>();
@@ -37,5 +37,5 @@ public class HubBrowsersTests {
 		vbr.checkAndThrowExceptionForBrowserStack();
 		vbr.checkAndThrowExceptionForRemote();
 	}
-
+*/
 }

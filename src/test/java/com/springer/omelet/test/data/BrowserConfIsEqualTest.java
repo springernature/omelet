@@ -22,6 +22,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -35,13 +36,16 @@ public class BrowserConfIsEqualTest {
 	private HashMap<String, String> browserConfValues1;
 	private HashMap<String, String> browserConfValues2;
 	List<IBrowserConf> browserConfList = new ArrayList<IBrowserConf>();
-	
+	private DesiredCapabilities dc1;
+	private DesiredCapabilities dc2;
 	@BeforeMethod
 	public void setup(){
 		browserConfValues1 = null;
 		browserConfValues2 = null;
 		browserConfValues1 = new HashMap<String, String>();
 		browserConfValues2 = new HashMap<String, String>();
+		dc1 = new DesiredCapabilities();
+		dc2 = new DesiredCapabilities();
 	}
 
 	@Test(enabled = true, description = "same browser -->remote flag off-->filtering using set and List")
@@ -74,58 +78,52 @@ public class BrowserConfIsEqualTest {
 		browserConfValues1.put(DriverConfigurations.LocalEnvironmentConfig.browserName.toString(),
 				"firefox");
 		browserConfValues1.put(DriverConfigurations.FrameworkConfig.remoteFlag.toString(), "true");
-		browserConfValues1.put(DriverConfigurations.CloudConfig.bsSwitch.toString(), "true");
-		browserConfValues1.put(DriverConfigurations.CloudConfig.browserVersion.toString(), "11");
-		browserConfValues1.put(DriverConfigurations.CloudConfig.os.toString(), "Windows");
-		browserConfValues1.put(DriverConfigurations.CloudConfig.osVersion.toString(), "XP");
+		dc1.setCapability("os.version", "XP");
+		dc1.setCapability("browserVersion", "11");
+		dc1.setCapability("os.name", "Windows");
 
 		browserConfValues2.put(DriverConfigurations.LocalEnvironmentConfig.browserName.toString(),
 				"firefox");
 		browserConfValues2.put(DriverConfigurations.FrameworkConfig.remoteFlag.toString(), "true");
-		browserConfValues2.put(DriverConfigurations.CloudConfig.bsSwitch.toString(), "true");
-		browserConfValues2.put(DriverConfigurations.CloudConfig.browserVersion.toString(), "11");
-		browserConfValues2.put(DriverConfigurations.CloudConfig.os.toString(), "Windows");
-		browserConfValues2.put(DriverConfigurations.CloudConfig.osVersion.toString(), "XP");
+		dc2.setCapability("os.version", "XP");
+		dc2.setCapability("browserVersion", "11");
+		dc2.setCapability("os.name", "Windows");
 
 		BrowserConfR obj1 = new BrowserConfR(browserConfValues1);
 		BrowserConfR obj2 = new BrowserConfR(browserConfValues2);
 		Assert.assertEquals(obj1, obj2);
 	}
 
-	@Test(description = "Remote Flag on and required values equal and not required not equal", enabled = true)
+	@Test(description = "Remote Flag on and browserName Name equal and DesiredCapability not Equal", enabled = true)
 	public void remoteFlagOn_2() {
-		browserConfValues1.clear();
-		browserConfValues2.clear();
 
 		browserConfValues1.put(DriverConfigurations.LocalEnvironmentConfig.browserName.toString(),
 				"firefox");
 		browserConfValues1.put(DriverConfigurations.FrameworkConfig.remoteFlag.toString(), "true");
-		browserConfValues1.put(DriverConfigurations.CloudConfig.bsSwitch.toString(), "true");
-		browserConfValues1.put(DriverConfigurations.CloudConfig.mobileTest.toString(), "false");
-		browserConfValues1.put(DriverConfigurations.CloudConfig.browserVersion.toString(), "11");
-		browserConfValues1.put(DriverConfigurations.CloudConfig.os.toString(), "Windows");
-		browserConfValues1.put(DriverConfigurations.CloudConfig.osVersion.toString(), "XP");
-		browserConfValues1.put(DriverConfigurations.CloudConfig.bs_localTesting.toString(),
-				"true");
+		dc1.setCapability("browserVerion", "11");
+		dc1.setCapability("os.name", "Windows");
+		dc1.setCapability("os.version", "XP");
 
 		browserConfValues2.put(DriverConfigurations.LocalEnvironmentConfig.browserName.toString(),
 				"firefox");
 		browserConfValues2.put(DriverConfigurations.FrameworkConfig.remoteFlag.toString(), "true");
-		browserConfValues2.put(DriverConfigurations.CloudConfig.bsSwitch.toString(), "true");
-		browserConfValues2.put(DriverConfigurations.CloudConfig.mobileTest.toString(), "false");
-		browserConfValues2.put(DriverConfigurations.CloudConfig.browserVersion.toString(), "11");
-		browserConfValues2.put(DriverConfigurations.CloudConfig.os.toString(), "Windows");
-		browserConfValues2.put(DriverConfigurations.CloudConfig.osVersion.toString(), "XP");
-		browserConfValues2.put(DriverConfigurations.CloudConfig.bs_localTesting.toString(),
-				"false");
+		
+		dc2.setCapability("browserVersion", "11");
+		dc2.setCapability("os.name", "MAC");
+		dc2.setCapability("os.version", "Mavericks");
 
-		BrowserConfR obj1 = new BrowserConfR(browserConfValues1);
-		BrowserConfR obj2 = new BrowserConfR(browserConfValues2);
-		Assert.assertEquals(obj1, obj2);
-		Assert.assertEquals(obj1.hashCode(), obj2.hashCode());
+		BrowserConfR obj1 = new BrowserConfR(browserConfValues1,dc1);
+		BrowserConfR obj2 = new BrowserConfR(browserConfValues2,dc2);
+		Assert.assertNotEquals(obj1, obj2);
+		Assert.assertNotEquals(obj1.hashCode(), obj2.hashCode());
+	}
+	
+	@Test(description="Remote Flag on --> BrowserName Different --> DesiredCapabilitySame")
+	public void remoteFlagOn_3(){
+		
 	}
 
-	@Test(description = "Remote Flag on and required values not equal and not required not equal")
+	/*@Test(description = "Remote Flag on and required values not equal and not required not equal")
 	public void remoteFlagOn_3() {
 		browserConfValues1.clear();
 		browserConfValues2.clear();
@@ -252,5 +250,5 @@ public class BrowserConfIsEqualTest {
 		BrowserConfR obj1 = new BrowserConfR(browserConfValues1);
 		BrowserConfR obj2 = new BrowserConfR(browserConfValues2);
 		Assert.assertEquals(obj1, obj2);
-	}
+	}*/
 }

@@ -80,7 +80,7 @@ public class BrowserConfMethodTest {
 				browserStackSwitch);
 		browserValues.put(DriverConfigurations.LocalEnvironmentConfig.chromeServerPath.toString(),
 				chromePath);
-		browserValues.put(DriverConfigurations.CloudConfig.device.toString(), device);
+		browserValues.put("device", device);
 		browserValues.put(DriverConfigurations.FrameworkConfig.driverTimeOut.toString(),
 				drivertimeout);
 		browserValues.put(DriverConfigurations.FrameworkConfig.highlightElementFlag.toString(),
