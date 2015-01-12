@@ -30,8 +30,8 @@ public class DriverConfigurations {
 	 *
 	 */
 	public enum FrameworkConfig {
-		remoteFlag("false"), driverTimeOut("30"), retryFailedTestCase("0"), highlightElementFlag(
-				"false"), screenShotFlag("true"), dataSource("");
+		remoteflag("false"), drivertimeOut("30"), retryfailedtestcase("0"), highlightelementflag(
+				"false"), screenshotflag("true"), datasource("");
 		private String defaultValue;
 
 		FrameworkConfig(String defaultValue) {
@@ -53,7 +53,7 @@ public class DriverConfigurations {
 		/*device(""), browserVersion(""), os(""), osVersion(
 				""), bsSwitch("false"), , bs_localTesting(
 				"false"), bs_urls(""), platform(""), mobileTest("false");*/
-		userName(""), key(""),bs_urls("");
+		username(""), key("");
 		private String defaultValue;
 
 		CloudConfig(String defaultValue) {
@@ -71,7 +71,7 @@ public class DriverConfigurations {
 	 *
 	 */
 	public enum LocalEnvironmentConfig {
-		browserName("FireFox"), ieServerPath(""), chromeServerPath("");
+		browsername("FireFox"), ieserverpath(""), chromeserverpath("");
 		private String defaultValue;
 
 		LocalEnvironmentConfig(String defaultValue) {

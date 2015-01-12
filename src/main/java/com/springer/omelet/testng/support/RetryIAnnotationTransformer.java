@@ -59,6 +59,7 @@ public class RetryIAnnotationTransformer implements IAnnotationTransformer,
 			.getLogger(RetryIAnnotationTransformer.class);
 	//private MethodContextCollection methodContextCollection = MethodContextCollection.getInstance();
 	protected static final Map<String,MethodContext> methodContextHolder = new HashMap<String, MethodContext>();
+	private static boolean dataPrepared = false;
 	
 	@SuppressWarnings("rawtypes")
 	public void transform(ITestAnnotation annotation, Class testClass,
@@ -97,7 +98,7 @@ public class RetryIAnnotationTransformer implements IAnnotationTransformer,
 	@Override
 	public List<IMethodInstance> intercept(List<IMethodInstance> methods,
 			ITestContext context) {
-		
+		if(!dataPrepared){
 			PrettyMessage prettyMessage = new PrettyMessage();
 			Thread t = new Thread(prettyMessage);
 			t.start();
@@ -118,11 +119,13 @@ public class RetryIAnnotationTransformer implements IAnnotationTransformer,
 				//methodContextCollection.getMethodContext(getFullMethodName(methodReflect))
 			}
 			prettyMessage.swtichOffLogging();
+			dataPrepared = true;
 			try {
 				t.join();
 			} catch (InterruptedException e) {
 				LOGGER.error(e);
 			}
+		}
 		return methods;
 	}
 	

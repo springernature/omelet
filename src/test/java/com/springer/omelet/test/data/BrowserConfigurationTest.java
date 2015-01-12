@@ -33,14 +33,14 @@ public class BrowserConfigurationTest {
 
 	@Test
 	public void verifyFrameworkConfigDefaults() {
-		Assert.assertEquals(DriverConfigurations.FrameworkConfig.remoteFlag.get(), REMOEFLAG);
-		Assert.assertEquals(DriverConfigurations.FrameworkConfig.driverTimeOut.get(),
+		Assert.assertEquals(DriverConfigurations.FrameworkConfig.remoteflag.get(), REMOEFLAG);
+		Assert.assertEquals(DriverConfigurations.FrameworkConfig.drivertimeOut.get(),
 				DRIVERTIMEOUT);
-		Assert.assertEquals(DriverConfigurations.FrameworkConfig.retryFailedTestCase.get(),
+		Assert.assertEquals(DriverConfigurations.FrameworkConfig.retryfailedtestcase.get(),
 				RETRYFAILEDTESTCASE);
-		Assert.assertEquals(DriverConfigurations.FrameworkConfig.highlightElementFlag.get(),
+		Assert.assertEquals(DriverConfigurations.FrameworkConfig.highlightelementflag.get(),
 				HIGHLIGHTELEMENTFLAG);
-		Assert.assertEquals(DriverConfigurations.FrameworkConfig.screenShotFlag.get(),
+		Assert.assertEquals(DriverConfigurations.FrameworkConfig.screenshotflag.get(),
 				SCREENSHOTFLAG);
 	}
 	
@@ -48,24 +48,22 @@ public class BrowserConfigurationTest {
 	public void verifyBrowserStackConfigDefaults() {
 	
 		Assert.assertEquals(
-				DriverConfigurations.CloudConfig.userName.get(),
+				DriverConfigurations.CloudConfig.username.get(),
 				BSUSERNAME);
 		Assert.assertEquals(
 				DriverConfigurations.CloudConfig.key.get(), BSKEY);
 		Assert.assertEquals(
-				DriverConfigurations.CloudConfig.bs_urls.get(), BSURLS);
-		Assert.assertEquals(
-				DriverConfigurations.LocalEnvironmentConfig.browserName.get(),
+				DriverConfigurations.LocalEnvironmentConfig.browsername.get(),
 				BROWSERNAME);
 	}
 
 	@Test
 	public void verifyLocalConfigDefaults() {
-		Assert.assertEquals(DriverConfigurations.LocalEnvironmentConfig.browserName.get(),
+		Assert.assertEquals(DriverConfigurations.LocalEnvironmentConfig.browsername.get(),
 				BROWSERNAMELOCAL);
-		Assert.assertEquals(DriverConfigurations.LocalEnvironmentConfig.ieServerPath.get(),
+		Assert.assertEquals(DriverConfigurations.LocalEnvironmentConfig.ieserverpath.get(),
 				IESERVERPATH);
-		Assert.assertEquals(DriverConfigurations.LocalEnvironmentConfig.chromeServerPath.get(),
+		Assert.assertEquals(DriverConfigurations.LocalEnvironmentConfig.chromeserverpath.get(),
 				CHROMESERVERPATH);
 	}
 	

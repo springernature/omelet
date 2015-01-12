@@ -37,7 +37,7 @@ public class BrowserXmlParserTest {
 	@BeforeMethod
 	public void beforeTest() {
 
-		System.setProperty(DriverConfigurations.LocalEnvironmentConfig.browserName.toString(), "");
+		System.setProperty(DriverConfigurations.LocalEnvironmentConfig.browsername.toString(), "");
 		System.setProperty(browserVersion, "");
 		System.setProperty(DriverConfigurations.CloudConfig.key.toString(), "");
 	}

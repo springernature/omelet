@@ -7,6 +7,7 @@ import java.util.Map;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 
+import com.springer.omelet.common.Utils;
 import com.springer.omelet.data.DataProvider.mapStrategy;
 import com.springer.omelet.exception.FrameworkException;
 /**
@@ -45,11 +46,11 @@ public class RefineMappedData {
 	}
 
 	private String getRefinedTestData(Method method) {
-		IMappingData methodVal = primaryDataMap.get(method.getName().toString());
+		IMappingData methodVal = primaryDataMap.get(Utils.getFullMethodName(method));
 		IMappingData classVal = primaryDataMap.get(
 				method.getDeclaringClass().getName().toString());
 		IMappingData packageVal = primaryDataMap.get(
-				method.getDeclaringClass().getPackage().getName().toString().toString());
+				method.getDeclaringClass().getPackage().getName().toString());
 
 		if (methodVal != null && StringUtils.isNotBlank(methodVal.getTestData())) {
 			return methodVal.getTestData();
@@ -67,7 +68,7 @@ public class RefineMappedData {
 
 	private List<String> getRefinedClientEnvironment(Method method) {
 		IMappingData methodClientData = primaryDataMap.get(
-				method.getName().toString());
+				Utils.getFullMethodName(method));
 		IMappingData classClientData = primaryDataMap.get(
 				method.getDeclaringClass().getName().toString());
 		IMappingData packageClientData = primaryDataMap.get(
@@ -91,7 +92,7 @@ public class RefineMappedData {
 
 	private mapStrategy getRunStrategy(Method method) {
 		IMappingData methodRunStartegy = primaryDataMap.get(
-				method.getName().toString());
+				Utils.getFullMethodName(method));
 		IMappingData classRunStartegy = primaryDataMap.get(
 				method.getDeclaringClass().getName().toString());
 		IMappingData packageRunStartegy = primaryDataMap.get(

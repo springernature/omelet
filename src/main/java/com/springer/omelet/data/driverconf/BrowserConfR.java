@@ -22,14 +22,14 @@ public class BrowserConfR implements IBrowserConf {
 
 	public String getBrowser() {
 		return mappedValues
-				.get(DriverConfigurations.LocalEnvironmentConfig.browserName
+				.get(DriverConfigurations.LocalEnvironmentConfig.browsername
 						.toString());
 	}
 
 
 	public String getuserName() {
 		return mappedValues
-				.get(DriverConfigurations.CloudConfig.userName
+				.get(DriverConfigurations.CloudConfig.username
 						.toString());
 	}
 
@@ -41,7 +41,7 @@ public class BrowserConfR implements IBrowserConf {
 	public boolean isRemoteFlag() {
 		return Boolean
 				.valueOf(mappedValues
-						.get(DriverConfigurations.FrameworkConfig.remoteFlag
+						.get(DriverConfigurations.FrameworkConfig.remoteflag
 								.toString()));
 	}
 
@@ -52,13 +52,13 @@ public class BrowserConfR implements IBrowserConf {
 
 	public Integer getDriverTimeOut() {
 		return Integer.valueOf(mappedValues
-				.get(DriverConfigurations.FrameworkConfig.driverTimeOut
+				.get(DriverConfigurations.FrameworkConfig.drivertimeOut
 						.toString()));
 	}
 
 	public Integer getRetryFailedTestCaseCount() {
 		return Integer.valueOf(mappedValues
-				.get(DriverConfigurations.FrameworkConfig.retryFailedTestCase
+				.get(DriverConfigurations.FrameworkConfig.retryfailedtestcase
 						.toString()));
 	}
 
@@ -84,25 +84,25 @@ public class BrowserConfR implements IBrowserConf {
 
 	public String getLocalIEServerPath() {
 		return mappedValues
-				.get(DriverConfigurations.LocalEnvironmentConfig.ieServerPath
+				.get(DriverConfigurations.LocalEnvironmentConfig.ieserverpath
 						.toString());
 	}
 
 	public String getLocalChromeServerPath() {
 		return mappedValues
-				.get(DriverConfigurations.LocalEnvironmentConfig.chromeServerPath
+				.get(DriverConfigurations.LocalEnvironmentConfig.chromeserverpath
 						.toString());
 	}
 
 	public boolean isHighLightElementFlag() {
 		return Boolean.valueOf(mappedValues
-				.get(DriverConfigurations.FrameworkConfig.highlightElementFlag
+				.get(DriverConfigurations.FrameworkConfig.highlightelementflag
 						.toString()));
 	}
 
 	public boolean isScreenShotFlag() {
 		return Boolean.valueOf(mappedValues
-				.get(DriverConfigurations.FrameworkConfig.screenShotFlag
+				.get(DriverConfigurations.FrameworkConfig.screenshotflag
 						.toString()));
 	}
 
@@ -197,7 +197,7 @@ public class BrowserConfR implements IBrowserConf {
 	
 	public String getDataSource()
 	{
-		return mappedValues.get(DriverConfigurations.FrameworkConfig.dataSource.toString());
+		return mappedValues.get(DriverConfigurations.FrameworkConfig.datasource.toString());
 	}
 
 	@Override

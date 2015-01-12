@@ -17,22 +17,22 @@ public class LocalBrowserRuleTest {
 	@BeforeMethod
 	public void setup(){
 		browserMap = new HashMap<String, String>();
-		browserMap.put(DriverConfigurations.FrameworkConfig.remoteFlag.toString(), "false");
+		browserMap.put(DriverConfigurations.FrameworkConfig.remoteflag.toString(), "false");
 	}
 	
 	@Test(expectedExceptions=FrameworkException.class)
 	public void verifyIfBrowserIsChromeAndServerPathEmpty(){
 		
-		browserMap.put(DriverConfigurations.LocalEnvironmentConfig.browserName.toString(), "chrome");
-		browserMap.put(DriverConfigurations.LocalEnvironmentConfig.chromeServerPath.toString(), "");
+		browserMap.put(DriverConfigurations.LocalEnvironmentConfig.browsername.toString(), "chrome");
+		browserMap.put(DriverConfigurations.LocalEnvironmentConfig.chromeserverpath.toString(), "");
 		ValidateBrowserRules vbr = new ValidateBrowserRules(browserMap);
 		vbr.checkAndThrowExceptionForLocalBrowser();
 	}
 	
 	@Test(expectedExceptions=FrameworkException.class)
 	public void verifyIfBrowserIsIEAndServerPathEmpty(){
-		browserMap.put(DriverConfigurations.LocalEnvironmentConfig.browserName.toString(), "IE");
-		browserMap.put(DriverConfigurations.LocalEnvironmentConfig.ieServerPath.toString(), "");
+		browserMap.put(DriverConfigurations.LocalEnvironmentConfig.browsername.toString(), "IE");
+		browserMap.put(DriverConfigurations.LocalEnvironmentConfig.ieserverpath.toString(), "");
 		ValidateBrowserRules vbr = new ValidateBrowserRules(browserMap);
 		vbr.checkAndThrowExceptionForLocalBrowser();
 	}
@@ -40,8 +40,8 @@ public class LocalBrowserRuleTest {
 	@Test()
 	public void verifyIfBrowserIsChromeAndServerPathNotEmpty(){
 		//There should not be any FrameworkExceptionThrown
-		browserMap.put(DriverConfigurations.LocalEnvironmentConfig.browserName.toString(), "chrome");
-		browserMap.put(DriverConfigurations.LocalEnvironmentConfig.chromeServerPath.toString(), "testServerPath");
+		browserMap.put(DriverConfigurations.LocalEnvironmentConfig.browsername.toString(), "chrome");
+		browserMap.put(DriverConfigurations.LocalEnvironmentConfig.chromeserverpath.toString(), "testServerPath");
 		ValidateBrowserRules vbr = new ValidateBrowserRules(browserMap);
 		vbr.checkAndThrowExceptionForLocalBrowser();
 	}
@@ -49,8 +49,8 @@ public class LocalBrowserRuleTest {
 	@Test()
 	public void verifyIfBrowserIsIEAndServerPathNotEmpty(){
 		//There should not be any FrameworkExceptionThrown
-		browserMap.put(DriverConfigurations.LocalEnvironmentConfig.browserName.toString(), "IE");
-		browserMap.put(DriverConfigurations.LocalEnvironmentConfig.ieServerPath.toString(), "testServerPath");
+		browserMap.put(DriverConfigurations.LocalEnvironmentConfig.browsername.toString(), "IE");
+		browserMap.put(DriverConfigurations.LocalEnvironmentConfig.ieserverpath.toString(), "testServerPath");
 		ValidateBrowserRules vbr = new ValidateBrowserRules(browserMap);
 		vbr.checkAndThrowExceptionForLocalBrowser();
 	}

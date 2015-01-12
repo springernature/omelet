@@ -50,13 +50,13 @@ public class BrowserConfIsEqualTest {
 
 	@Test(enabled = true, description = "same browser -->remote flag off-->filtering using set and List")
 	public void checkBrowserConfEquality_RemoteFlagOFF() {
-		browserConfValues1.put(DriverConfigurations.LocalEnvironmentConfig.browserName.toString(),
+		browserConfValues1.put(DriverConfigurations.LocalEnvironmentConfig.browsername.toString(),
 				new String("firefox"));
-		browserConfValues1.put(DriverConfigurations.FrameworkConfig.remoteFlag.toString(), "false");
+		browserConfValues1.put(DriverConfigurations.FrameworkConfig.remoteflag.toString(), "false");
 
-		browserConfValues2.put(DriverConfigurations.LocalEnvironmentConfig.browserName.toString(),
+		browserConfValues2.put(DriverConfigurations.LocalEnvironmentConfig.browsername.toString(),
 				new String("firefox"));
-		browserConfValues2.put(DriverConfigurations.FrameworkConfig.remoteFlag.toString(), "false");
+		browserConfValues2.put(DriverConfigurations.FrameworkConfig.remoteflag.toString(), "false");
 		IBrowserConf obj1 = new BrowserConfR(browserConfValues1);
 		IBrowserConf obj2 = new BrowserConfR(browserConfValues2);
 
@@ -75,16 +75,16 @@ public class BrowserConfIsEqualTest {
 		browserConfValues1.clear();
 		browserConfValues2.clear();
 
-		browserConfValues1.put(DriverConfigurations.LocalEnvironmentConfig.browserName.toString(),
+		browserConfValues1.put(DriverConfigurations.LocalEnvironmentConfig.browsername.toString(),
 				"firefox");
-		browserConfValues1.put(DriverConfigurations.FrameworkConfig.remoteFlag.toString(), "true");
+		browserConfValues1.put(DriverConfigurations.FrameworkConfig.remoteflag.toString(), "true");
 		dc1.setCapability("os.version", "XP");
 		dc1.setCapability("browserVersion", "11");
 		dc1.setCapability("os.name", "Windows");
 
-		browserConfValues2.put(DriverConfigurations.LocalEnvironmentConfig.browserName.toString(),
+		browserConfValues2.put(DriverConfigurations.LocalEnvironmentConfig.browsername.toString(),
 				"firefox");
-		browserConfValues2.put(DriverConfigurations.FrameworkConfig.remoteFlag.toString(), "true");
+		browserConfValues2.put(DriverConfigurations.FrameworkConfig.remoteflag.toString(), "true");
 		dc2.setCapability("os.version", "XP");
 		dc2.setCapability("browserVersion", "11");
 		dc2.setCapability("os.name", "Windows");
@@ -97,16 +97,16 @@ public class BrowserConfIsEqualTest {
 	@Test(description = "Remote Flag on and browserName Name equal and DesiredCapability not Equal", enabled = true)
 	public void remoteFlagOn_2() {
 
-		browserConfValues1.put(DriverConfigurations.LocalEnvironmentConfig.browserName.toString(),
+		browserConfValues1.put(DriverConfigurations.LocalEnvironmentConfig.browsername.toString(),
 				"firefox");
-		browserConfValues1.put(DriverConfigurations.FrameworkConfig.remoteFlag.toString(), "true");
+		browserConfValues1.put(DriverConfigurations.FrameworkConfig.remoteflag.toString(), "true");
 		dc1.setCapability("browserVerion", "11");
 		dc1.setCapability("os.name", "Windows");
 		dc1.setCapability("os.version", "XP");
 
-		browserConfValues2.put(DriverConfigurations.LocalEnvironmentConfig.browserName.toString(),
+		browserConfValues2.put(DriverConfigurations.LocalEnvironmentConfig.browsername.toString(),
 				"firefox");
-		browserConfValues2.put(DriverConfigurations.FrameworkConfig.remoteFlag.toString(), "true");
+		browserConfValues2.put(DriverConfigurations.FrameworkConfig.remoteflag.toString(), "true");
 		
 		dc2.setCapability("browserVersion", "11");
 		dc2.setCapability("os.name", "MAC");

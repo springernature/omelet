@@ -18,7 +18,7 @@ public class PrepareDriverConfTest {
 	public void getIBrowserConfiguration(){
 		PrepareDriverConf pdC = new PrepareDriverConf(browserConf);
 		IBrowserConf browser = pdC.refineBrowserValues().checkForRules().get();
-		Assert.assertEquals(browser.getBrowser().toLowerCase(), DriverConfigurations.LocalEnvironmentConfig.browserName.get().toLowerCase());
+		Assert.assertEquals(browser.getBrowser().toLowerCase(), DriverConfigurations.LocalEnvironmentConfig.browsername.get().toLowerCase());
 	}
 
 }

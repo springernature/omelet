@@ -201,8 +201,10 @@ public class ReadGoogle implements IDataSource {
 	 */
 	private IBrowserConf getBrowserConfFromRow(ListEntry row) {
 		Map<String, String> browserMap = new HashMap<String, String>();
-
-		for (DriverConfigurations.LocalEnvironmentConfig localConfig : DriverConfigurations.LocalEnvironmentConfig
+		for(String tag :row.getCustomElements().getTags()){
+			browserMap.put(tag, row.getCustomElements().getValue(tag));
+		}
+		/*for (DriverConfigurations.LocalEnvironmentConfig localConfig : DriverConfigurations.LocalEnvironmentConfig
 				.values()) {
 			browserMap.put(
 					localConfig.toString(),
@@ -234,7 +236,7 @@ public class ReadGoogle implements IDataSource {
 					row.getCustomElements().getValue(
 							frameworkConfig.toString().toLowerCase()
 									.replace("_", "")));
-		}
+		}*/
 		return new PrepareDriverConf(browserMap).refineBrowserValues()
 				.checkForRules().get();
 	}
