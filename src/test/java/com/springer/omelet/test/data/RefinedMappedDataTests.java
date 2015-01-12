@@ -1,7 +1,6 @@
 package com.springer.omelet.test.data;
 
 import com.springer.omelet.data.IDataSource;
-import com.springer.omelet.data.RefineMappedData;
 
 public class RefinedMappedDataTests {
 	
@@ -11,7 +10,7 @@ public class RefinedMappedDataTests {
 	
 	public void allConfigurationPresent(){
 		//test data for class and package should be different
-		RefineMappedData refinedData = new RefineMappedData(primaryDataSource);
+		//RefineMappedData refinedData = new RefineMappedData(primaryDataSource);
 	}
 	
 	public void testDataPresentInClassOnly(){

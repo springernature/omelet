@@ -1,7 +1,5 @@
 package com.springer.omelet.data.driverconf;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -65,7 +63,7 @@ public class BrowserConfR implements IBrowserConf {
 	}
 
 
-	public List<String> getBsURLs() {
+	/*public List<String> getBsURLs() {
 		List<String> bsURLs = new ArrayList<String>();
 		if (bsURLs.isEmpty()) {
 			String url = mappedValues
@@ -82,7 +80,7 @@ public class BrowserConfR implements IBrowserConf {
 		}
 		return bsURLs;
 	}
-
+*/
 
 	public String getLocalIEServerPath() {
 		return mappedValues
@@ -195,49 +193,6 @@ public class BrowserConfR implements IBrowserConf {
 			}
 		}
 		return false;
-		/*if (this == obj) {
-			return true;
-		}
-		if (obj == null || (obj.getClass() != this.getClass())) {
-			return false;
-		}
-		BrowserConfR secondObj = (BrowserConfR) obj;
-
-		if (this.isRemoteFlag() == secondObj.isRemoteFlag()) {
-			if (this.isRemoteFlag() == true) {
-				
-				if (this.isBrowserStackSwitch() == secondObj
-						.isBrowserStackSwitch()) {
-					if (this.isBrowserStackSwitch() == true) {
-						if (this.isMobileTest() == false) {
-							return (this.getBrowser().equals(
-									secondObj.getBrowser())
-									&& this.getBrowserVersion().equals(
-											secondObj.getBrowserVersion())
-									&& this.getOsName().equals(
-											secondObj.getOsName()) && this
-									.getOsVersion().equals(
-											secondObj.getOsVersion()));
-						} else {
-							return (this.getDevice().equals(
-									secondObj.getDevice())
-									&& this.getBrowser().equals(
-											secondObj.getBrowser()) && this
-									.getPlatform().equals(
-											secondObj.getPlatform()));
-						}
-					} else {
-						return (this.getBrowser()
-								.equals(secondObj.getBrowser()));
-					}
-				} else {
-					return false;
-				}
-			} else {
-
-				return this.getBrowser().equals(secondObj.getBrowser());
-			}
-		}*/
 	}
 	
 	public String getDataSource()
@@ -249,6 +204,7 @@ public class BrowserConfR implements IBrowserConf {
 	public DesiredCapabilities getCapabilities() {
 		return dc;
 	}
+	
 
 	@Override
 	public String host() {
@@ -258,6 +214,11 @@ public class BrowserConfR implements IBrowserConf {
 	@Override
 	public String port() {
 		return mappedValues.get(DriverConfigurations.HubConfig.port.toString());
+	}
+
+	@Override
+	public void updateCapabilities(DesiredCapabilities dc) {
+		this.dc.merge(dc);
 	}
 
 }
