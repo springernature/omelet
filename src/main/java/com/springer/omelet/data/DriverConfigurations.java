@@ -49,13 +49,14 @@ public class DriverConfigurations {
 	 * @author borz01
 	 *
 	 */
-	public enum BrowserStackConfig {
-		device(""), browserVersion(""), os(""), osVersion(
-				""), bsSwitch("false"), bs_userName(""), bs_key(""), bs_localTesting(
-				"false"), bs_urls(""), platform(""), mobileTest("false");
+	public enum CloudConfig {
+		/*device(""), browserVersion(""), os(""), osVersion(
+				""), bsSwitch("false"), , bs_localTesting(
+				"false"), bs_urls(""), platform(""), mobileTest("false");*/
+		userName(""), key(""),bs_urls("");
 		private String defaultValue;
 
-		BrowserStackConfig(String defaultValue) {
+		CloudConfig(String defaultValue) {
 			this.defaultValue = defaultValue;
 		}
 
@@ -89,7 +90,7 @@ public class DriverConfigurations {
 	 *
 	 */
 	public enum HubConfig {
-		remoteURL("");
+		host("localhost"),port("4444");
 		private String defaultValue;
 
 		HubConfig(String defaultValue) {

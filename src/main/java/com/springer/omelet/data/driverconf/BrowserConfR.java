@@ -4,15 +4,22 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import org.openqa.selenium.remote.DesiredCapabilities;
+
 import com.springer.omelet.data.DriverConfigurations;
 
 public class BrowserConfR implements IBrowserConf {
 
 	private Map<String, String> mappedValues;
-	//private List<String> bsURLs = new ArrayList<String>();
+	private DesiredCapabilities dc;
 
 	public BrowserConfR(Map<String, String> completeBrowserMap) {
+		this(completeBrowserMap,new DesiredCapabilities());
+	}
+	
+	public BrowserConfR(Map<String, String> completeBrowserMap,DesiredCapabilities dc){
 		mappedValues = completeBrowserMap;
+		this.dc = dc;
 	}
 
 	public String getBrowser() {
@@ -21,37 +28,15 @@ public class BrowserConfR implements IBrowserConf {
 						.toString());
 	}
 
-	public String getBrowserVersion() {
+
+	public String getuserName() {
 		return mappedValues
-				.get(DriverConfigurations.BrowserStackConfig.browserVersion
+				.get(DriverConfigurations.CloudConfig.userName
 						.toString());
 	}
 
-	public String getOsName() {
-		return mappedValues.get(DriverConfigurations.BrowserStackConfig.os
-				.toString());
-	}
-
-	public String getOsVersion() {
-		return mappedValues
-				.get(DriverConfigurations.BrowserStackConfig.osVersion
-						.toString());
-	}
-
-	public boolean isBrowserStackSwitch() {
-		return Boolean.valueOf(mappedValues
-				.get(DriverConfigurations.BrowserStackConfig.bsSwitch
-						.toString()));
-	}
-
-	public String getBsUserName() {
-		return mappedValues
-				.get(DriverConfigurations.BrowserStackConfig.bs_userName
-						.toString());
-	}
-
-	public String getBsPassword() {
-		return mappedValues.get(DriverConfigurations.BrowserStackConfig.bs_key
+	public String getKey() {
+		return mappedValues.get(DriverConfigurations.CloudConfig.key
 				.toString());
 	}
 
@@ -63,7 +48,7 @@ public class BrowserConfR implements IBrowserConf {
 	}
 
 	public String getRemoteURL() {
-		return mappedValues.get(DriverConfigurations.HubConfig.remoteURL
+		return mappedValues.get(DriverConfigurations.HubConfig.host
 				.toString());
 	}
 
@@ -79,17 +64,12 @@ public class BrowserConfR implements IBrowserConf {
 						.toString()));
 	}
 
-	public boolean isBsLocalTesting() {
-		return Boolean.valueOf(mappedValues
-				.get(DriverConfigurations.BrowserStackConfig.bs_localTesting
-						.toString()));
-	}
 
 	public List<String> getBsURLs() {
 		List<String> bsURLs = new ArrayList<String>();
 		if (bsURLs.isEmpty()) {
 			String url = mappedValues
-					.get(DriverConfigurations.BrowserStackConfig.bs_urls
+					.get(DriverConfigurations.CloudConfig.bs_urls
 							.toString());
 			if (url.contains(";")) {
 				String[] urls = url.split(";");
@@ -103,16 +83,6 @@ public class BrowserConfR implements IBrowserConf {
 		return bsURLs;
 	}
 
-	public String getDevice() {
-		return mappedValues.get(DriverConfigurations.BrowserStackConfig.device
-				.toString());
-	}
-
-	public String getPlatform() {
-		return mappedValues
-				.get(DriverConfigurations.BrowserStackConfig.platform
-						.toString());
-	}
 
 	public String getLocalIEServerPath() {
 		return mappedValues
@@ -138,11 +108,7 @@ public class BrowserConfR implements IBrowserConf {
 						.toString()));
 	}
 
-	public boolean isMobileTest() {
-		return Boolean.valueOf(mappedValues
-				.get(DriverConfigurations.BrowserStackConfig.mobileTest
-						.toString()));
-	}
+	
 
 	/***
 	 * Implementing toString as Html reports will look good
@@ -152,7 +118,10 @@ public class BrowserConfR implements IBrowserConf {
 		StringBuilder sb = new StringBuilder();
 		sb.append("Browser:" + "<span style='font-weight:normal'>"
 				+ getBrowser() + "</span>");
-		if (isRemoteFlag()) {
+		sb.append(", Capabilities:"
+				+ "<span style='font-weight:normal'>"
+				+ this.getCapabilities().toString() + "</span>");
+	/*	if (isRemoteFlag()) {
 			if (isBrowserStackSwitch()) {
 				sb.append(",BrowserVersion:"
 						+ "<span style='font-weight:normal'>"
@@ -177,7 +146,7 @@ public class BrowserConfR implements IBrowserConf {
 					+ isRemoteFlag() + "</span>");
 			sb.append(",RemoteURL:" + "span style='font-weight:normal'>"
 					+ getRemoteURL() + "</span>");
-		}
+		}*/
 		return sb.toString();
 	}
 
@@ -186,14 +155,9 @@ public class BrowserConfR implements IBrowserConf {
 		int hash = 7;
 
 		if (this.isRemoteFlag() == true) {
-			if (this.isBrowserStackSwitch() == true) {
+			
 				hash = 31 * hash + this.getBrowser().hashCode();
-				hash = 31 * hash + this.getBrowserVersion().hashCode();
-				hash = 31 * hash + this.getOsName().hashCode();
-				hash = 31 * hash + this.getOsVersion().hashCode();
-			} else {
-				hash = 31 * hash + this.getBrowser().hashCode();
-			}
+				hash = 31 * hash + this.getCapabilities().hashCode();
 		} else {
 			hash = 31 * hash + this.getBrowser().hashCode();
 		}
@@ -202,7 +166,36 @@ public class BrowserConfR implements IBrowserConf {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj) {
+		//Check if remoteFlag=false then comparison of BrowserName
+		//else if true then if DesiredCapability are same and BrowserName is same if 
+		if(this == obj){
+			return true;
+		}
+		if(obj == null || obj.getClass() != this.getClass()){
+			return false;
+		}
+		BrowserConfR secondObj = (BrowserConfR)obj;
+		if(this.isRemoteFlag() == secondObj.isRemoteFlag()){
+			if(this.isRemoteFlag() == true){
+				if(this.getBrowser().equals(secondObj.getBrowser())){
+					if(this.getCapabilities().equals(secondObj.getCapabilities())){
+						return true;
+					}else{
+						return false;
+					}
+				}else{
+					return false;
+				}
+			}else{
+				if(this.getBrowser().equals(secondObj.getBrowser())){
+					return true;
+				}else{
+					return false;
+				}
+			}
+		}
+		return false;
+		/*if (this == obj) {
 			return true;
 		}
 		if (obj == null || (obj.getClass() != this.getClass())) {
@@ -212,9 +205,7 @@ public class BrowserConfR implements IBrowserConf {
 
 		if (this.isRemoteFlag() == secondObj.isRemoteFlag()) {
 			if (this.isRemoteFlag() == true) {
-				/*
-				 * return this.getBrowser() == secondObj.getBrowser(); else{
-				 */
+				
 				if (this.isBrowserStackSwitch() == secondObj
 						.isBrowserStackSwitch()) {
 					if (this.isBrowserStackSwitch() == true) {
@@ -246,12 +237,27 @@ public class BrowserConfR implements IBrowserConf {
 
 				return this.getBrowser().equals(secondObj.getBrowser());
 			}
-		}
-		return false;
+		}*/
 	}
 	
 	public String getDataSource()
 	{
 		return mappedValues.get(DriverConfigurations.FrameworkConfig.dataSource.toString());
 	}
+
+	@Override
+	public DesiredCapabilities getCapabilities() {
+		return dc;
+	}
+
+	@Override
+	public String host() {
+		return mappedValues.get(DriverConfigurations.HubConfig.host.toString());
+	}
+
+	@Override
+	public String port() {
+		return mappedValues.get(DriverConfigurations.HubConfig.port.toString());
+	}
+
 }

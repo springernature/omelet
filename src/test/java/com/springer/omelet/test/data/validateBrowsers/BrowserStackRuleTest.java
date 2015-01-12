@@ -16,7 +16,7 @@ import com.springer.omelet.exception.FrameworkException;
  *
  */
 public class BrowserStackRuleTest {
-	Map<String, String> browserMap;
+	/*Map<String, String> browserMap;
 
 	@BeforeMethod
 	public void setup() {
@@ -25,23 +25,23 @@ public class BrowserStackRuleTest {
 				DriverConfigurations.FrameworkConfig.remoteFlag.toString(),
 				"True");
 		browserMap.put(
-				DriverConfigurations.BrowserStackConfig.bsSwitch.toString(),
+				DriverConfigurations.CloudConfig.bsSwitch.toString(),
 				"True");
 	}
 
 	@Test
 	public void verifyIfMobileIsTrueBrowserIsIphone() {
 		browserMap.put(
-				DriverConfigurations.BrowserStackConfig.mobileTest.toString(),
+				DriverConfigurations.CloudConfig.mobileTest.toString(),
 				"True");
 		browserMap.put(
 				DriverConfigurations.LocalEnvironmentConfig.browserName.toString(),
 				"iPhone");
 		browserMap.put(
-				DriverConfigurations.BrowserStackConfig.device.toString(),
+				DriverConfigurations.CloudConfig.device.toString(),
 				"iPhone");
 		browserMap.put(
-				DriverConfigurations.BrowserStackConfig.platform.toString(),
+				DriverConfigurations.CloudConfig.platform.toString(),
 				"MAC");
 		ValidateBrowserRules vbr = new ValidateBrowserRules(browserMap);
 		vbr.checkAndThrowExceptionForLocalBrowser();
@@ -52,16 +52,16 @@ public class BrowserStackRuleTest {
 	@Test
 	public void verifyIfMobileIsTrueBrowserIsIpad() {
 		browserMap.put(
-				DriverConfigurations.BrowserStackConfig.mobileTest.toString(),
+				DriverConfigurations.CloudConfig.mobileTest.toString(),
 				"True");
 		browserMap.put(
 				DriverConfigurations.LocalEnvironmentConfig.browserName.toString(),
 				"iPad");
 		browserMap.put(
-				DriverConfigurations.BrowserStackConfig.device.toString(),
+				DriverConfigurations.CloudConfig.device.toString(),
 				"iPad mini Retina");
 		browserMap.put(
-				DriverConfigurations.BrowserStackConfig.platform.toString(),
+				DriverConfigurations.CloudConfig.platform.toString(),
 				"MAC");
 		ValidateBrowserRules vbr = new ValidateBrowserRules(browserMap);
 		vbr.checkAndThrowExceptionForLocalBrowser();
@@ -72,16 +72,16 @@ public class BrowserStackRuleTest {
 	@Test
 	public void verifyIfMobileIsTrueBrowserIsAndroid() {
 		browserMap.put(
-				DriverConfigurations.BrowserStackConfig.mobileTest.toString(),
+				DriverConfigurations.CloudConfig.mobileTest.toString(),
 				"True");
 		browserMap.put(
 				DriverConfigurations.LocalEnvironmentConfig.browserName.toString(),
 				"android");
 		browserMap.put(
-				DriverConfigurations.BrowserStackConfig.device.toString(),
+				DriverConfigurations.CloudConfig.device.toString(),
 				"Samsung Galaxy S5");
 		browserMap.put(
-				DriverConfigurations.BrowserStackConfig.platform.toString(),
+				DriverConfigurations.CloudConfig.platform.toString(),
 				"android");
 		ValidateBrowserRules vbr = new ValidateBrowserRules(browserMap);
 		vbr.checkAndThrowExceptionForLocalBrowser();
@@ -92,16 +92,16 @@ public class BrowserStackRuleTest {
 	@Test(expectedExceptions = FrameworkException.class)
 	public void verifyIfMobileIsTrueBrowserIsWrong() {
 		browserMap.put(
-				DriverConfigurations.BrowserStackConfig.mobileTest.toString(),
+				DriverConfigurations.CloudConfig.mobileTest.toString(),
 				"True");
 		browserMap.put(
 				DriverConfigurations.LocalEnvironmentConfig.browserName.toString(),
 				"test");
 		browserMap.put(
-				DriverConfigurations.BrowserStackConfig.device.toString(),
+				DriverConfigurations.CloudConfig.device.toString(),
 				"Samsung Galaxy S5");
 		browserMap.put(
-				DriverConfigurations.BrowserStackConfig.platform.toString(),
+				DriverConfigurations.CloudConfig.platform.toString(),
 				"android");
 		ValidateBrowserRules vbr = new ValidateBrowserRules(browserMap);
 		vbr.checkAndThrowExceptionForLocalBrowser();
@@ -112,15 +112,15 @@ public class BrowserStackRuleTest {
 	@Test(expectedExceptions = FrameworkException.class)
 	public void verifyIfMobileIsTrueAndDeviceIsEmpty() {
 		browserMap.put(
-				DriverConfigurations.BrowserStackConfig.mobileTest.toString(),
+				DriverConfigurations.CloudConfig.mobileTest.toString(),
 				"True");
 		browserMap.put(
 				DriverConfigurations.LocalEnvironmentConfig.browserName.toString(),
 				"test");
 		browserMap.put(
-				DriverConfigurations.BrowserStackConfig.device.toString(), "");
+				DriverConfigurations.CloudConfig.device.toString(), "");
 		browserMap.put(
-				DriverConfigurations.BrowserStackConfig.platform.toString(),
+				DriverConfigurations.CloudConfig.platform.toString(),
 				"android");
 		ValidateBrowserRules vbr = new ValidateBrowserRules(browserMap);
 		vbr.checkAndThrowExceptionForLocalBrowser();
@@ -131,16 +131,16 @@ public class BrowserStackRuleTest {
 	@Test(expectedExceptions = FrameworkException.class)
 	public void verifyIfMobileIsTrueAndPlatformIsEmpty() {
 		browserMap.put(
-				DriverConfigurations.BrowserStackConfig.mobileTest.toString(),
+				DriverConfigurations.CloudConfig.mobileTest.toString(),
 				"True");
 		browserMap.put(
 				DriverConfigurations.LocalEnvironmentConfig.browserName.toString(),
 				"test");
 		browserMap.put(
-				DriverConfigurations.BrowserStackConfig.device.toString(),
+				DriverConfigurations.CloudConfig.device.toString(),
 				"test");
 		browserMap
-				.put(DriverConfigurations.BrowserStackConfig.platform
+				.put(DriverConfigurations.CloudConfig.platform
 						.toString(), "");
 		ValidateBrowserRules vbr = new ValidateBrowserRules(browserMap);
 		vbr.checkAndThrowExceptionForLocalBrowser();
@@ -150,22 +150,22 @@ public class BrowserStackRuleTest {
 
 	@Test(expectedExceptions = FrameworkException.class)
 	public void verifyIfRemoteUrlIsEmpty() {
-		browserMap.put(DriverConfigurations.BrowserStackConfig.bs_localTesting
+		browserMap.put(DriverConfigurations.CloudConfig.bs_localTesting
 				.toString(), "True");
 		browserMap.put(
-				DriverConfigurations.BrowserStackConfig.bs_urls.toString(), "");
+				DriverConfigurations.CloudConfig.bs_urls.toString(), "");
 
 		browserMap.put(
-				DriverConfigurations.BrowserStackConfig.mobileTest.toString(),
+				DriverConfigurations.CloudConfig.mobileTest.toString(),
 				"True");
 		browserMap.put(
 				DriverConfigurations.LocalEnvironmentConfig.browserName.toString(),
 				"android");
 		browserMap.put(
-				DriverConfigurations.BrowserStackConfig.device.toString(),
+				DriverConfigurations.CloudConfig.device.toString(),
 				"test");
 		browserMap.put(
-				DriverConfigurations.BrowserStackConfig.platform.toString(),
+				DriverConfigurations.CloudConfig.platform.toString(),
 				"test");
 		ValidateBrowserRules vbr = new ValidateBrowserRules(browserMap);
 		vbr.checkAndThrowExceptionForLocalBrowser();
@@ -175,23 +175,23 @@ public class BrowserStackRuleTest {
 
 	@Test
 	public void verifyIfRemoteUrlIsSet() {
-		browserMap.put(DriverConfigurations.BrowserStackConfig.bs_localTesting
+		browserMap.put(DriverConfigurations.CloudConfig.bs_localTesting
 				.toString(), "True");
 		browserMap.put(
-				DriverConfigurations.BrowserStackConfig.bs_urls.toString(),
+				DriverConfigurations.CloudConfig.bs_urls.toString(),
 				"test");
 
 		browserMap.put(
-				DriverConfigurations.BrowserStackConfig.mobileTest.toString(),
+				DriverConfigurations.CloudConfig.mobileTest.toString(),
 				"True");
 		browserMap.put(
 				DriverConfigurations.LocalEnvironmentConfig.browserName.toString(),
 				"android");
 		browserMap.put(
-				DriverConfigurations.BrowserStackConfig.device.toString(),
+				DriverConfigurations.CloudConfig.device.toString(),
 				"test");
 		browserMap.put(
-				DriverConfigurations.BrowserStackConfig.platform.toString(),
+				DriverConfigurations.CloudConfig.platform.toString(),
 				"test");
 		ValidateBrowserRules vbr = new ValidateBrowserRules(browserMap);
 		vbr.checkAndThrowExceptionForLocalBrowser();
@@ -202,17 +202,17 @@ public class BrowserStackRuleTest {
 	@Test(expectedExceptions = FrameworkException.class)
 	public void verifyIfMobileIsFalseAndAllEmpty() {
 		browserMap.put(
-				DriverConfigurations.BrowserStackConfig.mobileTest.toString(),
+				DriverConfigurations.CloudConfig.mobileTest.toString(),
 				"False");
 		browserMap.put(
 				DriverConfigurations.LocalEnvironmentConfig.browserName.toString(),
 				"");
-		browserMap.put(DriverConfigurations.BrowserStackConfig.browserVersion
+		browserMap.put(DriverConfigurations.CloudConfig.browserVersion
 				.toString(), "");
-		browserMap.put(DriverConfigurations.BrowserStackConfig.os.toString(),
+		browserMap.put(DriverConfigurations.CloudConfig.os.toString(),
 				"");
 		browserMap.put(
-				DriverConfigurations.BrowserStackConfig.osVersion.toString(),
+				DriverConfigurations.CloudConfig.osVersion.toString(),
 				"");
 		ValidateBrowserRules vbr = new ValidateBrowserRules(browserMap);
 		vbr.checkAndThrowExceptionForLocalBrowser();
@@ -223,21 +223,21 @@ public class BrowserStackRuleTest {
 	@Test
 	public void verifyIfMobileIsFalseAndAllIsSet() {
 		browserMap.put(
-				DriverConfigurations.BrowserStackConfig.mobileTest.toString(),
+				DriverConfigurations.CloudConfig.mobileTest.toString(),
 				"False");
 		browserMap.put(
 				DriverConfigurations.LocalEnvironmentConfig.browserName.toString(),
 				"test");
-		browserMap.put(DriverConfigurations.BrowserStackConfig.browserVersion
+		browserMap.put(DriverConfigurations.CloudConfig.browserVersion
 				.toString(), "test");
-		browserMap.put(DriverConfigurations.BrowserStackConfig.os.toString(),
+		browserMap.put(DriverConfigurations.CloudConfig.os.toString(),
 				"test");
 		browserMap.put(
-				DriverConfigurations.BrowserStackConfig.osVersion.toString(),
+				DriverConfigurations.CloudConfig.osVersion.toString(),
 				"test");
 		ValidateBrowserRules vbr = new ValidateBrowserRules(browserMap);
 		vbr.checkAndThrowExceptionForLocalBrowser();
 		vbr.checkAndThrowExceptionForBrowserStack();
 		vbr.checkAndThrowExceptionForRemote();
-	}
+	}*/
 }

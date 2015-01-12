@@ -27,8 +27,6 @@ public class LocalBrowserRuleTest {
 		browserMap.put(DriverConfigurations.LocalEnvironmentConfig.chromeServerPath.toString(), "");
 		ValidateBrowserRules vbr = new ValidateBrowserRules(browserMap);
 		vbr.checkAndThrowExceptionForLocalBrowser();
-		vbr.checkAndThrowExceptionForBrowserStack();
-		vbr.checkAndThrowExceptionForRemote();
 	}
 	
 	@Test(expectedExceptions=FrameworkException.class)
@@ -37,8 +35,6 @@ public class LocalBrowserRuleTest {
 		browserMap.put(DriverConfigurations.LocalEnvironmentConfig.ieServerPath.toString(), "");
 		ValidateBrowserRules vbr = new ValidateBrowserRules(browserMap);
 		vbr.checkAndThrowExceptionForLocalBrowser();
-		vbr.checkAndThrowExceptionForBrowserStack();
-		vbr.checkAndThrowExceptionForRemote();
 	}
 	
 	@Test()
@@ -48,8 +44,6 @@ public class LocalBrowserRuleTest {
 		browserMap.put(DriverConfigurations.LocalEnvironmentConfig.chromeServerPath.toString(), "testServerPath");
 		ValidateBrowserRules vbr = new ValidateBrowserRules(browserMap);
 		vbr.checkAndThrowExceptionForLocalBrowser();
-		vbr.checkAndThrowExceptionForBrowserStack();
-		vbr.checkAndThrowExceptionForRemote();
 	}
 	
 	@Test()
@@ -59,7 +53,5 @@ public class LocalBrowserRuleTest {
 		browserMap.put(DriverConfigurations.LocalEnvironmentConfig.ieServerPath.toString(), "testServerPath");
 		ValidateBrowserRules vbr = new ValidateBrowserRules(browserMap);
 		vbr.checkAndThrowExceptionForLocalBrowser();
-		vbr.checkAndThrowExceptionForBrowserStack();
-		vbr.checkAndThrowExceptionForRemote();
 	}
 }

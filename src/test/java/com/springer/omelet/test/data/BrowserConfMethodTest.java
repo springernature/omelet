@@ -32,7 +32,7 @@ import com.springer.omelet.data.driverconf.PrepareDriverConf;
 
 public class BrowserConfMethodTest {
 
-	// If values are sent via command Line then we should get CommandLine Values
+/*	// If values are sent via command Line then we should get CommandLine Values
 	// If no command Line and all Map values then values return by method should
 	// return Map Values
 	// If no Map values no commandLine then Framework Properties value should
@@ -68,32 +68,28 @@ public class BrowserConfMethodTest {
 		browserValues.clear();
 		browserValues.put(DriverConfigurations.LocalEnvironmentConfig.browserName.toString(), browserName);
 		
-		browserValues.put(DriverConfigurations.BrowserStackConfig.browserVersion.toString(),
+		browserValues.put(DriverConfigurations.CloudConfig.browserVersion.toString(),
 				browserVersion);
 		
-		browserValues.put(DriverConfigurations.BrowserStackConfig.bs_key.toString(), bs_key);
-		browserValues.put(DriverConfigurations.BrowserStackConfig.bs_localTesting.toString(),
-				bs_localTesting);
-		browserValues.put(DriverConfigurations.BrowserStackConfig.bs_urls.toString(), browserStackURLS);
-		browserValues.put(DriverConfigurations.BrowserStackConfig.bs_userName.toString(), bs_user);
-		browserValues.put(DriverConfigurations.BrowserStackConfig.bsSwitch.toString(),
-				browserStackSwitch);
+		browserValues.put(DriverConfigurations.CloudConfig.key.toString(), bs_key);
+
+		browserValues.put(DriverConfigurations.CloudConfig.bs_urls.toString(), browserStackURLS);
+		browserValues.put(DriverConfigurations.CloudConfig.userName.toString(), bs_user);
 		browserValues.put(DriverConfigurations.LocalEnvironmentConfig.chromeServerPath.toString(),
 				chromePath);
-		browserValues.put(DriverConfigurations.BrowserStackConfig.device.toString(), device);
+		browserValues.put("device", device);
 		browserValues.put(DriverConfigurations.FrameworkConfig.driverTimeOut.toString(),
 				drivertimeout);
 		browserValues.put(DriverConfigurations.FrameworkConfig.highlightElementFlag.toString(),
 				highlightElement);
 		browserValues.put(DriverConfigurations.LocalEnvironmentConfig.ieServerPath.toString(), ie_path);
-		browserValues.put(DriverConfigurations.BrowserStackConfig.mobileTest.toString(), bs_mobileTest);
-		browserValues.put(DriverConfigurations.BrowserStackConfig.os.toString(), osName);
-		browserValues.put(DriverConfigurations.BrowserStackConfig.osVersion.toString(), osVersion);
-		browserValues.put(DriverConfigurations.BrowserStackConfig.platform.toString(), platform);
+		browserValues.put(DriverConfigurations.CloudConfig.os.toString(), osName);
+		browserValues.put(DriverConfigurations.CloudConfig.osVersion.toString(), osVersion);
+		browserValues.put(DriverConfigurations.CloudConfig.platform.toString(), platform);
 		browserValues.put(DriverConfigurations.FrameworkConfig.remoteFlag.toString(), remoteFlag);
 		browserValues
 				.put(DriverConfigurations.FrameworkConfig.screenShotFlag.toString(), screenShot);
-		browserValues.put(DriverConfigurations.HubConfig.remoteURL.toString(), reomteURL);
+		browserValues.put(DriverConfigurations.HubConfig.host.toString(), reomteURL);
 		browserValues.put(DriverConfigurations.FrameworkConfig.retryFailedTestCase.toString(),
 				retryFailedTestCount);
 
@@ -107,15 +103,12 @@ public class BrowserConfMethodTest {
 		IBrowserConf bc = new PrepareDriverConf(browserValues).refineBrowserValues().checkForRules().get();
 		Assert.assertEquals(bc.getBrowser(), browserName);
 		Assert.assertEquals(bc.getBrowserVersion(), browserVersion);
-		Assert.assertEquals(bc.getBsPassword(), bs_key);
-		Assert.assertEquals(bc.getBsUserName(), bs_user);
+		Assert.assertEquals(bc.getKey(), bs_key);
+		Assert.assertEquals(bc.getuserName(), bs_user);
 		Assert.assertEquals(bc.getDevice(), device);
 		Assert.assertEquals(bc.getLocalChromeServerPath(), chromePath);
 		Assert.assertEquals(bc.getOsName(), osName);
 		String[] bs_URLS = browserStackURLS.split(";");
-		for (int i = 0; i < bs_URLS.length; i++) {
-			Assert.assertEquals(bc.getBsURLs().get(i).trim(), bs_URLS[i].trim());
-		}
 
 		// Assert.assertEquals(bc.getBsURLs(), browserStackURLS.split(";"));
 		Assert.assertEquals(bc.getOsVersion(), osVersion);
@@ -125,16 +118,11 @@ public class BrowserConfMethodTest {
 				Integer.valueOf(drivertimeout));
 		Assert.assertEquals(bc.getRetryFailedTestCaseCount(),
 				Integer.valueOf(retryFailedTestCount));
-		Assert.assertTrue(bc.isBrowserStackSwitch() == Boolean
-				.valueOf(browserStackSwitch));
 		// Assert.assertEquals(bc.isBrowserStackSwitch(),
 		// Boolean.valueOf(browserStackSwitch));
-		Assert.assertTrue(bc.isBsLocalTesting() == Boolean
-				.valueOf(bs_localTesting));
 
 		Assert.assertTrue(bc.isHighLightElementFlag() == Boolean
 				.valueOf(highlightElement));
-		Assert.assertTrue(bc.isMobileTest() == Boolean.valueOf(bs_mobileTest));
 		Assert.assertTrue(bc.isRemoteFlag() == Boolean.valueOf(remoteFlag));
 		Assert.assertTrue(bc.isScreenShotFlag() == Boolean.valueOf(screenShot));
 
@@ -178,5 +166,5 @@ public class BrowserConfMethodTest {
 		// All the default values provided in framework properties should be
 		// given
 	}
-
+*/
 }

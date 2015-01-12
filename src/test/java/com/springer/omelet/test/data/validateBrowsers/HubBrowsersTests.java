@@ -12,7 +12,7 @@ import com.springer.omelet.exception.FrameworkException;
 
 public class HubBrowsersTests {
 	
-	Map<String,String> browserMap;
+	/*Map<String,String> browserMap;
 	@BeforeMethod
 	public void setup(){
 		browserMap = new HashMap<String, String>();
@@ -20,7 +20,7 @@ public class HubBrowsersTests {
 	}
 	@Test(expectedExceptions=FrameworkException.class)
 	public void ifRemoteURLEmpty(){
-		browserMap.put(DriverConfigurations.HubConfig.remoteURL.toString(), "");
+		browserMap.put(DriverConfigurations.HubConfig.host.toString(), "");
 		ValidateBrowserRules vbr = new ValidateBrowserRules(browserMap);
 		vbr.checkAndThrowExceptionForLocalBrowser();
 		vbr.checkAndThrowExceptionForBrowserStack();
@@ -31,11 +31,11 @@ public class HubBrowsersTests {
 	@Test
 	public void ifRemoteUrlPresent(){
 		//there should be no framework exception
-		browserMap.put(DriverConfigurations.HubConfig.remoteURL.toString(), "testURL");
+		browserMap.put(DriverConfigurations.HubConfig.host.toString(), "testURL");
 		ValidateBrowserRules vbr = new ValidateBrowserRules(browserMap);
 		vbr.checkAndThrowExceptionForLocalBrowser();
 		vbr.checkAndThrowExceptionForBrowserStack();
 		vbr.checkAndThrowExceptionForRemote();
 	}
-
+*/
 }

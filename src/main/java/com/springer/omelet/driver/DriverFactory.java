@@ -19,10 +19,8 @@ package com.springer.omelet.driver;
 
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -36,7 +34,6 @@ import org.openqa.selenium.support.events.EventFiringWebDriver;
 
 import com.springer.omelet.browserstacktunnel.BrowserStackTunnel;
 import com.springer.omelet.data.driverconf.IBrowserConf;
-import com.springer.omelet.data.xml.MappingParserRevisit;
 
 /***
  * Driver factory Class for Returning Driver Instances
@@ -49,47 +46,31 @@ class DriverFactory {
 
 	private boolean remoteFlag;
 	private String browser;
-	private String remoteURL;
+	private String host;
+	private String port;
 	private int driverTimeOut;
-	private DesiredCapabilities dc;
-	private String browser_version;
-	private String os_name;
-	private String os_version;
-	private boolean browserStackSwitch;
 	private String USERNAME;
 	private String AUTOMATE_KEY;
-	private boolean isBSLocalTesting;
-	private List<String> bsURLS;
 	private IBrowserConf browsConf;
-	private String device;
-	private String platform;
 	private String ieServerPath;
 	private String chromeServerPath;
 	private boolean ishiglightElementFlag;
-	private boolean isMobileTest;
+	private DesiredCapabilities dc;
 	WebDriver webDriver = null;
 
 	public DriverFactory(IBrowserConf browserConf) {
 		this.browsConf = browserConf;
-		this.browser = browsConf.getBrowser();
-		this.browser_version = browserConf.getBrowserVersion();
+		this.dc = browserConf.getCapabilities();
+		this.browser = browserConf.getBrowser();
 		this.remoteFlag = browsConf.isRemoteFlag();
-		this.remoteURL = browsConf.getRemoteURL();
+		this.host = browserConf.host();
+		this.port = browserConf.port();
 		this.driverTimeOut = browserConf.getDriverTimeOut();
-		this.os_name = browserConf.getOsName();
-		this.os_version = browserConf.getOsVersion();
-		this.browserStackSwitch = browsConf.isBrowserStackSwitch();
-		this.USERNAME = browsConf.getBsUserName();
-		this.AUTOMATE_KEY = browsConf.getBsPassword();
-		this.isBSLocalTesting = browsConf.isBsLocalTesting();
-		this.bsURLS = browsConf.getBsURLs();
-		this.device = browserConf.getDevice();
-		this.platform = browserConf.getPlatform();
+		this.USERNAME = browsConf.getuserName();
+		this.AUTOMATE_KEY = browsConf.getKey();
 		this.ieServerPath = browserConf.getLocalIEServerPath();
 		this.chromeServerPath = browserConf.getLocalChromeServerPath();
 		this.ishiglightElementFlag = browserConf.isHighLightElementFlag();
-		this.isMobileTest = browserConf.isMobileTest();
-		dc = new DesiredCapabilities();
 	}
 
 	/***
@@ -119,9 +100,7 @@ class DriverFactory {
 		}
 		// For maximizing driver windows and wait
 		if (webDriver != null) {
-			if (this.isMobileTest == false) {
-				webDriver.manage().window().maximize();
-			}
+			webDriver.manage().window().maximize();
 			webDriver.manage().timeouts()
 					.implicitlyWait(driverTimeOut, TimeUnit.SECONDS);
 		}
@@ -143,19 +122,24 @@ class DriverFactory {
 		private BrowserStackTunnel bs;
 
 		public RemoteBrowser() {
-			setDesiredCapability();
+		//	setDesiredCapability();
+			dc.setBrowserName(browser);
 		}
 
 		public void setUpTunnel() {
 			bs = BrowserStackTunnel.getInstance();
-			bs.createTunnel(AUTOMATE_KEY, bsURLS);
+			bs.createTunnel(AUTOMATE_KEY, null);
 		}
 
 		public WebDriver returnRemoteDriver() {
-			String c_remoteURL;
-			String browserStackURL = "http://" + USERNAME + ":" + AUTOMATE_KEY
-					+ "@hub.browserstack.com/wd/hub";
-			if (browserStackSwitch) {
+			String remoteUrl ;
+			if(host.contains("browserstack")||host.contains("sauce")||host.contains("testingbot")){
+				remoteUrl = "http://" + USERNAME + ":" + AUTOMATE_KEY
+					+ "@"+host+":"+port+"/wd/hub";
+			}else{
+				remoteUrl = "http://"+host+":"+port+"/wd/hub";
+			}
+		/*	if (browserStackSwitch) {
 				c_remoteURL = browserStackURL;
 				// check if tunnel needs to be setup
 				if (isBSLocalTesting) {
@@ -163,59 +147,17 @@ class DriverFactory {
 				}
 			} else {
 				c_remoteURL = remoteURL;
-			}
+			}*/
 			try {
 				RemoteWebDriver driver = new RemoteWebDriver(new URL(
-						c_remoteURL), dc);
+						remoteUrl), dc);
+				
 				// set local file detector for uploading file
 				driver.setFileDetector(new LocalFileDetector());
 				return driver;
 			} catch (MalformedURLException e) {
 				LOGGER.error(e);
 				return null;
-			}
-		}
-
-		private void setDesiredCapability() {
-			if (browserStackSwitch) {
-				dc.setCapability("project",
-						MappingParserRevisit.getProjectName());
-				if (StringUtils.isNotBlank(MappingParserRevisit
-						.getBuildNumber())) {
-					dc.setCapability("build",
-							MappingParserRevisit.getBuildNumber());
-				}
-				dc.setCapability("platform", platform);
-				dc.setCapability("acceptSslCerts", "true");
-				if (isMobileTest) {
-					if (platform.toLowerCase().contains("android")) {
-						dc.setCapability("device", device);
-						dc.setCapability("browserName", browser);
-					} else if (platform.toLowerCase().contains("mac")) {
-						dc.setCapability("device", device);
-						dc.setCapability("browserName", browser);
-					}
-				} else {
-					dc.setCapability("browser", browser);
-					dc.setCapability("browser_version", browser_version);
-					dc.setCapability("os", os_name);
-					dc.setCapability("osVersion", os_version);
-				}
-				if (isBSLocalTesting) {
-					dc.setCapability("browserstack.tunnel", "true");
-					dc.setCapability("browserstack.tunnelIdentifier",
-							BrowserStackTunnel.getInstance().getTunnelIdentifier());
-				}
-				dc.setCapability("browserTimeout", "200");
-				dc.setCapability("browserstack.debug", "true");
-			} else {
-				if (browser.toLowerCase().startsWith("f")) {
-					dc = DesiredCapabilities.firefox();
-				} else if (browser.toLowerCase().startsWith("i")) {
-					dc = DesiredCapabilities.internetExplorer();
-				} else if (browser.toLowerCase().startsWith("c")) {
-					dc = DesiredCapabilities.chrome();
-				}
 			}
 		}
 	}

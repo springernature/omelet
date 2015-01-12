@@ -92,7 +92,7 @@ public class DefaultBrowserConf {
 				.values()) {
 			f_map.put(localConfig.toString(), customProp.getValue(localConfig));
 		}
-		for (DriverConfigurations.BrowserStackConfig bsConfig : DriverConfigurations.BrowserStackConfig
+		for (DriverConfigurations.CloudConfig bsConfig : DriverConfigurations.CloudConfig
 				.values()) {
 			f_map.put(bsConfig.toString(), customProp.getValue(bsConfig));
 		}
