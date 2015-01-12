@@ -29,7 +29,7 @@ public class BrowserConfigurationTest {
 	static final String IESERVERPATH = "";
 	static final String CHROMESERVERPATH = "";
 
-	static final String REMOTEURL = "";
+	static final String REMOTEURL = "localhost";
 
 	@Test
 	public void verifyFrameworkConfigDefaults() {

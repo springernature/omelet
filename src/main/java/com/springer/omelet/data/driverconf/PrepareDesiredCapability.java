@@ -55,6 +55,8 @@ public class PrepareDesiredCapability {
 		}
 		return null;
 	}
+	
+	
 
 	private class KeyValueHolder {
 		String key;

@@ -28,12 +28,18 @@ import com.springer.omelet.data.driverconf.IBrowserConf;
 import com.springer.omelet.data.xml.BrowserXmlParser;
 
 public class BrowserXmlParserTest {
+	private static String browserVersion = "browserVersion";
+	private static String platform = "platform";
+	private static String device = "device";
+	private static String os = "os";
+	private static String osVersion = "osVersion";
+	private static String name = "name";
 
 	@BeforeMethod
 	public void beforeTest() {
 
 		System.setProperty(DriverConfigurations.LocalEnvironmentConfig.browserName.toString(), "");
-		System.setProperty(DriverConfigurations.CloudConfig.browserVersion.toString(), "");
+		System.setProperty(browserVersion, "");
 		System.setProperty(DriverConfigurations.CloudConfig.key.toString(), "");
 	}
 
@@ -46,18 +52,15 @@ public class BrowserXmlParserTest {
 		Assert.assertEquals(browserIs.size(), 1);
 		IBrowserConf browserI = browserIs.get(0);
 		Assert.assertEquals("firefox", browserI.getBrowser());
-		Assert.assertEquals("25", browserI.getBrowserVersion());
+		Assert.assertEquals("25", browserI.getCapabilities().getCapability(browserVersion));
 		Assert.assertEquals("testkey", browserI.getKey());
-		Assert.assertEquals("https:test1", browserI.getBsURLs().get(0));
-		Assert.assertEquals("https:test2", browserI.getBsURLs().get(1));
 		Assert.assertEquals("testusername", browserI.getuserName());
-		Assert.assertEquals("None", browserI.getDevice());
-		Assert.assertEquals("WINDOWS", browserI.getOsName());
-		Assert.assertEquals("xp", browserI.getOsVersion());
-		Assert.assertEquals("WINDOWS", browserI.getPlatform());
+		Assert.assertEquals("None", browserI.getCapabilities().getCapability(device));
+		Assert.assertEquals("WINDOWS", browserI.getCapabilities().getCapability(os));
+		Assert.assertEquals("xp", browserI.getCapabilities().getCapability(osVersion));
+		Assert.assertEquals("WINDOWS", browserI.getCapabilities().getCapability(platform));
 		Assert.assertTrue(browserI.isRemoteFlag());
-		Assert.assertFalse(browserI.isBrowserStackSwitch());
-		Assert.assertEquals("http:testRemoteURL", browserI.getRemoteURL());
+		Assert.assertEquals("http:testRemoteURL", browserI.host());
 		Assert.assertEquals(Integer.valueOf("10"), browserI.getDriverTimeOut());
 		/*
 		 * browserI.getDriverTimeOut() browserI.getOsName()
@@ -75,32 +78,28 @@ public class BrowserXmlParserTest {
 		IBrowserConf browserConf1 = browserConfList.get(0);
 		IBrowserConf browserConf2 = browserConfList.get(1);
 		Assert.assertEquals("firefox", browserConf1.getBrowser());
-		Assert.assertEquals("25", browserConf1.getBrowserVersion());
+		Assert.assertEquals("25", browserConf1.getCapabilities().getCapability(browserVersion));
 		Assert.assertEquals("testkey", browserConf1.getKey());
-		Assert.assertEquals("https:test1", browserConf1.getBsURLs().get(0));
-		Assert.assertEquals("https:test2", browserConf1.getBsURLs().get(1));
 		Assert.assertEquals("testusername", browserConf1.getuserName());
-		Assert.assertEquals("None", browserConf1.getDevice());
-		Assert.assertEquals("WINDOWS", browserConf1.getOsName());
-		Assert.assertEquals("xp", browserConf1.getOsVersion());
-		Assert.assertEquals("WINDOWS", browserConf1.getPlatform());
+		Assert.assertEquals("None", browserConf1.getCapabilities().getCapability(device));
+		Assert.assertEquals("WINDOWS", browserConf1.getCapabilities().getCapability(os));
+		Assert.assertEquals("xp", browserConf1.getCapabilities().getCapability(osVersion));
+		Assert.assertEquals("WINDOWS", browserConf1.getCapabilities().getCapability(platform));
 		Assert.assertTrue(browserConf1.isRemoteFlag());
-		Assert.assertFalse(browserConf1.isBrowserStackSwitch());
-		Assert.assertEquals("http:testRemoteURL", browserConf1.getRemoteURL());
+		Assert.assertEquals("http:testRemoteURL", browserConf1.host());
 		Assert.assertEquals(Integer.valueOf("10"),
 				browserConf1.getDriverTimeOut());
 
 		// Second XML
 		Assert.assertEquals("chrome", browserConf2.getBrowser());
-		Assert.assertEquals("32", browserConf2.getBrowserVersion());
+		Assert.assertEquals("32", browserConf2.getCapabilities().getCapability(browserVersion));
 		Assert.assertEquals("testkey1", browserConf2.getKey());
 		Assert.assertEquals("testusername1", browserConf2.getuserName());
-		Assert.assertEquals("None", browserConf2.getDevice());
-		Assert.assertEquals("LINUX", browserConf2.getOsName());
-		Assert.assertEquals("15", browserConf2.getOsVersion());
-		Assert.assertEquals("LINUX", browserConf2.getPlatform());
+		Assert.assertEquals("None", browserConf2.getCapabilities().getCapability(device));
+		Assert.assertEquals("LINUX", browserConf2.getCapabilities().getCapability(os));
+		Assert.assertEquals("15", browserConf2.getCapabilities().getCapability(osVersion));
+		Assert.assertEquals("LINUX", browserConf2.getCapabilities().getCapability(platform));
 		Assert.assertFalse(browserConf2.isRemoteFlag());
-		Assert.assertTrue(browserConf2.isBrowserStackSwitch());
 		// Assert.assertEquals("http:testRemoteURL",
 		// browserConf1.getRemoteURL());
 		// Assert.assertEquals(Integer.valueOf("10"),
@@ -120,32 +119,28 @@ public class BrowserXmlParserTest {
 		IBrowserConf browserConf2 = browserConfList.get(1);
 		IBrowserConf browserConf3 = browserConfList.get(2);
 		Assert.assertEquals("firefox", browserConf1.getBrowser());
-		Assert.assertEquals("25", browserConf1.getBrowserVersion());
+		Assert.assertEquals("25", browserConf1.getCapabilities().getCapability(browserVersion));
 		Assert.assertEquals("testkey", browserConf1.getKey());
-		Assert.assertEquals("https:test1", browserConf1.getBsURLs().get(0));
-		Assert.assertEquals("https:test2", browserConf1.getBsURLs().get(1));
 		Assert.assertEquals("testusername", browserConf1.getuserName());
-		Assert.assertEquals("None", browserConf1.getDevice());
-		Assert.assertEquals("WINDOWS", browserConf1.getOsName());
-		Assert.assertEquals("xp", browserConf1.getOsVersion());
-		Assert.assertEquals("WINDOWS", browserConf1.getPlatform());
+		Assert.assertEquals("None", browserConf1.getCapabilities().getCapability(device));
+		Assert.assertEquals("WINDOWS", browserConf1.getCapabilities().getCapability(os));
+		Assert.assertEquals("xp", browserConf1.getCapabilities().getCapability(osVersion));
+		Assert.assertEquals("WINDOWS", browserConf1.getCapabilities().getCapability(platform));
 		Assert.assertTrue(browserConf1.isRemoteFlag());
-		Assert.assertFalse(browserConf1.isBrowserStackSwitch());
-		Assert.assertEquals("http:testRemoteURL", browserConf1.getRemoteURL());
+		Assert.assertEquals("http:testRemoteURL", browserConf1.host());
 		Assert.assertEquals(Integer.valueOf("10"),
 				browserConf1.getDriverTimeOut());
 
 		// Second XML
 		Assert.assertEquals("chrome", browserConf2.getBrowser());
-		Assert.assertEquals("32", browserConf2.getBrowserVersion());
+		Assert.assertEquals("32", browserConf2.getCapabilities().getCapability(browserVersion));
 		Assert.assertEquals("testkey1", browserConf2.getKey());
 		Assert.assertEquals("testusername1", browserConf2.getuserName());
-		Assert.assertEquals("None", browserConf2.getDevice());
-		Assert.assertEquals("LINUX", browserConf2.getOsName());
-		Assert.assertEquals("15", browserConf2.getOsVersion());
-		Assert.assertEquals("LINUX", browserConf2.getPlatform());
+		Assert.assertEquals("None", browserConf2.getCapabilities().getCapability(device));
+		Assert.assertEquals("LINUX", browserConf2.getCapabilities().getCapability(os));
+		Assert.assertEquals("15", browserConf2.getCapabilities().getCapability(osVersion));
+		Assert.assertEquals("LINUX", browserConf2.getCapabilities().getCapability(platform));
 		Assert.assertFalse(browserConf2.isRemoteFlag());
-		Assert.assertTrue(browserConf2.isBrowserStackSwitch());
 		// Assert.assertEquals("http:testRemoteURL",
 		// browserConf1.getRemoteURL());
 		// Assert.assertEquals(Integer.valueOf("10"),
@@ -153,18 +148,15 @@ public class BrowserXmlParserTest {
 
 		// 3rd XML Browser
 		Assert.assertEquals("firefox", browserConf3.getBrowser());
-		Assert.assertEquals("25", browserConf3.getBrowserVersion());
+		Assert.assertEquals("25", browserConf3.getCapabilities().getCapability(browserVersion));
 		Assert.assertEquals("testkey", browserConf3.getKey());
-		Assert.assertEquals("https:test1", browserConf3.getBsURLs().get(0));
-		Assert.assertEquals("https:test2", browserConf3.getBsURLs().get(1));
 		Assert.assertEquals("testusername", browserConf3.getuserName());
-		Assert.assertEquals("None", browserConf3.getDevice());
-		Assert.assertEquals("WINDOWS", browserConf3.getOsName());
-		Assert.assertEquals("xp", browserConf3.getOsVersion());
-		Assert.assertEquals("WINDOWS", browserConf3.getPlatform());
+		Assert.assertEquals("None", browserConf3.getCapabilities().getCapability(device));
+		Assert.assertEquals("WINDOWS", browserConf3.getCapabilities().getCapability(os));
+		Assert.assertEquals("xp", browserConf3.getCapabilities().getCapability(osVersion));
+		Assert.assertEquals("WINDOWS", browserConf3.getCapabilities().getCapability(platform));
 		Assert.assertTrue(browserConf3.isRemoteFlag());
-		Assert.assertFalse(browserConf3.isBrowserStackSwitch());
-		Assert.assertEquals("http:testRemoteURL", browserConf3.getRemoteURL());
+		Assert.assertEquals("http:testRemoteURL", browserConf3.host());
 		Assert.assertEquals(Integer.valueOf("10"),
 				browserConf3.getDriverTimeOut());
 	}

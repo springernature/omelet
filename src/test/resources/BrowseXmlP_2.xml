@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!DOCTYPE ClientEnvironments [
+<!-- <!DOCTYPE ClientEnvironments [
 <!ELEMENT ClientEnvironments (ClientEnvironment+)>
 <!ATTLIST ClientEnvironment platform CDATA #IMPLIED>
 <!ATTLIST ClientEnvironment mobileTest CDATA #IMPLIED>
@@ -19,22 +19,19 @@
 <!ATTLIST ClientEnvironment bs_urls CDATA #IMPLIED>
 <!ATTLIST ClientEnvironment name CDATA #IMPLIED>
 
-]>
+]> -->
 <ClientEnvironments>
         <ClientEnvironment
-     	platform = "WINDOWS"
-     	mobileTest = "false"
-     	device = "None"
-    	os="WINDOWS"
-        osVersion="xp"
+     	dc.platform = "WINDOWS"
+     	dc.device = "None"
+    	dc.os="WINDOWS"
+        dc.osVersion="xp"
         browserName="firefox"
-        browserVersion="25"
+        dc.browserVersion="25"
     	remoteFlag = "true"
-    	remoteURL = "http:testRemoteURL"
-    	bsSwitch = "false"
+    	host = "http:testRemoteURL"
     	driverTimeOut = "10"
-    	bs_userName = "testusername"
-    	bs_key = "testkey"
-    	bs_urls = "https:test1;https:test2"
-        name="iPad 3"/>
+    	userName = "testusername"
+    	key = "testkey"
+        dc.name="iPad 3"/>
 </ClientEnvironments>

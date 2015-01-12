@@ -33,11 +33,7 @@ public interface IBrowserConf {
 	
 	public String port();
 
-	public List<String> getBsURLs();
-
 	public boolean isRemoteFlag();
-
-	public String getRemoteURL();
 
 	public Integer getDriverTimeOut();
 

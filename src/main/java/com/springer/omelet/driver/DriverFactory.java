@@ -19,7 +19,6 @@ package com.springer.omelet.driver;
 
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.log4j.Logger;
@@ -52,7 +51,6 @@ class DriverFactory {
 	private int driverTimeOut;
 	private String USERNAME;
 	private String AUTOMATE_KEY;
-	private List<String> bsURLS;
 	private IBrowserConf browsConf;
 	private String ieServerPath;
 	private String chromeServerPath;
@@ -70,7 +68,6 @@ class DriverFactory {
 		this.driverTimeOut = browserConf.getDriverTimeOut();
 		this.USERNAME = browsConf.getuserName();
 		this.AUTOMATE_KEY = browsConf.getKey();
-		this.bsURLS = browsConf.getBsURLs();
 		this.ieServerPath = browserConf.getLocalIEServerPath();
 		this.chromeServerPath = browserConf.getLocalChromeServerPath();
 		this.ishiglightElementFlag = browserConf.isHighLightElementFlag();
@@ -131,7 +128,7 @@ class DriverFactory {
 
 		public void setUpTunnel() {
 			bs = BrowserStackTunnel.getInstance();
-			bs.createTunnel(AUTOMATE_KEY, bsURLS);
+			bs.createTunnel(AUTOMATE_KEY, null);
 		}
 
 		public WebDriver returnRemoteDriver() {
@@ -154,6 +151,7 @@ class DriverFactory {
 			try {
 				RemoteWebDriver driver = new RemoteWebDriver(new URL(
 						remoteUrl), dc);
+				
 				// set local file detector for uploading file
 				driver.setFileDetector(new LocalFileDetector());
 				return driver;
