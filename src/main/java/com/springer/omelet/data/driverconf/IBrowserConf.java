@@ -16,8 +16,6 @@
  *******************************************************************************/
 package com.springer.omelet.data.driverconf;
 
-import java.util.List;
-
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 public interface IBrowserConf {
@@ -50,6 +48,8 @@ public interface IBrowserConf {
 	public String getDataSource();
 	
 	public DesiredCapabilities getCapabilities();
+	
+	public void updateCapabilities(DesiredCapabilities dc);
 	
 
 }

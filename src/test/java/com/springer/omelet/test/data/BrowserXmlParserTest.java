@@ -33,7 +33,6 @@ public class BrowserXmlParserTest {
 	private static String device = "device";
 	private static String os = "os";
 	private static String osVersion = "osVersion";
-	private static String name = "name";
 
 	@BeforeMethod
 	public void beforeTest() {
