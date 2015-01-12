@@ -28,11 +28,11 @@ import com.springer.omelet.data.driverconf.IBrowserConf;
 import com.springer.omelet.data.xml.BrowserXmlParser;
 
 public class BrowserXmlParserTest {
-	private static String browserVersion = "browserVersion";
+	private static String browserVersion = "browserversion";
 	private static String platform = "platform";
 	private static String device = "device";
 	private static String os = "os";
-	private static String osVersion = "osVersion";
+	private static String osVersion = "osversion";
 
 	@BeforeMethod
 	public void beforeTest() {
