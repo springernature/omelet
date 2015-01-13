@@ -21,6 +21,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -123,6 +124,7 @@ class DriverFactory {
 
 		public RemoteBrowser() {
 		//	setDesiredCapability();
+			if(StringUtils.isBlank(dc.getBrowserName()))
 			dc.setBrowserName(browser);
 		}
 
@@ -139,15 +141,6 @@ class DriverFactory {
 			}else{
 				remoteUrl = "http://"+host+":"+port+"/wd/hub";
 			}
-		/*	if (browserStackSwitch) {
-				c_remoteURL = browserStackURL;
-				// check if tunnel needs to be setup
-				if (isBSLocalTesting) {
-					setUpTunnel();
-				}
-			} else {
-				c_remoteURL = remoteURL;
-			}*/
 			try {
 				RemoteWebDriver driver = new RemoteWebDriver(new URL(
 						remoteUrl), dc);
