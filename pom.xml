@@ -9,6 +9,7 @@
   <url>https://github.com/springer-opensource/omelet</url>
   <modules>
   	<module>omelet-core</module>
+  	<module>omelet-integration-tests</module>
   </modules>
   
   <licenses>
