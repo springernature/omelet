@@ -10,6 +10,7 @@
   <modules>
   	<module>omelet-core</module>
   	<module>omelet-integration-tests</module>
+  	<module>omelet-archetype-simple</module>
   </modules>
   
   <licenses>

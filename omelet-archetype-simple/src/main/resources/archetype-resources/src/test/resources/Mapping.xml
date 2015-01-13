@@ -1,0 +1,29 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Mapping [ <!ELEMENT Mapping (Package+)> 
+<!ATTLIST Package name CDATA ${symbol_pound}REQUIRED>
+<!ATTLIST Package testData CDATA ${symbol_pound}IMPLIED> 
+<!ATTLIST Package clientEnvironment CDATA ${symbol_pound}IMPLIED>
+<!ATTLIST Package runStrategy (Full|Optimal) ${symbol_pound}IMPLIED> 
+<!ELEMENT Package (Class*)>
+<!ATTLIST Class name CDATA ${symbol_pound}REQUIRED>
+<!ATTLIST Class clientEnvironment CDATA ${symbol_pound}IMPLIED>
+<!ATTLIST Class testData CDATA ${symbol_pound}IMPLIED> 
+<!ATTLIST Class runStrategy (Full|Optimal) ${symbol_pound}IMPLIED>
+<!ELEMENT Class (MethodName*)>
+<!ATTLIST MethodName name CDATA ${symbol_pound}REQUIRED> 
+<!ATTLIST MethodName testData CDATA ${symbol_pound}IMPLIED> 
+<!ATTLIST MethodName clientEnvironment CDATA ${symbol_pound}IMPLIED> 
+<!ATTLIST MethodName runStrategy (Full|Optimal) ${symbol_pound}IMPLIED>]>
+
+<Mapping>
+	<Package name="tests" testData="TestData.xml"
+		runStrategy="Full">
+		<Class name="tests.SimpleGoogleTest" clientEnvironment="FireFoxLocal.xml">
+		<MethodName name = "tests.SimpleGoogleTest.verifySeleniumTitle_XML" clientEnvironment="FireFoxLocal.xml"></MethodName>
+		</Class>
+		<!-- <Class name="${package}.test.datatest.GoogleTest" clientEnvironment="browsers/FireFoxLocal.xml;browsers/ChromeLocal.xml"></Class> -->
+	</Package>
+</Mapping>

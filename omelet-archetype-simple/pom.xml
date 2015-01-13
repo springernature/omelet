@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.springer</groupId>
+  <artifactId>omelet-archetype</artifactId>
+  <version>1.0.5</version>
+  <packaging>maven-archetype</packaging>
+
+  <name>omelet-integration-tests-archetype</name>
+
+  <build>
+    <extensions>
+      <extension>
+        <groupId>org.apache.maven.archetype</groupId>
+        <artifactId>archetype-packaging</artifactId>
+        <version>2.2</version>
+      </extension>
+    </extensions>
+
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <artifactId>maven-archetype-plugin</artifactId>
+          <version>2.2</version>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
+
+  <description>Parent project for the omelet</description>
+
+  <url>https://github.com/springer-opensource/omelet/omelet-integration-tests</url>
+
+  <developers>
+    <developer>
+      <id>kapilag</id>
+      <name>kapil</name>
+      <email>kapil.aggarwal1@gmail.com</email>
+      <organization>Springer Science+Business Media Deutschland GmbH</organization>
+      <roles>
+        <role>developer</role>
+      </roles>
+    </developer>
+  </developers>
+
+  <licenses>
+    <license>
+      <name>Apache 2</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+      <distribution>repo</distribution>
+      <comments>A business-friendly OSS license</comments>
+    </license>
+  </licenses>
+
+  <scm>
+    <connection>scm:git:ttps://github.com/springer-opensource/omelet.git/omelet-integration-tests</connection>
+    <url>https://github.com/springer-opensource/omelet.git/omelet-integration-tests</url>
+  </scm>
+
+  <distributionManagement>
+    <repository>
+      <id>nexus</id>
+      <name>omelet-repo</name>
+      <url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
+    </repository>
+  </distributionManagement>
+</project>
