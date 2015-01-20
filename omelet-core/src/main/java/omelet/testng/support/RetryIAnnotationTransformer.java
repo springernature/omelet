@@ -70,6 +70,7 @@ public class RetryIAnnotationTransformer implements IAnnotationTransformer,
 			MethodContext context = new MethodContext(testMethod);
 			context.setRetryAnalyser(annotation);
 			context.setDataProvider(annotation, testMethod);
+			context.prepareData();
 			//update methodContextCollection
 			//methodContextCollection.updateMethodContext(getFullMethodName(testMethod), context);
 			methodContextHolder.put(Utils.getFullMethodName(testMethod), context);
@@ -77,8 +78,6 @@ public class RetryIAnnotationTransformer implements IAnnotationTransformer,
 		
 	}
 	
-	
-
 	@SuppressWarnings("rawtypes")
 	public void transform(IConfigurationAnnotation annotation, Class testClass,
 			Constructor testConstructor, Method testMethod) {
@@ -103,7 +102,7 @@ public class RetryIAnnotationTransformer implements IAnnotationTransformer,
 			Thread t = new Thread(prettyMessage);
 			t.start();
 			// here we can check if the method have any DataProvider
-			for (IMethodInstance method : methods) {	
+			/*for (IMethodInstance method : methods) {	
 				Method methodReflect = method.getMethod()
 						.getConstructorOrMethod().getMethod();
 				switch(methodContextHolder.get(Utils.getFullMethodName(methodReflect)).getDataProvider()){
@@ -117,7 +116,7 @@ public class RetryIAnnotationTransformer implements IAnnotationTransformer,
 						break;
 				}
 				//methodContextCollection.getMethodContext(getFullMethodName(methodReflect))
-			}
+			}*/
 			prettyMessage.swtichOffLogging();
 			dataPrepared = true;
 			try {
@@ -129,7 +128,7 @@ public class RetryIAnnotationTransformer implements IAnnotationTransformer,
 		return methods;
 	}
 	
-	private void checkGoogleUserNameAndPassword(String methodName) {
+	/*private void checkGoogleUserNameAndPassword(String methodName) {
 		if (StringUtils.isBlank(System
 				.getProperty(GoogleSheetConstant.GOOGLEUSERNAME))
 				&& StringUtils.isBlank(System
@@ -180,5 +179,5 @@ public class RetryIAnnotationTransformer implements IAnnotationTransformer,
 		BrowserXmlParser bxp = new BrowserXmlParser(mapD.getClientEnvironment());		 
 		methodContext.setBrowserConf(bxp.getBrowserConf());
 		methodContext.setRunStrategy(mapD.getRunStartegy());
-	}
+	}*/
 }

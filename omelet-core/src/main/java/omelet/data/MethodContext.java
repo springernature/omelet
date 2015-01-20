@@ -6,9 +6,18 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import omelet.common.Utils;
+import omelet.data.IMappingData;
+import omelet.data.MethodContext;
+import omelet.data.RefineMappedData;
 import omelet.data.DataProvider.mapStrategy;
 import omelet.data.driverconf.IBrowserConf;
 import omelet.data.driverconf.PrepareDriverConf;
+import omelet.data.googlesheet.GoogleSheetConstant;
+import omelet.data.googlesheet.ReadGoogle;
+import omelet.data.xml.BrowserXmlParser;
+import omelet.data.xml.MappingParserRevisit;
+import omelet.data.xml.XmlApplicationData;
 import omelet.exception.FrameworkException;
 import omelet.testng.support.RetryAnalyzer;
 
@@ -30,10 +39,32 @@ public class MethodContext implements IMethodContext {
 	private DataSource dataSource;
 	private Logger LOGGER = Logger.getLogger(MethodContext.class);
 	private boolean isDataSourceCalculated = false;
+	private boolean isEnabled;
+	private String[] groups;
 
 	public MethodContext(Method method) {
 		this.method = method;
+		this.methodName = Utils.getFullMethodName(method);
 		setBeforeAfterMethod();
+		setIsEnable();
+		setGroups();
+	}
+
+	private void setIsEnable() {
+		isEnabled = method.getAnnotation(org.testng.annotations.Test.class)
+				.enabled();
+	}
+	
+	public boolean isEnable(){
+		return isEnabled;
+	}
+	
+	private void setGroups(){
+		groups = method.getAnnotation(org.testng.annotations.Test.class).groups();
+	}
+	
+	public String[] getGroup(){
+		return groups;
 	}
 
 	public void setRetryAnalyser(ITestAnnotation methodAnnotation) {
@@ -75,18 +106,22 @@ public class MethodContext implements IMethodContext {
 	}
 
 	private void setBeforeAfterMethod() {
-		beforeMethod = checkAnnotation(method.getDeclaringClass(), org.testng.annotations.BeforeMethod.class);
-		afterMethod = checkAnnotation(method.getDeclaringClass(), org.testng.annotations.AfterMethod.class);
+		beforeMethod = checkAnnotation(method.getDeclaringClass(),
+				org.testng.annotations.BeforeMethod.class);
+		afterMethod = checkAnnotation(method.getDeclaringClass(),
+				org.testng.annotations.AfterMethod.class);
 	}
 
-	private <T extends Annotation> boolean checkAnnotation(Class<?> classToCheck,Class<T> annotationToVerify) {
+	private <T extends Annotation> boolean checkAnnotation(
+			Class<?> classToCheck, Class<T> annotationToVerify) {
 		if (!classToCheck.getName().contains("java.lang.Object")) {
 			for (Method method : classToCheck.getMethods()) {
 				if (method.getAnnotation(annotationToVerify) != null) {
 					return true;
 				}
 			}
-			return checkAnnotation(classToCheck.getSuperclass(),annotationToVerify);
+			return checkAnnotation(classToCheck.getSuperclass(),
+					annotationToVerify);
 		}
 		return false;
 	}
@@ -147,7 +182,7 @@ public class MethodContext implements IMethodContext {
 	 * @param dataProperty
 	 */
 
-	private void setDataSourceForNonBlankMethod(String dataProperty) {
+	private void validateDataProviderName(String dataProperty) {
 		if (dataProperty.equalsIgnoreCase(DataSource.GoogleData.toString())) {
 			dataSource = DataSource.GoogleData;
 		} else if (dataProperty
@@ -165,7 +200,7 @@ public class MethodContext implements IMethodContext {
 			Method testMethod) {
 
 		if (StringUtils.isNotBlank(testAnnotation.getDataProvider())) {
-			setDataSourceForNonBlankMethod(testAnnotation.getDataProvider());
+			validateDataProviderName(testAnnotation.getDataProvider());
 		} else {
 
 			testAnnotation.setDataProvider(getDataSourceParameter().name());
@@ -189,75 +224,96 @@ public class MethodContext implements IMethodContext {
 								+ testMethod.getName());
 			}
 		} else {
-			testAnnotation
-					.setDataProviderClass(omelet.data.DataProvider.class);
+			testAnnotation.setDataProviderClass(omelet.data.DataProvider.class);
 			LOGGER.debug("Setting Data provider class for method: "
 					+ testMethod.getName() + " value "
 					+ testAnnotation.getDataProviderClass().getName());
 		}
 	}
 
-	/*
-	 * private void checkGoogleUserNameAndPassword(String methodName) { if
-	 * (StringUtils.isBlank(System
-	 * .getProperty(GoogleSheetConstant.GOOGLEUSERNAME)) &&
-	 * StringUtils.isBlank(System
-	 * .getProperty(GoogleSheetConstant.GOOGLEPASSWD)) &&
-	 * StringUtils.isBlank(System
-	 * .getProperty(GoogleSheetConstant.GOOGLESHEETNAME))) { throw new
-	 * FrameworkException( "Method with name:" + methodName +
-	 * "required Google Sheet as Test Data , please provide arguments -DgoogleUsername and -DgoogelPassword"
-	 * ); } }
-	 * 
-	 * private void updateGoogleSheet(Method method, String environment) {
-	 * String methodName = method.getDeclaringClass().getName() + "." +
-	 * method.getName(); checkGoogleUserNameAndPassword(methodName); //
-	 * System.out.println(System.getProperty(googleUsername)); ReadGoogle
-	 * readGoogle = new ReadGoogle(
-	 * System.getProperty(GoogleSheetConstant.GOOGLEUSERNAME),
-	 * System.getProperty(GoogleSheetConstant.GOOGLEPASSWD),
-	 * System.getProperty(GoogleSheetConstant.GOOGLESHEETNAME));
-	 * RefineMappedData refinedData = new RefineMappedData(readGoogle);
-	 * IMappingData mapData = refinedData.getMethodData(method); browserConfig =
-	 * readGoogle.getBrowserListForSheet(mapData); property =
-	 * readGoogle.getMethodData(environment, mapData); runStrategy =
-	 * mapData.getRunStartegy();
-	 * 
-	 * }
-	 * 
-	 * private void updateXml(Method method, String environment) { String
-	 * methodName = method.getDeclaringClass().getName() + "." +
-	 * method.getName(); MappingParserRevisit mpr = new
-	 * MappingParserRevisit("Mapping.xml"); RefineMappedData refinedMappedData =
-	 * new RefineMappedData(mpr); IMappingData mapD =
-	 * refinedMappedData.getMethodData(method); XmlApplicationData xmlapData =
-	 * null; if (environment != null && !StringUtils.isBlank(environment)) { //
-	 * get the xml name from MappingParser Static Method xmlapData = new
-	 * XmlApplicationData(mapD.getTestData(), environment); property =
-	 * xmlapData.getAppData(); } else { xmlapData = new
-	 * XmlApplicationData(mapD.getTestData()); property =
-	 * xmlapData.getAppData(); } BrowserXmlParser bxp = new
-	 * BrowserXmlParser(mapD.getClientEnvironment()); browserConfig =
-	 * bxp.getBrowserConf(); runStrategy = mapD.getRunStartegy(); }
-	 */
-
 	@Override
 	public boolean isAfterMethod() {
 		return afterMethod;
 	}
 
-	/*
-	 * private void updateAfterMethod(){ Class<?> className =
-	 * method.getTestMethod() .getConstructorOrMethod().getDeclaringClass(); }
-	 * 
-	 * private void updateBeforeMethod(){
-	 * 
-	 * }
-	 */
-
 	@Override
 	public boolean isBeforeMethod() {
 		return beforeMethod;
+	}
+
+	private void updateXml(String environment) {
+		MappingParserRevisit mpr = new MappingParserRevisit("Mapping.xml");
+		RefineMappedData refinedMappedData = new RefineMappedData(mpr);
+		IMappingData mapD = refinedMappedData.getMethodData(method);
+		XmlApplicationData xmlapData = null;
+		if (environment != null && !StringUtils.isBlank(environment)) {
+			// get the xml name from MappingParser Static Method
+			xmlapData = new XmlApplicationData(mapD.getTestData(), environment);
+			this.testData = xmlapData.getAppData();
+		} else {
+			xmlapData = new XmlApplicationData(mapD.getTestData());
+			this.testData = xmlapData.getAppData();
+		}
+		BrowserXmlParser bxp = new BrowserXmlParser(mapD.getClientEnvironment());
+		this.browserConfig = bxp.getBrowserConf();
+		this.runStrategy = mapD.getRunStartegy();
+	}
+
+	private void updateGoogleSheet(String environment) {
+		checkGoogleUserNameAndPassword();
+		// System.out.println(System.getProperty(googleUsername));
+		ReadGoogle readGoogle = new ReadGoogle(
+				System.getProperty(GoogleSheetConstant.GOOGLEUSERNAME),
+				System.getProperty(GoogleSheetConstant.GOOGLEPASSWD),
+				System.getProperty(GoogleSheetConstant.GOOGLESHEETNAME));
+		RefineMappedData refinedData = new RefineMappedData(readGoogle);
+		IMappingData mapData = refinedData.getMethodData(method);
+		this.browserConfig = readGoogle.getBrowserListForSheet(mapData);
+		this.testData = readGoogle.getMethodData(environment, mapData);
+		this.runStrategy = mapData.getRunStartegy();
+
+	}
+
+	private void checkGoogleUserNameAndPassword() {
+		if (StringUtils.isBlank(System
+				.getProperty(GoogleSheetConstant.GOOGLEUSERNAME))
+				&& StringUtils.isBlank(System
+						.getProperty(GoogleSheetConstant.GOOGLEPASSWD))
+				&& StringUtils.isBlank(System
+						.getProperty(GoogleSheetConstant.GOOGLESHEETNAME))) {
+			// This is not the solution as TestNG is not logging the exception
+			// hence setting it here
+			LOGGER.info("Method with name:"
+					+ methodName
+					+ "required Google Sheet as Test Data , please provide arguments -DgoogleUsername and -DgoogelPassword");
+			throw new FrameworkException(
+					"Method with name:"
+							+ methodName
+							+ "required Google Sheet as Test Data , please provide arguments -DgoogleUsername and -DgoogelPassword");
+		}
+	}
+
+	/**
+	 * Prepare browserConf and IProperty for the test method
+	 */
+	public void prepareData() {
+		if (isEnabled) {
+			switch (dataSource) {
+			case XmlData:
+				updateXml(System.getProperty("env-type"));
+				break;
+			case GoogleData:
+				updateGoogleSheet(System.getProperty("env-type"));
+				break;
+			case NoSource:
+				// ignore no need to set data
+				break;
+			default:
+				break;
+			}
+		}else{
+			LOGGER.debug("As the method:"+methodName+" is not enabled no need to set data");
+		}
 	}
 
 }

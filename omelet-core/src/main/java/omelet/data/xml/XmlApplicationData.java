@@ -113,7 +113,7 @@ public class XmlApplicationData {
 		// Check if Data list is empty throw framework exception as there is no
 		// mapping for the xml
 		if (dataList.isEmpty() && envType != null) {
-			throw new FrameworkException(
+			LOGGER.info(
 					"There is no such environment with name in :" + envType
 							+ " in the xml:" + xmlPath);
 		}

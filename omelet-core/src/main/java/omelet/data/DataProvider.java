@@ -25,6 +25,7 @@ import java.util.Set;
 
 import omelet.common.Utils;
 import omelet.data.driverconf.IBrowserConf;
+import omelet.exception.FrameworkException;
 import omelet.testng.support.MethodContextCollection;
 
 import org.apache.log4j.Logger;
@@ -74,11 +75,12 @@ public class DataProvider {
 		Object[][] testMethodData = null;
 		List<IBrowserConf> browserConfFilteredList = filterSameBrowsers(MethodContextCollection.getMethodContext(methodName).
 				getBrowserConf());
-
 		List<IProperty> testMData = MethodContextCollection.getMethodContext(methodName).getMethodTestData();
 		mapStrategy strategy = MethodContextCollection.getMethodContext(methodName).getRunStrategy();
 		int browserConfCount = browserConfFilteredList.size();
 		int testDataCount = testMData.size();
+		verifyCount(browserConfCount, "IBrowserConf");
+		verifyCount(testDataCount, "IProperty");
 		int loopCombination;
 		int k = 0;
 		switch (strategy) {
@@ -95,6 +97,8 @@ public class DataProvider {
 			}
 			break;
 		case Optimal:
+			/*if(testDataCount <=0)
+				testDataCount = 1;*/
 			if (browserConfCount >= testDataCount) {
 				loopCombination = browserConfCount;
 			} else {
@@ -123,4 +127,11 @@ public class DataProvider {
 		}
 		return testMethodData;
 	}
+	
+	private static void verifyCount(int count,String dataName){
+		if(count <=0){
+			throw new FrameworkException("Data Provider of Type:"+dataName+"not present , there is some problem please check!");
+		}
+	}
+	
 }

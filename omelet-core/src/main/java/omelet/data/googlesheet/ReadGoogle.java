@@ -8,7 +8,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import omelet.data.DriverConfigurations;
 import omelet.data.IDataSource;
 import omelet.data.IMappingData;
 import omelet.data.IProperty;

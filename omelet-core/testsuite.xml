@@ -3,8 +3,8 @@
 
 	<test name="Browser Conf Test">
 		<packages>
-			<package name="com.springer.omelet.test.data" />
-			<package name="com.springer.omelet.test.libraries" />
+			<package name="omelet.test.data" />
+			<package name="omelet.test.libraries" />
 			<!-- <package name="framework.integration.test" /> -->
 		</packages>
 	</test>

@@ -23,13 +23,9 @@
         <ClientEnvironment
         	browsername="firefox"
         	dc.platform = ""
-    		remoteflag = "false"
-    		username = "kapilaggarwal1"
-    		key = "875c53f3-4d78-45e0-820c-30f2b9d770b1"/>
+    		remoteflag = "false"/>
     		  <ClientEnvironment
         	browsername="firefox"
         	dc.platform = ""
-    		remoteflag = "false"
-    		username = "kapilaggarwal1"
-    		key = "875c53f3-4d78-45e0-820c-30f2b9d770b1"/>
+    		remoteflag = "false"/>
 </ClientEnvironments>

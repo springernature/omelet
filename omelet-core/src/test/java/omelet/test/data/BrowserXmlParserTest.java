@@ -57,7 +57,7 @@ public class BrowserXmlParserTest {
 		Assert.assertEquals("None", browserI.getCapabilities().getCapability(device));
 		Assert.assertEquals("WINDOWS", browserI.getCapabilities().getCapability(os));
 		Assert.assertEquals("xp", browserI.getCapabilities().getCapability(osVersion));
-		Assert.assertEquals("WINDOWS", browserI.getCapabilities().getCapability(platform));
+		Assert.assertEquals("WINDOWS", browserI.getCapabilities().getCapability(platform).toString());
 		Assert.assertTrue(browserI.isRemoteFlag());
 		Assert.assertEquals("http:testRemoteURL", browserI.host());
 		Assert.assertEquals(Integer.valueOf("10"), browserI.getDriverTimeOut());
@@ -83,7 +83,7 @@ public class BrowserXmlParserTest {
 		Assert.assertEquals("None", browserConf1.getCapabilities().getCapability(device));
 		Assert.assertEquals("WINDOWS", browserConf1.getCapabilities().getCapability(os));
 		Assert.assertEquals("xp", browserConf1.getCapabilities().getCapability(osVersion));
-		Assert.assertEquals("WINDOWS", browserConf1.getCapabilities().getCapability(platform));
+		Assert.assertEquals("WINDOWS", browserConf1.getCapabilities().getCapability(platform).toString());
 		Assert.assertTrue(browserConf1.isRemoteFlag());
 		Assert.assertEquals("http:testRemoteURL", browserConf1.host());
 		Assert.assertEquals(Integer.valueOf("10"),
@@ -97,7 +97,7 @@ public class BrowserXmlParserTest {
 		Assert.assertEquals("None", browserConf2.getCapabilities().getCapability(device));
 		Assert.assertEquals("LINUX", browserConf2.getCapabilities().getCapability(os));
 		Assert.assertEquals("15", browserConf2.getCapabilities().getCapability(osVersion));
-		Assert.assertEquals("LINUX", browserConf2.getCapabilities().getCapability(platform));
+		Assert.assertEquals("LINUX", browserConf2.getCapabilities().getCapability(platform).toString());
 		Assert.assertFalse(browserConf2.isRemoteFlag());
 		// Assert.assertEquals("http:testRemoteURL",
 		// browserConf1.getRemoteURL());
@@ -124,7 +124,7 @@ public class BrowserXmlParserTest {
 		Assert.assertEquals("None", browserConf1.getCapabilities().getCapability(device));
 		Assert.assertEquals("WINDOWS", browserConf1.getCapabilities().getCapability(os));
 		Assert.assertEquals("xp", browserConf1.getCapabilities().getCapability(osVersion));
-		Assert.assertEquals("WINDOWS", browserConf1.getCapabilities().getCapability(platform));
+		Assert.assertEquals("WINDOWS", browserConf1.getCapabilities().getCapability(platform).toString());
 		Assert.assertTrue(browserConf1.isRemoteFlag());
 		Assert.assertEquals("http:testRemoteURL", browserConf1.host());
 		Assert.assertEquals(Integer.valueOf("10"),
@@ -138,7 +138,7 @@ public class BrowserXmlParserTest {
 		Assert.assertEquals("None", browserConf2.getCapabilities().getCapability(device));
 		Assert.assertEquals("LINUX", browserConf2.getCapabilities().getCapability(os));
 		Assert.assertEquals("15", browserConf2.getCapabilities().getCapability(osVersion));
-		Assert.assertEquals("LINUX", browserConf2.getCapabilities().getCapability(platform));
+		Assert.assertEquals("LINUX", browserConf2.getCapabilities().getCapability(platform).toString());
 		Assert.assertFalse(browserConf2.isRemoteFlag());
 		// Assert.assertEquals("http:testRemoteURL",
 		// browserConf1.getRemoteURL());
@@ -153,7 +153,7 @@ public class BrowserXmlParserTest {
 		Assert.assertEquals("None", browserConf3.getCapabilities().getCapability(device));
 		Assert.assertEquals("WINDOWS", browserConf3.getCapabilities().getCapability(os));
 		Assert.assertEquals("xp", browserConf3.getCapabilities().getCapability(osVersion));
-		Assert.assertEquals("WINDOWS", browserConf3.getCapabilities().getCapability(platform));
+		Assert.assertEquals("WINDOWS", browserConf3.getCapabilities().getCapability(platform).toString());
 		Assert.assertTrue(browserConf3.isRemoteFlag());
 		Assert.assertEquals("http:testRemoteURL", browserConf3.host());
 		Assert.assertEquals(Integer.valueOf("10"),
