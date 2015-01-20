@@ -26,7 +26,7 @@ Easy- create Google account and add sheet :)
 Either you can follow sample GoogleSheet over [here](https://docs.google.com/spreadsheets/d/14sD0Z6OR0pMogx32KrBXCwpxRVvMPfG2Othf0HHnd5w/edit#gid=2060834450) and run below command which is self explantory 
 
 {%highlight text%}
-mvn clean install -DgoogleUserName=yourGmailID -DgooglePassword=YourGmailPasswd -DgoogleSheetName=yourGoogleSHeetName
+mvn clean install -DgoogleUserName=yourGmailID -DgooglePassword=YourGmailPasswd -DgoogleSheetName=yourGoogleSHeetName -Ddatasource=GoogleData
 {%endhighlight%}
 
  or continue reading.
@@ -44,7 +44,8 @@ Create a sheet with name Mapping and add following coloum to sheet
 
 Create a one or multiple browser Sheet and name it as per your convienence. Add any or all the browserConfiguration keys to the coloum and your are done .
 
-Please not single browser Sheet can have mutliple rows of browsers which will tell omelet to run mapped test case on multiple browser 
+Please not single browser Sheet can have mutliple rows of browsers which will tell omelet to run mapped test case on multiple browser.
+Any desiredcapability can be configured by provide "dc." in front of the key in the xml.
 After you have given the name , do remember to add the browser sheet name in the  Mapping sheet coloum : BrowserSheet
 
 More over different Browser sheet can also be provided to a test method in the Mapping with ";" seprated like BrowserSheet1;BrowserSheet2

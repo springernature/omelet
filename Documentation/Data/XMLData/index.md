@@ -56,24 +56,20 @@ Sample XMl is below
 {%highlight xml%}
 <ClientEnvironments>
         <ClientEnvironment
-     	platform = "WINDOWS"
-     	mobileTest = "false"
-     	device = "None"
-    	os="WINDOWS"
-        osVersion="xp"
-        browserName="firefox"
-        browserVersion="25"
-    	remoteFlag = "true"
-    	remoteURL = "http:testRemoteURL"
-    	bsSwitch = "false"
-    	driverTimeOut = "10"
-    	bs_userName = "testusername"
-    	bs_key = "testkey"
-    	bs_urls = "https:test1;https:test2"
-        name="iPad 3"/>
+     	dc.platform = "XP"
+        browsername="firefox"
+        dc.verrsion="25"
+    	remoteflag = "true"
+    	host = "hub.browserstack.com"
+        port = "80"
+    	drivertimeOut = "10"
+    	username = "testusername"
+    	key = "testkey"
+    	"/>
 </ClientEnvironments>
 {%endhighlight%}
-All the Framework.properties configuration can be configured inside ClientEnvironment , however if you have some static values like driverTimeout , consider adding them in Framework.properties file 
+All the Framework.properties configuration can be configured inside ClientEnvironment , however if you have some static values like drivertimeout , consider adding them in Framework.properties file 
+Any desired capability which is provided by the cloud solution provider or if we want to implement on our own can be provided by appending "dc." in front of the key.
 
 
 

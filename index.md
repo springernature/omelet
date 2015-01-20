@@ -37,7 +37,7 @@ Salient Features
 * Multi Parallel testing
 * Data driver testing using Xml or GoogleSheets
 * Step level report generation 
-* BrowserStack Integration/Auto tunnel
+* Support all major cloud solution providers like (Saucelabs, BrowserStack, TestingBot)
 * Auto screen Shot of failed test steps
 * Command Line support for CI integration
 * ExpectedConditionsExtended for PageObjects Design pattern

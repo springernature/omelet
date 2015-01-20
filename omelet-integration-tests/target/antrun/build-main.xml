@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="maven-antrun-" default="main"  >
+<target name="main">
+  <chmod file="target/classes/chromedriver" perm="755"/>
+  <chmod file="target/classes/BrowserStackLocal" perm="755"/>
+</target>
+</project>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" total="3" passed="3">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Default suite" duration-ms="253" started-at="2015-01-14T05:48:55Z" finished-at="2015-01-14T05:48:55Z">
+    <groups>
+    </groups>
+    <test name="Default test" duration-ms="253" started-at="2015-01-14T05:48:55Z" finished-at="2015-01-14T05:48:55Z">
+      <class name="omelet.test.data.BrowserXmlParserTest">
+        <test-method status="PASS" signature="beforeTest()[pri:0, instance:omelet.test.data.BrowserXmlParserTest@49fe84c6]" name="beforeTest" is-config="true" duration-ms="6" started-at="2015-01-14T11:18:55Z" finished-at="2015-01-14T11:18:55Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeTest -->
+        <test-method status="PASS" signature="mutipleXml()[pri:0, instance:omelet.test.data.BrowserXmlParserTest@49fe84c6]" name="mutipleXml" duration-ms="224" started-at="2015-01-14T11:18:55Z" finished-at="2015-01-14T11:18:55Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- mutipleXml -->
+        <test-method status="PASS" signature="beforeTest()[pri:0, instance:omelet.test.data.BrowserXmlParserTest@49fe84c6]" name="beforeTest" is-config="true" duration-ms="0" started-at="2015-01-14T11:18:55Z" finished-at="2015-01-14T11:18:55Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeTest -->
+        <test-method status="PASS" signature="verifyBrowserConf_singleXml()[pri:0, instance:omelet.test.data.BrowserXmlParserTest@49fe84c6]" name="verifyBrowserConf_singleXml" duration-ms="4" started-at="2015-01-14T11:18:55Z" finished-at="2015-01-14T11:18:55Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifyBrowserConf_singleXml -->
+        <test-method status="PASS" signature="beforeTest()[pri:0, instance:omelet.test.data.BrowserXmlParserTest@49fe84c6]" name="beforeTest" is-config="true" duration-ms="1" started-at="2015-01-14T11:18:55Z" finished-at="2015-01-14T11:18:55Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeTest -->
+        <test-method status="PASS" signature="verifySingleXMLMultiBrowser()[pri:0, instance:omelet.test.data.BrowserXmlParserTest@49fe84c6]" name="verifySingleXMLMultiBrowser" duration-ms="4" started-at="2015-01-14T11:18:55Z" finished-at="2015-01-14T11:18:55Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifySingleXMLMultiBrowser -->
+      </class> <!-- omelet.test.data.BrowserXmlParserTest -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>

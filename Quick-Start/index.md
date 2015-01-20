@@ -11,7 +11,7 @@ In order to start with omelet , one of the pre-requisite is maven should be inst
 Once we are sure maven is insall simply run the below command in you shell
 
 {% highlight text %}
-mvn archetype:generate -DgroupId=com.yourGroupId -DartifactId=my-app -DarchetypeArtifactId=omelet-archetype-simple -DarchetypeGroupId=com.springer
+mvn archetype:generate -DgroupId=com.yourGroupId -DartifactId=my-app -DarchetypeArtifactId=omelet-archetype -DarchetypeGroupId=com.springer
 {% endhighlight %}
 
 **Do remember to change -DartifactId and -DgroupId which would be your project name and group name respectively.**
@@ -21,7 +21,7 @@ mvn archetype:generate -DgroupId=com.yourGroupId -DartifactId=my-app -Darchetype
 Sample project is created for you which will be having a test case for simple selenium tests using XML as data provider. 
 You can simple CD into your folder and then run command 
 {%highlight text %}
-mvn clean install
+mvn clean install -Ddatasource=XmlData
 {%endhighlight%} 
 
 ## Then What ?
@@ -34,13 +34,24 @@ Now as you have your skeletone ready with few folders , either you can start aut
 
 **BrowserStack**
 {%highlight text %}
-mvn clean install -DremoteFlag=true -DbsSwitch=true -Dbs_key=yourBrowserStackKey -Dbs_UserName=yourBSName
+mvn clean install -Dremoteflag=true -Dkey=yourKey -Dusername=youruserName -Dhost=hub.browserstack.com -Dport=80 -Ddatasource=XmlData|GoogleData
 {%endhighlight%} 
+
+**SauceLabs**
+{%highlight text %}
+mvn clean install -Dremoteflag=true -Dkey=yourKey -Dusername=youruserName -Dhost=ondemand.saucelabs.com -Dport=80 -Ddatasource=XmlData|GoogleData
+{%endhighlight%}
+
+**Testing Bot**
+{%highlight text %}
+mvn clean install -Dremoteflag=true -Dkey=yourKey -Dusername=youruserName -Dhost=hub.testingbot.com -Dport=4444 -Ddatasource=XmlData|GoogleData
+{%endhighlight%}
+
 
 or you can run on your test cases on grid using below command
 
 **Grid**
 
 {%highlight text %}
-mvn clean install -DremoteFlag=true -DremoteUrl=https://yourHubURL
+mvn clean install -Dremoteflag=true -Dhost=127.0.0.1 -Dport=4444
 {%endhighlight%} 

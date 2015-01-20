@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- <!DOCTYPE ClientEnvironments [
+<!ELEMENT ClientEnvironments (ClientEnvironment+)>
+<!ATTLIST ClientEnvironment platform CDATA #IMPLIED>
+<!ATTLIST ClientEnvironment mobileTest CDATA #IMPLIED>
+<!ATTLIST ClientEnvironment device CDATA #IMPLIED>
+<!ATTLIST ClientEnvironment os CDATA #IMPLIED>
+<!ATTLIST ClientEnvironment osVersion CDATA #IMPLIED>
+<!ATTLIST ClientEnvironment remoteFlag CDATA #IMPLIED>
+<!ATTLIST ClientEnvironment browserName CDATA #IMPLIED>
+<!ATTLIST ClientEnvironment browserVersion CDATA #IMPLIED>
+<!ATTLIST ClientEnvironment remoteURL CDATA #IMPLIED>
+<!ATTLIST ClientEnvironment bsSwitch CDATA #IMPLIED>
+<!ATTLIST ClientEnvironment userName CDATA #IMPLIED>
+<!ATTLIST ClientEnvironment key CDATA #IMPLIED>
+<!ATTLIST ClientEnvironment bs_localTesting CDATA #IMPLIED>
+<!ATTLIST ClientEnvironment bs_urls CDATA #IMPLIED>
+<!ATTLIST ClientEnvironment name CDATA #IMPLIED>
+
+]> -->
+<ClientEnvironments>
+        <ClientEnvironment
+        	browsername="firefox"
+        	dc.platform = ""
+    		remoteflag = "false"/>
+    		  <ClientEnvironment
+        	browsername="firefox"
+        	dc.platform = ""
+    		remoteflag = "false"/>
+</ClientEnvironments>
