@@ -11,8 +11,8 @@
 	           LET'S COOK SOME TESTS!
 	**********************************************
  
-
-omelet
+## Please note there are few changes in the new version from 1.0.4 onwards , these changes are related to cloud solution providers and package updates , from now on omelet follow simple package structure i.e. omelet.driver.DriverInitialization etc , in other words we do not require "com.springer"
+omelet . Documentation would be updated soon
 ======
 [![Build Status](https://travis-ci.org/springer-opensource/omelet.svg?branch=master)](https://travis-ci.org/springer-opensource/omelet)
 
