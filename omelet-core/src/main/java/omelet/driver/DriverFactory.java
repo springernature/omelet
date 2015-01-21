@@ -99,12 +99,7 @@ class DriverFactory {
 			LOGGER.info("Browser is HTMLUNIT");
 			webDriver = new HtmlUnitDriver();
 		}
-		// For maximizing driver windows and wait
-		if (webDriver != null) {
-//			webDriver.manage().window().maximize();
-			webDriver.manage().timeouts()
-					.implicitlyWait(driverTimeOut, TimeUnit.SECONDS);
-		}
+
 		if (ishiglightElementFlag) {
 			EventFiringWebDriver efw = new EventFiringWebDriver(webDriver);
 			efw.register(new MyWebDriverListner());
