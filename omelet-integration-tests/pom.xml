@@ -3,14 +3,14 @@
   <parent>
     <groupId>com.springer</groupId>
     <artifactId>omelet-parent</artifactId>
-    <version>1.0.6-local</version>
+    <version>1.0.6</version>
   </parent>
   <artifactId>omelet-integration-tests</artifactId>
   <dependencies>
 		<dependency>
 			<groupId>com.springer</groupId>
 			<artifactId>omelet</artifactId>
-			<version>1.0.7-local</version>
+			<version>1.0.7</version>
 		</dependency>
 		<dependency>
 			<groupId>com.google.inject</groupId>
@@ -77,5 +77,5 @@
 			</plugin>
 		</plugins>
 	</build>
-	<version>1.0.0-local</version>
+	<version>1.0.0</version>
 </project>
