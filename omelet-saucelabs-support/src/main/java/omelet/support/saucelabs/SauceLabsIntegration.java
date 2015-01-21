@@ -18,7 +18,7 @@ public class SauceLabsIntegration implements IInvokedMethodListener {
 	public void afterInvocation(IInvokedMethod method, ITestResult testResult) {
 		if (Driver.getBrowserConf().host().contains("sauce")) {
 			RemoteWebDriver driver = (RemoteWebDriver) Driver.getDriver();
-			LOGGER.info("After in SL Integration driver Session ID: " + driver.getSessionId());
+			LOGGER.debug("After in SL Integration driver Session ID: " + driver.getSessionId());
 			WebInterface slWebInterface = new WebInterface();
 			slWebInterface.updateSauceLabsJob(driver.getSessionId().toString(),
 					method.getTestMethod().getMethodName(), method
@@ -40,7 +40,7 @@ public class SauceLabsIntegration implements IInvokedMethodListener {
 
 	@Override
 	public void beforeInvocation(IInvokedMethod arg0, ITestResult arg1) {
-		// TODO Auto-generated method stub
+		
 	}
 
 }

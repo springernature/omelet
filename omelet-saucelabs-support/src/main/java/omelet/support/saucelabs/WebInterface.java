@@ -23,23 +23,23 @@ public class WebInterface {
 
 	public void updateSauceLabsJob(String jobID, String testName,
 			Boolean testResult) {
-		StringBuilder sb = new StringBuilder();
+		StringBuilder restApiCommand = new StringBuilder();
 		String projectName = MappingParserRevisit.getProjectName();
 		String user = Driver.getBrowserConf().getuserName();
 		String password = Driver.getBrowserConf().getKey();
 		String userpass = user + ":" + password;
 
-		LOGGER.info("jobID: " + jobID);
-		LOGGER.info("testName: " + testName);
-		LOGGER.info("testResult: " + testResult);
+		LOGGER.debug("jobID: " + jobID);
+		LOGGER.debug("testName: " + testName);
+		LOGGER.debug("testResult: " + testResult);
 
 		if (StringUtils.isNotBlank(MappingParserRevisit.getBuildNumber())) {
 			buildNumber = MappingParserRevisit.getBuildNumber();
-			LOGGER.info("buildNumber: " + buildNumber);
+			LOGGER.debug("buildNumber: " + buildNumber);
 		}
 
 		String url = "https://saucelabs.com/rest/v1/" + user + "/jobs/" + jobID;
-		sb.append("{");
+		restApiCommand.append("{");
 
 		try {
 			URL obj = new URL(url);
@@ -56,31 +56,31 @@ public class WebInterface {
 
 			if (projectName != "") {
 				String sessionNameData = "\"name\":\"" + projectName + "\"";
-				sb.append(sessionNameData);
-				sb.append(",");
+				restApiCommand.append(sessionNameData);
+				restApiCommand.append(",");
 			}
 			if (testName != "") {
 				String testNameData = "\"tags\":[\"" + testName + "\"]";
-				sb.append(testNameData);
-				sb.append(",");
+				restApiCommand.append(testNameData);
+				restApiCommand.append(",");
 			}
-			if (buildNumber != "") {
+			if (buildNumber != "" || buildNumber != null) {
 				String buildNumberData = "\"build\":\"" + buildNumber + "\"";
-				sb.append(buildNumberData);
-				sb.append(",");
+				restApiCommand.append(buildNumberData);
+				restApiCommand.append(",");
 			}
 			if (testResult != null) {
 				String testResultData = "\"passed\":" + testResult.toString();
-				sb.append(testResultData);
+				restApiCommand.append(testResultData);
 			}
 
-			sb.append("}");
+			restApiCommand.append("}");
 
-			LOGGER.info(sb);
+			LOGGER.debug(restApiCommand);
 
 			OutputStreamWriter out = new OutputStreamWriter(
 					conn.getOutputStream());
-			out.write(sb.toString());
+			out.write(restApiCommand.toString());
 			out.close();
 
 			new InputStreamReader(conn.getInputStream());
