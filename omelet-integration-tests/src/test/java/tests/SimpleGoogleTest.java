@@ -34,7 +34,7 @@ public class SimpleGoogleTest {
 	 * dataProviderClass = com.springer.omelet.data.DataProvider.class,
 	 * dataProvider = "GoogleData",enabled=true)
 	 */
-	@Test
+	@Test(dataProvider = "XmlData")
 	public void verifySeleniumTitle_GoogleSheet(IBrowserConf browserConf,
 			IProperty prop) {
 		GooglePage gp = new GooglePage(Driver.getDriver(browserConf), prop);
