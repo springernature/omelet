@@ -1,6 +1,6 @@
 <!DOCTYPE suite SYSTEM "http://beust.com/testng/testng-1.0.dtd" >
 <suite name="Google Example Suite" verbose="2" parallel="tests"
-	thread-count="2" data-provider-thread-count="7">
+	thread-count="2" data-provider-thread-count="2">
 
 	<listeners>
 		<listener class-name="omelet.testng.support.TestInterceptor"></listener>

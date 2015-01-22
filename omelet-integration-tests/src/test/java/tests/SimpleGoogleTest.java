@@ -14,7 +14,7 @@ public class SimpleGoogleTest {
 	
 	SAssert sassert = new SAssert();
 
-	//@Test(description = "verify if Selenium title is as expected", enabled = true)
+	@Test(description = "verify if Selenium title is as expected", enabled = true,dataProvider="XmlData")
 	public void verifySeleniumTitle_XML(IBrowserConf browserConf, IProperty prop) {
 		System.out.println(browserConf.getCapabilities().getPlatform());
 		GooglePage gp = new GooglePage(Driver.getDriver(browserConf), prop);
@@ -29,12 +29,8 @@ public class SimpleGoogleTest {
 	}
 	
 
-	/*
-	 * @Test(description = "verify if Selenium title is as expected",
-	 * dataProviderClass = com.springer.omelet.data.DataProvider.class,
-	 * dataProvider = "GoogleData",enabled=true)
-	 */
-	@Test(dataProvider = "XmlData")
+	
+	//@Test(dataProvider = "GoogleData")
 	public void verifySeleniumTitle_GoogleSheet(IBrowserConf browserConf,
 			IProperty prop) {
 		GooglePage gp = new GooglePage(Driver.getDriver(browserConf), prop);

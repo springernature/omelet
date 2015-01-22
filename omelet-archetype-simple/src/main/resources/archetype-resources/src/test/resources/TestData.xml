@@ -35,15 +35,4 @@
 			</Page>
 		</Pages>
 	</Data>
-	<Data environment="live">
-		<Pages>
-			<Page name="Google">
-				<url>https://www.google.com/</url>
-				<PageTimeOut>10</PageTimeOut>
-			</Page>
-			<Page name="Selenium">
-				<Title>Screen Shot check</Title>
-			</Page>
-		</Pages>
-	</Data>
 </Conf>

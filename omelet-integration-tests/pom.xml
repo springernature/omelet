@@ -3,7 +3,7 @@
   <parent>
     <groupId>com.springer</groupId>
     <artifactId>omelet-parent</artifactId>
-    <version>1.0.6</version>
+    <version>1.0.7</version>
   </parent>
   <artifactId>omelet-integration-tests</artifactId>
   <dependencies>
@@ -55,7 +55,8 @@
 					</suiteXmlFiles>
 				</configuration>
 			</plugin>
-			<plugin>
+			<!-- use this plugin for giving permission rights to folder -->
+		<!-- 	<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-antrun-plugin</artifactId>
 				<version>1.6</version>
@@ -74,7 +75,7 @@
 						</goals>
 					</execution>
 				</executions>
-			</plugin>
+			</plugin> -->
 		</plugins>
 	</build>
 	<version>1.0.0</version>
