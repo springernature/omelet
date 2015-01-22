@@ -99,12 +99,13 @@ class DriverFactory {
 			LOGGER.info("Browser is HTMLUNIT");
 			webDriver = new HtmlUnitDriver();
 		}
-		// For maximizing driver windows and wait
+
+		// For set driver timeout
 		if (webDriver != null) {
-			webDriver.manage().window().maximize();
 			webDriver.manage().timeouts()
 					.implicitlyWait(driverTimeOut, TimeUnit.SECONDS);
 		}
+
 		if (ishiglightElementFlag) {
 			EventFiringWebDriver efw = new EventFiringWebDriver(webDriver);
 			efw.register(new MyWebDriverListner());
@@ -123,9 +124,9 @@ class DriverFactory {
 		private BrowserStackTunnel bs;
 
 		public RemoteBrowser() {
-		//	setDesiredCapability();
-			if(StringUtils.isBlank(dc.getBrowserName()))
-			dc.setBrowserName(browser);
+			// setDesiredCapability();
+			if (StringUtils.isBlank(dc.getBrowserName()))
+				dc.setBrowserName(browser);
 		}
 
 		public void setUpTunnel() {
@@ -134,17 +135,18 @@ class DriverFactory {
 		}
 
 		public WebDriver returnRemoteDriver() {
-			String remoteUrl ;
-			if(host.contains("browserstack")||host.contains("sauce")||host.contains("testingbot")){
-				remoteUrl = "http://" + USERNAME + ":" + AUTOMATE_KEY
-					+ "@"+host+":"+port+"/wd/hub";
-			}else{
-				remoteUrl = "http://"+host+":"+port+"/wd/hub";
+			String remoteUrl;
+			if (host.contains("browserstack") || host.contains("sauce")
+					|| host.contains("testingbot")) {
+				remoteUrl = "http://" + USERNAME + ":" + AUTOMATE_KEY + "@"
+						+ host + ":" + port + "/wd/hub";
+			} else {
+				remoteUrl = "http://" + host + ":" + port + "/wd/hub";
 			}
 			try {
-				RemoteWebDriver driver = new RemoteWebDriver(new URL(
-						remoteUrl), dc);
-				
+				RemoteWebDriver driver = new RemoteWebDriver(
+						new URL(remoteUrl), dc);
+
 				// set local file detector for uploading file
 				driver.setFileDetector(new LocalFileDetector());
 				return driver;

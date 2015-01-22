@@ -1,0 +1,12 @@
+<!DOCTYPE suite SYSTEM "http://beust.com/testng/testng-1.0.dtd" >
+<suite name="Omlete Suite" verbose="2">
+
+	<test name="Browser Conf Test">
+		<packages>
+<!-- 			<package name="com.springer.omelet.test.data" /> -->
+<!-- 			<package name="com.springer.omelet.test.libraries" /> -->
+<!-- 			<package name="framework.integration.test" /> -->
+		</packages>
+	</test>
+</suite> 
+ 

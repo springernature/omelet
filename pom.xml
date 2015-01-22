@@ -11,6 +11,7 @@
   	<module>omelet-core</module>
   	<module>omelet-integration-tests</module>
   	<module>omelet-archetype-simple</module>
+  	<module>omelet-saucelabs-support</module>
   </modules>
   
   <licenses>
