@@ -19,8 +19,6 @@ public class GooglePage {
 
 	@FindBy(name = "q")
 	private WebElement searchBar;
-	@FindBy(className = "srg")
-	private WebElement searchResultList;
 
 	// Simple Test Contructor
 	public GooglePage(WebDriver driver) {
