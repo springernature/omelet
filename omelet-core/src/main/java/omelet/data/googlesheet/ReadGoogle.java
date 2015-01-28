@@ -32,7 +32,7 @@ public class ReadGoogle implements IDataSource {
 
 	private String googleUserName;
 	private String googlePasswd;
-	private URL SPREADSHEET_FEED_URL = null;
+	private URL spreadSheetFeedUrl = null;
 	private SpreadsheetEntry spreadSheet;
 	private SpreadsheetService service = null;
 	private String sheetName = null;
@@ -50,14 +50,15 @@ public class ReadGoogle implements IDataSource {
 		service = new SpreadsheetService("MySpreadsheetIntegration-v1");
 		try {
 			service.setUserCredentials(googleUserName, googlePasswd);
-			SPREADSHEET_FEED_URL = new URL(
+			spreadSheetFeedUrl = new URL(
 					"https://spreadsheets.google.com/feeds/spreadsheets/private/full");
-			SpreadsheetFeed feed = service.getFeed(SPREADSHEET_FEED_URL,
+			SpreadsheetFeed feed = service.getFeed(spreadSheetFeedUrl,
 					SpreadsheetFeed.class);
 			List<com.google.gdata.data.spreadsheet.SpreadsheetEntry> spreadsheets = feed
 					.getEntries();
 			for (SpreadsheetEntry sheet : spreadsheets) {
-				// System.out.println(sheet.getTitle().getPlainText());
+				LOGGER.debug("Sheet title plain text: "
+						+ sheet.getTitle().getPlainText());
 				if (sheet.getTitle().getPlainText().equalsIgnoreCase(sheetName)) {
 					return sheet;
 				}
@@ -117,9 +118,7 @@ public class ReadGoogle implements IDataSource {
 	 * @return
 	 */
 	private ImplementIMap getMap(ListEntry row) {
-		/*
-		 * System.out.println("In preparing the Map:"); System.out.println();
-		 */
+		LOGGER.debug("In preparing the Map:");
 		return new ImplementIMap.Builder()
 				.withClientEnvironment(
 						getList(row.getCustomElements()
@@ -201,42 +200,9 @@ public class ReadGoogle implements IDataSource {
 	 */
 	private IBrowserConf getBrowserConfFromRow(ListEntry row) {
 		Map<String, String> browserMap = new HashMap<String, String>();
-		for(String tag :row.getCustomElements().getTags()){
+		for (String tag : row.getCustomElements().getTags()) {
 			browserMap.put(tag, row.getCustomElements().getValue(tag));
 		}
-		/*for (DriverConfigurations.LocalEnvironmentConfig localConfig : DriverConfigurations.LocalEnvironmentConfig
-				.values()) {
-			browserMap.put(
-					localConfig.toString(),
-					row.getCustomElements().getValue(
-							localConfig.toString().toLowerCase()
-									.replace("_", "")));
-		}
-		for (DriverConfigurations.CloudConfig bsConfig : DriverConfigurations.CloudConfig
-				.values()) {
-			browserMap
-					.put(bsConfig.toString(),
-							row.getCustomElements().getValue(
-									bsConfig.toString().toLowerCase()
-											.replace("_", "")));
-		}
-		for (DriverConfigurations.HubConfig hubConfig : DriverConfigurations.HubConfig
-				.values()) {
-			browserMap.put(
-					hubConfig.toString(),
-					row.getCustomElements()
-							.getValue(
-									hubConfig.toString().toLowerCase()
-											.replace("_", "")));
-		}
-		for (DriverConfigurations.FrameworkConfig frameworkConfig : DriverConfigurations.FrameworkConfig
-				.values()) {
-			browserMap.put(
-					frameworkConfig.toString(),
-					row.getCustomElements().getValue(
-							frameworkConfig.toString().toLowerCase()
-									.replace("_", "")));
-		}*/
 		return new PrepareDriverConf(browserMap).refineBrowserValues()
 				.checkForRules().get();
 	}
@@ -258,7 +224,7 @@ public class ReadGoogle implements IDataSource {
 		URL testDataSheetURL;
 		ListFeed testDataFeed = null;
 		// Here reading the method name and the WorkSheetName
-		// System.out.println(mData.getTestData());
+		LOGGER.debug("Get testdata: " + mData.getTestData());
 		try {
 			testDataSheetURL = getWorkSheet(mData.getTestData())
 					.getListFeedUrl();
@@ -284,11 +250,8 @@ public class ReadGoogle implements IDataSource {
 		Map<String, String> keyValuePair = new HashMap<String, String>();
 		DataPerEnvironment testEnvHolder = null;
 		for (ListEntry row : rows.getEntries()) {
-			/*
-			 * System.out.println("Row is:" +
-			 * row.getCustomElements().getValue("key") + "value:" +
-			 * row.getCustomElements().getValue("value"));
-			 */
+			LOGGER.debug("Row is: " + row.getCustomElements().getValue("key")
+					+ "value: " + row.getCustomElements().getValue("value"));
 			if (row.getCustomElements().getValue("key").contains("Environment")) {
 				if (testEnvHolder != null) {
 					testEnvironmentMap.add(testEnvHolder);
@@ -370,9 +333,8 @@ public class ReadGoogle implements IDataSource {
 		Map<String, String> testDataForSingelEnvEntry = new HashMap<String, String>();
 
 		public DataPerEnvironment(String environmentName) {
-			// System.out.println("Environment for TestENvu:" +
-			// environmentName);
-			/* System.out.println("Prop value:"+prop.getValue("Key1")); */
+			LOGGER.debug("Environment for TestEnv: " + environmentName);
+			LOGGER.debug("Prop value: " + prop.getValue("Key1"));
 			this.environmentName = environmentName;
 		}
 
@@ -389,5 +351,4 @@ public class ReadGoogle implements IDataSource {
 			return prop;
 		}
 	}
-
 }
