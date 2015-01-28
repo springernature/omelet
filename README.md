@@ -11,8 +11,6 @@
 	           LET'S COOK SOME TESTS!
 	**********************************************
  
-## Please note there are few changes in the new version from 1.0.4 onwards , these changes are related to cloud solution providers and package updates , from now on omelet follow simple package structure i.e. omelet.driver.DriverInitialization etc , in other words we do not require "com.springer"
-omelet . Documentation would be updated soon
 ======
 [![Build Status](https://travis-ci.org/springer-opensource/omelet.svg?branch=master)](https://travis-ci.org/springer-opensource/omelet)
 
@@ -24,9 +22,9 @@ Very simple yet powerful automation library for **Selenium WebDriver** which use
 Salient Features
 ----------------
 * Multi Parallel testing
+* Support all Cloud solution like BrowserStack, SauceLabs, Testingbot
 * Data driver testing
 * Step level report generation 
-* BrowserStack Integration/Auto tunnel
 * Auto screen Shot of failed test steps
 * Command Line support for CI integration
 * ExpectedConditionsExtended for PageObjects Design pattern
@@ -40,35 +38,14 @@ Build
     
 
 
-Quick Start
+[Quick Start](http://springer-opensource.github.io/omelet/Quick-Start/)
 ----------
-* Simple and StraightForward use omelet archetype run below command in console/Terminal(dont forgot to change groupId and artifactId in the command:))
-Simply use below archType
 
-	**mvn archetype:generate -DgroupId=com.yourGroupId -DartifactId=my-app 			  -DarchetypeArtifactId=omelet-archetype-simple -DarchetypeGroupId=com.springer**
-	
-Cd into the created folder , and then run **mvn clean install**
-	
-	
-
-* Or if you want to start manaully then follow below procedure 
-
- 
-
-####For mavenised project
-copy omelet dependency and add to your pom.xml
-
-        <dependency>
-	      <groupId>com.springer</groupId>
-          <artifactId>omelet</artifactId>
-          <version>1.0.xxx</version>
-        </dependency>
- 
 
 Latest version can be checked on maven central over [here](http://maven-repository.com/search?q=omelet)
 
-And reportNG dependency
-
+ReportNG dependency
+----------------
         <dependency>
 			<groupId>com.google.inject</groupId>
 			<artifactId>guice</artifactId>
@@ -89,23 +66,6 @@ And reportNG dependency
 			<classifier>jdk15</classifier>
 			<scope>compile</scope>
 		</dependency>
-Copy below listeners and add to you  testsuite xml of TestNG. More info over [here](http://testng.org/doc/documentation-main.html#listeners-testng-xml)
-
-
-
-	<listeners>
-		<listener class-name="com.springer.omelet.testng.support.TestInterceptor"></listener>
-		<listener class-name="com.springer.omelet.driver.DriverInitialization"></listener>
-		<listener class-name="com.springer.omelet.testng.support.RetryIAnnotationTransformer"></listener>
-		<listener class-name="com.springer.omelet.driver.SuiteConfiguration"></listener>
-		<listener class-name="org.uncommons.reportng.HTMLReporter"></listener>
-	</listeners>
-
-And you are ready to go 
-
-if above is too much for you then  
-***Best way to start with Omelet is to clone sample project which can be used as template from*** [here](https://github.com/springer-opensource/omelet-example-dataset).
-
 Reports
 -----------
 
@@ -121,14 +81,12 @@ Data
 ----------
 * Simple Properties file
 * Xml 
-* And now Google Sheets as well 
+* Google Sheets 
 
 Discussions
 ------------
 Google Grooups: https://groups.google.com/forum/#!forum/omelet
-Example Projects
---------------
- [omelet-example-dataset](https://github.com/springer-opensource/omelet-example-dataset)
+
 Todo
 -------
 * Though everything works fine :) but more unit test cases

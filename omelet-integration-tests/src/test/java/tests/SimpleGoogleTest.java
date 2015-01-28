@@ -11,34 +11,28 @@ import pageobjects.GooglePage;
 import pageobjects.SeleniumPage;
 
 public class SimpleGoogleTest {
-	
 	SAssert sassert = new SAssert();
 
-	//@Test(description = "verify if Selenium title is as expected", enabled = true)
-	public void verifySeleniumTitle_XML(IBrowserConf browserConf, IProperty prop) {
+	@Test(description = "verify if Selenium title is as expected", enabled = true, dataProvider = "XmlData")
+	public void verifySeleniumTitleXML(IBrowserConf browserConf, IProperty prop) {
 		System.out.println(browserConf.getCapabilities().getPlatform());
 		GooglePage gp = new GooglePage(Driver.getDriver(browserConf), prop);
-		gp.loadFromProperty().isLoaded().search("Selenium").clickOnLink(0);
+		gp.loadFromProperty().isLoaded().search("Selenium")
+				.clickOnLink("Selenium - Web Browser Automation");
 		// Selenium
-
 		SeleniumPage sp = new SeleniumPage(Driver.getDriver());
 		sassert.assertEquals(sp.isLoaded().getTitle(),
 				prop.getValue("Selenium_Title"),
 				"Check for the title of the page");
 		sassert.assertAll();
 	}
-	
 
-	/*
-	 * @Test(description = "verify if Selenium title is as expected",
-	 * dataProviderClass = com.springer.omelet.data.DataProvider.class,
-	 * dataProvider = "GoogleData",enabled=true)
-	 */
-	@Test
-	public void verifySeleniumTitle_GoogleSheet(IBrowserConf browserConf,
+	// @Test(dataProvider = "GoogleData")
+	public void verifySeleniumTitleGoogleSheet(IBrowserConf browserConf,
 			IProperty prop) {
 		GooglePage gp = new GooglePage(Driver.getDriver(browserConf), prop);
-		gp.loadFromProperty().isLoaded().search("Selenium").clickOnLink(0);
+		gp.loadFromProperty().isLoaded().search("Selenium")
+				.clickOnLink("Selenium - Web Browser Automation");
 		// Selenium
 		SeleniumPage sp = new SeleniumPage(Driver.getDriver());
 
@@ -47,6 +41,4 @@ public class SimpleGoogleTest {
 				"Check for the title of the page");
 		sassert.assertAll();
 	}
-
-
 }

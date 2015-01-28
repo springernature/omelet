@@ -1,16 +1,13 @@
-#set( $symbol_pound = '#' )
-#set( $symbol_dollar = '$' )
-#set( $symbol_escape = '\' )
 <?xml version="1.0" encoding="UTF-8"?>
 
 <ClientEnvironments>
         <ClientEnvironment
-        	browsername="firefox"
+        	browsername="htmlunit"
         	dc.platform = ""
         	dc.version=""
     		remoteflag = "false"/>
     		  <ClientEnvironment
-        	browsername="firefox"
+        	browsername="htmlunit"
         	dc.platform = ""
     		remoteflag = "false"/>
 </ClientEnvironments>

@@ -7,7 +7,7 @@
 		<dependency>
 			<groupId>com.springer</groupId>
 			<artifactId>omelet</artifactId>
-			<version>1.0.6</version>
+			<version>1.0.7</version>
 		</dependency>
 		<dependency>
 			<groupId>com.google.inject</groupId>
@@ -30,7 +30,6 @@
 			<scope>compile</scope>
 		</dependency>
 	</dependencies>
-  <version>${version}</version>
 	<build>
 		<plugins>
 			<plugin>
@@ -53,7 +52,8 @@
 					</suiteXmlFiles>
 				</configuration>
 			</plugin>
-			<plugin>
+			<!-- use this plugin for giving permission rights to folder -->
+		<!-- 	<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-antrun-plugin</artifactId>
 				<version>1.6</version>
@@ -72,7 +72,8 @@
 						</goals>
 					</execution>
 				</executions>
-			</plugin>
+			</plugin> -->
 		</plugins>
 	</build>
+	<version>${version}</version>
 </project>
