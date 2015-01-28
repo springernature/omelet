@@ -2,12 +2,12 @@
 
 <ClientEnvironments>
         <ClientEnvironment
-        	browsername="firefox"
+        	browsername="htmlunit"
         	dc.platform = ""
         	dc.version=""
     		remoteflag = "false"/>
     		  <ClientEnvironment
-        	browsername="firefox"
+        	browsername="htmlunit"
         	dc.platform = ""
     		remoteflag = "false"/>
 </ClientEnvironments>
