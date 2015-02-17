@@ -47,7 +47,7 @@ public class HtmlTable {
 	 */
 	public String getTable() {
 		sb.append("<style type=\"text/css\">table{border-collapse: collapse;border: 1px solid black;color: #008000} table td{ border: 1px solid black;} table tr{ border: 1px solid black;}table th{border: 1px solid black;font-size:15px; font-weight: bold;color: #54B948;;background-color:#2F4F4F}</style>");
-		sb.append("<table >" + "<tr>" + "<th>" + testCaseName + "</th>"
+		sb.append("<table >" + "<tr>" + "<th colspan='5'>" + testCaseName + "</th>"
 				+ "</tr>" + "<tr>" + "<th>Step No</th>"
 				+ "<th>Description</th>" + "<th>Status</th>"
 				+ "<th>Expected</th>" + "<th>Actual</th>");
