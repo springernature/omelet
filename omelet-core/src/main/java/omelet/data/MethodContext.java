@@ -41,6 +41,8 @@ public class MethodContext implements IMethodContext {
 	private boolean isDataSourceCalculated = false;
 	private boolean isEnabled;
 	private String[] groups;
+	private static MappingParserRevisit mpr = new MappingParserRevisit("Mapping.xml");
+	private static RefineMappedData refinedMappedData = new RefineMappedData(mpr);
 
 	public MethodContext(Method method) {
 		this.method = method;
@@ -242,20 +244,16 @@ public class MethodContext implements IMethodContext {
 	}
 
 	private void updateXml(String environment) {
-		MappingParserRevisit mpr = new MappingParserRevisit("Mapping.xml");
-		RefineMappedData refinedMappedData = new RefineMappedData(mpr);
 		IMappingData mapD = refinedMappedData.getMethodData(method);
-		XmlApplicationData xmlapData = null;
 		if (environment != null && !StringUtils.isBlank(environment)) {
 			// get the xml name from MappingParser Static Method
-			xmlapData = new XmlApplicationData(mapD.getTestData(), environment);
-			this.testData = xmlapData.getAppData();
+			this.testData = XmlApplicationData.getInstance().getAppData(mapD.getTestData(),environment);
 		} else {
-			xmlapData = new XmlApplicationData(mapD.getTestData());
-			this.testData = xmlapData.getAppData();
+			this.testData = XmlApplicationData.getInstance().getAppData(mapD.getTestData());
 		}
-		BrowserXmlParser bxp = new BrowserXmlParser(mapD.getClientEnvironment());
-		this.browserConfig = bxp.getBrowserConf();
+		BrowserXmlParser bxp = BrowserXmlParser.getInstance();
+		//BrowserXmlParser bxp = new BrowserXmlParser(mapD.getClientEnvironment());
+		this.browserConfig = bxp.getBrowserConf1(mapD);
 		this.runStrategy = mapD.getRunStartegy();
 	}
 

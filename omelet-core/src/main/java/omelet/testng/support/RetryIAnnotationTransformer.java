@@ -45,13 +45,12 @@ public class RetryIAnnotationTransformer implements IAnnotationTransformer,
 	private static final Logger LOGGER = Logger
 			.getLogger(RetryIAnnotationTransformer.class);
 	protected static final Map<String,MethodContext> methodContextHolder = new HashMap<String, MethodContext>();
+	/*PrettyMessage prettyMessage = new PrettyMessage();
+	Thread t = new Thread(prettyMessage);*/
 	
 	@SuppressWarnings("rawtypes")
 	public void transform(ITestAnnotation annotation, Class testClass,
-			Constructor testConstructor, Method testMethod){
-		PrettyMessage prettyMessage = new PrettyMessage();
-		Thread t = new Thread(prettyMessage);
-		t.start();
+			Constructor testConstructor, Method testMethod){		
 		if(testMethod != null)
 		{
 			MethodContext context = new MethodContext(testMethod);
@@ -61,12 +60,12 @@ public class RetryIAnnotationTransformer implements IAnnotationTransformer,
 			//update methodContextCollection
 			methodContextHolder.put(Utils.getFullMethodName(testMethod), context);
 		}
-		prettyMessage.swtichOffLogging();
-		try {
+		//prettyMessage.swtichOffLogging();
+	/*	try {
 			t.join();
 		} catch (InterruptedException e) {
 			LOGGER.error(e);
-		}
+		}*/
 		
 	}
 	

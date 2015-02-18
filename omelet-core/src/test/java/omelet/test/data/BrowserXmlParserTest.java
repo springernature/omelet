@@ -46,8 +46,7 @@ public class BrowserXmlParserTest {
 	public void verifyBrowserConf_singleXml() {
 		List<String> xmlName = new ArrayList<String>();
 		xmlName.add("BrowseXmlP_2.xml");
-		BrowserXmlParser bxp = new BrowserXmlParser(xmlName);
-		List<IBrowserConf> browserIs = bxp.getBrowserConf();
+		List<IBrowserConf> browserIs = BrowserXmlParser.getInstance().getBrowserConf1(xmlName);
 		Assert.assertEquals(browserIs.size(), 1);
 		IBrowserConf browserI = browserIs.get(0);
 		Assert.assertEquals("firefox", browserI.getBrowser());
@@ -71,8 +70,7 @@ public class BrowserXmlParserTest {
 	public void verifySingleXMLMultiBrowser() {
 		List<String> xmlName = new ArrayList<String>();
 		xmlName.add("BrowseXmlP_multi_1.xml");
-		BrowserXmlParser bxp = new BrowserXmlParser(xmlName);
-		List<IBrowserConf> browserConfList = bxp.getBrowserConf();
+		List<IBrowserConf> browserConfList = BrowserXmlParser.getInstance().getBrowserConf1(xmlName);
 		Assert.assertEquals(browserConfList.size(), 2);
 		IBrowserConf browserConf1 = browserConfList.get(0);
 		IBrowserConf browserConf2 = browserConfList.get(1);
@@ -111,8 +109,7 @@ public class BrowserXmlParserTest {
 		List<String> xmlName = new ArrayList<String>();
 		xmlName.add("BrowseXmlP_multi_1.xml");
 		xmlName.add("BrowseXmlP_2.xml");
-		BrowserXmlParser bxp = new BrowserXmlParser(xmlName);
-		List<IBrowserConf> browserConfList = bxp.getBrowserConf();
+		List<IBrowserConf> browserConfList = BrowserXmlParser.getInstance().getBrowserConf1(xmlName);
 		Assert.assertEquals(browserConfList.size(), 3);
 		IBrowserConf browserConf1 = browserConfList.get(0);
 		IBrowserConf browserConf2 = browserConfList.get(1);

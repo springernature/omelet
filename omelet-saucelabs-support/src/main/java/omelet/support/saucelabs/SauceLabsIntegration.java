@@ -4,7 +4,6 @@ import omelet.driver.Driver;
 
 import org.apache.log4j.Logger;
 import org.openqa.selenium.remote.RemoteWebDriver;
-import org.openqa.selenium.WebDriver;
 import org.testng.IInvokedMethod;
 import org.testng.IInvokedMethodListener;
 import org.testng.ITestResult;
@@ -16,7 +15,7 @@ public class SauceLabsIntegration implements IInvokedMethodListener {
 
 	@Override
 	public void afterInvocation(IInvokedMethod method, ITestResult testResult) {
-		if (Driver.getBrowserConf().host().contains("sauce")) {
+		if (Driver.getBrowserConf().host().contains("sauce") && Driver.getBrowserConf().isRemoteFlag()) {
 			RemoteWebDriver driver = (RemoteWebDriver) Driver.getDriver();
 			LOGGER.debug("After in SL Integration driver Session ID: " + driver.getSessionId());
 			WebInterface slWebInterface = new WebInterface();

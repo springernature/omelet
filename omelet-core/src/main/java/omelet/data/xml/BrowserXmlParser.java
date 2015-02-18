@@ -18,7 +18,6 @@ package omelet.data.xml;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -28,6 +27,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
 import omelet.common.Utils;
+import omelet.data.IMappingData;
 import omelet.data.driverconf.IBrowserConf;
 import omelet.data.driverconf.PrepareDriverConf;
 
@@ -51,20 +51,31 @@ public class BrowserXmlParser {
 			.newInstance();
 	private DocumentBuilder builder = null;
 	private Document document = null;
-	private List<String> browserXmls;
-	private static Map<String, List<HashMap<String, String>>> singleXmlBrowserMap = Collections
-			.synchronizedMap(new HashMap<String, List<HashMap<String, String>>>());
 	private static final Logger LOGGER = Logger
 			.getLogger(BrowserXmlParser.class);
+	private static final Map<String,List<IBrowserConf>> xmlBrowserMap = new HashMap<String, List<IBrowserConf>>();
+	private static BrowserXmlParser instance = null;
 
-	public BrowserXmlParser(List<String> browserXmlNames) {
-		this.browserXmls = browserXmlNames;
+	private BrowserXmlParser() {
 		try {
 			builder = factory.newDocumentBuilder();
 		} catch (ParserConfigurationException e) {
 			LOGGER.error(e);
 		}
 	}
+	
+	public static BrowserXmlParser getInstance(){
+		if(instance == null){
+			synchronized (BrowserXmlParser.class) {
+				if(instance == null){
+					instance = new BrowserXmlParser();
+				}
+			}
+		}
+		return instance;
+	}
+	
+	
 
 	private List<HashMap<String, String>> readXml(String xmlN) {
 
@@ -89,8 +100,6 @@ public class BrowserXmlParser {
 			}
 
 		}
-		// Add entry in static HashMap
-		singleXmlBrowserMap.put(xmlN, singleXMlList);
 		return singleXMlList;
 	}
 
@@ -98,7 +107,7 @@ public class BrowserXmlParser {
 	 * Return list of {@link IBrowserConf} prepared from the list of the name of the xml recieved
 	 * @return
 	 */
-	public List<IBrowserConf> getBrowserConf() {
+	/*public List<IBrowserConf> getBrowserConf() {
 
 		List<HashMap<String, String>> totalList = new ArrayList<HashMap<String, String>>();
 
@@ -119,6 +128,36 @@ public class BrowserXmlParser {
 					new PrepareDriverConf(b_data).refineBrowserValues().checkForRules().get());
 		}
 		return ibrowserList;
+	}*/
+	
+	public List<IBrowserConf> getBrowserConf1(List<String> xmlList){
+		List<IBrowserConf> returnList = new ArrayList<IBrowserConf>();
+		for(String xml:xmlList){
+			if(xmlBrowserMap.containsKey(xml)){
+				returnList.addAll(xmlBrowserMap.get(xml));
+			}else{
+				//update master list for future accessing
+				//read all the values one by prepare list
+				List<IBrowserConf> singleXmlBrowser = getBrowserForSingleXml(xml);
+				xmlBrowserMap.put(xml, singleXmlBrowser);
+				returnList.addAll(singleXmlBrowser);
+			}
+		}
+		return returnList;
+	}
+	
+	private List<IBrowserConf> getBrowserForSingleXml(String xml){
+		List<IBrowserConf> browserL = new ArrayList<IBrowserConf>();
+		for(Map<String,String> keyValue:readXml(xml)){
+			browserL.add(new PrepareDriverConf(keyValue).refineBrowserValues().checkForRules().get());
+		}
+		return browserL;
+	}
+	
+	
+	
+	public List<IBrowserConf> getBrowserConf1(IMappingData methodXmls){
+		return getBrowserConf1(methodXmls.getClientEnvironment());
 	}
 
 	/**
@@ -135,18 +174,6 @@ public class BrowserXmlParser {
 			Node attr = browserL.item(i);
 			browserData.put(attr.getNodeName(), attr.getNodeValue());
 		}
-		/*for (DriverConfigurations.LocalEnvironmentConfig localConfig : DriverConfigurations.LocalEnvironmentConfig.values()) {
-			browserData.put(localConfig.toString(), element.getAttribute(localConfig.toString()));
-		}
-		for (DriverConfigurations.BrowserStackConfig bsConfig : DriverConfigurations.BrowserStackConfig.values()) {
-			browserData.put(bsConfig.toString(), element.getAttribute(bsConfig.toString()));
-		}
-		for (DriverConfigurations.HubConfig hubConfig : DriverConfigurations.HubConfig.values()) {
-			browserData.put(hubConfig.toString(), element.getAttribute(hubConfig.toString()));
-		}
-		for (DriverConfigurations.FrameworkConfig frameworkConfig : DriverConfigurations.FrameworkConfig.values()) {
-			browserData.put(frameworkConfig.toString(), element.getAttribute(frameworkConfig.toString()));
-		}*/
 		return browserData;
 		
 		
