@@ -7,12 +7,12 @@
 		<dependency>
 			<groupId>com.springer</groupId>
 			<artifactId>omelet</artifactId>
-			<version>1.0.7</version>
+			<version>1.0.8</version>
 		</dependency>
 	</dependencies>
 	<parent>
 		<groupId>com.springer</groupId>
 		<artifactId>omelet-parent</artifactId>
-		<version>1.0.7</version>
+		<version>1.0.8</version>
 	</parent>
 </project>
