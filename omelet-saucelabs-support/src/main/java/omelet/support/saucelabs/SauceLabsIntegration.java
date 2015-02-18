@@ -4,7 +4,6 @@ import omelet.driver.Driver;
 
 import org.apache.log4j.Logger;
 import org.openqa.selenium.remote.RemoteWebDriver;
-import org.openqa.selenium.WebDriver;
 import org.testng.IInvokedMethod;
 import org.testng.IInvokedMethodListener;
 import org.testng.ITestResult;
