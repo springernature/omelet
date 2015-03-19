@@ -37,13 +37,44 @@ public class ReadGoogle implements IDataSource {
 	private SpreadsheetService service = null;
 	private String sheetName = null;
 	private static final Logger LOGGER = Logger.getLogger(ReadGoogle.class);
+	private static Map<String, List<IBrowserConf>> browserBucket = new HashMap<String, List<IBrowserConf>>();
+	private static Map<String, List<IProperty>> dataBucket = new HashMap<String, List<IProperty>>();
+	private static Map<String, IMappingData> mappingBucket = new HashMap<String, IMappingData>();
+	private static ReadGoogle instance = null;
 
-	public ReadGoogle(String googleUserName, String googlePasswd,
+	private ReadGoogle() {
+		/*
+		 * this.googleUserName = googleUserName; this.googlePasswd =
+		 * googlePasswd; this.sheetName = sheetName; spreadSheet = connect();
+		 */
+	}
+
+	public static ReadGoogle getInstance() {
+		if (null == instance) {
+			synchronized (ReadGoogle.class) {
+				if (null == instance) {
+					instance = new ReadGoogle();
+				}
+			}
+		}
+		return instance;
+	}
+
+	/**
+	 * Call this method to connect with desired Google Sheet
+	 * 
+	 * @param googleUserName
+	 * @param googlePasswd
+	 * @param sheetName
+	 * @return
+	 */
+	public ReadGoogle connect(String googleUserName, String googlePasswd,
 			String sheetName) {
 		this.googleUserName = googleUserName;
 		this.googlePasswd = googlePasswd;
 		this.sheetName = sheetName;
 		spreadSheet = connect();
+		return this;
 	}
 
 	private SpreadsheetEntry connect() {
@@ -92,23 +123,26 @@ public class ReadGoogle implements IDataSource {
 	 */
 	@Override
 	public Map<String, IMappingData> getPrimaryData() {
-		Map<String, IMappingData> primaryData = new HashMap<String, IMappingData>();
-		URL listFeedURL;
-		try {
-			listFeedURL = getWorkSheet(
-					GoogleSheetConstant.GOOGLE_MAP_SHEET_NAME).getListFeedUrl();
-			ListFeed listFeed = service.getFeed(listFeedURL, ListFeed.class);
-			for (ListEntry row : listFeed.getEntries()) {
-				primaryData.put(row.getCustomElements().getValue("methodname"),
-						getMap(row));
+		if (mappingBucket.isEmpty()) {
+			URL listFeedURL;
+			try {
+				listFeedURL = getWorkSheet(
+						GoogleSheetConstant.GOOGLE_MAP_SHEET_NAME)
+						.getListFeedUrl();
+				ListFeed listFeed = service
+						.getFeed(listFeedURL, ListFeed.class);
+				for (ListEntry row : listFeed.getEntries()) {
+					mappingBucket.put(
+							row.getCustomElements().getValue("methodname"),
+							getMap(row));
+				}
+			} catch (IOException e) {
+				LOGGER.error(e);
+			} catch (ServiceException e) {
+				LOGGER.error(e);
 			}
-		} catch (IOException e) {
-			LOGGER.error(e);
-		} catch (ServiceException e) {
-			LOGGER.error(e);
 		}
-
-		return primaryData;
+		return mappingBucket;
 	}
 
 	/**
@@ -164,8 +198,10 @@ public class ReadGoogle implements IDataSource {
 	 */
 	public List<IBrowserConf> getBrowserListForSheet(IMappingData data) {
 		// Preferabbly send refined list to it
+		List<IBrowserConf> returnList = new ArrayList<IBrowserConf>();
+
 		IMappingData methodData = data;
-		List<IBrowserConf> browserConfList = new ArrayList<IBrowserConf>();
+
 		URL browserSheetURL;
 		String sheetNameHolder = null;
 		ListFeed browserFeed;
@@ -173,22 +209,31 @@ public class ReadGoogle implements IDataSource {
 		// get the browser sheet name
 		for (String browserSheet : methodData.getClientEnvironment()) {
 			sheetNameHolder = browserSheet;
-			try {
-				browserSheetURL = getWorkSheet(browserSheet).getListFeedUrl();
-				browserFeed = service.getFeed(browserSheetURL, ListFeed.class);
-				for (ListEntry row : browserFeed.getEntries()) {
-					browserConfList.add(getBrowserConfFromRow(row));
+			if (!browserBucket.containsKey(browserSheet)) {
+				try {
+					List<IBrowserConf> browserConfLForSingleSheet = new ArrayList<IBrowserConf>();
+					browserSheetURL = getWorkSheet(browserSheet)
+							.getListFeedUrl();
+					browserFeed = service.getFeed(browserSheetURL,
+							ListFeed.class);
+					for (ListEntry row : browserFeed.getEntries()) {
+						browserConfLForSingleSheet
+								.add(getBrowserConfFromRow(row));
+					}
+					browserBucket.put(browserSheet, browserConfLForSingleSheet);
+				} catch (NullPointerException ex) {
+					LOGGER.error("Not able to find sheet:" + sheetNameHolder);
+					LOGGER.error(ex);
+				} catch (IOException e) {
+					LOGGER.error(e);
+				} catch (ServiceException e) {
+					LOGGER.error(e);
 				}
-			} catch (NullPointerException ex) {
-				LOGGER.error("Not able to find sheet:" + sheetNameHolder);
-				LOGGER.error(ex);
-			} catch (IOException e) {
-				LOGGER.error(e);
-			} catch (ServiceException e) {
-				LOGGER.error(e);
 			}
+			returnList.addAll(browserBucket.get(browserSheet));
 		}
-		return browserConfList;
+
+		return returnList;
 	}
 
 	/**
@@ -219,23 +264,26 @@ public class ReadGoogle implements IDataSource {
 	 * @throws ServiceException
 	 */
 	public List<IProperty> getMethodData(String environment, IMappingData data) {
-		IMappingData mData = data;
-
-		URL testDataSheetURL;
-		ListFeed testDataFeed = null;
-		// Here reading the method name and the WorkSheetName
-		LOGGER.debug("Get testdata: " + mData.getTestData());
-		try {
-			testDataSheetURL = getWorkSheet(mData.getTestData())
-					.getListFeedUrl();
-			testDataFeed = service.getFeed(testDataSheetURL, ListFeed.class);
-		} catch (IOException e) {
-			LOGGER.error(e);
-		} catch (ServiceException e) {
-			LOGGER.error(e);
+		if (!dataBucket.containsKey(data.getTestData())) {
+			IMappingData mData = data;
+			URL testDataSheetURL;
+			ListFeed testDataFeed = null;
+			// Here reading the method name and the WorkSheetName
+			LOGGER.debug("Get testdata: " + mData.getTestData());
+			try {
+				testDataSheetURL = getWorkSheet(mData.getTestData())
+						.getListFeedUrl();
+				testDataFeed = service
+						.getFeed(testDataSheetURL, ListFeed.class);
+			} catch (IOException e) {
+				LOGGER.error(e);
+			} catch (ServiceException e) {
+				LOGGER.error(e);
+			}
+			dataBucket.put(data.getTestData(), getSingleMethodtData(environment, testDataFeed));
 		}
 
-		return getSingleMethodtData(environment, testDataFeed);
+		return dataBucket.get(data.getTestData());
 	}
 
 	/**
@@ -278,7 +326,7 @@ public class ReadGoogle implements IDataSource {
 		testEnvironmentMap.add(testEnvHolder);
 		// check if environment was present
 		if (StringUtils.isNotBlank(env)) {
-			return getConcatentedDataList(env, testEnvironmentMap);
+			return getConcatenatedDataList(env, testEnvironmentMap);
 		} else {
 			return getConcatentedDataList(testEnvironmentMap);
 		}
@@ -294,7 +342,7 @@ public class ReadGoogle implements IDataSource {
 	 *            sheet from top to bottom
 	 * @return
 	 */
-	private List<IProperty> getConcatentedDataList(String environment,
+	private List<IProperty> getConcatenatedDataList(String environment,
 			List<DataPerEnvironment> testEnvList) {
 		List<IProperty> filteredEnvIPropList = new ArrayList<IProperty>();
 		for (DataPerEnvironment testEnv : testEnvList) {
@@ -334,7 +382,6 @@ public class ReadGoogle implements IDataSource {
 
 		public DataPerEnvironment(String environmentName) {
 			LOGGER.debug("Environment for TestEnv: " + environmentName);
-			LOGGER.debug("Prop value: " + prop.getValue("Key1"));
 			this.environmentName = environmentName;
 		}
 

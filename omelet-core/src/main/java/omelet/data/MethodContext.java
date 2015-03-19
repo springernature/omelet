@@ -259,9 +259,8 @@ public class MethodContext implements IMethodContext {
 
 	private void updateGoogleSheet(String environment) {
 		checkGoogleUserNameAndPassword();
-		// System.out.println(System.getProperty(googleUsername));
-		ReadGoogle readGoogle = new ReadGoogle(
-				System.getProperty(GoogleSheetConstant.GOOGLEUSERNAME),
+		ReadGoogle readGoogle = ReadGoogle.getInstance();
+		readGoogle.connect(System.getProperty(GoogleSheetConstant.GOOGLEUSERNAME),
 				System.getProperty(GoogleSheetConstant.GOOGLEPASSWD),
 				System.getProperty(GoogleSheetConstant.GOOGLESHEETNAME));
 		RefineMappedData refinedData = new RefineMappedData(readGoogle);
