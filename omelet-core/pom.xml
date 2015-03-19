@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.springer</groupId>
 	<artifactId>omelet</artifactId>
-	<version>1.0.8</version>
+	<version>1.0.9</version>
 	<packaging>jar</packaging>
 	<name>omelet</name>
 	<url>https://github.com/springer-opensource/omelet</url>
@@ -42,7 +42,7 @@
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium-server</artifactId>
-			<version>2.44.0</version>
+			<version>2.45.0</version>
 		</dependency>
 		<dependency>
 			<groupId>org.testng</groupId>
