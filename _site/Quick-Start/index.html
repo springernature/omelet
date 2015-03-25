@@ -95,8 +95,29 @@
 					<a href="https://google.com/+kapil.aggarwal1"><i class="fa fa-google-plus"></i> Google+</a>
 				</li>
 				<li>
-					<a href="http://linkedin.com/in/https://www.linkedin.com/pub/kapil-aggarwal/76/502/951"><i class="fa fa-linkedin"></i> LinkedIn</a>
+					<a href="http://linkedin.com/pub/kapil-aggarwal/76/502/951"><i class="fa fa-linkedin"></i> LinkedIn</a>
 				</li>
+				
+				
+				
+				
+				
+
+
+
+				<li>
+					<img src="" alt="Robert Borzutzki photo" class="author-photo">
+					<h4>Robert Borzutzki</h4>
+					<p>QA</p>
+				</li>
+				<!-- <li><a href="http://springer-opensource.github.io/omelet/about/">Learn More</a></li>
+				<li>
+					<a href="mailto:kapil.Aggarwal1@gmail.com"><i class="fa fa-envelope"></i> Email</a>
+				</li> -->
+				
+				
+				
+				
 				
 				
 				
@@ -156,7 +177,7 @@ In order to start with omelet , one of the pre-requisite is maven should be inst
 
 <p>Once we are sure maven is insall simply run the below command in you shell</p>
 
-<div class="highlight"><pre><code class="language-text" data-lang="text">mvn archetype:generate -DgroupId=com.yourGroupId -DartifactId=my-app -DarchetypeArtifactId=omelet-archetype-simple -DarchetypeGroupId=com.springer</code></pre></div>
+<div class="highlight"><pre><code class="language-text" data-lang="text">mvn archetype:generate -DgroupId=com.yourGroupId -DartifactId=my-app -DarchetypeArtifactId=omelet-archetype -DarchetypeGroupId=com.springer</code></pre></div>
 
 <p><strong>Do remember to change -DartifactId and -DgroupId which would be your project name and group name respectively.</strong></p>
 
@@ -165,7 +186,7 @@ In order to start with omelet , one of the pre-requisite is maven should be inst
 <p>Sample project is created for you which will be having a test case for simple selenium tests using XML as data provider. 
 You can simple CD into your folder and then run command </p>
 
-<div class="highlight"><pre><code class="language-text" data-lang="text">mvn clean install</code></pre></div>
+<div class="highlight"><pre><code class="language-text" data-lang="text">mvn clean install -Ddatasource=XmlData</code></pre></div>
  
 
 <h2 id="then-what-?">Then What ?</h2>
@@ -178,14 +199,22 @@ You can simple CD into your folder and then run command </p>
 
 <p><strong>BrowserStack</strong></p>
 
-<div class="highlight"><pre><code class="language-text" data-lang="text">mvn clean install -DremoteFlag=true -DbsSwitch=true -Dbs_key=yourBrowserStackKey -Dbs_UserName=yourBSName</code></pre></div>
+<div class="highlight"><pre><code class="language-text" data-lang="text">mvn clean install -Dremoteflag=true -Dkey=yourKey -Dusername=youruserName -Dhost=hub.browserstack.com -Dport=80 -Ddatasource=XmlData|GoogleData</code></pre></div>
  
+
+<p><strong>SauceLabs</strong></p>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">mvn clean install -Dremoteflag=true -Dkey=yourKey -Dusername=youruserName -Dhost=ondemand.saucelabs.com -Dport=80 -Ddatasource=XmlData|GoogleData</code></pre></div>
+
+<p><strong>Testing Bot</strong></p>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">mvn clean install -Dremoteflag=true -Dkey=yourKey -Dusername=youruserName -Dhost=hub.testingbot.com -Dport=4444 -Ddatasource=XmlData|GoogleData</code></pre></div>
 
 <p>or you can run on your test cases on grid using below command</p>
 
 <p><strong>Grid</strong></p>
 
-<div class="highlight"><pre><code class="language-text" data-lang="text">mvn clean install -DremoteFlag=true -DremoteUrl=https://yourHubURL</code></pre></div>
+<div class="highlight"><pre><code class="language-text" data-lang="text">mvn clean install -Dremoteflag=true -Dhost=127.0.0.1 -Dport=4444</code></pre></div>
  
 
       <footer class="entry-meta">
@@ -205,7 +234,7 @@ You can simple CD into your folder and then run command </p>
 
 <div class="footer-wrapper">
   <footer role="contentinfo">
-    <span>&copy; 2014 Kapil Aggarwal. Powered by <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> </span>
+    <span>&copy; 2015 Kapil Aggarwal. Powered by <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> </span>
   </footer>
 </div><!-- /.footer-wrapper -->
 

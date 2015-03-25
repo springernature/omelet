@@ -23,13 +23,32 @@ owner:
   facebook:       
   github:         
   stackexchange:  
-  linkedin:    https://www.linkedin.com/pub/kapil-aggarwal/76/502/951   
+  linkedin:    kapil-aggarwal/76/502/951   
   instagram:      
   flickr:         
   tumblr:         
   # For Google Authorship https://plus.google.com/authorship
   # google plus id, include the '+', eg +mmistakes
   google_plus:    +kapil.aggarwal1
+
+owner1:
+  name:           Robert Borzutzki
+  avatar:         
+  bio:            "QA"
+  email:          robert.borzutzki@springer.com
+  # Social networking links used in footer. Update and remove as you like.
+  twitter:        
+  facebook:       
+  github:         
+  stackexchange:  
+  linkedin:       
+  instagram:      
+  flickr:         
+  tumblr:         
+  # For Google Authorship https://plus.google.com/authorship
+  # google plus id, include the '+', eg +mmistakes
+  google_plus:    
+
 
 # Background image to be tiled on all pages
 background: 

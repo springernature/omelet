@@ -95,8 +95,29 @@
 					<a href="https://google.com/+kapil.aggarwal1"><i class="fa fa-google-plus"></i> Google+</a>
 				</li>
 				<li>
-					<a href="http://linkedin.com/in/https://www.linkedin.com/pub/kapil-aggarwal/76/502/951"><i class="fa fa-linkedin"></i> LinkedIn</a>
+					<a href="http://linkedin.com/pub/kapil-aggarwal/76/502/951"><i class="fa fa-linkedin"></i> LinkedIn</a>
 				</li>
+				
+				
+				
+				
+				
+
+
+
+				<li>
+					<img src="" alt="Robert Borzutzki photo" class="author-photo">
+					<h4>Robert Borzutzki</h4>
+					<p>QA</p>
+				</li>
+				<!-- <li><a href="http://springer-opensource.github.io/omelet/about/">Learn More</a></li>
+				<li>
+					<a href="mailto:kapil.Aggarwal1@gmail.com"><i class="fa fa-envelope"></i> Email</a>
+				</li> -->
+				
+				
+				
+				
 				
 				
 				
@@ -175,7 +196,7 @@
 
 <p>Either you can follow sample GoogleSheet over <a href="https://docs.google.com/spreadsheets/d/14sD0Z6OR0pMogx32KrBXCwpxRVvMPfG2Othf0HHnd5w/edit#gid=2060834450">here</a> and run below command which is self explantory </p>
 
-<div class="highlight"><pre><code class="language-text" data-lang="text">mvn clean install -DgoogleUserName=yourGmailID -DgooglePassword=YourGmailPasswd -DgoogleSheetName=yourGoogleSHeetName</code></pre></div>
+<div class="highlight"><pre><code class="language-text" data-lang="text">mvn clean install -DgoogleUserName=yourGmailID -DgooglePassword=YourGmailPasswd -DgoogleSheetName=yourGoogleSHeetName -Ddatasource=GoogleData</code></pre></div>
 
 <p>or continue reading.</p>
 
@@ -195,7 +216,8 @@ Create a sheet with name Mapping and add following coloum to sheet</p>
 
 <p>Create a one or multiple browser Sheet and name it as per your convienence. Add any or all the browserConfiguration keys to the coloum and your are done .</p>
 
-<p>Please not single browser Sheet can have mutliple rows of browsers which will tell omelet to run mapped test case on multiple browser 
+<p>Please not single browser Sheet can have mutliple rows of browsers which will tell omelet to run mapped test case on multiple browser.
+Any desiredcapability can be configured by provide &quot;dc.&quot; in front of the key in the xml.
 After you have given the name , do remember to add the browser sheet name in the  Mapping sheet coloum : BrowserSheet</p>
 
 <p>More over different Browser sheet can also be provided to a test method in the Mapping with &quot;;&quot; seprated like BrowserSheet1;BrowserSheet2</p>
@@ -289,7 +311,7 @@ After you have given the name , do remember to add the browser sheet name in the
 
 <div class="footer-wrapper">
   <footer role="contentinfo">
-    <span>&copy; 2014 Kapil Aggarwal. Powered by <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> </span>
+    <span>&copy; 2015 Kapil Aggarwal. Powered by <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> </span>
   </footer>
 </div><!-- /.footer-wrapper -->
 

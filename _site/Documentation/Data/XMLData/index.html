@@ -95,8 +95,29 @@
 					<a href="https://google.com/+kapil.aggarwal1"><i class="fa fa-google-plus"></i> Google+</a>
 				</li>
 				<li>
-					<a href="http://linkedin.com/in/https://www.linkedin.com/pub/kapil-aggarwal/76/502/951"><i class="fa fa-linkedin"></i> LinkedIn</a>
+					<a href="http://linkedin.com/pub/kapil-aggarwal/76/502/951"><i class="fa fa-linkedin"></i> LinkedIn</a>
 				</li>
+				
+				
+				
+				
+				
+
+
+
+				<li>
+					<img src="" alt="Robert Borzutzki photo" class="author-photo">
+					<h4>Robert Borzutzki</h4>
+					<p>QA</p>
+				</li>
+				<!-- <li><a href="http://springer-opensource.github.io/omelet/about/">Learn More</a></li>
+				<li>
+					<a href="mailto:kapil.Aggarwal1@gmail.com"><i class="fa fa-envelope"></i> Email</a>
+				</li> -->
+				
+				
+				
+				
 				
 				
 				
@@ -201,24 +222,20 @@ Nothing but Client Environments and we can have multiple ClientEnvironment insid
 
 <div class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="nt">&lt;ClientEnvironments&gt;</span>
         <span class="nt">&lt;ClientEnvironment</span>
-        <span class="na">platform =</span> <span class="s">&quot;WINDOWS&quot;</span>
-        <span class="na">mobileTest =</span> <span class="s">&quot;false&quot;</span>
-        <span class="na">device =</span> <span class="s">&quot;None&quot;</span>
-        <span class="na">os=</span><span class="s">&quot;WINDOWS&quot;</span>
-        <span class="na">osVersion=</span><span class="s">&quot;xp&quot;</span>
-        <span class="na">browserName=</span><span class="s">&quot;firefox&quot;</span>
-        <span class="na">browserVersion=</span><span class="s">&quot;25&quot;</span>
-        <span class="na">remoteFlag =</span> <span class="s">&quot;true&quot;</span>
-        <span class="na">remoteURL =</span> <span class="s">&quot;http:testRemoteURL&quot;</span>
-        <span class="na">bsSwitch =</span> <span class="s">&quot;false&quot;</span>
-        <span class="na">driverTimeOut =</span> <span class="s">&quot;10&quot;</span>
-        <span class="na">bs_userName =</span> <span class="s">&quot;testusername&quot;</span>
-        <span class="na">bs_key =</span> <span class="s">&quot;testkey&quot;</span>
-        <span class="na">bs_urls =</span> <span class="s">&quot;https:test1;https:test2&quot;</span>
-        <span class="na">name=</span><span class="s">&quot;iPad 3&quot;</span><span class="nt">/&gt;</span>
+        <span class="na">dc.platform =</span> <span class="s">&quot;XP&quot;</span>
+        <span class="na">browsername=</span><span class="s">&quot;firefox&quot;</span>
+        <span class="na">dc.verrsion=</span><span class="s">&quot;25&quot;</span>
+        <span class="na">remoteflag =</span> <span class="s">&quot;true&quot;</span>
+        <span class="na">host =</span> <span class="s">&quot;hub.browserstack.com&quot;</span>
+        <span class="na">port =</span> <span class="s">&quot;80&quot;</span>
+        <span class="na">drivertimeOut =</span> <span class="s">&quot;10&quot;</span>
+        <span class="na">username =</span> <span class="s">&quot;testusername&quot;</span>
+        <span class="na">key =</span> <span class="s">&quot;testkey&quot;</span>
+        <span class="err">&quot;</span><span class="nt">/&gt;</span>
 <span class="nt">&lt;/ClientEnvironments&gt;</span></code></pre></div>
 
-<p>All the Framework.properties configuration can be configured inside ClientEnvironment , however if you have some static values like driverTimeout , consider adding them in Framework.properties file </p>
+<p>All the Framework.properties configuration can be configured inside ClientEnvironment , however if you have some static values like drivertimeout , consider adding them in Framework.properties file 
+Any desired capability which is provided by the cloud solution provider or if we want to implement on our own can be provided by appending &quot;dc.&quot; in front of the key.</p>
 
 <h2 id="what-is-testdata-xml">What is TestData xml</h2>
 
@@ -246,7 +263,7 @@ All in all Xml is the first preference to use omelet for me , but feel free to e
 
 <div class="footer-wrapper">
   <footer role="contentinfo">
-    <span>&copy; 2014 Kapil Aggarwal. Powered by <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> </span>
+    <span>&copy; 2015 Kapil Aggarwal. Powered by <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> </span>
   </footer>
 </div><!-- /.footer-wrapper -->
 
