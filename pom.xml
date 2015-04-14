@@ -12,7 +12,11 @@
   	<module>omelet-integration-tests</module>
   	<module>omelet-archetype-simple</module>
   	<module>omelet-saucelabs-support</module>
+  	<module>omelet-jira</module>
   </modules>
+  <dependencies>
+  
+  </dependencies>
   
   <licenses>
 		<license>
