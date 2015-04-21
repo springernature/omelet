@@ -16,10 +16,6 @@
  *******************************************************************************/
 package omelet.driver;
 
-import java.util.List;
-
-import omelet.browserstacktunnel.BrowserStackTunnel;
-
 import org.testng.ISuite;
 import org.testng.ISuiteListener;
 
@@ -33,23 +29,18 @@ public class SuiteConfiguration implements ISuiteListener {
 
 	public static String suiteName;
 
-	public void onFinish(ISuite arg0) {
-		// Clean up the browser Stack created tunnels
-		BrowserStackTunnel bs = BrowserStackTunnel.getInstance();
-		List<String> bsKey = bs.getOpenTunnelKeys();
-		for (String s : bsKey) {
-			bs.terminateTunnel(s);
-		}
-
-	}
-
-	public void onStart(ISuite arg0) {
+	@Override
+	public void onStart(ISuite suite) {
 		Logo.getInstance().printLogoAndVersion();
-		suiteName = arg0.getName();
+		suiteName = suite.getName();
 		//ReportNG property 
 		System.setProperty("org.uncommons.reportng.coverage-report", "true");
 		final String ESCAPE_PROPERTY = "org.uncommons.reportng.escape-output";
 		System.setProperty(ESCAPE_PROPERTY, "false");
 	}
 
+	@Override
+	public void onFinish(ISuite suite) {
+		// TODO Auto-generated method stub	
+	}
 }

@@ -23,8 +23,6 @@ import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import omelet.browserstacktunnel.OSName;
-
 import org.apache.log4j.Logger;
 
 /***
