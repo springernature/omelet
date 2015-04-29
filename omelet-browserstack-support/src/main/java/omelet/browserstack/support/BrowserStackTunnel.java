@@ -14,7 +14,7 @@
  * 	See the License for the specific language governing permissions and
  * 	limitations under the License.
  *******************************************************************************/
-package omelet.browserstacktunnel;
+package omelet.browserstack.support;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -27,7 +27,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
-import omelet.browserstacktunnel.OSName.OSN;
+import omelet.common.OSName;
+import omelet.common.OSName.OSN;
 import omelet.common.Utils;
 
 import org.apache.log4j.Logger;

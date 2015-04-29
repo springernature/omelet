@@ -21,7 +21,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
-import omelet.browserstacktunnel.BrowserStackTunnel;
 import omelet.data.driverconf.IBrowserConf;
 
 import org.apache.commons.lang3.StringUtils;
@@ -121,17 +120,11 @@ class DriverFactory {
 	 * 
 	 */
 	private class RemoteBrowser {
-		private BrowserStackTunnel bs;
 
 		public RemoteBrowser() {
 			// setDesiredCapability();
 			if (StringUtils.isBlank(dc.getBrowserName()))
 				dc.setBrowserName(browser);
-		}
-
-		public void setUpTunnel() {
-			bs = BrowserStackTunnel.getInstance();
-			bs.createTunnel(AUTOMATE_KEY, null);
 		}
 
 		public WebDriver returnRemoteDriver() {
