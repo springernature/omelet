@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Mapping [ <!ELEMENT Mapping (Package+)> 
+<!ATTLIST Package name CDATA #REQUIRED>
+<!ATTLIST Package testData CDATA #IMPLIED> 
+<!ATTLIST Package clientEnvironment CDATA #IMPLIED>
+<!ATTLIST Package runStrategy (Full|Optimal) #IMPLIED> 
+<!ELEMENT Package (Class*)>
+<!ATTLIST Class name CDATA #REQUIRED>
+<!ATTLIST Class clientEnvironment CDATA #IMPLIED>
+<!ATTLIST Class testData CDATA #IMPLIED> 
+<!ATTLIST Class runStrategy (Full|Optimal) #IMPLIED>
+<!ELEMENT Class (MethodName*)>
+<!ATTLIST MethodName name CDATA #REQUIRED> 
+<!ATTLIST MethodName testData CDATA #IMPLIED> 
+<!ATTLIST MethodName clientEnvironment CDATA #IMPLIED> 
+<!ATTLIST MethodName runStrategy (Full|Optimal) #IMPLIED>]>
+
+<Mapping>
+	<Package name="tests" testData="TestData.xml"
+		runStrategy="Full">
+		<Class name="tests.SimpleGoogleTest" clientEnvironment="FireFoxLocal.xml">
+		<MethodName name = "tests.SimpleGoogleTest.verifySeleniumTitle_XML" clientEnvironment="FireFoxLocal.xml"></MethodName>
+		</Class>
+		<!-- <Class name="com.springer.test.datatest.GoogleTest" clientEnvironment="browsers/FireFoxLocal.xml;browsers/ChromeLocal.xml"></Class> -->
+	</Package>
+</Mapping>

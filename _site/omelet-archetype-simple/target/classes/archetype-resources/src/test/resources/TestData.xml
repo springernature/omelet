@@ -1,0 +1,49 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE Conf [
+<!ELEMENT Conf (Data+)>
+<!ATTLIST Data environment CDATA ${symbol_pound}REQUIRED>
+<!ELEMENT Data (Pages)>
+<!ELEMENT Pages (Page+)>
+<!ATTLIST Page name CDATA ${symbol_pound}REQUIRED>
+]>
+
+<Conf>
+	<Data environment="staging">
+		<Pages>
+			<Page name="Google">
+				<url>https://www.google.com/</url>
+				<PageTimeOut>10</PageTimeOut>
+			</Page>
+			<Page name="Selenium">
+				<Title>Selenium - Web Browser Automation</Title>
+			</Page>
+		</Pages>
+	</Data>
+
+	<Data environment="live">
+		<Pages>
+			<Page name="Google">
+				<url>https://www.google.com/</url>
+				<PageTimeOut>10</PageTimeOut>
+			</Page>
+			<Page name="Selenium">
+				<Title>Selenium - Web Browser Automation</Title>
+			</Page>
+		</Pages>
+	</Data>
+	<Data environment="live">
+		<Pages>
+			<Page name="Google">
+				<url>https://www.google.com/</url>
+				<PageTimeOut>10</PageTimeOut>
+			</Page>
+			<Page name="Selenium">
+				<Title>Screen Shot check</Title>
+			</Page>
+		</Pages>
+	</Data>
+</Conf>

@@ -42,6 +42,7 @@ Salient Features
 * Command Line support for CI integration
 * ExpectedConditionsExtended for PageObjects Design pattern
 * Auto Re-Run failed test cases
+* Sauce labs plugin 
  and many more ... 
 
  Data

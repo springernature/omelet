@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- <!DOCTYPE ClientEnvironments [
+<!ELEMENT ClientEnvironments (ClientEnvironment+)>
+<!ATTLIST ClientEnvironment platform CDATA #IMPLIED>
+<!ATTLIST ClientEnvironment mobileTest CDATA #IMPLIED>
+<!ATTLIST ClientEnvironment device CDATA #IMPLIED>
+<!ATTLIST ClientEnvironment os CDATA #IMPLIED>
+<!ATTLIST ClientEnvironment osVersion CDATA #IMPLIED>
+<!ATTLIST ClientEnvironment driverTimeOut CDATA #IMPLIED>
+<!ATTLIST ClientEnvironment remoteFlag CDATA #IMPLIED>
+<!ATTLIST ClientEnvironment browserName CDATA #IMPLIED>
+<!ATTLIST ClientEnvironment browserVersion CDATA #IMPLIED>
+<!ATTLIST ClientEnvironment remoteURL CDATA #IMPLIED>
+<!ATTLIST ClientEnvironment bsSwitch CDATA #IMPLIED>
+<!ATTLIST ClientEnvironment bs_userName CDATA #IMPLIED>
+<!ATTLIST ClientEnvironment bs_key CDATA #IMPLIED>
+<!ATTLIST ClientEnvironment bs_localTesting CDATA #IMPLIED>
+<!ATTLIST ClientEnvironment bs_urls CDATA #IMPLIED>
+<!ATTLIST ClientEnvironment name CDATA #IMPLIED>
+
+]> -->
+<ClientEnvironments>
+        <ClientEnvironment
+     	dc.platform = "WINDOWS"
+     	dc.device = "None"
+    	dc.os="WINDOWS"
+        dc.osversion="xp"
+        browsername="firefox"
+        dc.browserversion="25"
+    	remoteflag = "true"
+    	host = "http:testRemoteURL"
+    	drivertimeOut = "10"
+    	username = "testusername"
+    	key = "testkey"
+        dc.name="iPad 3"/>
+</ClientEnvironments>
