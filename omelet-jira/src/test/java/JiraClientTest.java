@@ -6,8 +6,9 @@ public class JiraClientTest {
 	
 	@Test
 	public void raiseBug(){
-		BaseJiraClient basejiraClient = new BaseJiraClient("JiraUrl","username","password");
-		Assert.assertNotEquals(basejiraClient.createIssue("Summary","Description","assigne","testProject"), "");	
+		/*System.set
+		BaseJiraClient basejiraClient = BaseJiraClient.getInstance();
+		Assert.assertNotSame(basejiraClient.createIssue("Summary","Description","assigne","testProject"), "");	*/
 	}
 
 }
