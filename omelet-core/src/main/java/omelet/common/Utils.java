@@ -16,6 +16,7 @@
  *******************************************************************************/
 package omelet.common;
 
+import java.io.File;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
@@ -72,6 +73,12 @@ public class Utils {
 			integerList.add(matcher.group());
 		}
 		return integerList;
+	}
+	
+	public static String getFilePathForUpload(String fileName,Object className){
+		LOGGER.debug("File name recieved is:"+fileName);
+		String completepath = System.getProperty("user.dir")+File.separator+fileName;
+		return completepath;
 	}
 
 	/***
