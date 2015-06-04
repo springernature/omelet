@@ -85,18 +85,18 @@ class DriverFactory {
 			webDriver = rb.returnRemoteDriver();
 		} else if (browser.toLowerCase().startsWith("f")) {
 			LOGGER.debug("Returning firefox driver-Without Remote.");
-			webDriver = new FirefoxDriver();
+			webDriver = new FirefoxDriver(dc);
 		} else if (browser.toLowerCase().startsWith("i")) {
 			System.setProperty("webdriver.ie.driver", ieServerPath);
 			LOGGER.debug("Returning ie driver-Without Remote.");
-			webDriver = new InternetExplorerDriver();
+			webDriver = new InternetExplorerDriver(dc);
 		} else if (browser.toLowerCase().startsWith("c")) {
 			System.setProperty("webdriver.chrome.driver", chromeServerPath);
 			LOGGER.debug("Returning chrome driver-Without Remote.");
-			webDriver = new ChromeDriver();
+			webDriver = new ChromeDriver(dc);
 		} else if (browser.toLowerCase().startsWith("h")) {
 			LOGGER.info("Browser is HTMLUNIT");
-			webDriver = new HtmlUnitDriver();
+			webDriver = new HtmlUnitDriver(dc);
 		}
 
 		// For set driver timeout
