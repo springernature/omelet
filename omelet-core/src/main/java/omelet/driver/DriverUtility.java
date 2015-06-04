@@ -102,7 +102,7 @@ public class DriverUtility {
 			for (String handle : handles) {
 				LOGGER.debug("Switching to other window");
 				driver.switchTo().window(handle);
-				if (driver.getTitle().contains(sString)) {
+				if (sString.equals(driver.getTitle())) {
 					LOGGER.info("switched to window with title:" + sString);
 					return true;
 				}
