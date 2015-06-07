@@ -4,6 +4,10 @@ title: Videos
 tags: [video]
 ---
 
+#5 min tutorial demo in 2 min ;)
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/5BRNH0O0lfg" frameborder="0" allowfullscreen></iframe>
+
 #Complete Cross Browser Testing with Omelet([TechJam](http://techjam.org/))
 
 This session is about overview of omelet using different data source and showcasing how simple it is to run your local test cases on BrowserStack and Contineous integration in no time
