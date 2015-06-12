@@ -61,9 +61,8 @@ public class RefineMappedData {
 		//	System.out.println(packageVal.getTestData());
 			return packageVal.getTestData();
 		}
-		LOGGER.error("There is no mapping Defined for the method");
-		throw new FrameworkException(
-				"There is no mapping Defined for the method");
+		LOGGER.error("There is no Test Data defined for method:"+method.getName()+"in Mapping or the entry for this method/class/package is missing in Mapping");
+		throw new FrameworkException("There is no Test Data defined for method:"+method.getName()+"in Mapping or the entry for this method/class/package is missing in Mapping");
 	}
 
 	private List<String> getRefinedClientEnvironment(Method method) {
@@ -85,9 +84,9 @@ public class RefineMappedData {
 		} else if (packageClientData != null && !packageClientData.getClientEnvironment().isEmpty() && StringUtils.isNotBlank(packageClientData.getClientEnvironment().get(0))) {
 			return packageClientData.getClientEnvironment();
 		}
-		LOGGER.error("There is no mapping Defined for the method");
+		LOGGER.error("There is no ClientEnvironment/Browser defined for method:"+method.getName()+"in Mapping or the entry for this method/class/package is missing in Mapping");
 		throw new FrameworkException(
-				"There is no mapping Defined for the method");
+				"There is no ClientEnvironment/Browser defined for method:"+method.getName()+"in Mapping or the entry for this method/class/package is missing in Mapping");
 	}
 
 	private mapStrategy getRunStrategy(Method method) {
