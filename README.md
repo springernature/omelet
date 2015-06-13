@@ -18,6 +18,10 @@ What is Omelet
 --------------
 Very simple yet powerful automation library for **Selenium WebDriver** which uses one of the most popular test runner for UI Automation- **TestNG**
 
+Omelet Vagrant Box
+----------------
+if you would like to work on fresh machine, then there is vagrant box built for the development of automation script
+https://github.com/springer-opensource/omelet-dev-box
 
 Salient Features
 ----------------
