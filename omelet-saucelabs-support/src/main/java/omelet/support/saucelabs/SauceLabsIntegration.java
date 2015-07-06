@@ -15,7 +15,7 @@ public class SauceLabsIntegration implements IInvokedMethodListener {
 
 	@Override
 	public void afterInvocation(IInvokedMethod method, ITestResult testResult) {
-		if (Driver.getBrowserConf().host().contains("sauce") && Driver.getBrowserConf().isRemoteFlag()) {
+		if (null != Driver.getBrowserConf().host() && Driver.getBrowserConf().host().contains("sauce") && Driver.getBrowserConf().isRemoteFlag()) {
 			RemoteWebDriver driver = (RemoteWebDriver) Driver.getDriver();
 			LOGGER.debug("After in SL Integration driver Session ID: " + driver.getSessionId());
 			WebInterface slWebInterface = new WebInterface();
