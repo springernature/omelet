@@ -47,7 +47,7 @@ public class MappingParserRevisit implements IDataSource {
 		try {
 			builder = factory.newDocumentBuilder();
 			document = builder
-					.parse(Utils.getResources(this, getMappinfFile()));
+					.parse(Utils.getResources(this, getMappingFile()));
 		} catch (ParserConfigurationException e) {
 			LOGGER.error(e);
 		} catch (SAXException e) {
@@ -158,7 +158,7 @@ public class MappingParserRevisit implements IDataSource {
 		return getCalcValue("buildNumber");
 	}
 
-	public static String getMappinfFile() {
+	public static String getMappingFile() {
 		if (StringUtils.isBlank(getCalcValue("mappingfile"))) {
 			return "Mapping.xml";
 		}
