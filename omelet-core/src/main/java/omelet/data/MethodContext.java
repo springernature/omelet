@@ -41,7 +41,7 @@ public class MethodContext implements IMethodContext {
 	private boolean isDataSourceCalculated = false;
 	private boolean isEnabled;
 	private String[] groups;
-	private static MappingParserRevisit mpr = new MappingParserRevisit("Mapping.xml");
+	private static MappingParserRevisit mpr = new MappingParserRevisit();
 	private static RefineMappedData refinedMappedData = new RefineMappedData(mpr);
 
 	public MethodContext(Method method) {

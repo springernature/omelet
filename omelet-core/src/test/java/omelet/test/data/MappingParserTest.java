@@ -16,9 +16,15 @@
  *******************************************************************************/
 package omelet.test.data;
 
+import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+
+import omelet.data.xml.MappingParserRevisit;
+import omelet.driver.SuiteConfiguration;
 
 public class MappingParserTest {
-/*	public static MappingParserRe mappingParser;
+	public static MappingParserRevisit mappingParser;
 	public static SuiteConfiguration suiteConfiguration;
 
 	@BeforeMethod
@@ -31,47 +37,53 @@ public class MappingParserTest {
 
 	@Test
 	public void testGetProjectNameFromMappingFile() throws Exception {
-		String projectName = "ProjectNameFromMappingFile";
-
-		mappingParser = MappingParser.getInstance();
-		mappingParser.setXMLNameToParse("MappingWithProjectName.xml");
-		Assert.assertEquals(mappingParser.getProjectName(), projectName);
+		// TODO
+		// String projectName = "ProjectNameFromMappingFile";
+		// System.setProperty("mappingfile", "MappingWithProjectName.xml");
+		// XmlApplicationData
+		// Assert.assertEquals(mappingParser.getProjectName(), projectName);
 	}
 
 	@Test
 	public void testEmptyProjectNameInMappingFile() throws Exception {
-		suiteConfiguration = new SuiteConfiguration();
-		suiteConfiguration.suiteName = "Suite";
-		String projectName = "ProjectNameFromMappingFile";
+		SuiteConfiguration.suiteName = "Suite";
+		System.setProperty("mappingfile", "MappingWithoutProjectName.xml");
 
-		mappingParser = MappingParser.getInstance();
-		mappingParser.setXMLNameToParse("MappingWithProjectName.xml");
-		Assert.assertEquals(mappingParser.getProjectName(), projectName);
+		Assert.assertEquals(MappingParserRevisit.getProjectName(),
+				SuiteConfiguration.suiteName);
 	}
 
 	@Test
 	public void testProjectNameNotInMappingFile() throws Exception {
-		suiteConfiguration = new SuiteConfiguration();
-		suiteConfiguration.suiteName = "Suite";
-		String projectName = "Suite";
-		mappingParser = MappingParser.getInstance();
-		mappingParser.setXMLNameToParse("MappingWithEmptyProjectName.xml");
-		Assert.assertEquals(mappingParser.getProjectName(), projectName);
+		SuiteConfiguration.suiteName = "Suite";
+		System.setProperty("mappingfile", "MappingWithEmptyProjectName.xml");
+		Assert.assertEquals(MappingParserRevisit.getProjectName(),
+				SuiteConfiguration.suiteName);
 	}
 
 	@Test
 	public void testGetProjectNameFromSystemProperty() throws Exception {
-		suiteConfiguration = new SuiteConfiguration();
-		suiteConfiguration.suiteName = "Suite";
+		SuiteConfiguration.suiteName = "Suite";
 		String projectName = "ProjectNameFromSystemProperty";
 		System.setProperty("projectName", projectName);
-		mappingParser = MappingParser.getInstance();
-		mappingParser.setXMLNameToParse("MappingWithProjectName.xml");
-		Assert.assertEquals(mappingParser.getProjectName(), projectName);
+		System.setProperty("mappingfile", "MappingWithProjectName.xml");
+		Assert.assertEquals(MappingParserRevisit.getProjectName(), projectName);
 	}
 
-	// TODO
-	// getMethodData is not called need to add that as well with different
-	// scenarios
-*/
+	@Test
+	public void testMappingFileNameNotSet() {
+		System.clearProperty("mappingfile");
+		Assert.assertEquals(MappingParserRevisit.getMappingFile(),
+				"Mapping.xml");
+	}
+
+	@Test
+	public void testMappingFileNameSetInSystemProperty() {
+		System.setProperty("mappingfile", "MappingWithProjectName.xml");
+		Assert.assertEquals(MappingParserRevisit.getMappingFile(),
+				"MappingWithProjectName.xml");
+	}
+
+	// TODO // getMethodData is not called need to add that as well with
+	// different scenarios
 }

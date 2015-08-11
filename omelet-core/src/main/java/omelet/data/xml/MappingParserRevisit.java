@@ -43,11 +43,11 @@ public class MappingParserRevisit implements IDataSource {
 			.getLogger(MappingParserRevisit.class);
 	private HashMap<String, IMappingData> bucket = new HashMap<String, IMappingData>();
 
-	public MappingParserRevisit(String xmlName) {
-		this.xmlName = xmlName;
+	public MappingParserRevisit() {
 		try {
 			builder = factory.newDocumentBuilder();
-			document = builder.parse(Utils.getResources(this, xmlName));
+			document = builder
+					.parse(Utils.getResources(this, getMappingFile()));
 		} catch (ParserConfigurationException e) {
 			LOGGER.error(e);
 		} catch (SAXException e) {
@@ -82,12 +82,12 @@ public class MappingParserRevisit implements IDataSource {
 	public Map<String, IMappingData> getPrimaryData() {
 		// get the root Element
 		walkInXml(document.getDocumentElement());
-		/*for (String key : bucket.keySet()) {
-			LOGGER.info("TestClass Name: " + key);
-			LOGGER.info(" TestData: " + bucket.get(key).getTestData());
-			LOGGER.info(" ClientEnv: " + bucket.get(key).getClientEnvironment());
-			LOGGER.info(" Strategy is: " + bucket.get(key).getRunStartegy());
-		}*/
+		/*
+		 * for (String key : bucket.keySet()) { LOGGER.info("TestClass Name: " +
+		 * key); LOGGER.info(" TestData: " + bucket.get(key).getTestData());
+		 * LOGGER.info(" ClientEnv: " + bucket.get(key).getClientEnvironment());
+		 * LOGGER.info(" Strategy is: " + bucket.get(key).getRunStartegy()); }
+		 */
 		return bucket;
 	}
 
@@ -156,6 +156,13 @@ public class MappingParserRevisit implements IDataSource {
 
 	public static String getBuildNumber() {
 		return getCalcValue("buildNumber");
+	}
+
+	public static String getMappingFile() {
+		if (StringUtils.isBlank(getCalcValue("mappingfile"))) {
+			return "Mapping.xml";
+		}
+		return getCalcValue("mappingfile");
 	}
 
 	private static String getFrameworkPropertyValue(String key) {
