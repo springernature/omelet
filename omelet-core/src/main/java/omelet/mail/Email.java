@@ -80,14 +80,14 @@ public class Email implements IEmail {
                 portPropertyKey = "mail.pop3.port";
                 connectionTimeoutPropertyKey = "mail.pop3.connectiontimeout";
                 timeoutPropertyKey = "mail.pop3.timeout";
-                props.setProperty("mail.pop3.socketFactory.class", "javax.net.ssl.SSLSocketFactory")
+                props.setProperty("mail.pop3.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
                 props.setProperty("mail.pop3.socketFactory.fallback", "false");
             case IMAP:
                 hostPropertyKey = "mail.imap.host";
                 portPropertyKey = "mail.imap.port";
                 connectionTimeoutPropertyKey = "mail.imap.connectiontimeout";
                 timeoutPropertyKey = "mail.imap.timeout";
-                props.setProperty("mail.imap.socketFactory.class", "javax.net.ssl.SSLSocketFactory")
+                props.setProperty("mail.imap.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
                 props.setProperty("mail.imap.socketFactory.fallback", "false");
             case SMTP:
                 hostPropertyKey = "mail.smtp.host";
@@ -99,7 +99,7 @@ public class Email implements IEmail {
                 portPropertyKey = "mail.pop3.port";
                 connectionTimeoutPropertyKey = "mail.pop3.connectiontimeout";
                 timeoutPropertyKey = "mail.pop3.timeout";
-                props.setProperty("mail.pop3.socketFactory.class", "javax.net.ssl.SSLSocketFactory")
+                props.setProperty("mail.pop3.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
                 props.setProperty("mail.pop3.socketFactory.fallback", "false");
         }
 
