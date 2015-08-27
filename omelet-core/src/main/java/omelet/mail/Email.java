@@ -15,6 +15,12 @@
  *******************************************************************************/
 package omelet.mail;
 
+import com.google.common.base.Stopwatch;
+import org.apache.log4j.Logger;
+import org.testng.Reporter;
+
+import javax.mail.*;
+import javax.mail.Message.RecipientType;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -24,25 +30,17 @@ import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Pattern;
 
-import javax.mail.*;
-import javax.mail.Message.RecipientType;
-
-import org.apache.log4j.Logger;
-import org.testng.Reporter;
-
-import com.google.common.base.Stopwatch;
-
 /***
  * Checking email using pop3 protocol
  *
  * @author kapilA
- *
  */
 public class Email implements IEmail {
     final private String host;
     final private String port;
     final private String userName;
     final private String password;
+    private Properties props = System.getProperties();
     private String folderName;
     private Folder folder;
 
@@ -62,50 +60,22 @@ public class Email implements IEmail {
     }
 
     private void connect(MailProtocol protocol) {
-        String hostPropertyKey;
-        String portPropertyKey;
-        String connectionTimeoutPropertyKey;
-        String timeoutPropertyKey;
-        Properties props = System.getProperties();
         Session session;
         switch (protocol) {
             case POP3:
-                System.out.println("POP3");
-                hostPropertyKey = "mail.pop3.host";
-                portPropertyKey = "mail.pop3.port";
-                props.setProperty("mail.store.protocol", "pop3s");
-                props.setProperty("mail.pop3.user", userName);
-                connectionTimeoutPropertyKey = "mail.pop3.connectiontimeout";
-                timeoutPropertyKey = "mail.pop3.timeout";
-                props.setProperty("mail.pop3.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
-                props.setProperty("mail.pop3.socketFactory.fallback", "false");
+                setPop3Config();
                 break;
             case IMAP:
-                hostPropertyKey = "mail.imap.host";
-                portPropertyKey = "mail.imap.port";
-                connectionTimeoutPropertyKey = "mail.imap.connectiontimeout";
-                timeoutPropertyKey = "mail.imap.timeout";
-                props.setProperty("mail.imap.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
-                props.setProperty("mail.imap.socketFactory.fallback", "false");
+                setImapConfig();
                 break;
             case SMTP:
-                hostPropertyKey = "mail.smtp.host";
-                portPropertyKey = "mail.smtp.port";
-                props.setProperty("mail.smtp.auth", "true");
-                props.setProperty("mail.smtp.starttls.enable", "true");
+                setSmtpConfig();
                 break;
             default:
-                hostPropertyKey = "mail.pop3.host";
-                portPropertyKey = "mail.pop3.port";
-                connectionTimeoutPropertyKey = "mail.pop3.connectiontimeout";
-                timeoutPropertyKey = "mail.pop3.timeout";
-                props.setProperty("mail.pop3.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
-                props.setProperty("mail.pop3.socketFactory.fallback", "false");
+                setPop3Config();
                 break;
         }
 
-        props.setProperty(hostPropertyKey, host);
-        props.setProperty(portPropertyKey, port);
         session = Session.getInstance(props, new Authenticator() {
             @Override
             protected PasswordAuthentication getPasswordAuthentication() {
@@ -113,6 +83,29 @@ public class Email implements IEmail {
             }
         });
         connectToStore(protocol.toString().toLowerCase(), session);
+    }
+
+    private void setPop3Config() {
+        props.setProperty("mail.pop3.host", host);
+        props.setProperty("mail.pop3.port", port);
+        props.setProperty("mail.store.protocol", "pop3s");
+        props.setProperty("mail.pop3.user", userName);
+        props.setProperty("mail.pop3.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+        props.setProperty("mail.pop3.socketFactory.fallback", "false");
+    }
+
+    private void setImapConfig() {
+        props.setProperty("mail.imap.host", host);
+        props.setProperty("mail.imap.port", port);
+        props.setProperty("mail.imap.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+        props.setProperty("mail.imap.socketFactory.fallback", "false");
+    }
+
+    private void setSmtpConfig() {
+        props.setProperty("mail.smtp.host", host);
+        props.setProperty("mail.smtp.port", port);
+        props.setProperty("mail.smtp.auth", "true");
+        props.setProperty("mail.smtp.starttls.enable", "true");
     }
 
     private void connectToStore(String protocol, Session session) {
@@ -133,7 +126,6 @@ public class Email implements IEmail {
      * Builder class to build email objects
      *
      * @author kapil
-     *
      */
     public static class Builder {
 
@@ -198,11 +190,10 @@ public class Email implements IEmail {
      * Element 0 is the newest one!!
      *
      * @param emailFilter enum
-     * @param filterText
-     *            :text present in Subject of email
+     * @param filterText  :text present in Subject of email
      * @return list of messages
      */
-    private List<Message> getMessages(EMAIL_FILTER emailFilter, String filterText) {
+    private List<Message> getEmails(EMAIL_FILTER emailFilter, String filterText) {
         Stopwatch sw = new Stopwatch();
         sw.start();
 
@@ -319,9 +310,9 @@ public class Email implements IEmail {
                                         String emailAddress) {
         switch (searchCat) {
             case FROM:
-                return getMessages(EMAIL_FILTER.FROM_ADD, emailAddress);
+                return getEmails(EMAIL_FILTER.FROM_ADD, emailAddress);
             case TO:
-                return getMessages(EMAIL_FILTER.TO_ADDR, emailAddress);
+                return getEmails(EMAIL_FILTER.TO_ADDR, emailAddress);
             default:
                 break;
         }
@@ -333,7 +324,7 @@ public class Email implements IEmail {
      */
     @Override
     public List<Message> getEmailsBySubject(String subject) {
-        return getMessages(EMAIL_FILTER.SUBJECT, subject);
+        return getEmails(EMAIL_FILTER.SUBJECT, subject);
     }
 
     /***
@@ -396,7 +387,7 @@ public class Email implements IEmail {
     }
 
     @Override
-    public boolean checkPatternInEmail(Message message, String patterToMatch) {
+    public boolean verifyPatternInEmail(Message message, String patterToMatch) {
         // TODO Auto-generated method stub
         String messageBody = getEmailBody(message);
         return Pattern.matches(messageBody, patterToMatch);

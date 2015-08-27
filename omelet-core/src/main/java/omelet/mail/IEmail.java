@@ -42,6 +42,6 @@ public interface IEmail {
 	public String getHTMLLinkAfterText(Message message,
 			String textAfterWhichtoFetchHtmlLinks);
 
-	public boolean checkPatternInEmail(Message message, String patterToMatch);
+	public boolean verifyPatternInEmail(Message message, String patterToMatch);
 
 }
