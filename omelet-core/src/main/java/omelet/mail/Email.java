@@ -24,14 +24,8 @@ import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Pattern;
 
-import javax.mail.Address;
-import javax.mail.Folder;
-import javax.mail.Message;
+import javax.mail.*;
 import javax.mail.Message.RecipientType;
-import javax.mail.MessagingException;
-import javax.mail.NoSuchProviderException;
-import javax.mail.Session;
-import javax.mail.Store;
 
 import org.apache.log4j.Logger;
 import org.testng.Reporter;
@@ -76,12 +70,16 @@ public class Email implements IEmail {
         Session session;
         switch (protocol) {
             case POP3:
+                System.out.println("POP3");
                 hostPropertyKey = "mail.pop3.host";
                 portPropertyKey = "mail.pop3.port";
+                props.setProperty("mail.store.protocol", "pop3s");
+                props.setProperty("mail.pop3.user", userName);
                 connectionTimeoutPropertyKey = "mail.pop3.connectiontimeout";
                 timeoutPropertyKey = "mail.pop3.timeout";
                 props.setProperty("mail.pop3.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
                 props.setProperty("mail.pop3.socketFactory.fallback", "false");
+                break;
             case IMAP:
                 hostPropertyKey = "mail.imap.host";
                 portPropertyKey = "mail.imap.port";
@@ -89,11 +87,13 @@ public class Email implements IEmail {
                 timeoutPropertyKey = "mail.imap.timeout";
                 props.setProperty("mail.imap.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
                 props.setProperty("mail.imap.socketFactory.fallback", "false");
+                break;
             case SMTP:
                 hostPropertyKey = "mail.smtp.host";
                 portPropertyKey = "mail.smtp.port";
                 props.setProperty("mail.smtp.auth", "true");
                 props.setProperty("mail.smtp.starttls.enable", "true");
+                break;
             default:
                 hostPropertyKey = "mail.pop3.host";
                 portPropertyKey = "mail.pop3.port";
@@ -101,12 +101,18 @@ public class Email implements IEmail {
                 timeoutPropertyKey = "mail.pop3.timeout";
                 props.setProperty("mail.pop3.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
                 props.setProperty("mail.pop3.socketFactory.fallback", "false");
+                break;
         }
 
         props.setProperty(hostPropertyKey, host);
         props.setProperty(portPropertyKey, port);
-        session = Session.getInstance(props, null);
-        connectToStore(protocol.toString(), session);
+        session = Session.getInstance(props, new Authenticator() {
+            @Override
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(userName, password);
+            }
+        });
+        connectToStore(protocol.toString().toLowerCase(), session);
     }
 
     private void connectToStore(String protocol, Session session) {
@@ -189,13 +195,14 @@ public class Email implements IEmail {
 
     /***
      * Return List of Message filter by Subject,From_ADD,To_ADDR
+     * Element 0 is the newest one!!
      *
      * @param emailFilter enum
      * @param filterText
      *            :text present in Subject of email
      * @return list of messages
      */
-    public List<Message> getMessages(EMAIL_FILTER emailFilter, String filterText) {
+    private List<Message> getMessages(EMAIL_FILTER emailFilter, String filterText) {
         Stopwatch sw = new Stopwatch();
         sw.start();
 
@@ -204,14 +211,14 @@ public class Email implements IEmail {
         try {
             folder.open(Folder.READ_ONLY);
             Message[] msgs = folder.getMessages();
-            int inboMessageCount = folder.getMessageCount();
-            LOGGER.info("Message count is:" + inboMessageCount);
-            if (inboMessageCount < maxcountEMailCheck) {
+            int inboxMessageCount = folder.getMessageCount();
+            LOGGER.info("Message count is: " + inboxMessageCount);
+            if (inboxMessageCount < maxcountEMailCheck) {
                 loopCount = 0;
             } else {
-                loopCount = inboMessageCount - maxcountEMailCheck;
+                loopCount = inboxMessageCount - maxcountEMailCheck;
             }
-            for (int i = inboMessageCount - 1; i >= loopCount; i--) {
+            for (int i = inboxMessageCount - 1; i >= loopCount; i--) {
                 switch (emailFilter) {
                     case SUBJECT:
                         if (msgs[i].getSubject().toString()
@@ -227,7 +234,7 @@ public class Email implements IEmail {
                         break;
                     case TO_ADDR:
                         for (Address addr : msgs[i].getRecipients(RecipientType.TO)) {
-                            LOGGER.info("Sno:" + i + "To Email Add is"
+                            LOGGER.info("Sno: " + i + " To Email Add is: "
                                     + addr.toString());
                             if (addr.toString().contains(filterText)) {
                                 returnMessage.add(msgs[i]);
@@ -244,7 +251,7 @@ public class Email implements IEmail {
             LOGGER.error(e);
         }
         sw.stop();
-        LOGGER.info("Time Taken by getMessage is"
+        LOGGER.info("Time Taken by getMessage is: "
                 + sw.elapsedTime(TimeUnit.SECONDS));
         return returnMessage;
     }
@@ -370,7 +377,7 @@ public class Email implements IEmail {
         Stopwatch sw = new Stopwatch();
         sw.start();
         List<Message> returnMessage = new ArrayList<Message>();
-        LOGGER.info("Count of the message for filter by Subject"
+        LOGGER.info("Count of the message for filter by Subject: "
                 + message.size());
         for (Message msg : message) {
             try {
@@ -383,7 +390,7 @@ public class Email implements IEmail {
             }
         }
         sw.stop();
-        LOGGER.info("Time Taken by Filter EmailBy Subjects is:"
+        LOGGER.info("Time Taken by Filter EmailBy Subjects is: "
                 + sw.elapsedTime(TimeUnit.SECONDS));
         return returnMessage;
     }
