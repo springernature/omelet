@@ -4,7 +4,7 @@ import omelet.data.driverconf.IBrowserConf;
 
 import org.testng.annotations.Test;
 
-public class DriverFactoryTest {
+public class DriverManagerFactoryTest {
 	public IBrowserConf iBrowserConf;
 
 	@Test

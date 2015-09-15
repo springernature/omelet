@@ -24,30 +24,36 @@ import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 
 /***
- * Driver class which returns Webdriver specific to configuration
+ * DriverManager class which returns Webdriver specific to configuration
  * 
  * @author kapilA
  * 
  */
-public class Driver {
+public class DriverManager {
 
-	private static final Logger LOGGER = Logger.getLogger(Driver.class);
+	private static final Logger LOGGER = Logger.getLogger(DriverManager.class);
 	protected static InheritableThreadLocal<IBrowserConf> browserConf = new InheritableThreadLocal<IBrowserConf>();
 	protected static InheritableThreadLocal<WebDriver> driver = new InheritableThreadLocal<WebDriver>();
+	protected static DriverFactory df;
 
 	/***
 	 * sets the driver in ThreadLocal
 	 */
 	protected static void setDriverValue() {
+
 		browserConf.set(DefaultBrowserConf.get());
 		DriverFactory df = new DriverFactory(DefaultBrowserConf.get());
 		driver.set(df.intializeDriver());
 	}
 
 	protected static void setDriverValue(IBrowserConf b_conf) {
+		System.out.println("setDriverValue runs iBrowser conf: " + DriverManager.driver.toString());
 		browserConf.set(b_conf);
-		DriverFactory df = new DriverFactory(b_conf);
+		if (df == null) {
+			df = new DriverFactory(b_conf);
+		}
 		driver.set(df.intializeDriver());
+		System.out.println("DriverFactory setDriverValue: " + df.toString());
 	}
 
 	/***
@@ -67,7 +73,7 @@ public class Driver {
 	 */
 	public static WebDriver getDriver() {
 		try {
-
+			System.out.println("driver without IBrowser: " + driver.get());
 			if (driver.get() == null) {
 				setDriverValue();
 			}
@@ -85,7 +91,7 @@ public class Driver {
 	 * @author kapilA
 	 */
 	public static WebDriver getDriver(IBrowserConf browserConf) {
-
+		System.out.println("driver with IBrowser: " + driver.get());
 		if (driver.get() == null) {
 			setDriverValue(browserConf);
 		}
@@ -96,6 +102,7 @@ public class Driver {
 	 * This method checks if driver present yes then quit else ignore
 	 */
 	protected static void tearDown() {
+		System.out.println("Cleanup DriverManager to null onFinish Method");
 		if (driver.get() != null) {
 			driver.get().quit();
 			driver.remove();

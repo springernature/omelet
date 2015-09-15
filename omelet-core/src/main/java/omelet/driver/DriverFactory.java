@@ -36,7 +36,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
 
 /***
- * Driver factory Class for Returning Driver Instances
+ * DriverManager factory Class for Returning DriverManager Instances
  * 
  * @author kapilA
  * 
@@ -56,7 +56,8 @@ class DriverFactory {
 	private String chromeServerPath;
 	private boolean ishiglightElementFlag;
 	private DesiredCapabilities dc;
-	WebDriver webDriver = null;
+	private WebDriver webDriver = null;
+	private RemoteBrowser rb = null;
 
 	public DriverFactory(IBrowserConf browserConf) {
 		this.browsConf = browserConf;
@@ -80,24 +81,31 @@ class DriverFactory {
 	 * @return
 	 */
 	public WebDriver intializeDriver() {
+
 		if (remoteFlag) {
-			RemoteBrowser rb = this.new RemoteBrowser();
+			if (webDriver == null)
+				rb = this.new RemoteBrowser();
 			webDriver = rb.returnRemoteDriver();
 		} else if (browser.toLowerCase().startsWith("f")) {
 			LOGGER.debug("Returning firefox driver-Without Remote.");
-			webDriver = new FirefoxDriver(dc);
+			if (webDriver == null)
+				webDriver = new FirefoxDriver(dc);
 		} else if (browser.toLowerCase().startsWith("i")) {
 			System.setProperty("webdriver.ie.driver", ieServerPath);
 			LOGGER.debug("Returning ie driver-Without Remote.");
-			webDriver = new InternetExplorerDriver(dc);
+			if (webDriver == null)
+				webDriver = new InternetExplorerDriver(dc);
 		} else if (browser.toLowerCase().startsWith("c")) {
 			System.setProperty("webdriver.chrome.driver", chromeServerPath);
 			LOGGER.debug("Returning chrome driver-Without Remote.");
-			webDriver = new ChromeDriver(dc);
+			if (webDriver == null)
+				webDriver = new ChromeDriver(dc);
 		} else if (browser.toLowerCase().startsWith("h")) {
 			LOGGER.info("Browser is HTMLUNIT");
-			webDriver = new HtmlUnitDriver(dc);
+			if (webDriver == null)
+				webDriver = new HtmlUnitDriver(dc);
 		}
+		System.out.println("driver Factory set driver: "+webDriver.toString());
 
 		// For set driver timeout
 		if (webDriver != null) {
@@ -114,7 +122,7 @@ class DriverFactory {
 	}
 
 	/***
-	 * This class return Remote Driver either for Hub or BrowserStack
+	 * This class return Remote DriverManager either for Hub or BrowserStack
 	 * 
 	 * @author kapilA
 	 * 

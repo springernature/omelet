@@ -18,7 +18,7 @@ package omelet.testng.support;
 
 import java.util.Map;
 
-import omelet.driver.Driver;
+import omelet.driver.DriverManager;
 
 import org.testng.asserts.IAssert;
 
@@ -29,7 +29,7 @@ import org.testng.asserts.IAssert;
  * 
  */
 public class HtmlTable {
-	private boolean screenShotFlag = Driver.getBrowserConf().isScreenShotFlag();
+	private boolean screenShotFlag = DriverManager.getBrowserConf().isScreenShotFlag();
 	private StringBuilder sb = new StringBuilder();
 	private Map<IAssert, String> assertMap;
 	private String testCaseName;

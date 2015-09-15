@@ -6,7 +6,7 @@ import java.util.Map;
 import omelet.data.DriverConfigurations;
 
 /**
- * Class to get Driver
+ * Class to get DriverManager
  * @author kapil
  *
  */

@@ -26,7 +26,7 @@ import omelet.data.driverconf.PrepareDriverConf;
 import org.apache.log4j.Logger;
 
 /***
- * This class set the variable required to configure Driver either from Command
+ * This class set the variable required to configure DriverManager either from Command
  * Line or property file ,Command Line is given preference
  * 
  * @author kapilA
@@ -49,12 +49,11 @@ public class DefaultBrowserConf {
 	/***
 	 * Return {@link IBrowserConf} depending on if {@link CustomBrowserConf} is
 	 * used or Default values set configured
-	 * 
-	 * @param browserConf
+	 *
 	 */
 	public static IBrowserConf get() {
 		// TODO: this browserConf is set once in complete execution , which
-		// means if we do Driver.getDriver() multiple times then we get the same
+		// means if we do DriverManager.getDriver() multiple times then we get the same
 		// conf
 		if (browserConf == null) {
 			synchronized (DefaultBrowserConf.class) {

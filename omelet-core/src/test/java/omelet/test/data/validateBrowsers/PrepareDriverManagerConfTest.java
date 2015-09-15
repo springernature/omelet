@@ -10,7 +10,7 @@ import omelet.data.driverconf.PrepareDriverConf;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class PrepareDriverConfTest {
+public class PrepareDriverManagerConfTest {
 	
 	Map<String,String> browserConf = new HashMap<String, String>();
 	
