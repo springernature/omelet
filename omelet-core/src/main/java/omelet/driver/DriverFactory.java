@@ -58,8 +58,9 @@ class DriverFactory {
 	private DesiredCapabilities dc;
 	private WebDriver webDriver = null;
 	private RemoteBrowser rb = null;
+	private String parallelMode = null;
 
-	public DriverFactory(IBrowserConf browserConf) {
+	public DriverFactory(IBrowserConf browserConf, String parallelMode) {
 		this.browsConf = browserConf;
 		this.dc = browserConf.getCapabilities();
 		this.browser = browserConf.getBrowser();
@@ -72,6 +73,8 @@ class DriverFactory {
 		this.ieServerPath = browserConf.getLocalIEServerPath();
 		this.chromeServerPath = browserConf.getLocalChromeServerPath();
 		this.ishiglightElementFlag = browserConf.isHighLightElementFlag();
+		this.parallelMode = parallelMode;
+		LOGGER.info("new Driver Manager");
 	}
 
 	/***
@@ -81,31 +84,51 @@ class DriverFactory {
 	 * @return
 	 */
 	public WebDriver intializeDriver() {
-
 		if (remoteFlag) {
-			if (webDriver == null)
+			if(!parallelMode.equals("false"))  {
 				rb = this.new RemoteBrowser();
-			webDriver = rb.returnRemoteDriver();
+				webDriver = rb.returnRemoteDriver();
+			} else {
+				if (webDriver == null) {
+					rb = this.new RemoteBrowser();
+					webDriver = rb.returnRemoteDriver();
+				}
+			}
 		} else if (browser.toLowerCase().startsWith("f")) {
 			LOGGER.debug("Returning firefox driver-Without Remote.");
-			if (webDriver == null)
+			if(!parallelMode.equals("false"))   {
 				webDriver = new FirefoxDriver(dc);
+			} else {
+				if (webDriver == null)
+					webDriver = new FirefoxDriver(dc);
+			}
 		} else if (browser.toLowerCase().startsWith("i")) {
 			System.setProperty("webdriver.ie.driver", ieServerPath);
 			LOGGER.debug("Returning ie driver-Without Remote.");
-			if (webDriver == null)
+			if(!parallelMode.equals("false"))   {
 				webDriver = new InternetExplorerDriver(dc);
+			} else {
+				if (webDriver == null)
+					webDriver = new InternetExplorerDriver(dc);
+			}
 		} else if (browser.toLowerCase().startsWith("c")) {
 			System.setProperty("webdriver.chrome.driver", chromeServerPath);
 			LOGGER.debug("Returning chrome driver-Without Remote.");
-			if (webDriver == null)
+			if(!parallelMode.equals("false"))   {
 				webDriver = new ChromeDriver(dc);
+			} else {
+				if (webDriver == null)
+					webDriver = new ChromeDriver(dc);
+			}
 		} else if (browser.toLowerCase().startsWith("h")) {
 			LOGGER.info("Browser is HTMLUNIT");
-			if (webDriver == null)
+			if(!parallelMode.equals("false"))   {
 				webDriver = new HtmlUnitDriver(dc);
+			} else {
+				if (webDriver == null)
+					webDriver = new HtmlUnitDriver(dc);
+			}
 		}
-		System.out.println("driver Factory set driver: "+webDriver.toString());
 
 		// For set driver timeout
 		if (webDriver != null) {
@@ -136,6 +159,7 @@ class DriverFactory {
 		}
 
 		public WebDriver returnRemoteDriver() {
+
 			String remoteUrl;
 			if (host.contains("browserstack") || host.contains("sauce")
 					|| host.contains("testingbot")) {
@@ -150,6 +174,8 @@ class DriverFactory {
 
 				// set local file detector for uploading file
 				driver.setFileDetector(new LocalFileDetector());
+
+				System.out.println("next Driver starting: "+driver);
 				return driver;
 			} catch (MalformedURLException e) {
 				LOGGER.error(e);

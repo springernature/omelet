@@ -93,8 +93,6 @@ public class DataProvider {
 					testMethodData[k][0] = browserConfFilteredList.get(i);
 					testMethodData[k][1] = testMData.get(j);
 					k++;
-					System.out.println("k: " + k + " method: " + methodName);
-					System.out.println("k: " + k + " browser: " + browserConfFilteredList.get(i));
 				}
 			}
 			break;

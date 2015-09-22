@@ -201,6 +201,7 @@ public class DriverInitialization implements IInvokedMethodListener, ISuiteListe
         // Initializing browser so that will be same across all the child
         // threads
         DriverManager.browserConf.set(null);
+        DriverManager.parallelMode = iSuite.getParallel();
         System.out.println("DriverManager reset to null onStart Method");
 
         // need as otherwise will produce unexpected output

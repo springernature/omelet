@@ -10,7 +10,7 @@
 		<dependency>
 			<groupId>com.springer</groupId>
 			<artifactId>omelet</artifactId>
-			<version>1.0.9</version>
+			<version>1.0.12</version>
 		</dependency>
 		<dependency>
 			<groupId>com.google.inject</groupId>

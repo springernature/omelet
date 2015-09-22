@@ -35,25 +35,28 @@ public class DriverManager {
 	protected static InheritableThreadLocal<IBrowserConf> browserConf = new InheritableThreadLocal<IBrowserConf>();
 	protected static InheritableThreadLocal<WebDriver> driver = new InheritableThreadLocal<WebDriver>();
 	protected static DriverFactory df;
+	protected static String parallelMode;
 
 	/***
 	 * sets the driver in ThreadLocal
 	 */
 	protected static void setDriverValue() {
-
 		browserConf.set(DefaultBrowserConf.get());
-		DriverFactory df = new DriverFactory(DefaultBrowserConf.get());
+		DriverFactory df = new DriverFactory(DefaultBrowserConf.get(), parallelMode);
 		driver.set(df.intializeDriver());
 	}
 
 	protected static void setDriverValue(IBrowserConf b_conf) {
-		System.out.println("setDriverValue runs iBrowser conf: " + DriverManager.driver.toString());
 		browserConf.set(b_conf);
 		if (df == null) {
-			df = new DriverFactory(b_conf);
+			df = new DriverFactory(b_conf, parallelMode);
 		}
 		driver.set(df.intializeDriver());
 		System.out.println("DriverFactory setDriverValue: " + df.toString());
+	}
+
+	public static String getParallelMode() {
+		return parallelMode;
 	}
 
 	/***
@@ -73,7 +76,6 @@ public class DriverManager {
 	 */
 	public static WebDriver getDriver() {
 		try {
-			System.out.println("driver without IBrowser: " + driver.get());
 			if (driver.get() == null) {
 				setDriverValue();
 			}
@@ -91,7 +93,6 @@ public class DriverManager {
 	 * @author kapilA
 	 */
 	public static WebDriver getDriver(IBrowserConf browserConf) {
-		System.out.println("driver with IBrowser: " + driver.get());
 		if (driver.get() == null) {
 			setDriverValue(browserConf);
 		}
@@ -102,7 +103,6 @@ public class DriverManager {
 	 * This method checks if driver present yes then quit else ignore
 	 */
 	protected static void tearDown() {
-		System.out.println("Cleanup DriverManager to null onFinish Method");
 		if (driver.get() != null) {
 			driver.get().quit();
 			driver.remove();

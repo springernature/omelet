@@ -1,6 +1,5 @@
 package omelet.support.saucelabs;
 
-import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
@@ -15,7 +14,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 
 import omelet.data.xml.MappingParserRevisit;
-import omelet.driver.Driver;
+import omelet.driver.DriverManager;
 
 public class WebInterface {
 	private static final Logger LOGGER = Logger.getLogger(WebInterface.class);
@@ -25,8 +24,8 @@ public class WebInterface {
 			Boolean testResult) {
 		StringBuilder restApiCommand = new StringBuilder();
 		String projectName = MappingParserRevisit.getProjectName();
-		String user = Driver.getBrowserConf().getuserName();
-		String password = Driver.getBrowserConf().getKey();
+		String user = DriverManager.getBrowserConf().getuserName();
+		String password = DriverManager.getBrowserConf().getKey();
 		String userpass = user + ":" + password;
 
 		LOGGER.debug("jobID: " + jobID);
@@ -82,9 +81,7 @@ public class WebInterface {
 					conn.getOutputStream());
 			out.write(restApiCommand.toString());
 			out.close();
-
-			new InputStreamReader(conn.getInputStream());
-
+			LOGGER.info("REST-API: "+restApiCommand.toString());
 		} catch (Exception e) {
 			LOGGER.error(e);
 			e.printStackTrace();
@@ -93,12 +90,12 @@ public class WebInterface {
 
 	public String generateLinkForEmbedScript(String jobID, Boolean getEmbedJob) {
 		StringBuilder src = new StringBuilder();
-		String user = Driver.getBrowserConf().getuserName();
-		String password = Driver.getBrowserConf().getKey();
+		String user = DriverManager.getBrowserConf().getuserName();
+		String password = DriverManager.getBrowserConf().getKey();
 		String userpass = user + ":" + password;
 
 		src.append("https://saucelabs.com/");
-		if (getEmbedJob == true) {
+		if (getEmbedJob) {
 			src.append("job-embed/");
 		} else {
 			src.append("video-embed/");
@@ -127,8 +124,8 @@ public class WebInterface {
 
 	public String generateLinkForJob(String jobID) {
 		StringBuilder sb = new StringBuilder();
-		String user = Driver.getBrowserConf().getuserName();
-		String password = Driver.getBrowserConf().getKey();
+		String user = DriverManager.getBrowserConf().getuserName();
+		String password = DriverManager.getBrowserConf().getKey();
 		String userpass = user + ":" + password;
 
 		sb.append("<a href=");

@@ -16,6 +16,7 @@
  *******************************************************************************/
 package omelet.driver;
 
+import org.apache.log4j.Logger;
 import org.testng.ISuite;
 import org.testng.ISuiteListener;
 
@@ -28,6 +29,8 @@ import org.testng.ISuiteListener;
 public class SuiteConfiguration implements ISuiteListener {
 
 	public static String suiteName;
+	private static final Logger LOGGER = Logger
+			.getLogger(SuiteConfiguration.class);
 
 	@Override
 	public void onStart(ISuite suite) {
@@ -41,6 +44,6 @@ public class SuiteConfiguration implements ISuiteListener {
 
 	@Override
 	public void onFinish(ISuite suite) {
-		// TODO Auto-generated method stub	
+		// TODO Auto-generated method stub
 	}
 }
