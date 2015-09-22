@@ -44,6 +44,7 @@ public class SuiteConfiguration implements ISuiteListener {
 
 	@Override
 	public void onFinish(ISuite suite) {
-		// TODO Auto-generated method stub
+		DriverManager.tearDown();
+		// TODO Auto-generated method stub	
 	}
 }
