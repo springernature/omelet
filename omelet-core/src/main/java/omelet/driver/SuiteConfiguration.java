@@ -34,9 +34,10 @@ public class SuiteConfiguration implements ISuiteListener {
 
 	@Override
 	public void onStart(ISuite suite) {
+		LOGGER.info("DriverManager.getDriver()"+DriverManager.df);
 		Logo.getInstance().printLogoAndVersion();
 		suiteName = suite.getName();
-		//ReportNG property 
+		//ReportNG property
 		System.setProperty("org.uncommons.reportng.coverage-report", "true");
 		final String ESCAPE_PROPERTY = "org.uncommons.reportng.escape-output";
 		System.setProperty(ESCAPE_PROPERTY, "false");
@@ -44,7 +45,5 @@ public class SuiteConfiguration implements ISuiteListener {
 
 	@Override
 	public void onFinish(ISuite suite) {
-		DriverManager.tearDown();
-		// TODO Auto-generated method stub	
 	}
 }

@@ -12,13 +12,13 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 /**
  * Refine data based on the hierarchy method-->Class-->Package
- * take {@link IDataSource} and return 
+ * take {@link IDataSource} and return
  * @author kapil
  *
  */
 public class RefineMappedData {
 	private static final Logger LOGGER = Logger.getLogger(RefineMappedData.class);
-			
+
 	private Map<String, IMappingData> primaryDataMap;
 
 	public RefineMappedData(IDataSource dataSource) {
@@ -30,35 +30,37 @@ public class RefineMappedData {
 	}
 
 	/**
-	 * Get refined methodData based on the Hierarchy 
-	 * if attributes "testData","ClientStrategy","RunStrategy" found in method else in class else in package 
+	 * Get refined methodData based on the Hierarchy
+	 * if attributes "testData","ClientStrategy","RunStrategy" found in method else in class else in package
 	 * else exception
 	 * @param methodName
 	 * @return
 	 */
 	public IMappingData getMethodData(Method methodName) {
-		//System.out.println(getRefinedClientEnvironment(methodName).get(0));
-		
+
 		return new ImplementIMap.Builder()
 				.withTestData(getRefinedTestData(methodName))
 				.withClientEnvironment(getRefinedClientEnvironment(methodName))
 				.withRunStartegy(getRunStrategy(methodName).toString()).build();
 	}
 
+	public IMappingData getMethodData1(Method methodName) {
+
+		return new ImplementIMap.Builder()
+				.withTestData(getRefinedTestData(methodName))
+				.withRunStartegy(getRunStrategy(methodName).toString()).build();
+	}
+
 	private String getRefinedTestData(Method method) {
 		IMappingData methodVal = primaryDataMap.get(Utils.getFullMethodName(method));
-		IMappingData classVal = primaryDataMap.get(
-				method.getDeclaringClass().getName().toString());
-		IMappingData packageVal = primaryDataMap.get(
-				method.getDeclaringClass().getPackage().getName().toString());
+		IMappingData classVal = primaryDataMap.get(method.getDeclaringClass().getName().toString());
+		IMappingData packageVal = primaryDataMap.get(method.getDeclaringClass().getPackage().getName().toString());
 
 		if (methodVal != null && StringUtils.isNotBlank(methodVal.getTestData())) {
 			return methodVal.getTestData();
 		} else if (classVal != null && StringUtils.isNotBlank(classVal.getTestData())) {
-			//System.out.println(classVal.getTestData());
 			return classVal.getTestData();
 		} else if (packageVal != null && StringUtils.isNotBlank(packageVal.getTestData())) {
-		//	System.out.println(packageVal.getTestData());
 			return packageVal.getTestData();
 		}
 		LOGGER.error("There is no Test Data defined for method:"+method.getName()+"in Mapping or the entry for this method/class/package is missing in Mapping");
@@ -66,17 +68,10 @@ public class RefineMappedData {
 	}
 
 	private List<String> getRefinedClientEnvironment(Method method) {
-		IMappingData methodClientData = primaryDataMap.get(
-				Utils.getFullMethodName(method));
-		IMappingData classClientData = primaryDataMap.get(
-				method.getDeclaringClass().getName().toString());
-		IMappingData packageClientData = primaryDataMap.get(
-				method.getDeclaringClass().getPackage().getName().toString());
+		IMappingData methodClientData = primaryDataMap.get(Utils.getFullMethodName(method));
+		IMappingData classClientData = primaryDataMap.get(method.getDeclaringClass().getName().toString());
+		IMappingData packageClientData = primaryDataMap.get(method.getDeclaringClass().getPackage().getName().toString());
 
-		//if 1st entry is list is zero then for sure its fake list of client Environment
-		/*System.out.println("Method:"+methodClientData.getClientEnvironment().get(0));
-		System.out.println("Class"+classClientData.getClientEnvironment().get(0));
-		System.out.println("package:"+packageClientData.getClientEnvironment().get(0));*/
 		if (methodClientData != null && !methodClientData.getClientEnvironment().isEmpty() && StringUtils.isNotBlank(methodClientData.getClientEnvironment().get(0))) {
 			return methodClientData.getClientEnvironment();
 		} else if (classClientData != null && !classClientData.getClientEnvironment().isEmpty() && StringUtils.isNotBlank(classClientData.getClientEnvironment().get(0))) {
@@ -90,12 +85,10 @@ public class RefineMappedData {
 	}
 
 	private mapStrategy getRunStrategy(Method method) {
-		IMappingData methodRunStartegy = primaryDataMap.get(
-				Utils.getFullMethodName(method));
-		IMappingData classRunStartegy = primaryDataMap.get(
-				method.getDeclaringClass().getName().toString());
-		IMappingData packageRunStartegy = primaryDataMap.get(
-				method.getDeclaringClass().getPackage().getName().toString());
+		IMappingData methodRunStartegy = primaryDataMap.get(Utils.getFullMethodName(method));
+		IMappingData classRunStartegy = primaryDataMap.get(method.getDeclaringClass().getName().toString());
+		IMappingData packageRunStartegy = primaryDataMap.get(method.getDeclaringClass().getPackage().getName().toString());
+
 		if (methodRunStartegy != null && methodRunStartegy.getRunStartegy()!= null) {
 			return methodRunStartegy.getRunStartegy();
 		} else if (classRunStartegy != null && classRunStartegy.getRunStartegy() != null) {

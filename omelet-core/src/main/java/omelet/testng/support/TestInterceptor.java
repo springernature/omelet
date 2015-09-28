@@ -25,6 +25,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
+import omelet.driver.DriverManager;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
@@ -105,6 +106,7 @@ public class TestInterceptor implements ITestListener {
 	}
 
 	public void onStart(ITestContext context) {
+//		System.out.println("Driver on Test Start: "+ DriverManager.getDriverWithoutInstance());
 		Reporter.log("Starting with suite :: "
 				+ context.getSuite().getParallel());
 	}
@@ -134,6 +136,7 @@ public class TestInterceptor implements ITestListener {
 	 * TestLink will also get Updated Based on the input Params
 	 */
 	public void onFinish(ITestContext context) {
+//		System.out.println("Driver on Test Finish: "+ DriverManager.getDriverWithoutInstance());
 		List<ITestResult> testsToBeRemoved = new ArrayList<ITestResult>();
 		Set<Integer> passedTest = new HashSet<Integer>();
 		// Create passTest List

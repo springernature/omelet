@@ -22,6 +22,7 @@ import omelet.data.driverconf.IBrowserConf;
 
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
+import org.testng.ISuite;
 
 /***
  * DriverManager class which returns Webdriver specific to configuration
@@ -36,6 +37,7 @@ public class DriverManager {
 	protected static InheritableThreadLocal<WebDriver> driver = new InheritableThreadLocal<WebDriver>();
 	protected static DriverFactory df;
 	protected static String parallelMode;
+
 
 	/***
 	 * sets the driver in ThreadLocal
@@ -52,7 +54,6 @@ public class DriverManager {
 			df = new DriverFactory(b_conf, parallelMode);
 		}
 		driver.set(df.intializeDriver());
-		System.out.println("DriverFactory setDriverValue: " + df.toString());
 	}
 
 	public static String getParallelMode() {
@@ -105,6 +106,8 @@ public class DriverManager {
 	protected static void tearDown() {
 		if (driver.get() != null) {
 			driver.get().quit();
+			driver.remove();
+		} else if (driver != null){
 			driver.remove();
 		}
 	}

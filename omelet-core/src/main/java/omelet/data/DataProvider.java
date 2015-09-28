@@ -17,18 +17,16 @@
 package omelet.data;
 
 import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Random;
-import java.util.Set;
+import java.util.*;
 
 import omelet.common.Utils;
 import omelet.data.driverconf.IBrowserConf;
+import omelet.data.driverconf.PrepareDriverConf;
 import omelet.exception.FrameworkException;
 import omelet.testng.support.MethodContextCollection;
 
 import org.apache.log4j.Logger;
+import org.testng.ITestContext;
 
 /***
  * Data Provider class for the @Test Methods
@@ -37,6 +35,7 @@ import org.apache.log4j.Logger;
  * 
  */
 public class DataProvider {
+
 
 	public static enum mapStrategy {
 		Full, Optimal
@@ -49,19 +48,34 @@ public class DataProvider {
 	@org.testng.annotations.DataProvider(name = "GoogleData", parallel = true)
 	public static Object[][] googleSheetDataProvider(Method m) {
 		String testMethodName = Utils.getFullMethodName(m);
-		return getData(testMethodName);
+		return getData(testMethodName, null);
 	}
 
 	@org.testng.annotations.DataProvider(name = "XmlData", parallel = true)
-	public static Object[][] xmlDataProvider(Method m) {
+	public static Object[][] xmlDataProvider(Method m, ITestContext context) {
 		String methodName = Utils.getFullMethodName(m);
-		return getData(methodName);
+
+		return getData(methodName, null);
 	}
 
-	public static List<IBrowserConf> filterSameBrowsers(
-			List<IBrowserConf> fullBrowserList) {
-		Set<IBrowserConf> browserConfSet = new HashSet<IBrowserConf>(
-				fullBrowserList);
+	@org.testng.annotations.DataProvider(name = "XmlData1", parallel = true)
+	public static Object[][] xmlDataProvider1(Method m, ITestContext context) {
+		String methodName = Utils.getFullMethodName(m);
+
+		Map<String, String> map = new HashMap<String, String>();
+
+		map.put("browsername", context.getSuite().getParameter("browsername"));
+		map.put("dc.platform", context.getSuite().getParameter("dc.platform"));
+		map.put("dc.version", context.getSuite().getParameter("dc.version"));
+
+		PrepareDriverConf pdc = new PrepareDriverConf(map);
+		pdc.refineBrowserValues();
+
+		return getData(methodName, pdc.get());
+	}
+
+	public static List<IBrowserConf> filterSameBrowsers(List<IBrowserConf> fullBrowserList) {
+		Set<IBrowserConf> browserConfSet = new HashSet<IBrowserConf>(fullBrowserList);
 		return new ArrayList<IBrowserConf>(browserConfSet);
 	}
 
@@ -71,10 +85,17 @@ public class DataProvider {
 	 * @param methodName
 	 * @return
 	 */
-	public static Object[][] getData(String methodName) {
+	public static Object[][] getData(String methodName, IBrowserConf iBrowserConf) {
 		Object[][] testMethodData = null;
-		List<IBrowserConf> browserConfFilteredList = filterSameBrowsers(MethodContextCollection.getMethodContext(methodName).
-				getBrowserConf());
+		List<IBrowserConf> browserConfFilteredList;
+
+		if(MethodContextCollection.getMethodContext(methodName).getBrowserConf() == null) {
+			browserConfFilteredList = new ArrayList<IBrowserConf>();
+			browserConfFilteredList.add(iBrowserConf);
+		} else {
+			browserConfFilteredList = filterSameBrowsers(MethodContextCollection.getMethodContext(methodName).
+					getBrowserConf());
+		}
 		List<IProperty> testMData = MethodContextCollection.getMethodContext(methodName).getMethodTestData();
 		mapStrategy strategy = MethodContextCollection.getMethodContext(methodName).getRunStrategy();
 		int browserConfCount = browserConfFilteredList.size();

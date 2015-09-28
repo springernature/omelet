@@ -22,7 +22,6 @@ public interface IBrowserConf {
 
 	public String getBrowser();
 
-
 	public String getuserName();
 
 	public String getKey();
