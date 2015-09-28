@@ -8,6 +8,7 @@ import org.apache.log4j.Logger;
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
@@ -22,6 +23,9 @@ public class WebInterface {
     public void updateSauceLabsJob(SauceLabsRestData slRestData, String testName,
                                    Boolean testResult) {
         StringBuilder restApiCommand = new StringBuilder();
+        String url = "https://saucelabs.com/rest/v1/" + slRestData.getUser() + "/jobs/" + slRestData.getJobID();
+        HttpURLConnection conn = null;
+        OutputStreamWriter out = null;
 
         LOGGER.debug("jobID: " + slRestData.getJobID());
         LOGGER.debug("testName: " + testName);
@@ -32,18 +36,12 @@ public class WebInterface {
             LOGGER.debug("buildNumber: " + buildNumber);
         }
 
-        String url = "https://saucelabs.com/rest/v1/" + slRestData.getUser() + "/jobs/" + slRestData.getJobID();
-        LOGGER.info("url: " + url);
-        LOGGER.info("slRestData.getUserPass(): " + slRestData.getUserPass());
         restApiCommand.append("{");
-
-        HttpURLConnection conn = null;
-        OutputStreamWriter out = null;
         try {
             URL obj = new URL(url);
             conn = (HttpURLConnection) obj.openConnection();
 
-			conn.setRequestProperty("Content-Type", "application/json");
+            conn.setRequestProperty("Content-Type", "application/json");
             conn.setDoOutput(true);
             conn.setRequestMethod("PUT");
 
@@ -71,44 +69,28 @@ public class WebInterface {
                 String testResultData = "\"passed\":" + testResult;
                 restApiCommand.append(testResultData);
             }
-
             restApiCommand.append("}");
 
             LOGGER.debug(restApiCommand);
             out = new OutputStreamWriter(
                     conn.getOutputStream());
             out.write(restApiCommand.toString());
-
-            LOGGER.info(conn.getOutputStream());
-            LOGGER.info("basicAuth: "+ basicAuth);
-            LOGGER.info("conn.getResponseCode(): " + conn.getResponseCode());
-            LOGGER.info("conn request method: " + conn.getRequestMethod());
-            LOGGER.info("REST-API: " + restApiCommand.toString());
+            LOGGER.info(restApiCommand);
         } catch (Exception e) {
             LOGGER.error(e);
             e.printStackTrace();
         } finally {
-            conn.disconnect();
-
             try {
                 out.close();
+                new InputStreamReader(conn.getInputStream());
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
         }
     }
 
     public void stopJob(SauceLabsRestData slRestData) {
-//		StringBuilder restApiCommand = new StringBuilder();
-
-        LOGGER.info("jobID: " + slRestData.getJobID());
-
         String url = "https://saucelabs.com/rest/v1/" + slRestData.getUser() + "/jobs/" + slRestData.getJobID() + "/stop";
-        LOGGER.info("url: " + url);
-        LOGGER.info("slRestData.getUserPass(): " + slRestData.getUserPass());
-
-//		restApiCommand.append("{");
         HttpURLConnection conn = null;
         OutputStreamWriter out = null;
 
@@ -125,23 +107,15 @@ public class WebInterface {
                     .printBase64Binary(slRestData.getUserPass().getBytes("UTF-8"));
             conn.setRequestProperty("Authorization", basicAuth);
 
-//			restApiCommand.append("}");
-//
-//			LOGGER.debug(restApiCommand);
-
             out = new OutputStreamWriter(
                     conn.getOutputStream());
-//			out.write(restApiCommand.toString());
-            LOGGER.info("conn.getResponseCode(): " + conn.getResponseCode());
-//			LOGGER.info("REST-API: " + restApiCommand.toString());
         } catch (Exception e) {
             LOGGER.error(e);
             e.printStackTrace();
         } finally {
-            conn.disconnect();
-
             try {
                 out.close();
+                new InputStreamReader(conn.getInputStream());
             } catch (IOException e) {
                 e.printStackTrace();
             }

@@ -1,11 +1,14 @@
 package omelet.support.saucelabs;
 
 import omelet.data.xml.MappingParserRevisit;
+import omelet.driver.DriverInitialization;
 import omelet.driver.DriverManager;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.*;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -20,14 +23,11 @@ public class SauceLabsIntegration implements IInvokedMethodListener, ISuiteListe
 
     @Override
     public void beforeInvocation(IInvokedMethod method, ITestResult testResult) {
-
+        DriverManager.getDriver().manage().deleteAllCookies();
     }
 
     @Override
     public void afterInvocation(IInvokedMethod method, ITestResult testResult) {
-        LOGGER.info("DriverManager.getBrowserConf().host().contains(\"sauce\"): "+DriverManager.getBrowserConf().host().contains("sauce"));
-        LOGGER.info("DriverManager.getBrowserConf().isRemoteFlag(): "+DriverManager.getBrowserConf().isRemoteFlag());
-
         if (!DriverManager.getParallelMode().equals("false")) {
             try {
                 // it will throw Null pointer exception for the method who are not
@@ -79,28 +79,28 @@ public class SauceLabsIntegration implements IInvokedMethodListener, ISuiteListe
 
     @Override
     public void onFinish(ISuite suite) {
-        Map<String, ISuiteResult> results = suite.getResults();
-
-        for (ISuiteResult result : results.values()) {
-            for (ITestResult test : result.getTestContext().getPassedTests().getAllResults()) {
-//                System.out.println("Driver: "+ DriverManager.getDriverWithoutInstance());
-                System.out.println("Success Method: " + test.getName());
-                System.out.println("Success: " + test.isSuccess());
-            }
-            for (ITestResult test : result.getTestContext().getFailedTests().getAllResults()) {
-                System.out.println("Failed Method: " + test.getName());
-                System.out.println("Failed: " + test.isSuccess());
-            }
-            for (ITestNGMethod test : result.getTestContext().getAllTestMethods()) {
-                System.out.println("Method: " + test.getMethodName());
-            }
-        }
-        LOGGER.info("on Finish");
         if (this.slRestDataSingleRun.getJobID() != null) {
-            LOGGER.info("Stop Job in on Finish");
+            Map<String, ISuiteResult> results = suite.getResults();
+            Boolean testSuccess = true;
+            StringBuilder testNames = new StringBuilder();
+
+            for (ISuiteResult result : results.values()) {
+                if (!result.getTestContext().getFailedTests().getAllResults().isEmpty()) {
+                    testSuccess = false;
+                }
+                for (ITestNGMethod test : result.getTestContext().getAllTestMethods()) {
+                    if (testNames.toString().isEmpty()) {
+                        testNames.append(test.getMethodName());
+                    } else {
+                        testNames.append(" , "+test.getMethodName());
+                    }
+                }
+            }
+
             WebInterface slWebInterface = new WebInterface();
             slWebInterface.stopJob(this.slRestDataSingleRun);
-            slWebInterface.updateSauceLabsJob(this.slRestDataSingleRun, "test", true);
+            slWebInterface.updateSauceLabsJob(this.slRestDataSingleRun, testNames.toString(), testSuccess);
+            this.slRestDataSingleRun.setJobID(null);
         }
     }
 }
