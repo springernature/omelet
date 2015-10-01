@@ -23,7 +23,7 @@ public class PrettyMessage implements Runnable {
 		StringBuilder sb = new StringBuilder();
 		while(keepRunning){
 			sb.append(".");
-			LOGGER.info(sb.toString());
+			LOGGER.info("sb.toString(): " + sb.toString());
 			sleep(1);
 		}
 		LOGGER.info("Time taken to build data in seconds is:"+sw.elapsedTime(TimeUnit.SECONDS));
