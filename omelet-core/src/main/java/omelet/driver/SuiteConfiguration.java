@@ -16,7 +16,6 @@
  *******************************************************************************/
 package omelet.driver;
 
-import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.testng.ISuite;
 import org.testng.ISuiteListener;
@@ -36,9 +35,9 @@ public class SuiteConfiguration implements ISuiteListener {
 
 	@Override
 	public void onStart(ISuite suite) {
-		LOGGER.info("DriverManager.getDriver(): "+DriverManager.df);
-		LOGGER.info("DriverManager.driver: "+DriverManager.driver);
-		LOGGER.info("DriverManager.getBrowserConf(): " + DriverManager.getBrowserConf());
+		LOGGER.debug("DriverManager.driverFactory: "+DriverManager.driverFactory);
+		LOGGER.debug("DriverManager.driver: "+DriverManager.driver);
+		LOGGER.debug("DriverManager.getBrowserConf(): " + DriverManager.getBrowserConf());
 
 		Logo.getInstance().printLogoAndVersion();
 		suiteName = suite.getName();

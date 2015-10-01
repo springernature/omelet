@@ -81,7 +81,6 @@ public class WebInterface {
             out = new OutputStreamWriter(
                     conn.getOutputStream());
             out.write(restApiCommand.toString());
-            LOGGER.info(restApiCommand);
         } catch (Exception e) {
             LOGGER.error(e);
             e.printStackTrace();

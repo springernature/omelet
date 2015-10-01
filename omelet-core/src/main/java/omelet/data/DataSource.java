@@ -3,7 +3,7 @@ package omelet.data;
 public enum DataSource {
 	GoogleData,
 	XmlData,
-	updateXmlWithMappingAndClientDataInSuite,
+	XmlSuiteData,
 	NoSource,
 	Invalid
 }

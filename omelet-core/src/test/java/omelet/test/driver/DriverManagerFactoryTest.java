@@ -10,9 +10,9 @@ public class DriverManagerFactoryTest {
 	@Test
 	public void f() {
 //		iBrowserConf.getBrowser();
-//		DriverFactory df = new DriverFactory(iBrowserConf);
-//		Assert.assertNotNull(df);
-//		df.intializeDriver();
+//		DriverFactory driverFactory = new DriverFactory(iBrowserConf);
+//		Assert.assertNotNull(driverFactory);
+//		driverFactory.intializeDriver();
 //		
 //
 	}

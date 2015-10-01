@@ -252,7 +252,7 @@ public class MethodContext implements IMethodContext {
         this.runStrategy = mapD.getRunStartegy();
     }
 
-    private void updateXmlWithMappingAndClientDataInSuite(String environment) {
+    private void updateXmlSuite(String environment) {
         MappingParserRevisit mpr = new MappingParserRevisit();
         RefineMappedData refinedMappedData = new RefineMappedData(mpr);
 
@@ -293,7 +293,7 @@ public class MethodContext implements IMethodContext {
                 .getProperty(GoogleSheetConstant.GOOGLESHEETNAME))) {
             // This is not the solution as TestNG is not logging the exception
             // hence setting it here
-            LOGGER.info("Method with name:"
+            LOGGER.debug("Method with name:"
                     + methodName
                     + "required Google Sheet as Test Data , please provide arguments -DgoogleUsername and -DgoogelPassword");
             throw new FrameworkException(
@@ -312,8 +312,8 @@ public class MethodContext implements IMethodContext {
                 case XmlData:
                     updateXml(System.getProperty("env-type"));
                     break;
-                case updateXmlWithMappingAndClientDataInSuite:
-                    updateXmlWithMappingAndClientDataInSuite(System.getProperty("env-type"));
+                case XmlSuiteData:
+                    updateXmlSuite(System.getProperty("env-type"));
                     break;
                 case GoogleData:
                     updateGoogleSheet(System.getProperty("env-type"));

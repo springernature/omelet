@@ -60,6 +60,7 @@ public class SauceLabsIntegration implements IInvokedMethodListener, ISuiteListe
         } else {
             if (DriverManager.getBrowserConf().host().contains("sauce")
                     && DriverManager.getBrowserConf().isRemoteFlag()) {
+
                 RemoteWebDriver driver = (RemoteWebDriver) DriverManager.getSetDriver();
 
                 this.slRestDataSingleRun = new SauceLabsRestData();

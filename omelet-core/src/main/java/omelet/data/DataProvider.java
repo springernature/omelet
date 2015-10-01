@@ -33,6 +33,11 @@ import java.util.*;
  * @author kapilA
  */
 public class DataProvider {
+    private static final Logger LOGGER = Logger.getLogger(DataProvider.class);
+
+    public enum mapStrategy {
+        Full, Optimal
+    }
 
     private static void updateMethodContextHolder(Method m, IBrowserConf browserConf) {
 
@@ -49,14 +54,6 @@ public class DataProvider {
         }
     }
 
-    public enum mapStrategy {
-        Full, Optimal
-    }
-
-    @SuppressWarnings("unused")
-    private static final Logger LOGGER = Logger.getLogger(DataProvider.class);
-
-
     @org.testng.annotations.DataProvider(name = "GoogleData", parallel = true)
     public static Object[][] googleSheetDataProvider(Method m) {
         updateMethodContextHolder(m, null);
@@ -72,25 +69,21 @@ public class DataProvider {
         return getData(methodName, null);
     }
 
-    @org.testng.annotations.DataProvider(name = "updateXmlWithMappingAndClientDataInSuite", parallel = true)
-    public static Object[][] updateXmlWithMappingAndClientDataInSuite(Method m, ITestContext context) {
+    @org.testng.annotations.DataProvider(name = "XmlSuiteData", parallel = true)
+    public static Object[][] xmlSuiteDataProvider(Method m, ITestContext context) {
 
         String methodName = Utils.getFullMethodName(m);
 
         Map<String, String> map = new HashMap<String, String>();
-
         map.put("browsername", context.getSuite().getParameter("browsername"));
         map.put("dc.platform", context.getSuite().getParameter("dc.platform"));
         map.put("dc.version", context.getSuite().getParameter("dc.version"));
 
-
         PrepareDriverConf pdc = new PrepareDriverConf(map);
         pdc.refineBrowserValues();
         updateMethodContextHolder(m, pdc.get());
-        LOGGER.info("DC available!!!!!");
         return getData(methodName, pdc.get());
     }
-
 
     public static List<IBrowserConf> filterSameBrowsers(List<IBrowserConf> fullBrowserList) {
         Set<IBrowserConf> browserConfSet = new HashSet<IBrowserConf>(fullBrowserList);

@@ -36,7 +36,7 @@ public class PrettyMessage implements Runnable {
 			Thread.sleep(timeInSeconds*1000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
-			LOGGER.info(e);
+			LOGGER.error(e);
 		}
 	}
 	

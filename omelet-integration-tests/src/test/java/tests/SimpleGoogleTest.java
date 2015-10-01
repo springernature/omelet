@@ -15,7 +15,6 @@ public class SimpleGoogleTest {
 
 	@Test(description = "verify if Selenium title is as expected", enabled = true, dataProvider = "XmlData")
 	public void verifySeleniumTitleXML(IBrowserConf browserConf, IProperty prop) {
-		System.out.println(browserConf.getCapabilities().getPlatform());
 		GooglePage gp = new GooglePage(DriverManager.getSetDriver(browserConf), prop);
 		gp.loadFromProperty().isLoaded().search("Selenium")
 				.clickOnLink("Selenium - Web Browser Automation");

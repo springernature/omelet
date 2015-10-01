@@ -46,13 +46,13 @@ public class CustomBrowserConf {
 	 * 
 	 */
 	public static void loadPropFile(String filePath) {
-		LOGGER.info("Loading New Properties File:" + filePath);
+		LOGGER.debug("Loading New Properties File:" + filePath);
 		prop = new PropertyMapping(filePath);
 		DefaultBrowserConf.loadCustomPropertiesFile(prop);
 	}
 
 	public static void loadPropFile(IProperty prop) {
-		LOGGER.info("Loading New Properties File");
+		LOGGER.debug("Loading New Properties File");
 		DefaultBrowserConf.loadCustomPropertiesFile(prop);
 	}
 

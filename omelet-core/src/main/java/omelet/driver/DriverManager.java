@@ -32,26 +32,25 @@ public class DriverManager {
     private static final Logger LOGGER = Logger.getLogger(DriverManager.class);
     protected static InheritableThreadLocal<IBrowserConf> browserConf = new InheritableThreadLocal<IBrowserConf>();
     protected static InheritableThreadLocal<WebDriver> driver = new InheritableThreadLocal<WebDriver>();
-    protected static DriverFactory df;
+    protected static DriverFactory driverFactory;
     protected static String parallelMode;
 
+    private DriverManager() {}
     /***
      * sets the driver in ThreadLocal
      */
     protected static void setDriverValue() {
-        LOGGER.info("Set default browser conf");
         browserConf.set(DefaultBrowserConf.get());
         DriverFactory df = new DriverFactory(DefaultBrowserConf.get(), parallelMode);
         driver.set(df.intializeDriver());
     }
 
     protected static void setDriverValue(IBrowserConf b_conf) {
-        LOGGER.info("setDriverValue: " + b_conf);
         browserConf.set(b_conf);
-        if (df == null) {
-            df = new DriverFactory(b_conf, parallelMode);
+        if (driverFactory == null) {
+            driverFactory = new DriverFactory(b_conf, parallelMode);
         }
-        driver.set(df.intializeDriver());
+        driver.set(driverFactory.intializeDriver());
     }
 
     public static String getParallelMode() {
@@ -104,20 +103,18 @@ public class DriverManager {
         if (driver.get() != null) {
             driver.get().quit();
             driver.remove();
-            df = null;
+            driverFactory = null;
         } else if (driver != null) {
             driver.remove();
-            df = null;
+            driverFactory = null;
         }
     }
 
     protected static boolean driverRemovedStatus() {
-LOGGER.info("driver.get(): "+driver.get());
+
         if (driver.get() == null) {
             return true;
         }
         return false;
     }
-
-    private DriverManager() {}
 }

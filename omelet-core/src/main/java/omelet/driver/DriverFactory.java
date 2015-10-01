@@ -71,7 +71,6 @@ class DriverFactory {
         this.chromeServerPath = browserConf.getLocalChromeServerPath();
         this.ishiglightElementFlag = browserConf.isHighLightElementFlag();
         this.parallelMode = parallelMode;
-        LOGGER.info("new Driver Manager");
     }
 
     /***
@@ -116,7 +115,7 @@ class DriverFactory {
                     webDriver = new ChromeDriver(dc);
             }
         } else if (browser.toLowerCase().startsWith("h")) {
-            LOGGER.info("Browser is HTMLUNIT");
+            LOGGER.debug("Browser is HTMLUNIT");
             if (!parallelMode.equals("false")) {
                 webDriver = new HtmlUnitDriver(dc);
             } else {

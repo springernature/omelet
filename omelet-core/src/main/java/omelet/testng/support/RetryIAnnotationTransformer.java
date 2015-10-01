@@ -52,7 +52,6 @@ public class RetryIAnnotationTransformer implements IAnnotationTransformer {
 			MethodContext context = new MethodContext(testMethod);
 			context.setRetryAnalyser(annotation);
 			context.setDataProvider(annotation, testMethod);
-			//			context.prepareData();
 			//update methodContextCollection
 			LOGGER.debug("methodContextHolder: "+methodContextHolder);
 			methodContextHolder.put(Utils.getFullMethodName(testMethod), context);

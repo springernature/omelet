@@ -102,7 +102,7 @@ public class DriverInitialization implements IInvokedMethodListener, ISuiteListe
         try {
             Reporter.setCurrentTestResult(testResult);
         } catch (Exception e) {
-            LOGGER.info(
+            LOGGER.error(
                     "Catching Exception in After Invocation So test Result are not altered due to it",
                     e);
         } finally {
@@ -119,13 +119,13 @@ public class DriverInitialization implements IInvokedMethodListener, ISuiteListe
      */
     private void cleanupDriver(ISuite iSuite) {
         try {
-            LOGGER.info("Quiting DriverManager for Suite:"
+            LOGGER.debug("Quiting DriverManager for Suite:"
                     + iSuite.getName());
             if (!DriverManager.driverRemovedStatus()) {
                 DriverManager.tearDown();
             }
         } catch (Exception e) {
-            LOGGER.info(
+            LOGGER.error(
                     "Catching Exception in After Invocation So test Result are not altered due to it",
                     e);
         } finally {
@@ -148,7 +148,7 @@ public class DriverInitialization implements IInvokedMethodListener, ISuiteListe
                     testResult.getName());
             Reporter.log("Table Report is:::" + report.getTable());
         } catch (Exception e) {
-            LOGGER.info("Catching exception in public HTML Method", e);
+            LOGGER.error("Catching exception in public HTML Method", e);
         }
     }
 
@@ -188,7 +188,7 @@ public class DriverInitialization implements IInvokedMethodListener, ISuiteListe
                 }
             }
         } catch (Exception e) {
-            LOGGER.info("Catching exception in add screen shot Method", e);
+            LOGGER.error("Catching exception in add screen shot Method", e);
         }
     }
 
@@ -200,18 +200,15 @@ public class DriverInitialization implements IInvokedMethodListener, ISuiteListe
      */
     @Override
     public void onStart(ISuite iSuite) {
-        LOGGER.info("Setting the WebDriver in Before Suite");
-        LOGGER.info("DriverManager.driver: "+DriverManager.driver);
+        LOGGER.debug("Setting the WebDriver in Before Suite");
         if (DriverManager.driver != null) {
-            LOGGER.info("DriverManager.driver: "+DriverManager.driver);
+            LOGGER.debug("DriverManager.driver: " + DriverManager.driver);
             cleanupDriver(iSuite);
-
             DriverManager.tearDown();
-            LOGGER.info("DriverManager.driver: " + DriverManager.driver);
         }
         // Initializing browser so that will be same across all the child
         // threads
-//        DriverManager.browserConf.set(null);
+        DriverManager.browserConf.set(null);
         DriverManager.parallelMode = iSuite.getParallel();
 
         Map<String, String> map = new HashMap<String, String>();
@@ -222,8 +219,7 @@ public class DriverInitialization implements IInvokedMethodListener, ISuiteListe
         PrepareDriverConf pdc = new PrepareDriverConf(map);
         pdc.refineBrowserValues();
         DriverManager.browserConf.set(pdc.get());
-        LOGGER.info("BROWSERCONF: "+DriverManager.getBrowserConf());
-//        System.out.println("DriverManager reset to null onStart Method");
+        LOGGER.debug("DriverManager.getBrowserConf(): " + DriverManager.getBrowserConf());
 
         // need as otherwise will produce unexpected output
         SAssert.m_errors.get();
@@ -239,10 +235,9 @@ public class DriverInitialization implements IInvokedMethodListener, ISuiteListe
     @Override
     public void onFinish(ISuite iSuite) {
         // Check for AfterMethod if present check for browser and quit
-        LOGGER.info("onFinish getDriver: "+DriverManager.getDriver());
+        LOGGER.debug("onFinish DriverManager.getDriver(): " + DriverManager.getDriver());
         if (DriverManager.getDriver() != null) {
             cleanupDriver(iSuite);
-            System.out.println("Cleanup DriverManager to null onFinish Method");
         }
     }
 }
