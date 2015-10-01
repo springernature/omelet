@@ -17,10 +17,13 @@
 package omelet.driver;
 
 import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 import omelet.common.Utils;
 import omelet.data.IMethodContext;
+import omelet.data.driverconf.PrepareDriverConf;
 import omelet.testng.support.HtmlTable;
 import omelet.testng.support.MethodContextCollection;
 import omelet.testng.support.SAssert;
@@ -198,11 +201,29 @@ public class DriverInitialization implements IInvokedMethodListener, ISuiteListe
     @Override
     public void onStart(ISuite iSuite) {
         LOGGER.info("Setting the WebDriver in Before Suite");
+        LOGGER.info("DriverManager.driver: "+DriverManager.driver);
+        if (DriverManager.driver != null) {
+            LOGGER.info("DriverManager.driver: "+DriverManager.driver);
+            cleanupDriver(iSuite);
+
+            DriverManager.tearDown();
+            LOGGER.info("DriverManager.driver: " + DriverManager.driver);
+        }
         // Initializing browser so that will be same across all the child
         // threads
-        DriverManager.browserConf.set(null);
+//        DriverManager.browserConf.set(null);
         DriverManager.parallelMode = iSuite.getParallel();
-        System.out.println("DriverManager reset to null onStart Method");
+
+        Map<String, String> map = new HashMap<String, String>();
+        map.put("browsername", iSuite.getParameter("browsername"));
+        map.put("dc.platform", iSuite.getParameter("dc.platform"));
+        map.put("dc.version", iSuite.getParameter("dc.version"));
+
+        PrepareDriverConf pdc = new PrepareDriverConf(map);
+        pdc.refineBrowserValues();
+        DriverManager.browserConf.set(pdc.get());
+        LOGGER.info("BROWSERCONF: "+DriverManager.getBrowserConf());
+//        System.out.println("DriverManager reset to null onStart Method");
 
         // need as otherwise will produce unexpected output
         SAssert.m_errors.get();
@@ -218,7 +239,8 @@ public class DriverInitialization implements IInvokedMethodListener, ISuiteListe
     @Override
     public void onFinish(ISuite iSuite) {
         // Check for AfterMethod if present check for browser and quit
-        if (DriverManager.driver.get() != null) {
+        LOGGER.info("onFinish getDriver: "+DriverManager.getDriver());
+        if (DriverManager.getDriver() != null) {
             cleanupDriver(iSuite);
             System.out.println("Cleanup DriverManager to null onFinish Method");
         }

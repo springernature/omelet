@@ -37,8 +37,6 @@ public class MethodContext implements IMethodContext {
     private boolean isDataSourceCalculated = false;
     private boolean isEnabled;
     private String[] groups;
-    private static MappingParserRevisit mpr = new MappingParserRevisit();
-    private static RefineMappedData refinedMappedData = new RefineMappedData(mpr);
 
     public MethodContext(Method method) {
         this.method = method;
@@ -237,8 +235,10 @@ public class MethodContext implements IMethodContext {
     }
 
     private void updateXml(String environment) {
+        MappingParserRevisit mpr = new MappingParserRevisit();
+        RefineMappedData refinedMappedData = new RefineMappedData(mpr);
 
-        IMappingData mapD = refinedMappedData.getMethodData(method);
+        IMappingData mapD = refinedMappedData.getMethodDataWithClientData(method);
         if (environment != null && !StringUtils.isBlank(environment)) {
             // get the xml name from MappingParser Static Method
             this.testData = XmlApplicationData.getInstance().getAppData(mapD.getTestData(), environment);
@@ -252,9 +252,11 @@ public class MethodContext implements IMethodContext {
         this.runStrategy = mapD.getRunStartegy();
     }
 
-    private void updateXml1(String environment) {
+    private void updateXmlWithMappingAndClientDataInSuite(String environment) {
+        MappingParserRevisit mpr = new MappingParserRevisit();
+        RefineMappedData refinedMappedData = new RefineMappedData(mpr);
 
-        IMappingData mapD = refinedMappedData.getMethodData1(method);
+        IMappingData mapD = refinedMappedData.getMethodDataWithoutClientData(method);
         if (environment != null && !StringUtils.isBlank(environment)) {
             // get the xml name from MappingParser Static Method
             this.testData = XmlApplicationData.getInstance().getAppData(mapD.getTestData(), environment);
@@ -275,7 +277,7 @@ public class MethodContext implements IMethodContext {
                 System.getProperty(GoogleSheetConstant.GOOGLEPASSWD),
                 System.getProperty(GoogleSheetConstant.GOOGLESHEETNAME));
         RefineMappedData refinedData = new RefineMappedData(readGoogle);
-        IMappingData mapData = refinedData.getMethodData(method);
+        IMappingData mapData = refinedData.getMethodDataWithClientData(method);
         this.browserConfig = readGoogle.getBrowserListForSheet(mapData);
         this.testData = readGoogle.getMethodData(environment, mapData);
         this.runStrategy = mapData.getRunStartegy();
@@ -310,8 +312,8 @@ public class MethodContext implements IMethodContext {
                 case XmlData:
                     updateXml(System.getProperty("env-type"));
                     break;
-                case XmlData1:
-                    updateXml1(System.getProperty("env-type"));
+                case updateXmlWithMappingAndClientDataInSuite:
+                    updateXmlWithMappingAndClientDataInSuite(System.getProperty("env-type"));
                     break;
                 case GoogleData:
                     updateGoogleSheet(System.getProperty("env-type"));

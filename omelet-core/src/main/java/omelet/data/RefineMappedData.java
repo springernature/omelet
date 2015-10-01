@@ -36,7 +36,7 @@ public class RefineMappedData {
 	 * @param methodName
 	 * @return
 	 */
-	public IMappingData getMethodData(Method methodName) {
+	public IMappingData getMethodDataWithClientData(Method methodName) {
 
 		return new ImplementIMap.Builder()
 				.withTestData(getRefinedTestData(methodName))
@@ -44,7 +44,7 @@ public class RefineMappedData {
 				.withRunStartegy(getRunStrategy(methodName).toString()).build();
 	}
 
-	public IMappingData getMethodData1(Method methodName) {
+	public IMappingData getMethodDataWithoutClientData(Method methodName) {
 
 		return new ImplementIMap.Builder()
 				.withTestData(getRefinedTestData(methodName))

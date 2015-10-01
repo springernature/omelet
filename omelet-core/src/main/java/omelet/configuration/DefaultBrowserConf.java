@@ -23,6 +23,7 @@ import omelet.data.IProperty;
 import omelet.data.driverconf.IBrowserConf;
 import omelet.data.driverconf.PrepareDriverConf;
 
+import omelet.driver.DriverManager;
 import org.apache.log4j.Logger;
 
 /***
@@ -34,8 +35,7 @@ import org.apache.log4j.Logger;
  */
 public class DefaultBrowserConf {
 	@SuppressWarnings("unused")
-	private static final Logger LOGGER = Logger
-			.getLogger(DefaultBrowserConf.class);
+	private static final Logger LOGGER = Logger.getLogger(DefaultBrowserConf.class);
 	private static IBrowserConf browserConf;
 	private static IProperty customProp;
 
@@ -52,6 +52,7 @@ public class DefaultBrowserConf {
 	 *
 	 */
 	public static IBrowserConf get() {
+		LOGGER.info("browserConf111: "+browserConf);
 		// TODO: this browserConf is set once in complete execution , which
 		// means if we do DriverManager.getDriver() multiple times then we get the same
 		// conf

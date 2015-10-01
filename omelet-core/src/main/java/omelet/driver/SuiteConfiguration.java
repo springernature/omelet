@@ -16,6 +16,7 @@
  *******************************************************************************/
 package omelet.driver;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.testng.ISuite;
 import org.testng.ISuiteListener;
@@ -28,15 +29,20 @@ import org.testng.ISuiteListener;
  */
 public class SuiteConfiguration implements ISuiteListener {
 
+	private static final Logger LOGGER = Logger.getLogger(SuiteConfiguration.class);
 	public static String suiteName;
-	private static final Logger LOGGER = Logger
-			.getLogger(SuiteConfiguration.class);
+	private static ISuite suite;
+
 
 	@Override
 	public void onStart(ISuite suite) {
-		LOGGER.info("DriverManager.getDriver()"+DriverManager.df);
+		LOGGER.info("DriverManager.getDriver(): "+DriverManager.df);
+		LOGGER.info("DriverManager.driver: "+DriverManager.driver);
+		LOGGER.info("DriverManager.getBrowserConf(): " + DriverManager.getBrowserConf());
+
 		Logo.getInstance().printLogoAndVersion();
 		suiteName = suite.getName();
+		this.suite = suite;
 		//ReportNG property
 		System.setProperty("org.uncommons.reportng.coverage-report", "true");
 		final String ESCAPE_PROPERTY = "org.uncommons.reportng.escape-output";
@@ -45,5 +51,12 @@ public class SuiteConfiguration implements ISuiteListener {
 
 	@Override
 	public void onFinish(ISuite suite) {
+	}
+
+	public static String getSuiteProperty(String key) {
+		if (suite != null) {
+			return suite.getParameter(key);
+		}
+		return null;
 	}
 }

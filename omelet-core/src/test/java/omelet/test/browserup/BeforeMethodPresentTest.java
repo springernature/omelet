@@ -30,7 +30,7 @@ public class BeforeMethodPresentTest {
 
 	@BeforeMethod
 	public void setUpBrowser() {
-		WebDriver driver = DriverManager.getDriver();
+		WebDriver driver = DriverManager.createDriver();
 		sessionID = ((RemoteWebDriver) driver).getSessionId().toString();
 
 	}

@@ -4,6 +4,7 @@ package omelet.support.saucelabs;
  * Created by borz01 on 28.09.15.
  */
 public class SauceLabsRestData {
+    private String jobID = null;
     private String projectName = null;
     private String user = null;
     private String password = null;
@@ -48,7 +49,4 @@ public class SauceLabsRestData {
     public void setUserPass(String userPass) {
         this.userPass = userPass;
     }
-
-    private String jobID;
-
 }

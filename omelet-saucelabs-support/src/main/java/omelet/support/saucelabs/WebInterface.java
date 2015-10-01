@@ -20,6 +20,12 @@ public class WebInterface {
     private static final Logger LOGGER = Logger.getLogger(WebInterface.class);
     String buildNumber = "";
 
+    /**
+     * This method updates the executed job on sauce labs using the rest api.
+     * @param slRestData
+     * @param testName
+     * @param testResult
+     */
     public void updateSauceLabsJob(SauceLabsRestData slRestData, String testName,
                                    Boolean testResult) {
         StringBuilder restApiCommand = new StringBuilder();
@@ -89,6 +95,11 @@ public class WebInterface {
         }
     }
 
+    /**
+     * This method stops the job after the execution.
+     *
+     * @param slRestData
+     */
     public void stopJob(SauceLabsRestData slRestData) {
         String url = "https://saucelabs.com/rest/v1/" + slRestData.getUser() + "/jobs/" + slRestData.getJobID() + "/stop";
         HttpURLConnection conn = null;

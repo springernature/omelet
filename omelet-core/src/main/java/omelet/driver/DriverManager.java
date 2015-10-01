@@ -1,123 +1,123 @@
 /*******************************************************************************
- *
- * 	Copyright 2014 Springer Science+Business Media Deutschland GmbH
- * 	
- * 	Licensed under the Apache License, Version 2.0 (the "License");
- * 	you may not use this file except in compliance with the License.
- * 	You may obtain a copy of the License at
- * 	
- * 	    http://www.apache.org/licenses/LICENSE-2.0
- * 	
- * 	Unless required by applicable law or agreed to in writing, software
- * 	distributed under the License is distributed on an "AS IS" BASIS,
- * 	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * 	See the License for the specific language governing permissions and
- * 	limitations under the License.
+ * Copyright 2014 Springer Science+Business Media Deutschland GmbH
+ * <p>
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  *******************************************************************************/
 
 package omelet.driver;
 
 import omelet.configuration.DefaultBrowserConf;
 import omelet.data.driverconf.IBrowserConf;
-
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
-import org.testng.ISuite;
 
 /***
  * DriverManager class which returns Webdriver specific to configuration
- * 
+ *
  * @author kapilA
- * 
+ *
  */
 public class DriverManager {
 
-	private static final Logger LOGGER = Logger.getLogger(DriverManager.class);
-	protected static InheritableThreadLocal<IBrowserConf> browserConf = new InheritableThreadLocal<IBrowserConf>();
-	protected static InheritableThreadLocal<WebDriver> driver = new InheritableThreadLocal<WebDriver>();
-	protected static DriverFactory df;
-	protected static String parallelMode;
+    private static final Logger LOGGER = Logger.getLogger(DriverManager.class);
+    protected static InheritableThreadLocal<IBrowserConf> browserConf = new InheritableThreadLocal<IBrowserConf>();
+    protected static InheritableThreadLocal<WebDriver> driver = new InheritableThreadLocal<WebDriver>();
+    protected static DriverFactory df;
+    protected static String parallelMode;
 
+    /***
+     * sets the driver in ThreadLocal
+     */
+    protected static void setDriverValue() {
+        LOGGER.info("Set default browser conf");
+        browserConf.set(DefaultBrowserConf.get());
+        DriverFactory df = new DriverFactory(DefaultBrowserConf.get(), parallelMode);
+        driver.set(df.intializeDriver());
+    }
 
-	/***
-	 * sets the driver in ThreadLocal
-	 */
-	protected static void setDriverValue() {
-		browserConf.set(DefaultBrowserConf.get());
-		DriverFactory df = new DriverFactory(DefaultBrowserConf.get(), parallelMode);
-		driver.set(df.intializeDriver());
-	}
+    protected static void setDriverValue(IBrowserConf b_conf) {
+        LOGGER.info("setDriverValue: " + b_conf);
+        browserConf.set(b_conf);
+        if (df == null) {
+            df = new DriverFactory(b_conf, parallelMode);
+        }
+        driver.set(df.intializeDriver());
+    }
 
-	protected static void setDriverValue(IBrowserConf b_conf) {
-		browserConf.set(b_conf);
-		if (df == null) {
-			df = new DriverFactory(b_conf, parallelMode);
-		}
-		driver.set(df.intializeDriver());
-	}
+    public static String getParallelMode() {
+        return parallelMode;
+    }
 
-	public static String getParallelMode() {
-		return parallelMode;
-	}
+    /***
+     * Fetch browserConfiguration
+     *
+     * @return {@link IBrowserConf}
+     */
+    public static IBrowserConf getBrowserConf() {
+        return browserConf.get();
+    }
 
-	/***
-	 * Fetch browserConfiguration
-	 * 
-	 * @return {@link IBrowserConf}
-	 */
-	public static IBrowserConf getBrowserConf() {
-		return browserConf.get();
-	}
+    public static WebDriver getSetDriver() {
+        if (getDriver() != null) {
+            return getDriver();
+        } else {
+            return createDriver();
+        }
+    }
 
-	/***
-	 * Fetch driver instance
-	 * 
-	 * @return {@link WebDriver}
-	 * @author kapilA
-	 */
-	public static WebDriver getDriver() {
-		try {
-			if (driver.get() == null) {
-				setDriverValue();
-			}
-			return driver.get();
-		} catch (Exception e) {
-			LOGGER.error(e);
-			return null;
-		}
-	}
+    public static WebDriver getSetDriver(IBrowserConf browserConf) {
+        if (getDriver() != null) {
+            return getDriver();
+        } else {
+            return createDriver(browserConf);
+        }
+    }
 
-	/***
-	 * Fetch driver instance for a particular Configuration
-	 * 
-	 * @return {@link WebDriver}
-	 * @author kapilA
-	 */
-	public static WebDriver getDriver(IBrowserConf browserConf) {
-		if (driver.get() == null) {
-			setDriverValue(browserConf);
-		}
-		return driver.get();
-	}
+    public static WebDriver getDriver() {
+        return driver.get();
+    }
 
-	/***
-	 * This method checks if driver present yes then quit else ignore
-	 */
-	protected static void tearDown() {
-		if (driver.get() != null) {
-			driver.get().quit();
-			driver.remove();
-		} else if (driver != null){
-			driver.remove();
-		}
-	}
+    public static WebDriver createDriver() {
+        setDriverValue();
+        return getDriver();
+    }
 
-	protected static boolean driverRemovedStatus() {
+    public static WebDriver createDriver(IBrowserConf browserConf) {
+        setDriverValue(browserConf);
+        return getDriver();
+    }
 
-		WebDriver d = driver.get();
-		if (d == null) {
-			return true;
-		}
-		return false;
-	}
+    /***
+     * This method checks if driver present yes then quit else ignore
+     */
+    protected static void tearDown() {
+        if (driver.get() != null) {
+            driver.get().quit();
+            driver.remove();
+            df = null;
+        } else if (driver != null) {
+            driver.remove();
+            df = null;
+        }
+    }
+
+    protected static boolean driverRemovedStatus() {
+LOGGER.info("driver.get(): "+driver.get());
+        if (driver.get() == null) {
+            return true;
+        }
+        return false;
+    }
+
+    private DriverManager() {}
 }

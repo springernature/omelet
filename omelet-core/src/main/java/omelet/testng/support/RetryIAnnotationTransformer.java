@@ -39,20 +39,22 @@ import org.testng.annotations.ITestAnnotation;
 public class RetryIAnnotationTransformer implements IAnnotationTransformer {
 	private static final Logger LOGGER = Logger
 			.getLogger(RetryIAnnotationTransformer.class);
-	protected static final Map<String,MethodContext> methodContextHolder = new HashMap<String, MethodContext>();
+	public static final Map<String,MethodContext> methodContextHolder = new HashMap<String, MethodContext>();
+
 	/*PrettyMessage prettyMessage = new PrettyMessage();
 	Thread t = new Thread(prettyMessage);*/
 	
 	@SuppressWarnings("rawtypes")
 	public void transform(ITestAnnotation annotation, Class testClass,
-			Constructor testConstructor, Method testMethod){		
+			Constructor testConstructor, Method testMethod){
 		if(testMethod != null)
 		{
 			MethodContext context = new MethodContext(testMethod);
 			context.setRetryAnalyser(annotation);
 			context.setDataProvider(annotation, testMethod);
-			context.prepareData();
+			//			context.prepareData();
 			//update methodContextCollection
+			LOGGER.debug("methodContextHolder: "+methodContextHolder);
 			methodContextHolder.put(Utils.getFullMethodName(testMethod), context);
 		}
 		//prettyMessage.swtichOffLogging();

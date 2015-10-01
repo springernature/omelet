@@ -1,5 +1,6 @@
 package omelet.testng.support;
 
+import omelet.data.DataProvider;
 import omelet.data.IMethodContext;
 
 public class MethodContextCollection {

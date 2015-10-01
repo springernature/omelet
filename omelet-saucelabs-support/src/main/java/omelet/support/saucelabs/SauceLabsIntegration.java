@@ -1,19 +1,16 @@
 package omelet.support.saucelabs;
 
 import omelet.data.xml.MappingParserRevisit;
-import omelet.driver.DriverInitialization;
 import omelet.driver.DriverManager;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.*;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 /**
  * methods are used for reporting stuff in saucelabs
- * (RemoteDriver is not used for erxecuting tests)
+ * (RemoteDriver is not used for executing tests)
  */
 public class SauceLabsIntegration implements IInvokedMethodListener, ISuiteListener {
     private static final Logger LOGGER = Logger
@@ -23,7 +20,9 @@ public class SauceLabsIntegration implements IInvokedMethodListener, ISuiteListe
 
     @Override
     public void beforeInvocation(IInvokedMethod method, ITestResult testResult) {
-        DriverManager.getDriver().manage().deleteAllCookies();
+        if (DriverManager.getDriver() != null) {
+            DriverManager.getDriver().manage().deleteAllCookies();
+        }
     }
 
     @Override
@@ -35,7 +34,7 @@ public class SauceLabsIntegration implements IInvokedMethodListener, ISuiteListe
                 // one!
                 if (DriverManager.getBrowserConf().host().contains("sauce")
                         && DriverManager.getBrowserConf().isRemoteFlag()) {
-                    RemoteWebDriver driver = (RemoteWebDriver) DriverManager.getDriver();
+                    RemoteWebDriver driver = (RemoteWebDriver) DriverManager.createDriver();
                     LOGGER.debug("After in SL Integration driver Session ID: "
                             + driver.getSessionId());
 
@@ -61,7 +60,8 @@ public class SauceLabsIntegration implements IInvokedMethodListener, ISuiteListe
         } else {
             if (DriverManager.getBrowserConf().host().contains("sauce")
                     && DriverManager.getBrowserConf().isRemoteFlag()) {
-                RemoteWebDriver driver = (RemoteWebDriver) DriverManager.getDriver();
+                RemoteWebDriver driver = (RemoteWebDriver) DriverManager.getSetDriver();
+
                 this.slRestDataSingleRun = new SauceLabsRestData();
                 this.slRestDataSingleRun.setJobID(driver.getSessionId().toString());
                 this.slRestDataSingleRun.setProjectName(MappingParserRevisit.getProjectName());
@@ -74,12 +74,11 @@ public class SauceLabsIntegration implements IInvokedMethodListener, ISuiteListe
 
     @Override
     public void onStart(ISuite suite) {
-
     }
 
     @Override
     public void onFinish(ISuite suite) {
-        if (this.slRestDataSingleRun.getJobID() != null) {
+        if (this.slRestDataSingleRun != null && slRestDataSingleRun.getJobID() != null) {
             Map<String, ISuiteResult> results = suite.getResults();
             Boolean testSuccess = true;
             StringBuilder testNames = new StringBuilder();
@@ -92,7 +91,7 @@ public class SauceLabsIntegration implements IInvokedMethodListener, ISuiteListe
                     if (testNames.toString().isEmpty()) {
                         testNames.append(test.getMethodName());
                     } else {
-                        testNames.append(" , "+test.getMethodName());
+                        testNames.append(" , " + test.getMethodName());
                     }
                 }
             }

@@ -31,7 +31,7 @@ public class BeforeAndAfterMethodPresentTest {
 
 	@BeforeMethod
 	public void setupBrowser() {
-		WebDriver driver = DriverManager.getDriver();
+		WebDriver driver = DriverManager.createDriver();
 		sessionID = ((RemoteWebDriver) driver).getSessionId().toString();
 	}
 
