@@ -44,7 +44,7 @@ public class DefaultBrowserConf {
     }
 
     /***
-     * Return {@link IBrowserConf} depending on if {@link CustomBrowserConf} is
+     * Return {@link IBrowserConf} depending on if {@link LoadCustomProperties} is
      * used or Default values set configured
      *
      */

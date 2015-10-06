@@ -16,6 +16,7 @@
 package omelet.data;
 
 import omelet.common.Utils;
+import omelet.configuration.LoadCustomProperties;
 import omelet.data.driverconf.IBrowserConf;
 import omelet.data.driverconf.PrepareDriverConf;
 import omelet.exception.FrameworkException;
@@ -74,10 +75,13 @@ public class DataProvider {
 
         String methodName = Utils.getFullMethodName(m);
 
+        LoadCustomProperties customProperties = new LoadCustomProperties(Utils.getResources(DataProvider.class, "BrowserDC.properties"));
+        List<String> browserDCs = customProperties.getCustomProperties();
+
         Map<String, String> map = new HashMap<String, String>();
-        map.put("browsername", context.getSuite().getParameter("browsername"));
-        map.put("dc.platform", context.getSuite().getParameter("dc.platform"));
-        map.put("dc.version", context.getSuite().getParameter("dc.version"));
+        for (String prop : browserDCs) {
+            map.put(prop, context.getSuite().getParameter(prop));
+        }
 
         PrepareDriverConf pdc = new PrepareDriverConf(map);
         pdc.refineBrowserValues();
