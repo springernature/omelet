@@ -79,27 +79,27 @@ public class RefineMappedData {
 		} else if (packageVal != null && StringUtils.isNotBlank(packageVal.getTestData())) {
 			return packageVal.getTestData();
 		}
-		LOGGER.error("There is no Test Data defined for method:" + method.getName() +
-							 "in Mapping or the entry for this method/class/package is missing in Mapping");
-		throw new FrameworkException("There is no Test Data defined for method:" + method.getName() +
-											 "in Mapping or the entry for this method/class/package is missing in " +
-											 "Mapping");
+		LOGGER.error("There is no Test Data defined for method:" + method.getName()
+							 + "in Mapping or the entry for this method/class/package is missing in Mapping");
+		throw new FrameworkException("There is no Test Data defined for method:" + method.getName()
+											 + "in Mapping or the entry for this method/class/package is missing in "
+											 + "Mapping");
 	}
 
 	private List<String> getRefinedClientEnvironment(Method method) {
 		IMappingData methodClientData = primaryDataMap.get(Utils.getFullMethodName(method));
 		IMappingData classClientData = primaryDataMap.get(method.getDeclaringClass().getName().toString());
-		IMappingData packageClientData =
-				primaryDataMap.get(method.getDeclaringClass().getPackage().getName().toString());
+		IMappingData packageClientData = primaryDataMap.get(
+				method.getDeclaringClass().getPackage().getName().toString());
 
-		if (methodClientData != null && !methodClientData.getClientEnvironment().isEmpty() &&
-				StringUtils.isNotBlank(methodClientData.getClientEnvironment().get(0))) {
+		if (methodClientData != null && !methodClientData.getClientEnvironment().isEmpty()
+				&& StringUtils.isNotBlank(methodClientData.getClientEnvironment().get(0))) {
 			return methodClientData.getClientEnvironment();
-		} else if (classClientData != null && !classClientData.getClientEnvironment().isEmpty() &&
-				StringUtils.isNotBlank(classClientData.getClientEnvironment().get(0))) {
+		} else if (classClientData != null && !classClientData.getClientEnvironment().isEmpty()
+				&& StringUtils.isNotBlank(classClientData.getClientEnvironment().get(0))) {
 			return classClientData.getClientEnvironment();
-		} else if (packageClientData != null && !packageClientData.getClientEnvironment().isEmpty() &&
-				StringUtils.isNotBlank(packageClientData.getClientEnvironment().get(0))) {
+		} else if (packageClientData != null && !packageClientData.getClientEnvironment().isEmpty()
+				&& StringUtils.isNotBlank(packageClientData.getClientEnvironment().get(0))) {
 			return packageClientData.getClientEnvironment();
 		}
 		LOGGER.error("There is no ClientEnvironment/Browser defined for method:" + method.getName() +
@@ -112,8 +112,8 @@ public class RefineMappedData {
 	private mapStrategy getRunStrategy(Method method) {
 		IMappingData methodRunStartegy = primaryDataMap.get(Utils.getFullMethodName(method));
 		IMappingData classRunStartegy = primaryDataMap.get(method.getDeclaringClass().getName().toString());
-		IMappingData packageRunStartegy =
-				primaryDataMap.get(method.getDeclaringClass().getPackage().getName().toString());
+		IMappingData packageRunStartegy = primaryDataMap.get(
+				method.getDeclaringClass().getPackage().getName().toString());
 
 		if (methodRunStartegy != null && methodRunStartegy.getRunStartegy() != null) {
 			return methodRunStartegy.getRunStartegy();
@@ -123,6 +123,5 @@ public class RefineMappedData {
 			return packageRunStartegy.getRunStartegy();
 		}
 		return mapStrategy.Optimal;
-
 	}
 }

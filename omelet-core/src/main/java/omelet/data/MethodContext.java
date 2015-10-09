@@ -84,7 +84,8 @@ public class MethodContext implements IMethodContext {
 		} else {
 			retryAnalyzer = methodAnnotation.getRetryAnalyzer();
 		}
-		LOGGER.debug("Setting Retry Analyzer to " + methodAnnotation.getRetryAnalyzer() + " for Method: "
+		LOGGER.debug("Setting Retry Analyzer to "
+							 + methodAnnotation.getRetryAnalyzer() + " for Method: "
 							 + methodName);
 	}
 
@@ -102,8 +103,8 @@ public class MethodContext implements IMethodContext {
 
 	public void setDataProvider(ITestAnnotation methodAnnotation,
 			Method testMethod) {
-		if (testMethod.getGenericParameterTypes().length == 2 &&
-				testMethod.getGenericParameterTypes()[0].equals(IBrowserConf.class)
+		if (testMethod.getGenericParameterTypes().length == 2
+				&& testMethod.getGenericParameterTypes()[0].equals(IBrowserConf.class)
 				&& testMethod.getGenericParameterTypes()[1].equals(IProperty.class)) {
 			verify_UpdateDataProviderName(methodAnnotation, testMethod);
 			verify_UpdateDataProviderClass(methodAnnotation, testMethod);
@@ -113,8 +114,10 @@ public class MethodContext implements IMethodContext {
 	}
 
 	private void setBeforeAfterMethod() {
-		beforeMethod = checkAnnotation(method.getDeclaringClass(), org.testng.annotations.BeforeMethod.class);
-		afterMethod = checkAnnotation(method.getDeclaringClass(), org.testng.annotations.AfterMethod.class);
+		beforeMethod = checkAnnotation(method.getDeclaringClass(),
+									   org.testng.annotations.BeforeMethod.class);
+		afterMethod = checkAnnotation(method.getDeclaringClass(),
+									  org.testng.annotations.AfterMethod.class);
 	}
 
 	private <T extends Annotation> boolean checkAnnotation(
@@ -295,26 +298,19 @@ public class MethodContext implements IMethodContext {
 	}
 
 	private void checkGoogleUserNameAndPassword() {
-		if (StringUtils.isBlank(System
-										.getProperty(GoogleSheetConstant.GOOGLEUSERNAME))
-				&& StringUtils.isBlank(System
-											   .getProperty(GoogleSheetConstant.GOOGLEPASSWD))
-				&& StringUtils.isBlank(System
-											   .getProperty(GoogleSheetConstant.GOOGLESHEETNAME))) {
+		if (StringUtils.isBlank(System.getProperty(GoogleSheetConstant.GOOGLEUSERNAME))
+				&& StringUtils.isBlank(System.getProperty(GoogleSheetConstant.GOOGLEPASSWD))
+				&& StringUtils.isBlank(System.getProperty(GoogleSheetConstant.GOOGLESHEETNAME))) {
 			// This is not the solution as TestNG is not logging the exception
 			// hence setting it here
-			LOGGER.debug("Method with name:"
-								 + methodName
-								 +
-								 "required Google Sheet as Test Data , please provide arguments -DgoogleUsername and" +
-								 " " +
-								 "-DgoogelPassword");
+			LOGGER.debug("Method with name:" + methodName
+								 + "required Google Sheet as Test Data , please provide arguments -DgoogleUsername and"
+								 + " "
+								 + "-DgoogelPassword");
 			throw new FrameworkException(
-					"Method with name:"
-							+ methodName
-							+
-							"required Google Sheet as Test Data , please provide arguments -DgoogleUsername and " +
-							"-DgoogelPassword");
+					"Method with name:" + methodName
+							+ "required Google Sheet as Test Data , please provide arguments -DgoogleUsername and "
+							+ "-DgoogelPassword");
 		}
 	}
 

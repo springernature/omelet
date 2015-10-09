@@ -91,7 +91,8 @@ public class DataProvider {
 		return getData(methodName, pdc.get());
 	}
 
-	public static List<IBrowserConf> filterSameBrowsers(List<IBrowserConf> fullBrowserList) {
+	public static List<IBrowserConf> filterSameBrowsers(
+			List<IBrowserConf> fullBrowserList) {
 		Set<IBrowserConf> browserConfSet = new HashSet<IBrowserConf>(fullBrowserList);
 		return new ArrayList<IBrowserConf>(browserConfSet);
 	}

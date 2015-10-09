@@ -168,22 +168,16 @@ public class DriverInitialization implements IInvokedMethodListener, ISuiteListe
 													 .getMessage() != null) ? testResult.getThrowable()
 																						.getMessage() : "";
 					if (!throwMessage.contains("asserts failed")) {
-						String screenShotName = UUID.randomUUID().toString()
-								+ ".png";
-						String outPutDirectory = testResult.getTestContext()
-														   .getOutputDirectory();
-						String filePath = outPutDirectory + File.separator
-								+ screenShotName;
-						DriverUtility.takeScreenShot(DriverManager.driver.get(),
-													 filePath);
+						String screenShotName = UUID.randomUUID().toString() + ".png";
+						String outPutDirectory = testResult.getTestContext().getOutputDirectory();
+						String filePath = outPutDirectory + File.separator + screenShotName;
+						DriverUtility.takeScreenShot(DriverManager.driver.get(), filePath);
 						// Append the screen Shot in the Reporter Log
 						Reporter.log("Test Case -" + testResult.getName()
 											 + " failed due to exception screen shot below");
 						Reporter.log("<div style=\"height:400px; width: 750px; overflow:scroll\"><img src=\""
-											 + "../"
-											 + SuiteConfiguration.suiteName
-											 + "/"
-											 + screenShotName + "\"></div>");
+											 + "../" + SuiteConfiguration.suiteName
+											 + "/" + screenShotName + "\"></div>");
 					}
 				}
 			}
