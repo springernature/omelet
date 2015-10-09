@@ -26,33 +26,33 @@ import java.util.Scanner;
 
 
 public class LoadCustomProperties {
-    private static final Logger LOGGER = Logger
-            .getLogger(LoadCustomProperties.class);
+	private static final Logger LOGGER = Logger
+			.getLogger(LoadCustomProperties.class);
 
-    private static final List<String> prop = new ArrayList<String>();
+	private static final List<String> prop = new ArrayList<String>();
 
-    public LoadCustomProperties(String filePath) {
-        LOGGER.debug("Loading custom properties:" + filePath);
-        loadFile(filePath);
-    }
+	public LoadCustomProperties(String filePath) {
+		LOGGER.debug("Loading custom properties:" + filePath);
+		loadFile(filePath);
+	}
 
-    public List<String> getCustomProperties() {
-        return prop;
-    }
+	public List<String> getCustomProperties() {
+		return prop;
+	}
 
-    private void loadFile(String filePath) {
+	private void loadFile(String filePath) {
 
-        Path path = Paths.get(filePath);
-        String line;
-        try {
-            Scanner scanner = new Scanner(path);
-            while (scanner.hasNext()) {
-                line = scanner.nextLine();
-                LOGGER.debug(line);
-                prop.add(line);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+		Path path = Paths.get(filePath);
+		String line;
+		try {
+			Scanner scanner = new Scanner(path);
+			while (scanner.hasNext()) {
+				line = scanner.nextLine();
+				LOGGER.debug(line);
+				prop.add(line);
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 }

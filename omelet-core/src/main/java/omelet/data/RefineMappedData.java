@@ -1,15 +1,30 @@
+/*******************************************************************************
+ * Copyright 2014 Springer Science+Business Media Deutschland GmbH
+ * <p>
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *******************************************************************************/
 package omelet.data;
+
+import omelet.common.Utils;
+import omelet.data.DataProvider.mapStrategy;
+import omelet.exception.FrameworkException;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.log4j.Logger;
 
 import java.lang.reflect.Method;
 import java.util.List;
 import java.util.Map;
 
-import omelet.common.Utils;
-import omelet.data.DataProvider.mapStrategy;
-import omelet.exception.FrameworkException;
-
-import org.apache.commons.lang3.StringUtils;
-import org.apache.log4j.Logger;
 /**
  * Refine data based on the hierarchy method-->Class-->Package
  * take {@link IDataSource} and return
@@ -24,8 +39,8 @@ public class RefineMappedData {
 	public RefineMappedData(IDataSource dataSource) {
 		primaryDataMap = dataSource.getPrimaryData();
 		//Primary Map value
-		for(String s :primaryDataMap.keySet()){
-			LOGGER.debug("Primary key:"+s+"value:"+primaryDataMap.get(s).getRunStartegy());
+		for (String s : primaryDataMap.keySet()) {
+			LOGGER.debug("Primary key:" + s + "value:" + primaryDataMap.get(s).getRunStartegy());
 		}
 	}
 
@@ -63,8 +78,8 @@ public class RefineMappedData {
 		} else if (packageVal != null && StringUtils.isNotBlank(packageVal.getTestData())) {
 			return packageVal.getTestData();
 		}
-		LOGGER.error("There is no Test Data defined for method:"+method.getName()+"in Mapping or the entry for this method/class/package is missing in Mapping");
-		throw new FrameworkException("There is no Test Data defined for method:"+method.getName()+"in Mapping or the entry for this method/class/package is missing in Mapping");
+		LOGGER.error("There is no Test Data defined for method:" + method.getName() + "in Mapping or the entry for this method/class/package is missing in Mapping");
+		throw new FrameworkException("There is no Test Data defined for method:" + method.getName() + "in Mapping or the entry for this method/class/package is missing in Mapping");
 	}
 
 	private List<String> getRefinedClientEnvironment(Method method) {
@@ -79,9 +94,9 @@ public class RefineMappedData {
 		} else if (packageClientData != null && !packageClientData.getClientEnvironment().isEmpty() && StringUtils.isNotBlank(packageClientData.getClientEnvironment().get(0))) {
 			return packageClientData.getClientEnvironment();
 		}
-		LOGGER.error("There is no ClientEnvironment/Browser defined for method:"+method.getName()+"in Mapping or the entry for this method/class/package is missing in Mapping");
+		LOGGER.error("There is no ClientEnvironment/Browser defined for method:" + method.getName() + "in Mapping or the entry for this method/class/package is missing in Mapping");
 		throw new FrameworkException(
-				"There is no ClientEnvironment/Browser defined for method:"+method.getName()+"in Mapping or the entry for this method/class/package is missing in Mapping");
+				"There is no ClientEnvironment/Browser defined for method:" + method.getName() + "in Mapping or the entry for this method/class/package is missing in Mapping");
 	}
 
 	private mapStrategy getRunStrategy(Method method) {
@@ -89,7 +104,7 @@ public class RefineMappedData {
 		IMappingData classRunStartegy = primaryDataMap.get(method.getDeclaringClass().getName().toString());
 		IMappingData packageRunStartegy = primaryDataMap.get(method.getDeclaringClass().getPackage().getName().toString());
 
-		if (methodRunStartegy != null && methodRunStartegy.getRunStartegy()!= null) {
+		if (methodRunStartegy != null && methodRunStartegy.getRunStartegy() != null) {
 			return methodRunStartegy.getRunStartegy();
 		} else if (classRunStartegy != null && classRunStartegy.getRunStartegy() != null) {
 			return classRunStartegy.getRunStartegy();
