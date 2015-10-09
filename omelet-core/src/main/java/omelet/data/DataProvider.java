@@ -43,7 +43,8 @@ public class DataProvider {
 	private static void updateMethodContextHolder(Method m, IBrowserConf browserConf) {
 
 		if (m.getName() != null) {
-			MethodContext context = ((MethodContext) MethodContextCollection.getMethodContext(Utils.getFullMethodName(m)));
+			MethodContext context = ((MethodContext) MethodContextCollection.getMethodContext(Utils.getFullMethodName
+					(m)));
 
 			if (browserConf != null) {
 				List<IBrowserConf> ibrowserConfList = new ArrayList<IBrowserConf>();
@@ -75,7 +76,8 @@ public class DataProvider {
 
 		String methodName = Utils.getFullMethodName(m);
 
-		LoadCustomProperties customProperties = new LoadCustomProperties(Utils.getResources(DataProvider.class, "BrowserDC.properties"));
+		LoadCustomProperties customProperties = new LoadCustomProperties(Utils.getResources(DataProvider.class,
+																							"BrowserDC.properties"));
 		List<String> browserDCs = customProperties.getCustomProperties();
 
 		Map<String, String> map = new HashMap<String, String>();
@@ -134,7 +136,7 @@ public class DataProvider {
 				break;
 			case Optimal:
 			/*if(testDataCount <=0)
-                testDataCount = 1;*/
+				testDataCount = 1;*/
 				if (browserConfCount >= testDataCount) {
 					loopCombination = browserConfCount;
 				} else {
@@ -146,13 +148,13 @@ public class DataProvider {
 					// check whose value is greater and start the loop
 					if (i >= browserConfCount) {
 						testMethodData[i][0] = browserConfFilteredList.get(r
-								.nextInt(browserConfCount));
+																				   .nextInt(browserConfCount));
 					} else {
 						testMethodData[i][0] = browserConfFilteredList.get(i);
 					}
 					if (i >= testDataCount) {
 						testMethodData[i][1] = testMData.get(r
-								.nextInt(testDataCount));
+																	 .nextInt(testDataCount));
 					} else {
 						testMethodData[i][1] = testMData.get(i);
 					}
@@ -166,7 +168,8 @@ public class DataProvider {
 
 	private static void verifyCount(int count, String dataName) {
 		if (count <= 0) {
-			throw new FrameworkException("Data Provider of Type:" + dataName + "not present , there is some problem please check!");
+			throw new FrameworkException("Data Provider of Type:" + dataName + "not present , there is some problem " +
+												 "please check!");
 		}
 	}
 }

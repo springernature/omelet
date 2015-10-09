@@ -63,7 +63,7 @@ public class MethodContext implements IMethodContext {
 
 	private void setIsEnable() {
 		isEnabled = method.getAnnotation(org.testng.annotations.Test.class)
-				.enabled();
+						  .enabled();
 	}
 
 	public boolean isEnable() {
@@ -86,8 +86,8 @@ public class MethodContext implements IMethodContext {
 			retryAnalyzer = methodAnnotation.getRetryAnalyzer();
 		}
 		LOGGER.debug("Setting Retry Analyzer to "
-				+ methodAnnotation.getRetryAnalyzer() + " for Method: "
-				+ methodName);
+							 + methodAnnotation.getRetryAnalyzer() + " for Method: "
+							 + methodName);
 	}
 
 	public void setBrowserConf(List<IBrowserConf> browserConfs) {
@@ -103,8 +103,9 @@ public class MethodContext implements IMethodContext {
 	}
 
 	public void setDataProvider(ITestAnnotation methodAnnotation,
-								Method testMethod) {
-		if (testMethod.getGenericParameterTypes().length == 2 && testMethod.getGenericParameterTypes()[0].equals(IBrowserConf.class)
+			Method testMethod) {
+		if (testMethod.getGenericParameterTypes().length == 2 &&
+				testMethod.getGenericParameterTypes()[0].equals(IBrowserConf.class)
 				&& testMethod.getGenericParameterTypes()[1].equals(IProperty.class)) {
 			verify_UpdateDataProviderName(methodAnnotation, testMethod);
 			verify_UpdateDataProviderClass(methodAnnotation, testMethod);
@@ -115,9 +116,9 @@ public class MethodContext implements IMethodContext {
 
 	private void setBeforeAfterMethod() {
 		beforeMethod = checkAnnotation(method.getDeclaringClass(),
-				org.testng.annotations.BeforeMethod.class);
+									   org.testng.annotations.BeforeMethod.class);
 		afterMethod = checkAnnotation(method.getDeclaringClass(),
-				org.testng.annotations.AfterMethod.class);
+									  org.testng.annotations.AfterMethod.class);
 	}
 
 	private <T extends Annotation> boolean checkAnnotation(
@@ -129,7 +130,7 @@ public class MethodContext implements IMethodContext {
 				}
 			}
 			return checkAnnotation(classToCheck.getSuperclass(),
-					annotationToVerify);
+								   annotationToVerify);
 		}
 		return false;
 	}
@@ -146,8 +147,8 @@ public class MethodContext implements IMethodContext {
 			try {
 				// no need for CheckforRules as it only adds confusion
 				dataSource = DataSource.valueOf(configuration
-						.refineBrowserValues().checkForRules().get()
-						.getDataSource());
+														.refineBrowserValues().checkForRules().get()
+														.getDataSource());
 			} catch (Exception exp) {
 				throw new FrameworkException(
 						"it seems there is no DatSource provided for the testMethod:"
@@ -205,7 +206,7 @@ public class MethodContext implements IMethodContext {
 	}
 
 	private void verify_UpdateDataProviderName(ITestAnnotation testAnnotation,
-											   Method testMethod) {
+			Method testMethod) {
 
 		if (StringUtils.isNotBlank(testAnnotation.getDataProvider())) {
 			validateDataProviderName(testAnnotation.getDataProvider());
@@ -214,17 +215,17 @@ public class MethodContext implements IMethodContext {
 			testAnnotation.setDataProvider(getDataSourceParameter().name());
 			dataSource = getDataSourceParameter();
 			LOGGER.debug("Setting Data provider for method: "
-					+ testMethod.getName() + " value: "
-					+ testAnnotation.getDataProvider());
+								 + testMethod.getName() + " value: "
+								 + testAnnotation.getDataProvider());
 		}
 	}
 
 	private void verify_UpdateDataProviderClass(ITestAnnotation testAnnotation,
-												Method testMethod) {
+			Method testMethod) {
 
 		if (testAnnotation.getDataProviderClass() != null
 				&& StringUtils.isNotBlank(testAnnotation.getDataProviderClass()
-				.toString())) {
+														.toString())) {
 			if (!testAnnotation.getDataProviderClass().equals(
 					omelet.data.DataProvider.class)) {
 				throw new FrameworkException(
@@ -234,8 +235,8 @@ public class MethodContext implements IMethodContext {
 		} else {
 			testAnnotation.setDataProviderClass(omelet.data.DataProvider.class);
 			LOGGER.debug("Setting Data provider class for method: "
-					+ testMethod.getName() + " value "
-					+ testAnnotation.getDataProviderClass().getName());
+								 + testMethod.getName() + " value "
+								 + testAnnotation.getDataProviderClass().getName());
 		}
 	}
 
@@ -289,8 +290,8 @@ public class MethodContext implements IMethodContext {
 		checkGoogleUserNameAndPassword();
 		ReadGoogle readGoogle = ReadGoogle.getInstance();
 		readGoogle.connect(System.getProperty(GoogleSheetConstant.GOOGLEUSERNAME),
-				System.getProperty(GoogleSheetConstant.GOOGLEPASSWD),
-				System.getProperty(GoogleSheetConstant.GOOGLESHEETNAME));
+						   System.getProperty(GoogleSheetConstant.GOOGLEPASSWD),
+						   System.getProperty(GoogleSheetConstant.GOOGLESHEETNAME));
 		RefineMappedData refinedData = new RefineMappedData(readGoogle);
 		IMappingData mapData = refinedData.getMethodDataWithClientData(method);
 		this.browserConfig = readGoogle.getBrowserListForSheet(mapData);
@@ -301,20 +302,24 @@ public class MethodContext implements IMethodContext {
 
 	private void checkGoogleUserNameAndPassword() {
 		if (StringUtils.isBlank(System
-				.getProperty(GoogleSheetConstant.GOOGLEUSERNAME))
+										.getProperty(GoogleSheetConstant.GOOGLEUSERNAME))
 				&& StringUtils.isBlank(System
-				.getProperty(GoogleSheetConstant.GOOGLEPASSWD))
+											   .getProperty(GoogleSheetConstant.GOOGLEPASSWD))
 				&& StringUtils.isBlank(System
-				.getProperty(GoogleSheetConstant.GOOGLESHEETNAME))) {
+											   .getProperty(GoogleSheetConstant.GOOGLESHEETNAME))) {
 			// This is not the solution as TestNG is not logging the exception
 			// hence setting it here
 			LOGGER.debug("Method with name:"
-					+ methodName
-					+ "required Google Sheet as Test Data , please provide arguments -DgoogleUsername and -DgoogelPassword");
+								 + methodName
+								 +
+								 "required Google Sheet as Test Data , please provide arguments -DgoogleUsername and " +
+								 "-DgoogelPassword");
 			throw new FrameworkException(
 					"Method with name:"
 							+ methodName
-							+ "required Google Sheet as Test Data , please provide arguments -DgoogleUsername and -DgoogelPassword");
+							+
+							"required Google Sheet as Test Data , please provide arguments -DgoogleUsername and " +
+							"-DgoogelPassword");
 		}
 	}
 

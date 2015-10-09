@@ -43,7 +43,7 @@ public class WebInterface {
 	 * @param testResult
 	 */
 	public void updateSauceLabsJob(SauceLabsRestData slRestData, String testName,
-								   Boolean testResult) {
+			Boolean testResult) {
 		StringBuilder restApiCommand = new StringBuilder();
 		String url = "https://saucelabs.com/rest/v1/" + slRestData.getUser() + "/jobs/" + slRestData.getJobID();
 		HttpURLConnection conn = null;
@@ -116,7 +116,8 @@ public class WebInterface {
 	 * @param slRestData
 	 */
 	public void stopJob(SauceLabsRestData slRestData) {
-		String url = "https://saucelabs.com/rest/v1/" + slRestData.getUser() + "/jobs/" + slRestData.getJobID() + "/stop";
+		String url =
+				"https://saucelabs.com/rest/v1/" + slRestData.getUser() + "/jobs/" + slRestData.getJobID() + "/stop";
 		HttpURLConnection conn = null;
 		OutputStreamWriter out = null;
 
@@ -167,7 +168,7 @@ public class WebInterface {
 
 		StringBuilder script = new StringBuilder();
 		script.append("<script type=\"text/javascript\">function addScript"
-				+ jobID + "() {var s = document.createElement( 'script' );");
+							  + jobID + "() {var s = document.createElement( 'script' );");
 		script.append("s.setAttribute( 'src','" + src + "');");
 		script.append("var div = document.getElementById('" + jobID + "');");
 		script.append("div.appendChild( s );}</script>");

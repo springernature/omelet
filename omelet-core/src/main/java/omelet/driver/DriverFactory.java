@@ -92,8 +92,9 @@ class DriverFactory {
 			if (!parallelMode.equals("false")) {
 				webDriver = new FirefoxDriver(dc);
 			} else {
-				if (webDriver == null)
+				if (webDriver == null) {
 					webDriver = new FirefoxDriver(dc);
+				}
 			}
 		} else if (browser.toLowerCase().startsWith("i")) {
 			System.setProperty("webdriver.ie.driver", ieServerPath);
@@ -101,8 +102,9 @@ class DriverFactory {
 			if (!parallelMode.equals("false")) {
 				webDriver = new InternetExplorerDriver(dc);
 			} else {
-				if (webDriver == null)
+				if (webDriver == null) {
 					webDriver = new InternetExplorerDriver(dc);
+				}
 			}
 		} else if (browser.toLowerCase().startsWith("c")) {
 			System.setProperty("webdriver.chrome.driver", chromeServerPath);
@@ -110,16 +112,18 @@ class DriverFactory {
 			if (!parallelMode.equals("false")) {
 				webDriver = new ChromeDriver(dc);
 			} else {
-				if (webDriver == null)
+				if (webDriver == null) {
 					webDriver = new ChromeDriver(dc);
+				}
 			}
 		} else if (browser.toLowerCase().startsWith("h")) {
 			LOGGER.debug("Browser is HTMLUNIT");
 			if (!parallelMode.equals("false")) {
 				webDriver = new HtmlUnitDriver(dc);
 			} else {
-				if (webDriver == null)
+				if (webDriver == null) {
 					webDriver = new HtmlUnitDriver(dc);
+				}
 			}
 		}
 		setDriverTimeout();
@@ -140,13 +144,14 @@ class DriverFactory {
 		// For set driver timeout
 		if (webDriver != null) {
 			webDriver.manage().timeouts()
-					.implicitlyWait(driverTimeOut, TimeUnit.SECONDS);
+					 .implicitlyWait(driverTimeOut, TimeUnit.SECONDS);
 		}
 	}
 
 	private WebDriver returnRemoteDriver() {
-		if (StringUtils.isBlank(dc.getBrowserName()))
+		if (StringUtils.isBlank(dc.getBrowserName())) {
 			dc.setBrowserName(browser);
+		}
 		String remoteUrl;
 		if (host.contains("browserstack") || host.contains("sauce")
 				|| host.contains("testingbot")) {

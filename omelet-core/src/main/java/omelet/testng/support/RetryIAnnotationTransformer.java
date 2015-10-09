@@ -31,7 +31,6 @@ import java.util.Map;
  * which are having @AfterMethod and @BeforeMethod
  *
  * @author kapilA
- *
  */
 public class RetryIAnnotationTransformer implements IAnnotationTransformer {
 	private static final Logger LOGGER = Logger
@@ -43,7 +42,7 @@ public class RetryIAnnotationTransformer implements IAnnotationTransformer {
 
 	@SuppressWarnings("rawtypes")
 	public void transform(ITestAnnotation annotation, Class testClass,
-						  Constructor testConstructor, Method testMethod) {
+			Constructor testConstructor, Method testMethod) {
 		if (testMethod != null) {
 			MethodContext context = new MethodContext(testMethod);
 			context.setRetryAnalyser(annotation);

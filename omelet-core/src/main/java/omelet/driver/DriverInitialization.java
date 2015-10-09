@@ -65,7 +65,8 @@ public class DriverInitialization implements IInvokedMethodListener, ISuiteListe
 	 */
 	public void afterInvocation(IInvokedMethod method, ITestResult testResult) {
 		if (method.isTestMethod()) {
-			IMethodContext methodContext = MethodContextCollection.getMethodContext(Utils.getFullMethodName(method.getTestMethod().getConstructorOrMethod().getMethod()));
+			IMethodContext methodContext = MethodContextCollection.getMethodContext(
+					Utils.getFullMethodName(method.getTestMethod().getConstructorOrMethod().getMethod()));
 			boolean beforeMethodPresent = methodContext.isBeforeMethod();
 			boolean afterMethodShouldbePresent = methodContext.isAfterMethod();
 
@@ -119,7 +120,7 @@ public class DriverInitialization implements IInvokedMethodListener, ISuiteListe
 	private void cleanupDriver(ISuite iSuite) {
 		try {
 			LOGGER.debug("Quiting DriverManager for Suite:"
-					+ iSuite.getName());
+								 + iSuite.getName());
 			if (!DriverManager.driverRemovedStatus()) {
 				DriverManager.tearDown();
 			}
@@ -144,7 +145,7 @@ public class DriverInitialization implements IInvokedMethodListener, ISuiteListe
 		try {
 			Reporter.setCurrentTestResult(testResult);
 			HtmlTable report = new HtmlTable(SAssert.assertMap.get(),
-					testResult.getName());
+											 testResult.getName());
 			Reporter.log("Table Report is:::" + report.getTable());
 		} catch (Exception e) {
 			LOGGER.error("Catching exception in public HTML Method", e);
@@ -164,25 +165,25 @@ public class DriverInitialization implements IInvokedMethodListener, ISuiteListe
 			if (DriverManager.getBrowserConf().isScreenShotFlag()) {
 				if (testResult.getThrowable() != null) {
 					String throwMessage = (testResult.getThrowable()
-							.getMessage() != null) ? testResult.getThrowable()
-							.getMessage() : "";
+													 .getMessage() != null) ? testResult.getThrowable()
+																						.getMessage() : "";
 					if (!throwMessage.contains("asserts failed")) {
 						String screenShotName = UUID.randomUUID().toString()
 								+ ".png";
 						String outPutDirectory = testResult.getTestContext()
-								.getOutputDirectory();
+														   .getOutputDirectory();
 						String filePath = outPutDirectory + File.separator
 								+ screenShotName;
 						DriverUtility.takeScreenShot(DriverManager.driver.get(),
-								filePath);
+													 filePath);
 						// Append the screen Shot in the Reporter Log
 						Reporter.log("Test Case -" + testResult.getName()
-								+ " failed due to exception screen shot below");
+											 + " failed due to exception screen shot below");
 						Reporter.log("<div style=\"height:400px; width: 750px; overflow:scroll\"><img src=\""
-								+ "../"
-								+ SuiteConfiguration.suiteName
-								+ "/"
-								+ screenShotName + "\"></div>");
+											 + "../"
+											 + SuiteConfiguration.suiteName
+											 + "/"
+											 + screenShotName + "\"></div>");
 					}
 				}
 			}

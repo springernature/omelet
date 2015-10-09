@@ -51,7 +51,7 @@ public class SauceLabsIntegration implements IInvokedMethodListener, ISuiteListe
 						&& DriverManager.getBrowserConf().isRemoteFlag()) {
 					RemoteWebDriver driver = (RemoteWebDriver) DriverManager.createDriver();
 					LOGGER.debug("After in SL Integration driver Session ID: "
-							+ driver.getSessionId());
+										 + driver.getSessionId());
 
 					SauceLabsRestData slRestData = new SauceLabsRestData();
 					slRestData.setProjectName(MappingParserRevisit.getProjectName());
@@ -61,12 +61,12 @@ public class SauceLabsIntegration implements IInvokedMethodListener, ISuiteListe
 
 					WebInterface slWebInterface = new WebInterface();
 					slWebInterface.updateSauceLabsJob(slRestData, method.getTestMethod().getMethodName(),
-							method.getTestResult().isSuccess());
+													  method.getTestResult().isSuccess());
 
 					Reporter.setCurrentTestResult(testResult);
 					Reporter.log("SauceLabs Report :: ");
 					Reporter.log(slWebInterface.generateLinkForJob(driver
-							.getSessionId().toString()));
+																		   .getSessionId().toString()));
 					Reporter.log("<br>");
 				}
 			} catch (Exception e) {
@@ -83,7 +83,9 @@ public class SauceLabsIntegration implements IInvokedMethodListener, ISuiteListe
 				this.slRestDataSingleRun.setProjectName(MappingParserRevisit.getProjectName());
 				this.slRestDataSingleRun.setUser(DriverManager.getBrowserConf().getuserName());
 				this.slRestDataSingleRun.setPassword(DriverManager.getBrowserConf().getKey());
-				this.slRestDataSingleRun.setUserPass(this.slRestDataSingleRun.getUser() + ":" + this.slRestDataSingleRun.getPassword());
+				this.slRestDataSingleRun
+						.setUserPass(this.slRestDataSingleRun.getUser() + ":" + this.slRestDataSingleRun.getPassword
+								());
 			}
 		}
 	}
