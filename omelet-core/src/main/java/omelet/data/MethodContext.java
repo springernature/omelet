@@ -62,8 +62,7 @@ public class MethodContext implements IMethodContext {
 	}
 
 	private void setIsEnable() {
-		isEnabled = method.getAnnotation(org.testng.annotations.Test.class)
-						  .enabled();
+		isEnabled = method.getAnnotation(org.testng.annotations.Test.class).enabled();
 	}
 
 	public boolean isEnable() {
@@ -85,8 +84,7 @@ public class MethodContext implements IMethodContext {
 		} else {
 			retryAnalyzer = methodAnnotation.getRetryAnalyzer();
 		}
-		LOGGER.debug("Setting Retry Analyzer to "
-							 + methodAnnotation.getRetryAnalyzer() + " for Method: "
+		LOGGER.debug("Setting Retry Analyzer to " + methodAnnotation.getRetryAnalyzer() + " for Method: "
 							 + methodName);
 	}
 
@@ -115,10 +113,8 @@ public class MethodContext implements IMethodContext {
 	}
 
 	private void setBeforeAfterMethod() {
-		beforeMethod = checkAnnotation(method.getDeclaringClass(),
-									   org.testng.annotations.BeforeMethod.class);
-		afterMethod = checkAnnotation(method.getDeclaringClass(),
-									  org.testng.annotations.AfterMethod.class);
+		beforeMethod = checkAnnotation(method.getDeclaringClass(), org.testng.annotations.BeforeMethod.class);
+		afterMethod = checkAnnotation(method.getDeclaringClass(), org.testng.annotations.AfterMethod.class);
 	}
 
 	private <T extends Annotation> boolean checkAnnotation(
@@ -129,8 +125,7 @@ public class MethodContext implements IMethodContext {
 					return true;
 				}
 			}
-			return checkAnnotation(classToCheck.getSuperclass(),
-								   annotationToVerify);
+			return checkAnnotation(classToCheck.getSuperclass(), annotationToVerify);
 		}
 		return false;
 	}
@@ -146,9 +141,8 @@ public class MethodContext implements IMethodContext {
 			PrepareDriverConf configuration = new PrepareDriverConf(tempMap);
 			try {
 				// no need for CheckforRules as it only adds confusion
-				dataSource = DataSource.valueOf(configuration
-														.refineBrowserValues().checkForRules().get()
-														.getDataSource());
+				dataSource = DataSource.valueOf(configuration.refineBrowserValues().checkForRules().get()
+															 .getDataSource());
 			} catch (Exception exp) {
 				throw new FrameworkException(
 						"it seems there is no DatSource provided for the testMethod:"
@@ -312,7 +306,8 @@ public class MethodContext implements IMethodContext {
 			LOGGER.debug("Method with name:"
 								 + methodName
 								 +
-								 "required Google Sheet as Test Data , please provide arguments -DgoogleUsername and " +
+								 "required Google Sheet as Test Data , please provide arguments -DgoogleUsername and" +
+								 " " +
 								 "-DgoogelPassword");
 			throw new FrameworkException(
 					"Method with name:"
