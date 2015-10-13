@@ -17,6 +17,7 @@
 package omelet.driver;
 
 import omelet.common.Utils;
+import omelet.data.DataSource;
 import omelet.data.IMethodContext;
 import omelet.data.driverconf.PrepareDriverConf;
 import omelet.testng.support.HtmlTable;
@@ -81,12 +82,12 @@ public class DriverInitialization implements IInvokedMethodListener, ISuiteListe
 				cleanupTest(method, testResult);
 			}
 		}
-//        // Check for AfterMethod if present check for browser and quit
-//        if (method.getTestMethod().isAfterMethodConfiguration()) {
-//            if (DriverManager.driver.get() != null) {
-//                cleanup(method, testResult);
-//            }
-//        }
+
+		if (!DriverManager.getBrowserConf().getDataSource().equals(DataSource.XmlSuiteData.toString())) {
+			if (DriverManager.getDriver() != null) {
+				cleanupDriver();
+			}
+		}
 	}
 
 
@@ -117,10 +118,8 @@ public class DriverInitialization implements IInvokedMethodListener, ISuiteListe
 	 *
 	 * @author abeg01
 	 */
-	private void cleanupDriver(ISuite iSuite) {
+	private void cleanupDriver() {
 		try {
-			LOGGER.debug("Quiting DriverManager for Suite:"
-								 + iSuite.getName());
 			if (!DriverManager.driverRemovedStatus()) {
 				DriverManager.tearDown();
 			}
@@ -197,7 +196,7 @@ public class DriverInitialization implements IInvokedMethodListener, ISuiteListe
 		LOGGER.debug("Setting the WebDriver in Before Suite");
 		if (DriverManager.driver != null) {
 			LOGGER.debug("DriverManager.driver: " + DriverManager.driver);
-			cleanupDriver(iSuite);
+			cleanupDriver();
 			DriverManager.tearDown();
 		}
 		// Initializing browser so that will be same across all the child
@@ -231,7 +230,7 @@ public class DriverInitialization implements IInvokedMethodListener, ISuiteListe
 		// Check for AfterMethod if present check for browser and quit
 		LOGGER.debug("onFinish DriverManager.getDriver(): " + DriverManager.getDriver());
 		if (DriverManager.getDriver() != null) {
-			cleanupDriver(iSuite);
+			cleanupDriver();
 		}
 	}
 }
