@@ -229,8 +229,11 @@ public class DriverInitialization implements IInvokedMethodListener, ISuiteListe
 	public void onFinish(ISuite iSuite) {
 		// Check for AfterMethod if present check for browser and quit
 		LOGGER.debug("onFinish DriverManager.getDriver(): " + DriverManager.getDriver());
-		if (DriverManager.getDriver() != null) {
-			cleanupDriver();
+
+		if (DriverManager.getBrowserConf().getDataSource().equals(DataSource.XmlSuiteData.toString())) {
+			if (DriverManager.getDriver() != null) {
+				cleanupDriver();
+			}
 		}
 	}
 }
