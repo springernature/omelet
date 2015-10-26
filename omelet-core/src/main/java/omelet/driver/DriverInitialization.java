@@ -17,6 +17,7 @@
 package omelet.driver;
 
 import omelet.common.Utils;
+import omelet.configuration.LoadCustomProperties;
 import omelet.data.DataSource;
 import omelet.data.IMethodContext;
 import omelet.data.driverconf.PrepareDriverConf;
@@ -27,7 +28,9 @@ import org.apache.log4j.Logger;
 import org.testng.*;
 
 import java.io.File;
+import java.sql.Driver;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -204,10 +207,14 @@ public class DriverInitialization implements IInvokedMethodListener, ISuiteListe
 		DriverManager.browserConf.set(null);
 		DriverManager.parallelMode = iSuite.getParallel();
 
+		LoadCustomProperties customProperties = new LoadCustomProperties(Utils.getResources(DriverInitialization.class,
+																							"BrowserDC.properties"));
+		List<String> browserDCs = customProperties.getCustomProperties();
+
 		Map<String, String> map = new HashMap<String, String>();
-		map.put("browsername", iSuite.getParameter("browsername"));
-		map.put("dc.platform", iSuite.getParameter("dc.platform"));
-		map.put("dc.version", iSuite.getParameter("dc.version"));
+		for (String prop : browserDCs) {
+			map.put(prop, iSuite.getParameter(prop));
+		}
 
 		PrepareDriverConf pdc = new PrepareDriverConf(map);
 		pdc.refineBrowserValues();
