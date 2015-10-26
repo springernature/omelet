@@ -40,7 +40,7 @@ import java.util.UUID;
  *
  * @author kapilA
  */
-public class DriverInitialization implements IInvokedMethodListener, ISuiteListener {
+public class DriverInitialization implements IInvokedMethodListener {
 
 	private static final Logger LOGGER = Logger
 			.getLogger(DriverInitialization.class);
@@ -121,7 +121,7 @@ public class DriverInitialization implements IInvokedMethodListener, ISuiteListe
 	 *
 	 * @author abeg01
 	 */
-	private void cleanupDriver() {
+	protected void cleanupDriver() {
 		try {
 			if (!DriverManager.driverRemovedStatus()) {
 				DriverManager.tearDown();
@@ -185,62 +185,6 @@ public class DriverInitialization implements IInvokedMethodListener, ISuiteListe
 			}
 		} catch (Exception e) {
 			LOGGER.error("Catching exception in add screen shot Method", e);
-		}
-	}
-
-	/***
-	 * This Method Set the driver
-	 *
-	 * @param iSuite
-	 * @author abeg01
-	 */
-	@Override
-	public void onStart(ISuite iSuite) {
-		LOGGER.debug("Setting the WebDriver in Before Suite");
-		if (DriverManager.driver != null) {
-			LOGGER.debug("DriverManager.driver: " + DriverManager.driver);
-			cleanupDriver();
-			DriverManager.tearDown();
-		}
-		// Initializing browser so that will be same across all the child
-		// threads
-		DriverManager.browserConf.set(null);
-		DriverManager.parallelMode = iSuite.getParallel();
-
-		LoadCustomProperties customProperties = new LoadCustomProperties(Utils.getResources(DriverInitialization.class,
-																							"BrowserDC.properties"));
-		List<String> browserDCs = customProperties.getCustomProperties();
-
-		Map<String, String> map = new HashMap<String, String>();
-		for (String prop : browserDCs) {
-			map.put(prop, iSuite.getParameter(prop));
-		}
-
-		PrepareDriverConf pdc = new PrepareDriverConf(map);
-		pdc.refineBrowserValues();
-		DriverManager.browserConf.set(pdc.get());
-		LOGGER.debug("DriverManager.getBrowserConf(): " + DriverManager.getBrowserConf());
-
-		// need as otherwise will produce unexpected output
-		SAssert.m_errors.get();
-		SAssert.assertMap.get();
-	}
-
-	/***
-	 * This Method quites the driver
-	 *
-	 * @param iSuite
-	 * @author abeg01
-	 */
-	@Override
-	public void onFinish(ISuite iSuite) {
-		// Check for AfterMethod if present check for browser and quit
-		LOGGER.debug("onFinish DriverManager.getDriver(): " + DriverManager.getDriver());
-
-		if (DriverManager.getBrowserConf().getDataSource().equals(DataSource.XmlSuiteData.toString())) {
-			if (DriverManager.getDriver() != null) {
-				cleanupDriver();
-			}
 		}
 	}
 }

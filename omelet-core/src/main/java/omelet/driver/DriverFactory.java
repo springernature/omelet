@@ -80,7 +80,7 @@ class DriverFactory {
 	 */
 	public WebDriver intializeDriver() {
 		if (remoteFlag) {
-			if (!parallelMode.equals("false")) {
+			if ("false" != parallelMode) {
 				webDriver = returnRemoteDriver();
 			} else {
 				if (webDriver == null) {
@@ -89,7 +89,7 @@ class DriverFactory {
 			}
 		} else if (browser.toLowerCase().startsWith("f")) {
 			LOGGER.debug("Returning firefox driver-Without Remote.");
-			if (!parallelMode.equals("false")) {
+			if ("false" != parallelMode) {
 				webDriver = new FirefoxDriver(dc);
 			} else {
 				if (webDriver == null) {
@@ -99,7 +99,7 @@ class DriverFactory {
 		} else if (browser.toLowerCase().startsWith("i")) {
 			System.setProperty("webdriver.ie.driver", ieServerPath);
 			LOGGER.debug("Returning ie driver-Without Remote.");
-			if (!parallelMode.equals("false")) {
+			if ("false" != parallelMode) {
 				webDriver = new InternetExplorerDriver(dc);
 			} else {
 				if (webDriver == null) {
@@ -109,7 +109,7 @@ class DriverFactory {
 		} else if (browser.toLowerCase().startsWith("c")) {
 			System.setProperty("webdriver.chrome.driver", chromeServerPath);
 			LOGGER.debug("Returning chrome driver-Without Remote.");
-			if (!parallelMode.equals("false")) {
+			if ("false" != parallelMode) {
 				webDriver = new ChromeDriver(dc);
 			} else {
 				if (webDriver == null) {
@@ -118,7 +118,7 @@ class DriverFactory {
 			}
 		} else if (browser.toLowerCase().startsWith("h")) {
 			LOGGER.debug("Browser is HTMLUNIT");
-			if (!parallelMode.equals("false")) {
+			if ("false" != parallelMode) {
 				webDriver = new HtmlUnitDriver(dc);
 			} else {
 				if (webDriver == null) {
