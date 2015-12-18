@@ -18,10 +18,12 @@
 package omelet.driver;
 
 import java.io.File;
+import java.util.List;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.OutputType;
@@ -233,6 +235,22 @@ public class DriverUtility {
 			s.selectByIndex(defaultIndex);
 		}
 	}
+	
+	/**
+	* select a drop down value by using partial text comparison
+	* 
+	* @author nageshM
+	*
+	*/
+	public void selectByPartialText(WebElement element, String partialText) {
+		List<WebElement> optionList = element.findElements(By.tagName("option"));
+		for (WebElement option : optionList) {
+			if (option.getText().toLowerCase().contains(partialText.toLowerCase())) 
+				option.click();
+				break;
+		}
+	}
+
 
 	/***
 	 * Forcefully check/uncheck checkbox irrespective of the state(Element
