@@ -23,6 +23,7 @@ import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
@@ -238,11 +239,12 @@ public class DriverUtility {
 	
 	/**
 	* select a drop down value by using partial text comparison
-	* 
+	* @param element
+	* @param partialText
 	* @author nageshM
 	*
 	*/
-	public void selectByPartialText(WebElement element, String partialText) {
+	public static void selectByPartialText(WebElement element, String partialText) {
 		List<WebElement> optionList = element.findElements(By.tagName("option"));
 		for (WebElement option : optionList) {
 			if (option.getText().toLowerCase().contains(partialText.toLowerCase())) 
@@ -250,8 +252,44 @@ public class DriverUtility {
 				break;
 		}
 	}
-
-
+	
+	/***
+	 * Accept Or Dismiss Window Alert
+	 * @param driver
+	 * @param acceptOrDismiss
+	 * 
+	 * @author nageshM
+	 */		
+	public static void acceptOrDismissAlert(WebDriver driver,String acceptOrDismiss) {
+		Alert alert = driver.switchTo().alert();
+		if (acceptOrDismiss.toLowerCase().startsWith("a")) {
+			alert.accept();
+		} else if (acceptOrDismiss.toLowerCase().startsWith("d")) {
+			alert.dismiss();
+		}
+	}
+	
+	/***
+	 * switch to frame
+	 * @param driver
+	 * @param element
+	 * 
+	 * @author nageshM
+	 */
+	public static void switchToFrame(WebDriver driver, WebElement element) {
+		driver.switchTo().frame(element);
+	}
+	
+	/***
+	 * switch back to default content from frame
+	 * @param driver
+	 * 
+	 * @author nageshM
+	 */
+	public static void switchToDefaultContent(WebDriver driver) {
+		driver.switchTo().defaultContent();
+	}
+	
 	/***
 	 * Forcefully check/uncheck checkbox irrespective of the state(Element
 	 * should be visible)
