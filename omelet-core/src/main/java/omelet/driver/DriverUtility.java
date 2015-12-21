@@ -270,27 +270,6 @@ public class DriverUtility {
 	}
 	
 	/***
-	 * switch to frame
-	 * @param driver
-	 * @param element
-	 * 
-	 * @author nageshM
-	 */
-	public static void switchToFrame(WebDriver driver, WebElement element) {
-		driver.switchTo().frame(element);
-	}
-	
-	/***
-	 * switch back to default content from frame
-	 * @param driver
-	 * 
-	 * @author nageshM
-	 */
-	public static void switchToDefaultContent(WebDriver driver) {
-		driver.switchTo().defaultContent();
-	}
-	
-	/***
 	 * Forcefully check/uncheck checkbox irrespective of the state(Element
 	 * should be visible)
 	 * 
