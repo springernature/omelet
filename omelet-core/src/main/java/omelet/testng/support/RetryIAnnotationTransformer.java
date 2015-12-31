@@ -72,6 +72,8 @@ public class RetryIAnnotationTransformer implements IAnnotationTransformer,
 	@SuppressWarnings("rawtypes")
 	public void transform(IConfigurationAnnotation annotation, Class testClass,
 			Constructor testConstructor, Method testMethod) {
+		//System.out.println(testConstructor.getName());
+		
 		
 	}
 
@@ -80,9 +82,19 @@ public class RetryIAnnotationTransformer implements IAnnotationTransformer,
 		//No need to add any implementation as we are overriding testng interface
 	}
 
-	public void transform(IFactoryAnnotation annotation, Method method) {
-		//TODO WHY?? Abstract?
-		//No need to add any implementation as we are overriding testng interface
+	/**
+	 * If we are using test factory for single execution of class then this will be called
+	 */
+	public void transform(IFactoryAnnotation annotation, Method testMethod) {
+		if(testMethod != null)
+		{
+			MethodContext context = new MethodContext(testMethod);
+			context.setDataProvider(annotation, testMethod);
+			context.prepareData();
+			//update methodContextCollection
+			methodContextHolder.put(Utils.getFullMethodName(testMethod), context);
+		}
+
 	}
 
 }
