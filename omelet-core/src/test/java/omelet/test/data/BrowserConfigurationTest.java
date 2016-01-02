@@ -61,9 +61,9 @@ public class BrowserConfigurationTest {
 	public void verifyLocalConfigDefaults() {
 		Assert.assertEquals(DriverConfigurations.LocalEnvironmentConfig.browsername.get(),
 				BROWSERNAMELOCAL);
-		Assert.assertEquals(DriverConfigurations.LocalEnvironmentConfig.ieserverpath.get(),
+		Assert.assertEquals(DriverConfigurations.LocalEnvironmentConfig.iedriverpath.get(),
 				IESERVERPATH);
-		Assert.assertEquals(DriverConfigurations.LocalEnvironmentConfig.chromeserverpath.get(),
+		Assert.assertEquals(DriverConfigurations.LocalEnvironmentConfig.chromedriverpath.get(),
 				CHROMESERVERPATH);
 	}
 	

@@ -71,7 +71,7 @@ public class DriverConfigurations {
 	 *
 	 */
 	public enum LocalEnvironmentConfig {
-		browsername("FireFox"), ieserverpath(""), chromeserverpath("");
+		browsername("FireFox"), iedriverpath(""), chromedriverpath("");
 		private String defaultValue;
 
 		LocalEnvironmentConfig(String defaultValue) {
