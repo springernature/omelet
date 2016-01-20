@@ -16,7 +16,7 @@
  *******************************************************************************/
 package omelet.test.browserup;
 
-import omelet.driver.Driver;
+import omelet.driver.DriverManager;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -30,14 +30,14 @@ public class BeforeMethodPresentTest {
 
 	@BeforeMethod
 	public void setUpBrowser() {
-		WebDriver driver = Driver.getDriver();
+		WebDriver driver = DriverManager.createDriver();
 		sessionID = ((RemoteWebDriver) driver).getSessionId().toString();
 
 	}
 
 	@Test
 	public void verifySameBrowserInstance() {
-		Assert.assertEquals(((RemoteWebDriver) Driver.getDriver())
+		Assert.assertEquals(((RemoteWebDriver) DriverManager.getDriver())
 				.getSessionId().toString(), sessionID);
 	}
 

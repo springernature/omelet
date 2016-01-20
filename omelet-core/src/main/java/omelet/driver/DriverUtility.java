@@ -82,7 +82,7 @@ public class DriverUtility {
 		} finally {
 			driver.manage()
 					.timeouts()
-					.implicitlyWait(Driver.getBrowserConf().getDriverTimeOut(),
+					.implicitlyWait(DriverManager.getBrowserConf().getDriverTimeOut(),
 							TimeUnit.SECONDS);
 			stopwatch.stop();
 			LOGGER.debug("Time Taken for waitFor method for Expected Condition is:"
@@ -134,7 +134,7 @@ public class DriverUtility {
 		File scrFile;
 		try {
 			if (driver != null) {
-				if (Driver.getBrowserConf().isRemoteFlag()) {
+				if (DriverManager.getBrowserConf().isRemoteFlag()) {
 					Augmenter augumenter = new Augmenter();
 					scrFile = ((TakesScreenshot) augumenter.augment(driver))
 							.getScreenshotAs(OutputType.FILE);

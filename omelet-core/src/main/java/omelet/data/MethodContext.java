@@ -1,15 +1,21 @@
+/*******************************************************************************
+ * Copyright 2014 Springer Science+Business Media Deutschland GmbH
+ * <p>
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *******************************************************************************/
 package omelet.data;
 
-import java.lang.annotation.Annotation;
-import java.lang.reflect.Method;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import omelet.common.Utils;
-import omelet.data.IMappingData;
-import omelet.data.MethodContext;
-import omelet.data.RefineMappedData;
 import omelet.data.DataProvider.mapStrategy;
 import omelet.data.driverconf.IBrowserConf;
 import omelet.data.driverconf.PrepareDriverConf;
@@ -20,11 +26,16 @@ import omelet.data.xml.MappingParserRevisit;
 import omelet.data.xml.XmlApplicationData;
 import omelet.exception.FrameworkException;
 import omelet.testng.support.RetryAnalyzer;
-
 import org.apache.commons.lang3.StringUtils;
+import org.apache.log4j.Logger;
 import org.testng.IRetryAnalyzer;
 import org.testng.annotations.ITestAnnotation;
-import org.testng.log4testng.Logger;
+
+import java.lang.annotation.Annotation;
+import java.lang.reflect.Method;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class MethodContext implements IMethodContext {
 
@@ -41,8 +52,6 @@ public class MethodContext implements IMethodContext {
 	private boolean isDataSourceCalculated = false;
 	private boolean isEnabled;
 	private String[] groups;
-	private static MappingParserRevisit mpr = new MappingParserRevisit();
-	private static RefineMappedData refinedMappedData = new RefineMappedData(mpr);
 
 	public MethodContext(Method method) {
 		this.method = method;
@@ -53,19 +62,18 @@ public class MethodContext implements IMethodContext {
 	}
 
 	private void setIsEnable() {
-		isEnabled = method.getAnnotation(org.testng.annotations.Test.class)
-				.enabled();
+		isEnabled = method.getAnnotation(org.testng.annotations.Test.class).enabled();
 	}
-	
-	public boolean isEnable(){
+
+	public boolean isEnable() {
 		return isEnabled;
 	}
-	
-	private void setGroups(){
+
+	private void setGroups() {
 		groups = method.getAnnotation(org.testng.annotations.Test.class).groups();
 	}
-	
-	public String[] getGroup(){
+
+	public String[] getGroup() {
 		return groups;
 	}
 
@@ -77,8 +85,8 @@ public class MethodContext implements IMethodContext {
 			retryAnalyzer = methodAnnotation.getRetryAnalyzer();
 		}
 		LOGGER.debug("Setting Retry Analyzer to "
-				+ methodAnnotation.getRetryAnalyzer() + " for Method: "
-				+ methodName);
+							 + methodAnnotation.getRetryAnalyzer() + " for Method: "
+							 + methodName);
 	}
 
 	public void setBrowserConf(List<IBrowserConf> browserConfs) {
@@ -96,10 +104,8 @@ public class MethodContext implements IMethodContext {
 	public void setDataProvider(ITestAnnotation methodAnnotation,
 			Method testMethod) {
 		if (testMethod.getGenericParameterTypes().length == 2
-				&& testMethod.getGenericParameterTypes()[0]
-						.equals(IBrowserConf.class)
-				&& testMethod.getGenericParameterTypes()[1]
-						.equals(IProperty.class)) {
+				&& testMethod.getGenericParameterTypes()[0].equals(IBrowserConf.class)
+				&& testMethod.getGenericParameterTypes()[1].equals(IProperty.class)) {
 			verify_UpdateDataProviderName(methodAnnotation, testMethod);
 			verify_UpdateDataProviderClass(methodAnnotation, testMethod);
 		} else if (testMethod.getGenericParameterTypes().length == 0) {
@@ -109,9 +115,9 @@ public class MethodContext implements IMethodContext {
 
 	private void setBeforeAfterMethod() {
 		beforeMethod = checkAnnotation(method.getDeclaringClass(),
-				org.testng.annotations.BeforeMethod.class);
+									   org.testng.annotations.BeforeMethod.class);
 		afterMethod = checkAnnotation(method.getDeclaringClass(),
-				org.testng.annotations.AfterMethod.class);
+									  org.testng.annotations.AfterMethod.class);
 	}
 
 	private <T extends Annotation> boolean checkAnnotation(
@@ -122,8 +128,7 @@ public class MethodContext implements IMethodContext {
 					return true;
 				}
 			}
-			return checkAnnotation(classToCheck.getSuperclass(),
-					annotationToVerify);
+			return checkAnnotation(classToCheck.getSuperclass(), annotationToVerify);
 		}
 		return false;
 	}
@@ -139,9 +144,8 @@ public class MethodContext implements IMethodContext {
 			PrepareDriverConf configuration = new PrepareDriverConf(tempMap);
 			try {
 				// no need for CheckforRules as it only adds confusion
-				dataSource = DataSource.valueOf(configuration
-						.refineBrowserValues().checkForRules().get()
-						.getDataSource());
+				dataSource = DataSource.valueOf(configuration.refineBrowserValues().checkForRules().get()
+															 .getDataSource());
 			} catch (Exception exp) {
 				throw new FrameworkException(
 						"it seems there is no DatSource provided for the testMethod:"
@@ -180,7 +184,7 @@ public class MethodContext implements IMethodContext {
 	/**
 	 * update and verify dataProvider name for method which are already having
 	 * dataProviderName
-	 * 
+	 *
 	 * @param dataProperty
 	 */
 
@@ -208,8 +212,8 @@ public class MethodContext implements IMethodContext {
 			testAnnotation.setDataProvider(getDataSourceParameter().name());
 			dataSource = getDataSourceParameter();
 			LOGGER.debug("Setting Data provider for method: "
-					+ testMethod.getName() + " value: "
-					+ testAnnotation.getDataProvider());
+								 + testMethod.getName() + " value: "
+								 + testAnnotation.getDataProvider());
 		}
 	}
 
@@ -218,7 +222,7 @@ public class MethodContext implements IMethodContext {
 
 		if (testAnnotation.getDataProviderClass() != null
 				&& StringUtils.isNotBlank(testAnnotation.getDataProviderClass()
-						.toString())) {
+														.toString())) {
 			if (!testAnnotation.getDataProviderClass().equals(
 					omelet.data.DataProvider.class)) {
 				throw new FrameworkException(
@@ -228,8 +232,8 @@ public class MethodContext implements IMethodContext {
 		} else {
 			testAnnotation.setDataProviderClass(omelet.data.DataProvider.class);
 			LOGGER.debug("Setting Data provider class for method: "
-					+ testMethod.getName() + " value "
-					+ testAnnotation.getDataProviderClass().getName());
+								 + testMethod.getName() + " value "
+								 + testAnnotation.getDataProviderClass().getName());
 		}
 	}
 
@@ -244,16 +248,38 @@ public class MethodContext implements IMethodContext {
 	}
 
 	private void updateXml(String environment) {
-		IMappingData mapD = refinedMappedData.getMethodData(method);
+		MappingParserRevisit mpr = new MappingParserRevisit();
+		RefineMappedData refinedMappedData = new RefineMappedData(mpr);
+
+		IMappingData mapD = refinedMappedData.getMethodDataWithClientData(method);
 		if (environment != null && !StringUtils.isBlank(environment)) {
 			// get the xml name from MappingParser Static Method
-			this.testData = XmlApplicationData.getInstance().getAppData(mapD.getTestData(),environment);
+			this.testData = XmlApplicationData.getInstance().getAppData(mapD.getTestData(), environment);
 		} else {
 			this.testData = XmlApplicationData.getInstance().getAppData(mapD.getTestData());
 		}
 		BrowserXmlParser bxp = BrowserXmlParser.getInstance();
-		//BrowserXmlParser bxp = new BrowserXmlParser(mapD.getClientEnvironment());
-		this.browserConfig = bxp.getBrowserConf1(mapD);
+		if (mapD.getClientEnvironment() != null) {
+			this.browserConfig = bxp.getBrowserConf1(mapD);
+		}
+		this.runStrategy = mapD.getRunStartegy();
+	}
+
+	private void updateXmlSuite(String environment) {
+		MappingParserRevisit mpr = new MappingParserRevisit();
+		RefineMappedData refinedMappedData = new RefineMappedData(mpr);
+
+		IMappingData mapD = refinedMappedData.getMethodDataWithoutClientData(method);
+		if (environment != null && !StringUtils.isBlank(environment)) {
+			// get the xml name from MappingParser Static Method
+			this.testData = XmlApplicationData.getInstance().getAppData(mapD.getTestData(), environment);
+		} else {
+			this.testData = XmlApplicationData.getInstance().getAppData(mapD.getTestData());
+		}
+		BrowserXmlParser bxp = BrowserXmlParser.getInstance();
+		if (mapD.getClientEnvironment() != null) {
+			this.browserConfig = bxp.getBrowserConf1(mapD);
+		}
 		this.runStrategy = mapD.getRunStartegy();
 	}
 
@@ -261,10 +287,10 @@ public class MethodContext implements IMethodContext {
 		checkGoogleUserNameAndPassword();
 		ReadGoogle readGoogle = ReadGoogle.getInstance();
 		readGoogle.connect(System.getProperty(GoogleSheetConstant.GOOGLEUSERNAME),
-				System.getProperty(GoogleSheetConstant.GOOGLEPASSWD),
-				System.getProperty(GoogleSheetConstant.GOOGLESHEETNAME));
+						   System.getProperty(GoogleSheetConstant.GOOGLEPASSWD),
+						   System.getProperty(GoogleSheetConstant.GOOGLESHEETNAME));
 		RefineMappedData refinedData = new RefineMappedData(readGoogle);
-		IMappingData mapData = refinedData.getMethodData(method);
+		IMappingData mapData = refinedData.getMethodDataWithClientData(method);
 		this.browserConfig = readGoogle.getBrowserListForSheet(mapData);
 		this.testData = readGoogle.getMethodData(environment, mapData);
 		this.runStrategy = mapData.getRunStartegy();
@@ -272,21 +298,19 @@ public class MethodContext implements IMethodContext {
 	}
 
 	private void checkGoogleUserNameAndPassword() {
-		if (StringUtils.isBlank(System
-				.getProperty(GoogleSheetConstant.GOOGLEUSERNAME))
-				&& StringUtils.isBlank(System
-						.getProperty(GoogleSheetConstant.GOOGLEPASSWD))
-				&& StringUtils.isBlank(System
-						.getProperty(GoogleSheetConstant.GOOGLESHEETNAME))) {
+		if (StringUtils.isBlank(System.getProperty(GoogleSheetConstant.GOOGLEUSERNAME))
+				&& StringUtils.isBlank(System.getProperty(GoogleSheetConstant.GOOGLEPASSWD))
+				&& StringUtils.isBlank(System.getProperty(GoogleSheetConstant.GOOGLESHEETNAME))) {
 			// This is not the solution as TestNG is not logging the exception
 			// hence setting it here
-			LOGGER.info("Method with name:"
-					+ methodName
-					+ "required Google Sheet as Test Data , please provide arguments -DgoogleUsername and -DgoogelPassword");
+			LOGGER.debug("Method with name:" + methodName
+								 + "required Google Sheet as Test Data , please provide arguments -DgoogleUsername and"
+								 + " "
+								 + "-DgoogelPassword");
 			throw new FrameworkException(
-					"Method with name:"
-							+ methodName
-							+ "required Google Sheet as Test Data , please provide arguments -DgoogleUsername and -DgoogelPassword");
+					"Method with name:" + methodName
+							+ "required Google Sheet as Test Data , please provide arguments -DgoogleUsername and "
+							+ "-DgoogelPassword");
 		}
 	}
 
@@ -296,21 +320,23 @@ public class MethodContext implements IMethodContext {
 	public void prepareData() {
 		if (isEnabled) {
 			switch (dataSource) {
-			case XmlData:
-				updateXml(System.getProperty("env-type"));
-				break;
-			case GoogleData:
-				updateGoogleSheet(System.getProperty("env-type"));
-				break;
-			case NoSource:
-				// ignore no need to set data
-				break;
-			default:
-				break;
+				case XmlData:
+					updateXml(System.getProperty("env-type"));
+					break;
+				case XmlSuiteData:
+					updateXmlSuite(System.getProperty("env-type"));
+					break;
+				case GoogleData:
+					updateGoogleSheet(System.getProperty("env-type"));
+					break;
+				case NoSource:
+					// ignore no need to set data
+					break;
+				default:
+					break;
 			}
-		}else{
-			LOGGER.debug("As the method:"+methodName+" is not enabled no need to set data");
+		} else {
+			LOGGER.debug("As the method:" + methodName + " is not enabled no need to set data");
 		}
 	}
-
 }

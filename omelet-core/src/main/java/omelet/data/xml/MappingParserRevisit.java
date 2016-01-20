@@ -159,10 +159,13 @@ public class MappingParserRevisit implements IDataSource {
 	}
 
 	public static String getMappingFile() {
-		if (StringUtils.isBlank(getCalcValue("mappingfile"))) {
+		if (!StringUtils.isBlank(getCalcValue("mappingfile"))) {
+			return getCalcValue("mappingfile");
+		} else if (SuiteConfiguration.getSuiteProperty("mappingfile") != null) {
+			return SuiteConfiguration.getSuiteProperty("mappingfile");
+		} else {
 			return "Mapping.xml";
 		}
-		return getCalcValue("mappingfile");
 	}
 
 	private static String getFrameworkPropertyValue(String key) {

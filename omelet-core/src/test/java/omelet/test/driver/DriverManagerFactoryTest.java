@@ -4,15 +4,15 @@ import omelet.data.driverconf.IBrowserConf;
 
 import org.testng.annotations.Test;
 
-public class DriverFactoryTest {
+public class DriverManagerFactoryTest {
 	public IBrowserConf iBrowserConf;
 
 	@Test
 	public void f() {
 //		iBrowserConf.getBrowser();
-//		DriverFactory df = new DriverFactory(iBrowserConf);
-//		Assert.assertNotNull(df);
-//		df.intializeDriver();
+//		DriverFactory driverFactory = new DriverFactory(iBrowserConf);
+//		Assert.assertNotNull(driverFactory);
+//		driverFactory.intializeDriver();
 //		
 //
 	}

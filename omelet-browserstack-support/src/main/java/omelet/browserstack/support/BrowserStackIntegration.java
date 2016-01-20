@@ -2,7 +2,7 @@ package omelet.browserstack.support;
 
 import java.util.List;
 
-import omelet.driver.Driver;
+import omelet.driver.DriverManager;
 
 import org.testng.ISuite;
 import org.testng.ISuiteListener;
@@ -11,7 +11,7 @@ public class BrowserStackIntegration implements ISuiteListener {
 
 	@Override
 	public void onStart(ISuite suite) {
-		setUpTunnel(Driver.getBrowserConf().getKey());		
+		setUpTunnel(DriverManager.getBrowserConf().getKey());
 	}
 
 	@Override

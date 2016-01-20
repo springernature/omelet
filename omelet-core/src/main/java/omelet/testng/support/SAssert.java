@@ -21,7 +21,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.UUID;
 
-import omelet.driver.Driver;
+import omelet.driver.DriverManager;
 import omelet.driver.DriverInitialization;
 import omelet.driver.DriverUtility;
 import omelet.driver.SuiteConfiguration;
@@ -59,12 +59,12 @@ public class SAssert extends Assertion {
 		} catch (AssertionError ex) {
 			String screenShotPath = "";
 			String screenShotName = "";
-			if (Driver.getBrowserConf().isScreenShotFlag()) {
+			if (DriverManager.getBrowserConf().isScreenShotFlag()) {
 				screenShotName = UUID.randomUUID().toString();
 				screenShotPath = DriverInitialization.outPutDir
 						+ File.separator + screenShotName;
 				DriverUtility
-						.takeScreenShot(Driver.getDriver(), screenShotPath);
+						.takeScreenShot(DriverManager.getDriver(), screenShotPath);
 			}
 			screenShotPath = "../" + SuiteConfiguration.suiteName + "/"
 					+ screenShotName;

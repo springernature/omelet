@@ -27,7 +27,7 @@ public class MappedDataTest {
 		Mockito.when(mockMapData.getClientEnvironment()).thenReturn(new ArrayList());
 		Mockito.when(mockMapData.getRunStartegy()).thenReturn(value)
 		MappedData mpa = new MappedData(test);
-		mpa.getMethodData(methodName)
+		mpa.getMethodDataWithClientData(methodName)
 	}
 	
 	public void verifygetValues_OnlyTestDataPresentForMethod_parentPresent(){

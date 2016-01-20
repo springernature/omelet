@@ -1,5 +1,28 @@
+/*******************************************************************************
+ * Copyright 2014 Springer Science+Business Media Deutschland GmbH
+ * <p>
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *******************************************************************************/
 package omelet.support.saucelabs;
 
+import omelet.data.xml.MappingParserRevisit;
+import omelet.driver.DriverManager;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.log4j.Logger;
+
+import javax.crypto.Mac;
+import javax.crypto.spec.SecretKeySpec;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
@@ -8,28 +31,25 @@ import java.net.URL;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 
-import javax.crypto.Mac;
-import javax.crypto.spec.SecretKeySpec;
-
-import org.apache.commons.lang3.StringUtils;
-import org.apache.log4j.Logger;
-
-import omelet.data.xml.MappingParserRevisit;
-import omelet.driver.Driver;
-
 public class WebInterface {
 	private static final Logger LOGGER = Logger.getLogger(WebInterface.class);
-	String buildNumber;
+	String buildNumber = "";
 
-	public void updateSauceLabsJob(String jobID, String testName,
+	/**
+	 * This method updates the executed job on sauce labs using the rest api.
+	 *
+	 * @param slRestData
+	 * @param testName
+	 * @param testResult
+	 */
+	public void updateSauceLabsJob(SauceLabsRestData slRestData, String testName,
 			Boolean testResult) {
 		StringBuilder restApiCommand = new StringBuilder();
-		String projectName = MappingParserRevisit.getProjectName();
-		String user = Driver.getBrowserConf().getuserName();
-		String password = Driver.getBrowserConf().getKey();
-		String userpass = user + ":" + password;
+		String url = "https://saucelabs.com/rest/v1/" + slRestData.getUser() + "/jobs/" + slRestData.getJobID();
+		HttpURLConnection conn = null;
+		OutputStreamWriter out = null;
 
-		LOGGER.debug("jobID: " + jobID);
+		LOGGER.debug("jobID: " + slRestData.getJobID());
 		LOGGER.debug("testName: " + testName);
 		LOGGER.debug("testResult: " + testResult);
 
@@ -38,12 +58,10 @@ public class WebInterface {
 			LOGGER.debug("buildNumber: " + buildNumber);
 		}
 
-		String url = "https://saucelabs.com/rest/v1/" + user + "/jobs/" + jobID;
 		restApiCommand.append("{");
-
 		try {
 			URL obj = new URL(url);
-			HttpURLConnection conn = (HttpURLConnection) obj.openConnection();
+			conn = (HttpURLConnection) obj.openConnection();
 
 			conn.setRequestProperty("Content-Type", "application/json");
 			conn.setDoOutput(true);
@@ -51,11 +69,11 @@ public class WebInterface {
 
 			String basicAuth = "Basic "
 					+ javax.xml.bind.DatatypeConverter
-							.printBase64Binary(userpass.getBytes("UTF-8"));
+					.printBase64Binary(slRestData.getUserPass().getBytes("UTF-8"));
 			conn.setRequestProperty("Authorization", basicAuth);
 
-			if (projectName != "") {
-				String sessionNameData = "\"name\":\"" + projectName + "\"";
+			if (slRestData.getProjectName() != "") {
+				String sessionNameData = "\"name\":\"" + slRestData.getProjectName() + "\"";
 				restApiCommand.append(sessionNameData);
 				restApiCommand.append(",");
 			}
@@ -64,41 +82,81 @@ public class WebInterface {
 				restApiCommand.append(testNameData);
 				restApiCommand.append(",");
 			}
-			if (buildNumber != "" || buildNumber != null) {
+			if (buildNumber != "" && buildNumber != null) {
 				String buildNumberData = "\"build\":\"" + buildNumber + "\"";
 				restApiCommand.append(buildNumberData);
 				restApiCommand.append(",");
 			}
 			if (testResult != null) {
-				String testResultData = "\"passed\":" + testResult.toString();
+				String testResultData = "\"passed\":" + testResult;
 				restApiCommand.append(testResultData);
 			}
-
 			restApiCommand.append("}");
 
 			LOGGER.debug(restApiCommand);
-
-			OutputStreamWriter out = new OutputStreamWriter(
+			out = new OutputStreamWriter(
 					conn.getOutputStream());
 			out.write(restApiCommand.toString());
-			out.close();
-
-			new InputStreamReader(conn.getInputStream());
-
 		} catch (Exception e) {
 			LOGGER.error(e);
 			e.printStackTrace();
+		} finally {
+			try {
+				out.close();
+				new InputStreamReader(conn.getInputStream());
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	/**
+	 * This method stops the job after the execution.
+	 *
+	 * @param slRestData
+	 */
+	public void stopJob(SauceLabsRestData slRestData) {
+		String url =
+				"https://saucelabs.com/rest/v1/" + slRestData.getUser() + "/jobs/" + slRestData.getJobID() + "/stop";
+		HttpURLConnection conn = null;
+		OutputStreamWriter out = null;
+
+		try {
+			URL obj = new URL(url);
+			conn = (HttpURLConnection) obj.openConnection();
+
+			conn.setRequestProperty("Content-Type", "application/json");
+			conn.setDoOutput(true);
+			conn.setRequestMethod("PUT");
+
+			String basicAuth = "Basic "
+					+ javax.xml.bind.DatatypeConverter
+					.printBase64Binary(slRestData.getUserPass().getBytes("UTF-8"));
+			conn.setRequestProperty("Authorization", basicAuth);
+
+			out = new OutputStreamWriter(
+					conn.getOutputStream());
+		} catch (Exception e) {
+			LOGGER.error(e);
+			e.printStackTrace();
+		} finally {
+			try {
+				out.close();
+				new InputStreamReader(conn.getInputStream());
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 
 	public String generateLinkForEmbedScript(String jobID, Boolean getEmbedJob) {
 		StringBuilder src = new StringBuilder();
-		String user = Driver.getBrowserConf().getuserName();
-		String password = Driver.getBrowserConf().getKey();
+		String user = DriverManager.getBrowserConf().getuserName();
+		String password = DriverManager.getBrowserConf().getKey();
 		String userpass = user + ":" + password;
 
 		src.append("https://saucelabs.com/");
-		if (getEmbedJob == true) {
+		if (getEmbedJob) {
 			src.append("job-embed/");
 		} else {
 			src.append("video-embed/");
@@ -110,7 +168,7 @@ public class WebInterface {
 
 		StringBuilder script = new StringBuilder();
 		script.append("<script type=\"text/javascript\">function addScript"
-				+ jobID + "() {var s = document.createElement( 'script' );");
+							  + jobID + "() {var s = document.createElement( 'script' );");
 		script.append("s.setAttribute( 'src','" + src + "');");
 		script.append("var div = document.getElementById('" + jobID + "');");
 		script.append("div.appendChild( s );}</script>");
@@ -127,8 +185,8 @@ public class WebInterface {
 
 	public String generateLinkForJob(String jobID) {
 		StringBuilder sb = new StringBuilder();
-		String user = Driver.getBrowserConf().getuserName();
-		String password = Driver.getBrowserConf().getKey();
+		String user = DriverManager.getBrowserConf().getuserName();
+		String password = DriverManager.getBrowserConf().getKey();
 		String userpass = user + ":" + password;
 
 		sb.append("<a href=");

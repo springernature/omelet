@@ -18,7 +18,7 @@ package omelet.testng.support;
 
 import omelet.configuration.DefaultBrowserConf;
 import omelet.data.driverconf.IBrowserConf;
-import omelet.driver.Driver;
+import omelet.driver.DriverManager;
 
 import org.apache.log4j.Logger;
 import org.testng.IRetryAnalyzer;
@@ -37,7 +37,7 @@ public class RetryAnalyzer implements IRetryAnalyzer {
 	private int maxCount;
 
 	public boolean retry(ITestResult result) {
-		IBrowserConf browserConf = Driver.getBrowserConf();
+		IBrowserConf browserConf = DriverManager.getBrowserConf();
 		//below is required if test case without Browser is used i.e. @Test method without IBrowserConf & IProperty as param
 		if(null == browserConf)
 			browserConf = DefaultBrowserConf.get();

@@ -84,6 +84,6 @@ public class MappingParserTest {
 				"MappingWithProjectName.xml");
 	}
 
-	// TODO // getMethodData is not called need to add that as well with
+	// TODO // getMethodDataWithClientData is not called need to add that as well with
 	// different scenarios
 }

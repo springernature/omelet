@@ -1,22 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>com.springer</groupId>
-  <artifactId>omelet-parent</artifactId>
-  <version>1.0.12</version>
-  <packaging>pom</packaging>
-  <name>omelet-Parent</name>
-  <description>Parent project for the omelet</description>
-  <url>https://github.com/springer-opensource/omelet</url>
-  <modules>
-  	<module>omelet-core</module>
-  	<module>omelet-integration-tests</module>
-  	<module>omelet-archetype-simple</module>
-  	<module>omelet-saucelabs-support</module>
-    <module>omelet-browserstack-support</module>
-  </modules>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.springer</groupId>
+	<artifactId>omelet-parent</artifactId>
+	<version>1.0.13</version>
+	<packaging>pom</packaging>
+	<name>omelet-Parent</name>
+	<description>Parent project for the omelet</description>
+	<url>https://github.com/springer-opensource/omelet</url>
+	<modules>
+		<module>omelet-core</module>
+		<module>omelet-integration-tests</module>
+		<module>omelet-archetype-simple</module>
+		<module>omelet-saucelabs-support</module>
+		<module>omelet-browserstack-support</module>
+	</modules>
 
-  <licenses>
+	<licenses>
 		<license>
 			<name>Apache 2</name>
 			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
@@ -149,6 +150,6 @@
 					</plugin>
 				</plugins>
 			</build>
-			</profile>
+		</profile>
 	</profiles>
 </project>

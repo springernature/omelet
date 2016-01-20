@@ -151,7 +151,6 @@ public class BrowserConfR implements IBrowserConf {
 	@Override
 	public int hashCode() {
 		int hash = 7;
-
 		if (this.isRemoteFlag() == true) {
 			
 				hash = 31 * hash + this.getBrowser().hashCode();

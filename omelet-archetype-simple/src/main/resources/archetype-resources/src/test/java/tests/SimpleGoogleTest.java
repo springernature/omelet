@@ -19,7 +19,6 @@ public class SimpleGoogleTest {
 
 	@Test(description = "verify if Selenium title is as expected", enabled = true,dataProvider="XmlData")
 	public void verifySeleniumTitle_XML(IBrowserConf browserConf, IProperty prop) {
-		System.out.println(browserConf.getCapabilities().getPlatform());
 		GooglePage gp = new GooglePage(Driver.getDriver(browserConf), prop);
 		gp.loadFromProperty().isLoaded().search("Selenium").clickOnLink(0);
 		// Selenium
@@ -46,6 +45,4 @@ public class SimpleGoogleTest {
 				"Check for the title of the page");
 		sassert.assertAll();
 	}
-
-
 }
