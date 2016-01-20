@@ -84,13 +84,13 @@ public class BrowserConfR implements IBrowserConf {
 
 	public String getLocalIEServerPath() {
 		return mappedValues
-				.get(DriverConfigurations.LocalEnvironmentConfig.ieserverpath
+				.get(DriverConfigurations.LocalEnvironmentConfig.iedriverpath
 						.toString());
 	}
 
 	public String getLocalChromeServerPath() {
 		return mappedValues
-				.get(DriverConfigurations.LocalEnvironmentConfig.chromeserverpath
+				.get(DriverConfigurations.LocalEnvironmentConfig.chromedriverpath
 						.toString());
 	}
 
