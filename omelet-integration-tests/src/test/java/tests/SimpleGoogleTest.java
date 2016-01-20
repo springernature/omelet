@@ -13,11 +13,11 @@ import pageobjects.SeleniumPage;
 public class SimpleGoogleTest {
 	SAssert sassert = new SAssert();
 
-	//@Test(description = "verify if Selenium title is as expected", enabled = true, dataProvider = "XmlData")
+	@Test(description = "verify if Selenium title is as expected", enabled = true, dataProvider = "XmlData")
 	public void verifySeleniumTitleXML(IBrowserConf browserConf, IProperty prop) {
 		System.out.println(browserConf.getCapabilities().getPlatform());
 		GooglePage gp = new GooglePage(Driver.getDriver(browserConf), prop);
-		gp.loadFromProperty().isLoaded().search("Selenium")
+		gp.loadFromProperty().isLoaded().search("Selenium - Web Browser Automation")
 				.clickOnLink("Selenium - Web Browser Automation");
 		// Selenium
 		SeleniumPage sp = new SeleniumPage(Driver.getDriver());
