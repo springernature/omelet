@@ -87,7 +87,7 @@ public class DriverConfigurations {
 	 */
 	public enum LocalEnvironmentConfig {
 		
-		browsername("FireFox"), ieserverpath(System.getProperty("user.dir")+"/main/resources/IEDriverServer.exe"), chromeserverpath(System.getProperty("user.dir")+"/main/resources/chromedriver");
+		browsername("FireFox"), ieserverpath(System.getProperty("user.dir")+"/src/main/resources/IEDriverServer.exe"), chromeserverpath(System.getProperty("user.dir")+"/src/main/resources/chromedriver");
 		private String defaultValue;
 
 		LocalEnvironmentConfig(String defaultValue) {

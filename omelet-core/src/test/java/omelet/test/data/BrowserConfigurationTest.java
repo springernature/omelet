@@ -28,8 +28,8 @@ public class BrowserConfigurationTest {
 	static final String PLATFORM = "";
 
 	static final String BROWSERNAMELOCAL = "FireFox";
-	static final String IESERVERPATH = System.getProperty("user.dir")+"/main/resources/IEDriverServer.exe";
-	static final String CHROMESERVERPATH = System.getProperty("user.dir")+"/main/resources/chromedriver";;
+	static final String IESERVERPATH = System.getProperty("user.dir")+"/src/main/resources/IEDriverServer.exe";
+	static final String CHROMESERVERPATH = System.getProperty("user.dir")+"/src/main/resources/chromedriver";;
 
 	static final String REMOTEURL = "localhost";
 
