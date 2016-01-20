@@ -1,5 +1,7 @@
 package omelet.test.data;
 
+import java.io.File;
+
 import omelet.common.OSName;
 import omelet.common.OSName.OSN;
 import omelet.data.DriverConfigurations;
@@ -28,8 +30,8 @@ public class BrowserConfigurationTest {
 	static final String PLATFORM = "";
 
 	static final String BROWSERNAMELOCAL = "FireFox";
-	static final String IESERVERPATH = System.getProperty("user.dir")+"/src/main/resources/IEDriverServer.exe";
-	static final String CHROMESERVERPATH = System.getProperty("user.dir")+"/src/main/resources/chromedriver";;
+	static final String IESERVERPATH = System.getProperty("user.dir")+"/src/main/resources/IEDriverServer.exe".replace("/", File.separator);
+	static final String CHROMESERVERPATH = System.getProperty("user.dir")+"/src/main/resources/chromedriver".replace("/", File.separator);
 
 	static final String REMOTEURL = "localhost";
 
