@@ -65,8 +65,7 @@ public class BrowserConfigurationTest {
 				BROWSERNAMELOCAL);
 		Assert.assertEquals(DriverConfigurations.LocalEnvironmentConfig.iedriverpath.get(),
 				IEDRIVERPATH);
-		Assert.assertEquals(DriverConfigurations.LocalEnvironmentConfig.chromedriverpath.get(),
-				CHROMEDRIVERPATH);
+		Assert.assertTrue(DriverConfigurations.LocalEnvironmentConfig.chromedriverpath.get().contains(CHROMEDRIVERPATH));
 	}
 	
 	@Test
