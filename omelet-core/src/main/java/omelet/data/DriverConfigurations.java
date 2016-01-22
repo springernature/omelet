@@ -16,6 +16,11 @@
  *******************************************************************************/
 package omelet.data;
 
+import java.io.File;
+
+import omelet.common.OSName;
+import omelet.common.OSName.OSN;
+
 /***
  * Keys which can be set from CommandLine , in any property file ,XML etc
  * 
@@ -71,10 +76,19 @@ public class DriverConfigurations {
 	 *
 	 */
 	public enum LocalEnvironmentConfig {
-		browsername("FireFox"), iedriverpath(""), chromedriverpath("");
+	
+		browsername("FireFox"), iedriverpath(System.getProperty("user.dir")+"/src/main/resources/IEDriverServer.exe".replace("/", File.separator)), chromedriverpath(System.getProperty("user.dir")+"/src/main/resources/chromedriver".replace("/", File.separator));
+
 		private String defaultValue;
 
 		LocalEnvironmentConfig(String defaultValue) {
+			if(defaultValue.contains("chromedriver")){
+				if(OSName.get().equals(OSN.WIN)){
+					this.defaultValue = defaultValue.replace("chromedriver", "chromedriver.exe");
+				}else{
+					this.defaultValue = defaultValue;
+				}
+			}
 			this.defaultValue = defaultValue;
 		}
 

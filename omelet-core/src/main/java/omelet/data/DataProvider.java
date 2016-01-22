@@ -57,6 +57,13 @@ public class DataProvider {
 		String methodName = Utils.getFullMethodName(m);
 		return getData(methodName);
 	}
+	
+	/*@org.testng.annotations.DataProvider(name = "XmlData", parallel = true)
+	public static Object[][] xmlDataProvider1(ITestContext testContext) {
+		String methodName = Utils.getFullMethodName(m);
+		return getData(methodName);
+	}*/
+	
 
 	public static List<IBrowserConf> filterSameBrowsers(
 			List<IBrowserConf> fullBrowserList) {

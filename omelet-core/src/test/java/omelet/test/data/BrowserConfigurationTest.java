@@ -1,5 +1,7 @@
 package omelet.test.data;
 
+import java.io.File;
+
 import omelet.data.DriverConfigurations;
 
 import org.testng.Assert;
@@ -26,8 +28,8 @@ public class BrowserConfigurationTest {
 	static final String PLATFORM = "";
 
 	static final String BROWSERNAMELOCAL = "FireFox";
-	static final String IESERVERPATH = "";
-	static final String CHROMESERVERPATH = "";
+	static final String IEDRIVERPATH = System.getProperty("user.dir")+"/src/main/resources/IEDriverServer.exe".replace("/", File.separator);
+	static final String CHROMEDRIVERPATH = System.getProperty("user.dir")+"/src/main/resources/chromedriver".replace("/", File.separator);
 
 	static final String REMOTEURL = "localhost";
 
@@ -62,9 +64,8 @@ public class BrowserConfigurationTest {
 		Assert.assertEquals(DriverConfigurations.LocalEnvironmentConfig.browsername.get(),
 				BROWSERNAMELOCAL);
 		Assert.assertEquals(DriverConfigurations.LocalEnvironmentConfig.iedriverpath.get(),
-				IESERVERPATH);
-		Assert.assertEquals(DriverConfigurations.LocalEnvironmentConfig.chromedriverpath.get(),
-				CHROMESERVERPATH);
+				IEDRIVERPATH);
+		Assert.assertTrue(DriverConfigurations.LocalEnvironmentConfig.chromedriverpath.get().contains(CHROMEDRIVERPATH));
 	}
 	
 	@Test

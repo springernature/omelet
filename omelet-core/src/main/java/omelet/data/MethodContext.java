@@ -7,9 +7,6 @@ import java.util.List;
 import java.util.Map;
 
 import omelet.common.Utils;
-import omelet.data.IMappingData;
-import omelet.data.MethodContext;
-import omelet.data.RefineMappedData;
 import omelet.data.DataProvider.mapStrategy;
 import omelet.data.driverconf.IBrowserConf;
 import omelet.data.driverconf.PrepareDriverConf;
@@ -24,6 +21,7 @@ import omelet.testng.support.RetryAnalyzer;
 import org.apache.commons.lang3.StringUtils;
 import org.testng.IRetryAnalyzer;
 import org.testng.annotations.ITestAnnotation;
+import org.testng.internal.annotations.IDataProvidable;
 import org.testng.log4testng.Logger;
 
 public class MethodContext implements IMethodContext {
@@ -53,8 +51,12 @@ public class MethodContext implements IMethodContext {
 	}
 
 	private void setIsEnable() {
+		if(null != method.getAnnotation(org.testng.annotations.Test.class))
 		isEnabled = method.getAnnotation(org.testng.annotations.Test.class)
 				.enabled();
+		if(null != method.getAnnotation(org.testng.annotations.Factory.class))
+			isEnabled = method.getAnnotation(org.testng.annotations.Factory.class)
+			.enabled();
 	}
 	
 	public boolean isEnable(){
@@ -62,6 +64,7 @@ public class MethodContext implements IMethodContext {
 	}
 	
 	private void setGroups(){
+		if(null != method.getAnnotation(org.testng.annotations.Test.class))
 		groups = method.getAnnotation(org.testng.annotations.Test.class).groups();
 	}
 	
@@ -93,7 +96,7 @@ public class MethodContext implements IMethodContext {
 		this.runStrategy = runStrategy;
 	}
 
-	public void setDataProvider(ITestAnnotation methodAnnotation,
+	public void setDataProvider(IDataProvidable methodAnnotation,
 			Method testMethod) {
 		if (testMethod.getGenericParameterTypes().length == 2
 				&& testMethod.getGenericParameterTypes()[0]
@@ -198,9 +201,8 @@ public class MethodContext implements IMethodContext {
 		}
 	}
 
-	private void verify_UpdateDataProviderName(ITestAnnotation testAnnotation,
+	private void verify_UpdateDataProviderName(IDataProvidable testAnnotation,
 			Method testMethod) {
-
 		if (StringUtils.isNotBlank(testAnnotation.getDataProvider())) {
 			validateDataProviderName(testAnnotation.getDataProvider());
 		} else {
@@ -212,8 +214,10 @@ public class MethodContext implements IMethodContext {
 					+ testAnnotation.getDataProvider());
 		}
 	}
+	
+	
 
-	private void verify_UpdateDataProviderClass(ITestAnnotation testAnnotation,
+	private void verify_UpdateDataProviderClass(IDataProvidable testAnnotation,
 			Method testMethod) {
 
 		if (testAnnotation.getDataProviderClass() != null

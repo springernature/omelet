@@ -117,8 +117,10 @@ public class TestInterceptor implements ITestListener {
 	 * @return
 	 */
 	public static int getId(ITestResult result) {
+		
 		int id = result.getTestClass().getName().hashCode();
 		id = 31 * id + result.getMethod().getMethodName().hashCode();
+		id = 31 * id + result.getMethod().getInstance().hashCode();
 		id = 31
 				* id
 				+ (result.getParameters() != null ? Arrays.hashCode(result
@@ -146,6 +148,8 @@ public class TestInterceptor implements ITestListener {
 		// case to be removed
 		for (ITestResult failTest : context.getFailedTests().getAllResults()) {
 			int failTestID = getId(failTest);
+			System.out.println(failedTestID.contains(failTestID));
+			System.out.println(passedTest.contains(failTestID));
 			if (failedTestID.contains(failTestID)
 					|| passedTest.contains(failTestID)) {
 				testsToBeRemoved.add(failTest);
@@ -154,6 +158,7 @@ public class TestInterceptor implements ITestListener {
 			}
 		}
 		// update the context
+		System.out.println();
 		for (Iterator<ITestResult> iterator = context.getFailedTests()
 				.getAllResults().iterator(); iterator.hasNext();) {
 			ITestResult testResult = iterator.next();
