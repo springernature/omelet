@@ -28,11 +28,11 @@ import omelet.common.OSName.OSN;
  * 
  */
 public class DriverConfigurations {
-	
+
 	/**
 	 * 
 	 * @author borz01
-	 *
+	 * 
 	 */
 	public enum FrameworkConfig {
 		remoteflag("false"), drivertimeOut("30"), retryfailedtestcase("0"), highlightelementflag(
@@ -52,12 +52,14 @@ public class DriverConfigurations {
 	/**
 	 * 
 	 * @author borz01
-	 *
+	 * 
 	 */
 	public enum CloudConfig {
-		/*device(""), browserVersion(""), os(""), osVersion(
-				""), bsSwitch("false"), , bs_localTesting(
-				"false"), bs_urls(""), platform(""), mobileTest("false");*/
+		/*
+		 * device(""), browserVersion(""), os(""), osVersion( ""),
+		 * bsSwitch("false"), , bs_localTesting( "false"), bs_urls(""),
+		 * platform(""), mobileTest("false");
+		 */
 		username(""), key("");
 		private String defaultValue;
 
@@ -73,23 +75,30 @@ public class DriverConfigurations {
 	/**
 	 * 
 	 * @author borz01
-	 *
+	 * 
 	 */
 	public enum LocalEnvironmentConfig {
-	
-		browsername("FireFox"), iedriverpath(System.getProperty("user.dir")+"/src/main/resources/IEDriverServer.exe".replace("/", File.separator)), chromedriverpath(System.getProperty("user.dir")+"/src/main/resources/chromedriver".replace("/", File.separator));
+
+		browsername("FireFox"), iedriverpath(System.getProperty("user.dir")
+				+ "/src/main/resources/IEDriverServer.exe".replace("/",
+						File.separator)), chromedriverpath(System
+				.getProperty("user.dir")
+				+ "/src/main/resources/chromedriver".replace("/",
+						File.separator));
 
 		private String defaultValue;
 
 		LocalEnvironmentConfig(String defaultValue) {
-			if(defaultValue.contains("chromedriver")){
-				if(OSName.get().equals(OSN.WIN)){
-					this.defaultValue = defaultValue.replace("chromedriver", "chromedriver.exe");
-				}else{
+			if (defaultValue.contains("chromedriver")) {
+				if (OSName.get().equals(OSN.WIN)) {
+					this.defaultValue = defaultValue.replace("chromedriver",
+							"chromedriver.exe");
+				} else {
 					this.defaultValue = defaultValue;
 				}
+			} else {
+				this.defaultValue = defaultValue;
 			}
-			this.defaultValue = defaultValue;
 		}
 
 		public String get() {
@@ -101,10 +110,10 @@ public class DriverConfigurations {
 	/**
 	 * 
 	 * @author borz01
-	 *
+	 * 
 	 */
 	public enum HubConfig {
-		host("localhost"),port("4444");
+		host("localhost"), port("4444");
 		private String defaultValue;
 
 		HubConfig(String defaultValue) {
