@@ -123,7 +123,7 @@ public class DriverInitialization implements IInvokedMethodListener {
 		}
 		
 		//Set reports after every test cases irrespective is the test method is as part of factory or independent parallel run
-		cleanReportingAfterEveryMethod(testResult);
+		//cleanReportingAfterEveryMethod(testResult);
 
 		// Check for AfterMethod if present check for browser and quit
 		if (method.getTestMethod().isAfterMethodConfiguration()) {
