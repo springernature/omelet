@@ -7,7 +7,7 @@
   <packaging>pom</packaging>
   <name>omelet-Parent</name>
   <description>Parent project for the omelet</description>
-  <url>https://github.com/springer-opensource/omelet</url>
+  <url>https://github.com/springernature/omelet</url>
   <modules>
   	<module>omelet-core</module>
   	<module>omelet-integration-tests</module>
@@ -40,8 +40,8 @@
 		</developer>
 	</developers>
 	<scm>
-		<url>https://github.com/springer-opensource/omelet.git</url>
-		<connection>scm:git:ttps://github.com/springer-opensource/omelet.git</connection>
+		<url>https://github.com/springernature/omelet.git</url>
+		<connection>scm:git:https://github.com/springernature/omelet.git</connection>
 		<tag>HEAD</tag>
 	</scm>
 	<build>

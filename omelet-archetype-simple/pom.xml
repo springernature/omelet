@@ -33,7 +33,7 @@
 			</plugins>
 		</pluginManagement>
 	</build>
-	<url>https://github.com/springer-opensource/omelet/omelet-integration-tests</url>
+	<url>https://github.com/springernature/omelet/omelet-integration-tests</url>
 
 	<developers>
 		<developer>
@@ -57,8 +57,8 @@
 	</licenses>
 
 	<scm>
-		<connection>scm:git:ttps://github.com/springer-opensource/omelet.git/omelet-integration-tests</connection>
-		<url>https://github.com/springer-opensource/omelet.git/omelet-integration-tests</url>
+		<connection>scm:git:https://github.com/springernature/omelet.git/omelet-integration-tests</connection>
+		<url>https://github.com/springernature/omelet.git/omelet-integration-tests</url>
 	</scm>
 
 	<distributionManagement>

@@ -7,7 +7,7 @@
 	<version>1.0.13</version>
 	<packaging>jar</packaging>
 	<name>omelet</name>
-	<url>https://github.com/springer-opensource/omelet</url>
+	<url>https://github.com/springernature/omelet</url>
 	<description>Automation library for Selenium built on top of TestNg</description>
 
 	<licenses>
@@ -34,8 +34,8 @@
 		</developer>
 	</developers>
 	<scm>
-		<url>https://github.com/springer-opensource/omelet.git</url>
-		<connection>scm:git:ttps://github.com/springer-opensource/omelet.git</connection>
+		<url>https://github.com/springernature/omelet.git</url>
+		<connection>scm:git:https://github.com/springernature/omelet.git</connection>
 		<tag>HEAD</tag>
 	</scm>
 	<dependencies>
