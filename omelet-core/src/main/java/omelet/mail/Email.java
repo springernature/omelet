@@ -227,31 +227,7 @@ public class Email implements IEmail {
 				loopCount = inboxMessageCount - maxcountEMailCheck;
 			}
 			for (int i = inboxMessageCount - 1; i >= loopCount; i--) {
-				switch (emailFilter) {
-				case SUBJECT:
-					if (msgs[i].getSubject().toString()
-							.equalsIgnoreCase(filterText)) {
-						returnMessage.add(msgs[i]);
-					}
-					break;
-				case FROM_ADD:
-					// Assumption is from address is only one
-					if (msgs[i].getFrom()[0].toString().contains(filterText)) {
-						returnMessage.add(msgs[i]);
-					}
-					break;
-				case TO_ADDR:
-					for (Address addr : msgs[i].getRecipients(RecipientType.TO)) {
-						LOGGER.info("Sno: " + i + " To Email Add is: "
-								+ addr.toString());
-						if (addr.toString().contains(filterText)) {
-							returnMessage.add(msgs[i]);
-						}
-					}
-					break;
-				default:
-					break;
-				}
+				fillReturnMessagesForEmailFilter(emailFilter, filterText, returnMessage, msgs, i);
 			}
 			// CLose the folder
 			folder.close(true);
@@ -262,6 +238,34 @@ public class Email implements IEmail {
 		LOGGER.info("Time Taken by getMessage is: "
 				+ sw.elapsedTime(TimeUnit.SECONDS));
 		return returnMessage;
+	}
+
+	private void fillReturnMessagesForEmailFilter(EMAIL_FILTER emailFilter, String filterText, List<Message> returnMessage, Message[] msgs, int i) throws MessagingException {
+		switch (emailFilter) {
+			case SUBJECT:
+				if (msgs[i].getSubject().toString()
+						.equalsIgnoreCase(filterText)) {
+					returnMessage.add(msgs[i]);
+				}
+				break;
+			case FROM_ADD:
+				// Assumption is from address is only one
+				if (msgs[i].getFrom()[0].toString().contains(filterText)) {
+					returnMessage.add(msgs[i]);
+				}
+				break;
+			case TO_ADDR:
+				for (Address addr : msgs[i].getRecipients(RecipientType.TO)) {
+					LOGGER.info("Sno: " + i + " To Email Add is: "
+							+ addr.toString());
+					if (addr.toString().contains(filterText)) {
+						returnMessage.add(msgs[i]);
+					}
+				}
+				break;
+			default:
+				break;
+		}
 	}
 
 	/***
@@ -352,7 +356,17 @@ public class Email implements IEmail {
 			Message[] messages, String emailAddress) {
 		List<Message> returnMessage = new ArrayList<Message>();
 		try {
-			switch (searchCat) {
+			fillReturnMessagesForSearchCat(searchCat, messages, emailAddress, returnMessage);
+		} catch (MessagingException e) {
+			// TODO Auto-generated catch block
+			LOGGER.error(e);
+		}
+		return returnMessage;
+	}
+
+	private void fillReturnMessagesForSearchCat(FilterEmails searchCat, Message[] messages, String emailAddress, List<Message> returnMessage)
+			throws MessagingException {
+		switch (searchCat) {
 			case FROM:
 				for (Message msg : messages) {
 					if (msg.getFrom()[0].toString().contains(emailAddress)) {
@@ -363,20 +377,19 @@ public class Email implements IEmail {
 			case TO:
 				for (Message msg : messages) {
 					for (Address addr : msg.getRecipients(RecipientType.TO)) {
-						if (addr.toString().contains(emailAddress)) {
-							returnMessage.add(msg);
-						}
+						addMessageIfContainsEmailAddress(emailAddress, returnMessage, msg, addr);
 					}
 				}
 				break;
 			default:
 				break;
-			}
-		} catch (MessagingException e) {
-			// TODO Auto-generated catch block
-			LOGGER.error(e);
 		}
-		return returnMessage;
+	}
+
+	private void addMessageIfContainsEmailAddress(String emailAddress, List<Message> returnMessage, Message msg, Address addr) {
+		if (addr.toString().contains(emailAddress)) {
+			returnMessage.add(msg);
+		}
 	}
 
 	@Override
