@@ -47,8 +47,6 @@ import org.xml.sax.SAXException;
  */
 public class XmlApplicationData {
 
-	private DocumentBuilderFactory factory = DocumentBuilderFactory
-			.newInstance();
 	private DocumentBuilder builder = null;
 	private Document document = null;
 	private String envType = null;
@@ -59,6 +57,8 @@ public class XmlApplicationData {
 
 	private XmlApplicationData() {
 		try {
+			DocumentBuilderFactory factory = DocumentBuilderFactory
+					.newInstance();
 			builder = factory.newDocumentBuilder();
 		} catch (ParserConfigurationException e) {
 			// TODO Auto-generated catch block

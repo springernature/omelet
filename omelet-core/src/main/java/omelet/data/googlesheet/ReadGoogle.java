@@ -29,7 +29,6 @@ public class ReadGoogle implements IDataSource {
 
 	private String googleUserName;
 	private String googlePasswd;
-	private URL spreadSheetFeedUrl = null;
 	private SpreadsheetEntry spreadSheet;
 	private SpreadsheetService service = null;
 	private String sheetName = null;
@@ -78,7 +77,7 @@ public class ReadGoogle implements IDataSource {
 		service = new SpreadsheetService("MySpreadsheetIntegration-v1");
 		try {
 			service.setUserCredentials(googleUserName, googlePasswd);
-			spreadSheetFeedUrl = new URL(
+			URL spreadSheetFeedUrl = new URL(
 					"https://spreadsheets.google.com/feeds/spreadsheets/private/full");
 			SpreadsheetFeed feed = service.getFeed(spreadSheetFeedUrl,
 					SpreadsheetFeed.class);

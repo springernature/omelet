@@ -51,7 +51,6 @@ class DriverFactory {
 	private int driverTimeOut;
 	private String USERNAME;
 	private String AUTOMATE_KEY;
-	private IBrowserConf browsConf;
 	private String ieServerPath;
 	private String chromeServerPath;
 	private boolean ishiglightElementFlag;
@@ -59,7 +58,7 @@ class DriverFactory {
 	WebDriver webDriver = null;
 
 	public DriverFactory(IBrowserConf browserConf) {
-		this.browsConf = browserConf;
+		IBrowserConf browsConf = browserConf;
 		this.dc = browserConf.getCapabilities();
 		this.browser = browserConf.getBrowser();
 		this.remoteFlag = browsConf.isRemoteFlag();

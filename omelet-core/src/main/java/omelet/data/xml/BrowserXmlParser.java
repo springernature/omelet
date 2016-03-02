@@ -47,8 +47,6 @@ import org.xml.sax.SAXException;
  */
 
 public class BrowserXmlParser {
-	private final DocumentBuilderFactory factory = DocumentBuilderFactory
-			.newInstance();
 	private DocumentBuilder builder = null;
 	private Document document = null;
 	private static final Logger LOGGER = Logger
@@ -58,6 +56,8 @@ public class BrowserXmlParser {
 
 	private BrowserXmlParser() {
 		try {
+			DocumentBuilderFactory factory = DocumentBuilderFactory
+					.newInstance();
 			builder = factory.newDocumentBuilder();
 		} catch (ParserConfigurationException e) {
 			LOGGER.error(e);

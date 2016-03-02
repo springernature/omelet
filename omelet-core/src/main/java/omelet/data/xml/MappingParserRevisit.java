@@ -30,9 +30,6 @@ import org.xml.sax.SAXException;
  */
 public class MappingParserRevisit implements IDataSource {
 
-	private final DocumentBuilderFactory factory = DocumentBuilderFactory
-			.newInstance();
-	private DocumentBuilder builder = null;
 	private Document document = null;
 	private String xmlName;
 	private static final String DELIMITTER = ";";
@@ -42,7 +39,9 @@ public class MappingParserRevisit implements IDataSource {
 
 	public MappingParserRevisit() {
 		try {
-			builder = factory.newDocumentBuilder();
+			DocumentBuilderFactory factory = DocumentBuilderFactory
+					.newInstance();
+			DocumentBuilder builder = factory.newDocumentBuilder();
 			document = builder
 					.parse(Utils.getResources(this, getMappingFile()));
 		} catch (ParserConfigurationException e) {
