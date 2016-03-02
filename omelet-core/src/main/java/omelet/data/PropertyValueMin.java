@@ -107,9 +107,8 @@ public class PropertyValueMin {
 	 */
 	private void createHashMap(Properties prop) {
 		String key;
-		Iterator<Object> i = prop.keySet().iterator();
-		while (i.hasNext()) {
-			key = (String) i.next();
+		for (Object o : prop.keySet()) {
+			key = (String) o;
 			propertiesValue.put(key, prop.getProperty(key));
 		}
 	}

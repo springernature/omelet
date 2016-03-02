@@ -135,9 +135,8 @@ public class PropertyMapping implements IProperty {
 	 */
 	private void createHashMap(Properties prop) {
 		String key;
-		Iterator<Object> i = prop.keySet().iterator();
-		while (i.hasNext()) {
-			key = (String) i.next();
+		for (Object o : prop.keySet()) {
+			key = (String) o;
 			propertiesValue.put(key, prop.getProperty(key));
 		}
 	}
@@ -162,9 +161,8 @@ public class PropertyMapping implements IProperty {
 			}
 			if (!misMatchEnum.isEmpty()) {
 				StringBuilder sb = new StringBuilder();
-				Iterator<String> mmI = misMatchEnum.iterator();
-				while (mmI.hasNext()) {
-					sb.append(mmI.next());
+				for (String aMisMatchEnum : misMatchEnum) {
+					sb.append(aMisMatchEnum);
 					sb.append(lineSeprator);
 				}
 				throw new FrameworkException(sb.toString());
