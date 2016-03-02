@@ -24,13 +24,11 @@ import java.util.Map;
 import omelet.common.Utils;
 import omelet.data.IProperty;
 import omelet.data.MethodContext;
-import omelet.data.PrettyMessage;
 import omelet.data.driverconf.IBrowserConf;
 
 import org.apache.log4j.Logger;
 import org.testng.IAnnotationTransformer;
 import org.testng.IAnnotationTransformer2;
-import org.testng.IInvokedMethod;
 import org.testng.annotations.IConfigurationAnnotation;
 import org.testng.annotations.IDataProviderAnnotation;
 import org.testng.annotations.IFactoryAnnotation;
