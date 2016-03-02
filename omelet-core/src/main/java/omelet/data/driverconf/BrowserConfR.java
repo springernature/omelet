@@ -115,10 +115,9 @@ public class BrowserConfR implements IBrowserConf {
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
 		sb.append("Browser:" + "<span style='font-weight:normal'>"
-				+ getBrowser() + "</span>");
-		sb.append(", Capabilities:"
-				+ "<span style='font-weight:normal'>"
-				+ this.getCapabilities().toString() + "</span>");
+						  + getBrowser() + "</span>");
+		sb.append(", Capabilities:" + "<span style='font-weight:normal'>").append(this.getCapabilities().toString())
+		  .append("</span>");
 	/*	if (isRemoteFlag()) {
 			if (isBrowserStackSwitch()) {
 				sb.append(",BrowserVersion:"
