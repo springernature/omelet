@@ -161,7 +161,7 @@ public class MappingParserRevisit implements IDataSource {
 	}
 
 	private static String getFrameworkPropertyValue(String key) {
-		PropertyValueMin prop = null;
+		PropertyValueMin prop;
 		if (isFrameworkProperties()) {
 			prop = new PropertyValueMin(Utils.getResources(
 					MappingParserRevisit.class, "Framework.properties"));

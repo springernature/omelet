@@ -271,7 +271,7 @@ public class Email implements IEmail {
 	public String getEmailBody(Message message) {
 		String line;
 		StringBuilder messageBody = new StringBuilder();
-		BufferedReader br = null;
+		BufferedReader br;
 
 		try {
 			folder.open(Folder.READ_ONLY);

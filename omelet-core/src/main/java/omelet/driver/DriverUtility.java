@@ -180,7 +180,7 @@ public class DriverUtility {
 							element);
 			break;
 		default:
-			String clickStrategyParameter = "";
+			String clickStrategyParameter;
 			try {
 				clickStrategyParameter = clickStrategy.toString();
 			} catch (Exception e) {

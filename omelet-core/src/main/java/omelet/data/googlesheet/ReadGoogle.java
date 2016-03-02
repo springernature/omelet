@@ -198,7 +198,7 @@ public class ReadGoogle implements IDataSource {
 		IMappingData methodData = data;
 
 		URL browserSheetURL;
-		String sheetNameHolder = null;
+		String sheetNameHolder;
 		ListFeed browserFeed;
 
 		// get the browser sheet name
