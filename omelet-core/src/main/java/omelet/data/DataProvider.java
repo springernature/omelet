@@ -38,7 +38,7 @@ import org.apache.log4j.Logger;
  */
 public class DataProvider {
 
-	public static enum mapStrategy {
+	public enum mapStrategy {
 		Full, Optimal
 	}
 
