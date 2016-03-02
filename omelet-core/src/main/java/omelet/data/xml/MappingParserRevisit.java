@@ -171,11 +171,8 @@ public class MappingParserRevisit implements IDataSource {
 	}
 
 	private static boolean isFrameworkProperties() {
-		if (Utils.getResources(MappingParserRevisit.class,
-				"Framework.properties") != null) {
-			return true;
-		}
-		return false;
+		return Utils.getResources(MappingParserRevisit.class,
+								  "Framework.properties") != null;
 	}
 
 	@Override

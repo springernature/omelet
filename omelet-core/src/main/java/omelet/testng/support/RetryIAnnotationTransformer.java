@@ -73,14 +73,11 @@ public class RetryIAnnotationTransformer implements IAnnotationTransformer,
 	}
 	
 	private boolean isPartOfFactoryTest(Method testMethod) {
-		if (testMethod.getGenericParameterTypes().length == 2
+		return !(testMethod.getGenericParameterTypes().length == 2
 				&& testMethod.getGenericParameterTypes()[0]
-						.equals(IBrowserConf.class)
+				.equals(IBrowserConf.class)
 				&& testMethod.getGenericParameterTypes()[1]
-						.equals(IProperty.class)) {
-			return false;
-		}
-		return true;
+				.equals(IProperty.class));
 	}
 	
 	@SuppressWarnings("rawtypes")

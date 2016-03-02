@@ -150,7 +150,7 @@ public class BrowserConfR implements IBrowserConf {
 	public int hashCode() {
 		int hash = 7;
 
-		if (this.isRemoteFlag() == true) {
+		if (this.isRemoteFlag()) {
 			
 				hash = 31 * hash + this.getBrowser().hashCode();
 				hash = 31 * hash + this.getCapabilities().hashCode();
@@ -172,22 +172,14 @@ public class BrowserConfR implements IBrowserConf {
 		}
 		BrowserConfR secondObj = (BrowserConfR)obj;
 		if(this.isRemoteFlag() == secondObj.isRemoteFlag()){
-			if(this.isRemoteFlag() == true){
+			if(this.isRemoteFlag()){
 				if(this.getBrowser().equals(secondObj.getBrowser())){
-					if(this.getCapabilities().equals(secondObj.getCapabilities())){
-						return true;
-					}else{
-						return false;
-					}
+					return this.getCapabilities().equals(secondObj.getCapabilities());
 				}else{
 					return false;
 				}
 			}else{
-				if(this.getBrowser().equals(secondObj.getBrowser())){
-					return true;
-				}else{
-					return false;
-				}
+				return this.getBrowser().equals(secondObj.getBrowser());
 			}
 		}
 		return false;
