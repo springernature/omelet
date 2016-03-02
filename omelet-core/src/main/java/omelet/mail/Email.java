@@ -229,7 +229,7 @@ public class Email implements IEmail {
 			for (int i = inboxMessageCount - 1; i >= loopCount; i--) {
 				switch (emailFilter) {
 				case SUBJECT:
-					if (msgs[i].getSubject().toString()
+					if (msgs[i].getSubject()
 							.equalsIgnoreCase(filterText)) {
 						returnMessage.add(msgs[i]);
 					}
