@@ -1,10 +1,7 @@
 package omelet.data.xml;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -128,9 +125,7 @@ public class MappingParserRevisit implements IDataSource {
 		if (StringUtils.isNotBlank(commaSepratedList)) {
 			if (commaSepratedList.contains(DELIMITTER)) {
 				String array[] = commaSepratedList.split(";");
-				for (int i = 0; i < array.length; i++) {
-					returnedList.add(array[i]);
-				}
+				Collections.addAll(returnedList, array);
 			} else {
 				returnedList.add(commaSepratedList);
 			}

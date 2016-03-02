@@ -3,10 +3,7 @@ package omelet.data.googlesheet;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import omelet.data.IDataSource;
 import omelet.data.IMappingData;
@@ -177,9 +174,7 @@ public class ReadGoogle implements IDataSource {
 					.contains(GoogleSheetConstant.GOOGLE_BROWSERSHEET_DELIMITER)) {
 				String array[] = commaSepratedList
 						.split(GoogleSheetConstant.GOOGLE_BROWSERSHEET_DELIMITER);
-				for (int i = 0; i < array.length; i++) {
-					returnedList.add(array[i]);
-				}
+				Collections.addAll(returnedList, array);
 			} else {
 				returnedList.add(commaSepratedList);
 			}
