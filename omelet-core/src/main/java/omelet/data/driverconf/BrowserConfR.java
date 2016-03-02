@@ -172,12 +172,9 @@ public class BrowserConfR implements IBrowserConf {
 		}
 		BrowserConfR secondObj = (BrowserConfR)obj;
 		if(this.isRemoteFlag() == secondObj.isRemoteFlag()){
-			if(this.isRemoteFlag()){
-				if(this.getBrowser().equals(secondObj.getBrowser())){
-					return this.getCapabilities().equals(secondObj.getCapabilities());
-				}else{
-					return false;
-				}
+			if(this.isRemoteFlag()) {
+				return this.getBrowser().equals(secondObj.getBrowser()) &&
+						this.getCapabilities().equals(secondObj.getCapabilities());
 			}else{
 				return this.getBrowser().equals(secondObj.getBrowser());
 			}
