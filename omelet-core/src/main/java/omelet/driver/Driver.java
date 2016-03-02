@@ -108,6 +108,9 @@ public class Driver {
 	protected static boolean driverRemovedStatus() {
 
 		WebDriver d = driver.get();
-		return d == null;
+		if (d == null) {
+			return true;
+		}
+		return false;
 	}
 }
