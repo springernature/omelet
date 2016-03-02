@@ -22,26 +22,26 @@ import javax.mail.Message;
 
 public interface IEmail {
 
-	public void setFolder(String folderName);
+	void setFolder(String folderName);
 
-	public String getMailFormat(Message msg);
+	String getMailFormat(Message msg);
 
-	public List<Message> getEmailsByAdd(FilterEmails searchCat,
+	List<Message> getEmailsByAdd(FilterEmails searchCat,
 			String emailAddress);
 
-	public List<Message> getEmailsBySubject(String subject);
+	List<Message> getEmailsBySubject(String subject);
 
-	public List<Message> filterEmailsByAdd(FilterEmails searchCat,
+	List<Message> filterEmailsByAdd(FilterEmails searchCat,
 			Message[] messages, String emailAddress);
 
-	public List<Message> filerEmailsBySubject(List<Message> message,
+	List<Message> filerEmailsBySubject(List<Message> message,
 			String emailSubject);
 
-	public String getEmailBody(Message message);
+	String getEmailBody(Message message);
 
-	public String getHTMLLinkAfterText(Message message,
+	String getHTMLLinkAfterText(Message message,
 			String textAfterWhichtoFetchHtmlLinks);
 
-	public boolean verifyPatternInEmail(Message message, String patterToMatch);
+	boolean verifyPatternInEmail(Message message, String patterToMatch);
 
 }
