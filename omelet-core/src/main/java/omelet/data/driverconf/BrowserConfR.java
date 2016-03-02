@@ -114,8 +114,7 @@ public class BrowserConfR implements IBrowserConf {
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
-		sb.append("Browser:" + "<span style='font-weight:normal'>"
-						  + getBrowser() + "</span>");
+		sb.append("Browser:" + "<span style='font-weight:normal'>").append(getBrowser()).append("</span>");
 		sb.append(", Capabilities:" + "<span style='font-weight:normal'>").append(this.getCapabilities().toString())
 		  .append("</span>");
 	/*	if (isRemoteFlag()) {
