@@ -72,10 +72,9 @@ public class DriverUtility {
 		stopwatch.start();
 		driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
 		try {
-			T returnValue = new WebDriverWait(driver, timeOutInSeconds)
+			return new WebDriverWait(driver, timeOutInSeconds)
 					.pollingEvery(500, TimeUnit.MILLISECONDS).until(
 							expectedCondition);
-			return returnValue;
 		} catch (TimeoutException e) {
 			LOGGER.error(e);
 			return null;

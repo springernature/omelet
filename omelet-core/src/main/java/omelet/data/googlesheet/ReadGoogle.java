@@ -194,14 +194,12 @@ public class ReadGoogle implements IDataSource {
 		// Preferabbly send refined list to it
 		List<IBrowserConf> returnList = new ArrayList<IBrowserConf>();
 
-		IMappingData methodData = data;
-
 		URL browserSheetURL;
 		String sheetNameHolder;
 		ListFeed browserFeed;
 
 		// get the browser sheet name
-		for (String browserSheet : methodData.getClientEnvironment()) {
+		for (String browserSheet : data.getClientEnvironment()) {
 			sheetNameHolder = browserSheet;
 			if (!browserBucket.containsKey(browserSheet)) {
 				try {
@@ -259,13 +257,12 @@ public class ReadGoogle implements IDataSource {
 	 */
 	public List<IProperty> getMethodData(String environment, IMappingData data) {
 		if (!dataBucket.containsKey(data.getTestData())) {
-			IMappingData mData = data;
 			URL testDataSheetURL;
 			ListFeed testDataFeed = null;
 			// Here reading the method name and the WorkSheetName
-			LOGGER.debug("Get testdata: " + mData.getTestData());
+			LOGGER.debug("Get testdata: " + data.getTestData());
 			try {
-				testDataSheetURL = getWorkSheet(mData.getTestData())
+				testDataSheetURL = getWorkSheet(data.getTestData())
 						.getListFeedUrl();
 				testDataFeed = service
 						.getFeed(testDataSheetURL, ListFeed.class);

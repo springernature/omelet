@@ -168,8 +168,7 @@ public class BrowserXmlParser {
 	private HashMap<String, String> getKeyValue(Element keyElement) {
 
 		HashMap<String, String> browserData = new HashMap<String, String>();
-		Element element = keyElement;
-		NamedNodeMap browserL = element.getAttributes();
+		NamedNodeMap browserL = keyElement.getAttributes();
 		for(int i=0;i<browserL.getLength();i++){
 			Node attr = browserL.item(i);
 			browserData.put(attr.getNodeName(), attr.getNodeValue());

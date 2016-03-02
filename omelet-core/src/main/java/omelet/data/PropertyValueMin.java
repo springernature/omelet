@@ -95,8 +95,7 @@ public class PropertyValueMin {
 	 * constructor of the class
 	 */
 	public String getValue(String key) {
-		String value = propertiesValue.get(key);
-		return value;
+		return propertiesValue.get(key);
 
 	}
 
