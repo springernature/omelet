@@ -25,7 +25,7 @@ public class MailTest {
     public void createPop3Connection() {
         if(this.userName != null && this.password != null) {
             mail = new Email.Builder().setHost("pop.gmail.com").setProtocol(MailProtocol.POP3).setPort("995").setUserName(this.userName).setPassword(this.password).build();
-            Assert.assertNotNull(mail.getEmailsByAdd(FilterEmails.TO, this.userName));
+            Assert.assertNotNull(mail.getEmailsBy(FilterEmails.TO, this.userName));
         } else {
             LOGGER.error("System property: mailUserName and mailUserPassword must be set.");
         }
@@ -35,7 +35,7 @@ public class MailTest {
     public void createImapConnection() {
         if(this.userName != null && this.password != null) {
             mail = new Email.Builder().setHost("imap.gmail.com").setProtocol(MailProtocol.IMAP).setPort("993").setUserName(this.userName).setPassword(this.password).build();
-            Assert.assertNotNull(mail.getEmailsByAdd(FilterEmails.TO, this.userName));
+            Assert.assertNotNull(mail.getEmailsBy(FilterEmails.TO, this.userName));
         } else {
             LOGGER.error("System property: mailUserName and mailUserPassword must be set.");
         }
