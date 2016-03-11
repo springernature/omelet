@@ -26,16 +26,12 @@ public interface IEmail {
 
 	String getMailFormat(Message msg);
 
-	List<Message> getEmailsByAdd(FilterEmails searchCat,
-			String emailAddress);
+	List<Message> getEmailsBy(FilterEmails searchCat,
+			String filterText);
 
-	List<Message> getEmailsBySubject(String subject);
+	List<Message> filterEmailsBy(FilterEmails searchCat,
+			List<Message> messages, String filterText);
 
-	List<Message> filterEmailsByAdd(FilterEmails searchCat,
-			Message[] messages, String emailAddress);
-
-	List<Message> filerEmailsBySubject(List<Message> message,
-			String emailSubject);
 
 	String getEmailBody(Message message);
 
@@ -43,5 +39,7 @@ public interface IEmail {
 			String textAfterWhichtoFetchHtmlLinks);
 
 	boolean verifyPatternInEmail(Message message, String patterToMatch);
+
+	boolean deleteMessage(Message message);
 
 }
