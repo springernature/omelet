@@ -34,14 +34,13 @@ public class RetryAnalyzer implements IRetryAnalyzer {
 
 	private static final Logger LOGGER = Logger.getLogger(RetryAnalyzer.class);
 	private int count = 0;
-	private int maxCount;
 
 	public boolean retry(ITestResult result) {
 		IBrowserConf browserConf = Driver.getBrowserConf();
 		//below is required if test case without Browser is used i.e. @Test method without IBrowserConf & IProperty as param
 		if(null == browserConf)
 			browserConf = DefaultBrowserConf.get();
-		maxCount = browserConf
+		int maxCount = browserConf
 				.getRetryFailedTestCaseCount();
 		LOGGER.debug("Max retry count for a Test case is: " + maxCount);
 		if (count < maxCount) {

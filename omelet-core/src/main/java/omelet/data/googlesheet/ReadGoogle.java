@@ -3,10 +3,7 @@ package omelet.data.googlesheet;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import omelet.data.IDataSource;
 import omelet.data.IMappingData;
@@ -32,7 +29,6 @@ public class ReadGoogle implements IDataSource {
 
 	private String googleUserName;
 	private String googlePasswd;
-	private URL spreadSheetFeedUrl = null;
 	private SpreadsheetEntry spreadSheet;
 	private SpreadsheetService service = null;
 	private String sheetName = null;
@@ -81,7 +77,7 @@ public class ReadGoogle implements IDataSource {
 		service = new SpreadsheetService("MySpreadsheetIntegration-v1");
 		try {
 			service.setUserCredentials(googleUserName, googlePasswd);
-			spreadSheetFeedUrl = new URL(
+			URL spreadSheetFeedUrl = new URL(
 					"https://spreadsheets.google.com/feeds/spreadsheets/private/full");
 			SpreadsheetFeed feed = service.getFeed(spreadSheetFeedUrl,
 					SpreadsheetFeed.class);
@@ -177,9 +173,7 @@ public class ReadGoogle implements IDataSource {
 					.contains(GoogleSheetConstant.GOOGLE_BROWSERSHEET_DELIMITER)) {
 				String array[] = commaSepratedList
 						.split(GoogleSheetConstant.GOOGLE_BROWSERSHEET_DELIMITER);
-				for (int i = 0; i < array.length; i++) {
-					returnedList.add(array[i]);
-				}
+				Collections.addAll(returnedList, array);
 			} else {
 				returnedList.add(commaSepratedList);
 			}
@@ -200,14 +194,12 @@ public class ReadGoogle implements IDataSource {
 		// Preferabbly send refined list to it
 		List<IBrowserConf> returnList = new ArrayList<IBrowserConf>();
 
-		IMappingData methodData = data;
-
 		URL browserSheetURL;
-		String sheetNameHolder = null;
+		String sheetNameHolder;
 		ListFeed browserFeed;
 
 		// get the browser sheet name
-		for (String browserSheet : methodData.getClientEnvironment()) {
+		for (String browserSheet : data.getClientEnvironment()) {
 			sheetNameHolder = browserSheet;
 			if (!browserBucket.containsKey(browserSheet)) {
 				try {
@@ -265,13 +257,12 @@ public class ReadGoogle implements IDataSource {
 	 */
 	public List<IProperty> getMethodData(String environment, IMappingData data) {
 		if (!dataBucket.containsKey(data.getTestData())) {
-			IMappingData mData = data;
 			URL testDataSheetURL;
 			ListFeed testDataFeed = null;
 			// Here reading the method name and the WorkSheetName
-			LOGGER.debug("Get testdata: " + mData.getTestData());
+			LOGGER.debug("Get testdata: " + data.getTestData());
 			try {
-				testDataSheetURL = getWorkSheet(mData.getTestData())
+				testDataSheetURL = getWorkSheet(data.getTestData())
 						.getListFeedUrl();
 				testDataFeed = service
 						.getFeed(testDataSheetURL, ListFeed.class);

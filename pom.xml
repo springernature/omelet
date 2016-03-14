@@ -38,6 +38,15 @@
 				<role>developer</role>
 			</roles>
 		</developer>
+		<developer>
+			<id>robertbor</id>
+			<name>robert</name>
+			<email>robert.borzutzki@springer.com</email>
+			<organization>Springer Science+Business Media Deutschland GmbH</organization>
+			<roles>
+				<role>Test Analyst</role>
+			</roles>
+		</developer>
 	</developers>
 	<scm>
 		<url>https://github.com/springernature/omelet.git</url>

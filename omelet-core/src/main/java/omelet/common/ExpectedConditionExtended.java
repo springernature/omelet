@@ -255,7 +255,7 @@ public class ExpectedConditionExtended {
 				}
 				LOGGER.debug("element size is:" + elements.size()
 						+ " and is sucesfull list is:" + statusList.size());
-				return statusList.size() == elements.size() ? true : false;
+				return statusList.size() == elements.size();
 			}
 
 			@Override
@@ -289,7 +289,7 @@ public class ExpectedConditionExtended {
 						return null;
 					}
 				}
-				return statusList.size() == elements.size() ? true : false;
+				return statusList.size() == elements.size();
 			}
 
 			@Override
