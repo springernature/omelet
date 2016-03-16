@@ -21,9 +21,7 @@ import org.testng.Reporter;
 
 import javax.mail.*;
 import javax.mail.Message.RecipientType;
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
@@ -247,7 +245,7 @@ public class Email implements IEmail {
 	public List<Message> filterEmailsBy(FilterEmails searchCat,
 			List<Message> messages, String filterText) {
 		try {
-			return filterFromToSubject(searchCat, filterText, (Message[]) messages.toArray());
+			return filterFromToSubject(searchCat, filterText, messages.toArray(new Message[messages.size()]));
 		} catch (MessagingException e) {
 			// TODO Auto-generated catch block
 			LOGGER.error(e);
@@ -345,23 +343,29 @@ public class Email implements IEmail {
 	 * @param message Message to get the mail body
 	 */
 	public String getEmailBody(Message message) {
-		String line;
+		Object content;
 		StringBuilder messageBody = new StringBuilder();
-		BufferedReader br;
-
 		try {
 			folder.open(Folder.READ_ONLY);
-			br = new BufferedReader(new InputStreamReader(
-					message.getInputStream()));
-			while ((line = br.readLine()) != null) {
-				messageBody.append(line);
+			content = message.getContent();
+
+			if (content instanceof Multipart) {
+				Multipart mp = (Multipart) content;
+				for (int i = 0; i < mp.getCount(); i++) {
+					BodyPart bp = mp.getBodyPart(i);
+					if (Pattern.compile(Pattern.quote("text/html"), Pattern.CASE_INSENSITIVE)
+							   .matcher(bp.getContentType()).find()) {
+						messageBody.append(bp.getContent());
+					} else {
+						messageBody.append(bp.getContent());
+					}
+				}
 			}
-			br.close();
 			folder.close(true);
-		} catch (IOException e) {
-			LOGGER.error(e);
 		} catch (MessagingException e) {
-			LOGGER.error(e);
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 		return messageBody.toString();
 	}
@@ -380,8 +384,7 @@ public class Email implements IEmail {
 		String httpLink = null;
 		// check if the URL is present
 		if (text.indexOf(textAfterWhichtoFetchHtmlLinks) != -1) {
-			filteredText = text.substring(text
-												  .indexOf(textAfterWhichtoFetchHtmlLinks));
+			filteredText = text.substring(text.indexOf(textAfterWhichtoFetchHtmlLinks));
 			// ideally this should be the link
 			httpLink = filteredText.substring(filteredText.indexOf("http"))
 								   .split(" ")[0].split(">")[0].split("\"")[0];
