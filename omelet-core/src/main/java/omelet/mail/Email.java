@@ -348,7 +348,6 @@ public class Email implements IEmail {
 		try {
 			folder.open(Folder.READ_ONLY);
 			content = message.getContent();
-
 			if (content instanceof Multipart) {
 				Multipart mp = (Multipart) content;
 				for (int i = 0; i < mp.getCount(); i++) {
@@ -360,6 +359,8 @@ public class Email implements IEmail {
 						messageBody.append(bp.getContent());
 					}
 				}
+			} else {
+				messageBody.append(content);
 			}
 			folder.close(true);
 		} catch (MessagingException e) {
