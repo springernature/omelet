@@ -148,8 +148,8 @@ public class TestInterceptor implements ITestListener {
 		// case to be removed
 		for (ITestResult failTest : context.getFailedTests().getAllResults()) {
 			int failTestID = getId(failTest);
-			System.out.println(failedTestID.contains(failTestID));
-			System.out.println(passedTest.contains(failTestID));
+			LOGGER.error(failedTestID.contains(failTestID));
+			LOGGER.error(passedTest.contains(failTestID));
 			if (failedTestID.contains(failTestID)
 					|| passedTest.contains(failTestID)) {
 				testsToBeRemoved.add(failTest);
@@ -158,7 +158,6 @@ public class TestInterceptor implements ITestListener {
 			}
 		}
 		// update the context
-		System.out.println();
 		for (Iterator<ITestResult> iterator = context.getFailedTests()
 				.getAllResults().iterator(); iterator.hasNext();) {
 			ITestResult testResult = iterator.next();
