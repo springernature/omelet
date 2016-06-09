@@ -36,8 +36,10 @@ public class SauceConnect implements ISuiteListener {
       tunnelProcess = Runtime.getRuntime().exec(getSetUpCommand(DefaultBrowserConf.get().getuserName(), DefaultBrowserConf.get().getKey()));
       waitforTunnelTobeUp("Sauce Connect is up, you may start your tests.");
     } catch (IOException e) {
+      LOGGER.error("Create tunnel not successful. " + e);
       e.printStackTrace();
     } catch (InterruptedException e) {
+      LOGGER.error("Create tunnel not successful. " + e);
       e.printStackTrace();
     }
   }
