@@ -16,7 +16,7 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 
 /**
  * Refine Browser data based on the Hierarchy
- * default-->Framework-->ClientEnv-->CommandLine
+ * default -- Framework -- ClientEnv -- CommandLine
  * 
  * @author kapil
  * 

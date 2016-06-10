@@ -59,12 +59,12 @@ public class DriverUtility {
 	 * return null
 	 * 
 	 * @param expectedCondition
-	 *            :ExpectedCondition<T>
+	 *            :ExpectedCondition
 	 * @param driver
 	 *            :WebDriver
-	 * @param timeout
+	 * @param timeOutInSeconds
 	 *            in seconds
-	 * @return <T> or null
+	 * @return T or null
 	 */
 	public static <T> T waitFor(ExpectedCondition<T> expectedCondition,
 			WebDriver driver, int timeOutInSeconds) {
@@ -274,7 +274,7 @@ public class DriverUtility {
 	 * 
 	 * @param webElement
 	 *            :Check box element
-	 * @param CHECK_UNCHECK
+	 * @param checkUnCheck
 	 *            enum
 	 */
 	public static void checkUncheckCheckBox(WebElement webElement,

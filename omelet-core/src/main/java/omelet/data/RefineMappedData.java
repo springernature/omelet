@@ -11,7 +11,7 @@ import omelet.exception.FrameworkException;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 /**
- * Refine data based on the hierarchy method-->Class-->Package
+ * Refine data based on the hierarchy method -- Class -- Package
  * take {@link IDataSource} and return 
  * @author kapil
  *

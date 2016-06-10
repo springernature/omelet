@@ -59,10 +59,10 @@ public class ReadGoogle implements IDataSource {
 	/**
 	 * Call this method to connect with desired Google Sheet
 	 * 
-	 * @param googleUserName
-	 * @param googlePasswd
-	 * @param sheetName
-	 * @return
+	 * @param googleUserName string
+	 * @param googlePasswd string
+	 * @param sheetName string
+	 * @return this
 	 */
 	public ReadGoogle connect(String googleUserName, String googlePasswd,
 			String sheetName) {
@@ -186,9 +186,8 @@ public class ReadGoogle implements IDataSource {
 	 * refined data
 	 * 
 	 * @param data
-	 * @return
-	 * @throws IOException
-	 * @throws ServiceException
+	 *  IMappingData
+	 * @return list
 	 */
 	public List<IBrowserConf> getBrowserListForSheet(IMappingData data) {
 		// Preferabbly send refined list to it
@@ -251,9 +250,7 @@ public class ReadGoogle implements IDataSource {
 	 *            : which should be System.getProperty() it can be null or empty
 	 *            as well
 	 * @param data
-	 * @return
-	 * @throws IOException
-	 * @throws ServiceException
+	 * @return list
 	 */
 	public List<IProperty> getMethodData(String environment, IMappingData data) {
 		if (!dataBucket.containsKey(data.getTestData())) {

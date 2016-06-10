@@ -98,10 +98,9 @@ public class Driver {
 	public static void tearDown() {
 		if (driver.get() != null) {
 			driver.get().quit();
-			driver.remove();
 		}
 		if(null != browserConf.get()){
-			browserConf.remove();
+			browserConf.set(null);
 		}
 	}
 
