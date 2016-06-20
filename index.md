@@ -26,7 +26,7 @@ image:
 
 omelet
 ======
-[![Build Status](https://travis-ci.org/springer-opensource/omelet.svg?branch=master)](https://travis-ci.org/springer-opensource/omelet)
+[![Build Status](https://travis-ci.org/springernature/omelet.svg?branch=master)](https://travis-ci.org/springernature/omelet)
 
 What is Omelet
 --------------
