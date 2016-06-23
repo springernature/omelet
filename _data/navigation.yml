@@ -1,34 +1,34 @@
 # Menu navigation links
 - text: Home
-  url: /omelet/
+  url:
 
 - text: Documentation
   url: '#'
   subitems:
     - text: 5 min Tutorial
-      url: /Quick-Start/
+      url: Quick-Start/
 
     - text: Configurations
       url: '#'
       subitems:
         - text: Overview
-          url: /Documentation/Configuration/
+          url: Documentation/Configuration/
         - text: Framework properties
-          url: /Documentation/Configuration/FrameworkProperties
+          url: Documentation/Configuration/FrameworkProperties
 
     - text: Data Sources
-      url: /Documentation/Data/
+      url: Documentation/Data/
 
     - text: Plugins
       url: '#'
       subitems:
         - text: Overview
-          url: /Documentation/AddonModules/
+          url: Documentation/AddonModules/
         - text: Sauce plugin
-          url: /Documentation/AddonModules/Sauce-plugin/
+          url: Documentation/AddonModules/Sauce-plugin/
 
 - text: Videos
-  url: /Videos/
+  url: Videos/
   
 - text: News
-  url: /News/
+  url: News/
