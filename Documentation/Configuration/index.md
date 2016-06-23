@@ -32,7 +32,7 @@ Omelet at the very first looks for **"TestMethod"** for TestData, BrowserConfigu
 If we know all the TestMethods in a single class[A] will be using same test data then we can simply add TestData for the Class[A] in Mapping and all the methods inside this will use the same TestData and however at the same time if we want every test method to use different browserConfiguration , we can do that as well. Sweet:)
 As depending on the DataSource Mapping is of BelowType.
 
-##_Mapping_
+## _Mapping_
 * [Xml Mapping]()
 * [Google Sheet Mapping]()
 
@@ -42,7 +42,7 @@ As depending on the DataSource Mapping is of BelowType.
 BrowserConfiguration are key value pairs to configure Browser for our Tests. There are multiple ways to configure Browsers and there are many configuration which can be done (some mandatory some not) depending on your requirement
 Omelet hierarchy or ways where we can add/OverWrite browser Configuration is CommandLine-->Xml/Sheet-->FrameworkProperties-->DefaultConfigs
 All the keys for configuration can be checked in Framework.properties. 
-##_BrowserConfiguration_
+## _BrowserConfiguration_
 * [Xml BrowserConfiguration]()
 * [GoogleSheet BrowserConfiguration]({{%site.url}}/Documentation/Data)
 
@@ -57,7 +57,7 @@ Want to know why we should use Framework Properties then check [here]({{%site.ur
 TestData are again key value pairs which can be configured for different or same environment multiple times, depending on the datasource selected , and we can filter TestEnvironmnet from command line by providing value to the Jvm argumnets "-Denv-type=".
 
 
-##_TestData_
+## _TestData_
 * [Xml TestData]()
 * [GoogleSheet TestData]({{%site.url}}/Documentation/Data)
 

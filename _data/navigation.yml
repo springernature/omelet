@@ -17,7 +17,14 @@
           url: Documentation/Configuration/FrameworkProperties
 
     - text: Data Sources
-      url: Documentation/Data/
+      url: '#'
+      subitems:
+        - text: Overview
+          url: Documentation/Data/
+        - text: Google Sheets
+          url: Documentation/Data/GoogleData
+        - text: XML Data
+          url: Documentation/Data/XMLData
 
     - text: Plugins
       url: '#'

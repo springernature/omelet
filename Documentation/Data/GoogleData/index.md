@@ -5,11 +5,11 @@ title: Google Sheet Usage
 # How to use Google Sheets as Data
 ------------
 
-##Why Google Sheets over Excel
+## Why Google Sheets over Excel
 Excel sheets are brilliant way to maintain your data but from my experience,r every single data change we have to open excel make some changes and then again push it to git or any scm, thats anyways no much of work
 
 
-###**what if?**
+### **what if?**
 * someone ask us to change a data quickly and check if the test case is working fine.
 * We have to change the browser or want to run same test case for different browsers.
 * Some Business oriented person like BA wants to look at data and change them , are you gonna do copy paste of the chages and push? 
@@ -18,7 +18,7 @@ All these **"whatifs"** encouraged us to add Google sheet as Data
 
 Now if we have googleSheets with us then we can easily configure data at run time, even BA need not to depend on QA to make some change + you have access to your data from anywhere from any devicde and google sheets gives the same functionality and clarity which excel provides.
 
-##How to Use GoogleSheets with Omelet
+## How to Use GoogleSheets with Omelet
 ----- 
 
 Easy- create Google account and add sheet :)
@@ -31,7 +31,7 @@ mvn clean install -DgoogleUserName=yourGmailID -DgooglePassword=YourGmailPasswd 
 
  or continue reading.
 
-##Mapping Sheet
+## Mapping Sheet
 Most important data for omelet is Mapping which actually tells omelet which all browsers , which all data and which all environment to run 
 Create a sheet with name Mapping and add following coloum to sheet
 
