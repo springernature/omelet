@@ -9,6 +9,7 @@ Sauce labs provides api to update test parameters for easy differentiation of th
 With this plugin omelet will support integration of videos directly in omelet report so that we as a QA are never in doubt.
 
 We have created two different plugins for SauceLabs:
+
 * SauceLabsIntegration
 * SauceConnect
 
