@@ -1,6 +1,6 @@
 # Menu navigation links
 - text: Home
-  url: /
+  url: /omelet/
 
 - text: Documentation
   url: '#'
