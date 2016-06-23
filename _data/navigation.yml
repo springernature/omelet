@@ -1,7 +1,34 @@
 # Menu navigation links
+- text: Home
+  url: /
 
-- title: Quick Start
-  url: /Quick-Start/
+- text: Documentation
+  url: '#'
+  subitems:
+    - text: 5 min Tutorial
+      url: /Quick-Start/
 
-- title: Github
-  url: https://github.com/springernature/omelet
+    - text: Configurations
+      url: '#'
+      subitems:
+        - text: Overview
+          url: /Documentation/Configuration/
+        - text: Framework properties
+          url: /Documentation/Configuration/FrameworkProperties
+
+    - text: Data Sources
+      url: /Documentation/Data/
+
+    - text: Plugins
+      url: '#'
+      subitems:
+        - text: Overview
+          url: /Documentation/AddonModules/
+        - text: Sauce plugin
+          url: /Documentation/AddonModules/Sauce-plugin/
+
+- text: Videos
+  url: /Videos/
+  
+- text: News
+  url: /News/
