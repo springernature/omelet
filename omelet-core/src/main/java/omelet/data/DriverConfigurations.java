@@ -84,7 +84,10 @@ public class DriverConfigurations {
 						File.separator)), chromedriverpath(System
 				.getProperty("user.dir")
 				+ "/src/main/resources/chromedriver".replace("/",
-						File.separator));
+						File.separator)), phantomdriverpath(System
+								.getProperty("user.dir")
+								+ "/src/main/resources/phantomjs.exe".replace("/",
+										File.separator));
 
 		private String defaultValue;
 

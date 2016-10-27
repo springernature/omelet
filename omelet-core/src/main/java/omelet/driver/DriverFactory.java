@@ -30,6 +30,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.phantomjs.PhantomJSDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.LocalFileDetector;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -53,6 +54,7 @@ class DriverFactory {
 	private String AUTOMATE_KEY;
 	private String ieServerPath;
 	private String chromeServerPath;
+	private String phantomServerPath;
 	private boolean ishiglightElementFlag;
 	private DesiredCapabilities dc;
 	WebDriver webDriver = null;
@@ -69,6 +71,7 @@ class DriverFactory {
 		this.AUTOMATE_KEY = browsConf.getKey();
 		this.ieServerPath = browserConf.getLocalIEServerPath();
 		this.chromeServerPath = browserConf.getLocalChromeServerPath();
+		this.phantomServerPath = browserConf.getLocalPhantomServerPath();
 		this.ishiglightElementFlag = browserConf.isHighLightElementFlag();
 	}
 
@@ -96,6 +99,10 @@ class DriverFactory {
 		} else if (browser.toLowerCase().startsWith("h")) {
 			LOGGER.info("Browser is HTMLUNIT");
 			webDriver = new HtmlUnitDriver(dc);
+		} else if (browser.toLowerCase().startsWith("p")) {
+			System.setProperty("phantomjs.binary.path", phantomServerPath);
+			LOGGER.info("Browser is PhantomJS");
+			webDriver = new PhantomJSDriver(dc);
 		}
 
 		// For set driver timeout
