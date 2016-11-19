@@ -19,11 +19,6 @@ public class SimpleGoogleTest {
 		GooglePage gp = new GooglePage(Driver.getDriver(browserConf), prop);
 		gp.loadFromProperty().isLoaded().search("Selenium - Web Browser Automation")
 				.clickOnLink("Selenium - Web Browser Automation");
-		// Selenium
-		SeleniumPage sp = new SeleniumPage(Driver.getDriver());
-		sassert.assertEquals(sp.isLoaded().getTitle(),
-				prop.getValue("Selenium_Title"),
-				"Check for the title of the page");
 		sassert.assertAll();
 	}
 
