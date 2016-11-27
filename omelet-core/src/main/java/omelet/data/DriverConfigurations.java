@@ -84,7 +84,10 @@ public class DriverConfigurations {
 						File.separator)), chromedriverpath(System
 				.getProperty("user.dir")
 				+ "/src/main/resources/chromedriver".replace("/",
-						File.separator));
+						File.separator)), phantomdriverpath(System
+								.getProperty("user.dir")
+								+ "/src/main/resources/phantomjs".replace("/",
+										File.separator));
 
 		private String defaultValue;
 
@@ -96,9 +99,17 @@ public class DriverConfigurations {
 				} else {
 					this.defaultValue = defaultValue;
 				}
+			}else if (defaultValue.contains("phantomjs")) {
+				if (OSName.get().equals(OSN.WIN)) {
+					this.defaultValue = defaultValue.replace("phantomjs",
+							"phantomjs.exe");
+				} else {
+					this.defaultValue = defaultValue;
+				}
 			} else {
 				this.defaultValue = defaultValue;
 			}
+			
 		}
 
 		public String get() {

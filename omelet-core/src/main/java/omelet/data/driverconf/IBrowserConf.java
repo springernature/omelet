@@ -40,6 +40,8 @@ public interface IBrowserConf {
 	String getLocalIEServerPath();
 
 	String getLocalChromeServerPath();
+	
+	String getLocalPhantomServerPath();
 
 	boolean isHighLightElementFlag();
 

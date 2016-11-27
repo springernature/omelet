@@ -93,7 +93,14 @@ public class BrowserConfR implements IBrowserConf {
 				.get(DriverConfigurations.LocalEnvironmentConfig.chromedriverpath
 						.toString());
 	}
-
+	
+	
+	public String getLocalPhantomServerPath() {
+		return  mappedValues
+				.get(DriverConfigurations.LocalEnvironmentConfig.phantomdriverpath
+						.toString());
+	}
+	
 	public boolean isHighLightElementFlag() {
 		return Boolean.valueOf(mappedValues
 				.get(DriverConfigurations.FrameworkConfig.highlightelementflag
@@ -207,5 +214,7 @@ public class BrowserConfR implements IBrowserConf {
 	public void updateCapabilities(DesiredCapabilities dc) {
 		this.dc.merge(dc);
 	}
+
+
 
 }
