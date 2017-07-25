@@ -105,10 +105,11 @@ class DriverFactory {
 			webDriver = new PhantomJSDriver(dc);
 		}
 
-		// For set driver timeout
 		if (webDriver != null) {
-			webDriver.manage().timeouts()
-					.implicitlyWait(driverTimeOut, TimeUnit.SECONDS);
+			final WebDriver.Timeouts timeouts = webDriver.manage().timeouts();
+			timeouts.implicitlyWait  (driverTimeOut, TimeUnit.SECONDS);
+			timeouts.setScriptTimeout(driverTimeOut, TimeUnit.SECONDS);
+			timeouts.pageLoadTimeout (driverTimeOut, TimeUnit.SECONDS);
 		}
 
 		if (ishiglightElementFlag) {
