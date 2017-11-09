@@ -17,7 +17,7 @@ public class PrettyMessage implements Runnable {
 	}
 	@Override
 	public void run() {
-		Stopwatch sw = new Stopwatch();
+		Stopwatch sw = Stopwatch.createUnstarted();
 		sw.start();
 		LOGGER.info("Please wait while we are building your testData");
 		StringBuilder sb = new StringBuilder();
@@ -26,7 +26,7 @@ public class PrettyMessage implements Runnable {
 			LOGGER.info(sb.toString());
 			sleep(1);
 		}
-		LOGGER.info("Time taken to build data in seconds is:"+sw.elapsedTime(TimeUnit.SECONDS));
+		LOGGER.info("Time taken to build data in seconds is:"+sw.elapsed(TimeUnit.SECONDS));
 		sw.stop();
 		
 	}

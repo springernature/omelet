@@ -43,6 +43,8 @@ public interface IBrowserConf {
 	
 	String getLocalPhantomServerPath();
 
+	String getLocalFirefoxServerPath();
+
 	boolean isHighLightElementFlag();
 
 	boolean isScreenShotFlag();

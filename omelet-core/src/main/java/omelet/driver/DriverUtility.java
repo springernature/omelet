@@ -68,7 +68,7 @@ public class DriverUtility {
 	 */
 	public static <T> T waitFor(ExpectedCondition<T> expectedCondition,
 			WebDriver driver, int timeOutInSeconds) {
-		Stopwatch stopwatch = new Stopwatch();
+		Stopwatch stopwatch = Stopwatch.createUnstarted();
 		stopwatch.start();
 		driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
 		try {
@@ -85,7 +85,7 @@ public class DriverUtility {
 							TimeUnit.SECONDS);
 			stopwatch.stop();
 			LOGGER.debug("Time Taken for waitFor method for Expected Condition is:"
-					+ stopwatch.elapsedTime(TimeUnit.SECONDS));
+					+ stopwatch.elapsed(TimeUnit.SECONDS));
 		}
 	}
 

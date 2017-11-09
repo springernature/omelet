@@ -22,7 +22,7 @@ public class SimpleGoogleTest {
 		sassert.assertAll();
 	}
 
-	// @Test(dataProvider = "GoogleData")
+	 @Test(dataProvider = "GoogleData")
 	public void verifySeleniumTitleGoogleSheet(IBrowserConf browserConf,
 			IProperty prop) {
 		GooglePage gp = new GooglePage(Driver.getDriver(browserConf), prop);

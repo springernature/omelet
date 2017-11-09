@@ -87,7 +87,10 @@ public class DriverConfigurations {
 						File.separator)), phantomdriverpath(System
 								.getProperty("user.dir")
 								+ "/src/main/resources/phantomjs".replace("/",
-										File.separator));
+										File.separator)),firefoxdriverpath(System
+				.getProperty("user.dir")
+				+ "/src/main/resources/geckodriver".replace("/",
+				File.separator));
 
 		private String defaultValue;
 
@@ -99,7 +102,16 @@ public class DriverConfigurations {
 				} else {
 					this.defaultValue = defaultValue;
 				}
-			}else if (defaultValue.contains("phantomjs")) {
+			}
+			else if (defaultValue.contains("firefox")) {
+				if (OSName.get().equals(OSN.WIN)) {
+					this.defaultValue = defaultValue.replace("geckodriver",
+							"geckodriver.exe");
+				} else {
+					this.defaultValue = defaultValue;
+				}
+			}
+			else if (defaultValue.contains("phantomjs")) {
 				if (OSName.get().equals(OSN.WIN)) {
 					this.defaultValue = defaultValue.replace("phantomjs",
 							"phantomjs.exe");
