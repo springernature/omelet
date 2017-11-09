@@ -100,7 +100,12 @@ public class BrowserConfR implements IBrowserConf {
 				.get(DriverConfigurations.LocalEnvironmentConfig.phantomdriverpath
 						.toString());
 	}
-	
+	public String getLocalFirefoxServerPath() {
+		return  mappedValues
+				.get(DriverConfigurations.LocalEnvironmentConfig.firefoxdriverpath
+						.toString());
+	}
+
 	public boolean isHighLightElementFlag() {
 		return Boolean.valueOf(mappedValues
 				.get(DriverConfigurations.FrameworkConfig.highlightelementflag

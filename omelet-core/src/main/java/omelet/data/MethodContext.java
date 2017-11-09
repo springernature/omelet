@@ -262,10 +262,9 @@ public class MethodContext implements IMethodContext {
 	}
 
 	private void updateGoogleSheet(String environment) {
-		checkGoogleUserNameAndPassword();
+		checkGoogleUserAccountIdAndP12Key();
 		ReadGoogle readGoogle = ReadGoogle.getInstance();
-		readGoogle.connect(System.getProperty(GoogleSheetConstant.GOOGLEUSERNAME),
-				System.getProperty(GoogleSheetConstant.GOOGLEPASSWD),
+		readGoogle.connect(System.getProperty(GoogleSheetConstant.SERVICE_ACCOUNT_ID),System.getProperty(GoogleSheetConstant.GOOGLE_ACCOUNT_P12_FILE_PATH),
 				System.getProperty(GoogleSheetConstant.GOOGLESHEETNAME));
 		RefineMappedData refinedData = new RefineMappedData(readGoogle);
 		IMappingData mapData = refinedData.getMethodData(method);
@@ -275,22 +274,22 @@ public class MethodContext implements IMethodContext {
 
 	}
 
-	private void checkGoogleUserNameAndPassword() {
+	private void checkGoogleUserAccountIdAndP12Key() {
 		if (StringUtils.isBlank(System
-				.getProperty(GoogleSheetConstant.GOOGLEUSERNAME))
+				.getProperty(GoogleSheetConstant.SERVICE_ACCOUNT_ID))
 				&& StringUtils.isBlank(System
-						.getProperty(GoogleSheetConstant.GOOGLEPASSWD))
+						.getProperty(GoogleSheetConstant.GOOGLE_ACCOUNT_P12_FILE_PATH))
 				&& StringUtils.isBlank(System
 						.getProperty(GoogleSheetConstant.GOOGLESHEETNAME))) {
 			// This is not the solution as TestNG is not logging the exception
 			// hence setting it here
 			LOGGER.info("Method with name:"
 					+ methodName
-					+ "required Google Sheet as Test Data , please provide arguments -DgoogleUsername and -DgoogelPassword");
+					+ "required Google Sheet as Test Data , please provide arguments -DserviceAccountId and -DpathOfGoogleP12File");
 			throw new FrameworkException(
 					"Method with name:"
 							+ methodName
-							+ "required Google Sheet as Test Data , please provide arguments -DgoogleUsername and -DgoogelPassword");
+							+ "required Google Sheet as Test Data , please provide arguments -DserviceAccountId and -DpathOfGoogleP12File");
 		}
 	}
 
