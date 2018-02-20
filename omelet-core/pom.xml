@@ -10,6 +10,12 @@
 	<url>https://github.com/springernature/omelet</url>
 	<description>Automation library for Selenium built on top of TestNg</description>
 
+    <parent>
+        <groupId>com.springer</groupId>
+        <artifactId>omelet-parent</artifactId>
+        <version>1.0.12</version>
+    </parent>
+
 	<licenses>
 		<license>
 			<name>Apache 2</name>
@@ -107,23 +113,6 @@
 	<build>
 		<plugins>
 			<plugin>
-				 <groupId>org.apache.maven.plugins</groupId>
-        		 <artifactId>maven-compiler-plugin</artifactId>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-source-plugin</artifactId>
-				<executions>
-					<execution>
-						<id>attach-sources</id>
-						<goals>
-							<goal>jar-no-fork</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-
-			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
 				<configuration>
@@ -135,14 +124,7 @@
 			<!-- <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-gpg-plugin</artifactId> 
 				<executions> <execution> <id>sign-artifacts</id> <phase>verify</phase> <goals> 
 				<goal>sign</goal> </goals> </execution> </executions> </plugin> -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-deploy-plugin</artifactId>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-javadoc-plugin</artifactId>
-			</plugin>
+
 		</plugins>
 		<resources>
 			<resource>

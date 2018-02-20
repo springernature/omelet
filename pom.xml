@@ -21,8 +21,8 @@
   	<module>omelet-core</module>
   	<module>omelet-integration-tests</module>
   	<module>omelet-archetype-simple</module>
-  	<module>omelet-saucelabs-support</module>
-    <module>omelet-browserstack-support</module>
+      <module>omelet-browserstack-support</module>
+      <module>omelet-saucelabs-support</module>
   </modules>
 
   <licenses>
@@ -93,28 +93,23 @@
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-source-plugin</artifactId>
                     <version>3.0.1</version>
+                    <executions>
+                        <execution>
+                            <id>attach-sources</id>
+                            <goals>
+                                <goal>jar-no-fork</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.archetype</groupId>
+                    <artifactId>maven-archetype-plugin</artifactId>
+                    <version>3.0.1</version>
                 </plugin>
             </plugins>
         </pluginManagement>
-
-		<plugins>
-			<plugin>
-				 <groupId>org.apache.maven.plugins</groupId>
-        		 <artifactId>maven-compiler-plugin</artifactId>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-source-plugin</artifactId>
-				<executions>
-					<execution>
-						<id>attach-sources</id>
-						<goals>
-							<goal>jar-no-fork</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-
+    <plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
@@ -155,6 +150,7 @@
 	</distributionManagement>
 	<properties>
 		<github.global.server>github</github.global.server>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 	<profiles>
 		<profile>
