@@ -17,24 +17,26 @@
 
 package omelet.driver;
 
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.concurrent.TimeUnit;
-
 import omelet.data.driverconf.IBrowserConf;
-
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
+import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.ie.InternetExplorerOptions;
 import org.openqa.selenium.phantomjs.PhantomJSDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.LocalFileDetector;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.concurrent.TimeUnit;
 
 /***
  * Driver factory Class for Returning Driver Instances
@@ -57,7 +59,7 @@ class DriverFactory {
     private String phantomServerPath;
     private boolean ishiglightElementFlag;
     private String fireFoxServerPath;
-    private DesiredCapabilities dc;
+    private Capabilities dc;
     WebDriver webDriver = null;
 
     public DriverFactory(IBrowserConf browserConf) {
@@ -90,15 +92,18 @@ class DriverFactory {
         } else if (browser.toLowerCase().startsWith("f")) {
             System.setProperty("webdriver.gecko.driver", fireFoxServerPath);
             LOGGER.debug("Returning firefox driver-Without Remote.");
-            webDriver = new FirefoxDriver(dc);
+            dc = new FirefoxOptions ();
+            webDriver = new FirefoxDriver((FirefoxOptions)dc);
         } else if (browser.toLowerCase().startsWith("i")) {
             System.setProperty("webdriver.ie.driver", ieServerPath);
+            dc= new InternetExplorerOptions (  );
             LOGGER.debug("Returning ie driver-Without Remote.");
-            webDriver = new InternetExplorerDriver(dc);
+            webDriver = new InternetExplorerDriver((InternetExplorerOptions)dc);
         } else if (browser.toLowerCase().startsWith("c")) {
             System.setProperty("webdriver.chrome.driver", chromeServerPath);
             LOGGER.debug("Returning chrome driver-Without Remote.");
-            webDriver = new ChromeDriver(dc);
+            dc = new ChromeOptions ();
+            webDriver = new ChromeDriver((ChromeOptions)dc);
         } else if (browser.toLowerCase().startsWith("h")) {
             LOGGER.info("Browser is HTMLUNIT");
             webDriver = new HtmlUnitDriver(dc);
@@ -133,7 +138,7 @@ class DriverFactory {
         public RemoteBrowser() {
             // setDesiredCapability();
             if (StringUtils.isBlank(dc.getBrowserName()))
-                dc.setBrowserName(browser);
+                ((DesiredCapabilities)dc).setBrowserName(browser);
         }
 
         public WebDriver returnRemoteDriver() {

@@ -215,11 +215,6 @@ public class BrowserConfR implements IBrowserConf {
 		return mappedValues.get(DriverConfigurations.HubConfig.port.toString());
 	}
 
-	@Override
-	public void updateCapabilities(DesiredCapabilities dc) {
-		this.dc.merge(dc);
-	}
-
 
 
 }

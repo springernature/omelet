@@ -103,7 +103,7 @@ public class DriverConfigurations {
 					this.defaultValue = defaultValue;
 				}
 			}
-			else if (defaultValue.contains("firefox")) {
+			else if (defaultValue.contains("geckodriver")) {
 				if (OSName.get().equals(OSN.WIN)) {
 					this.defaultValue = defaultValue.replace("geckodriver",
 							"geckodriver.exe");
