@@ -28,7 +28,8 @@ import omelet.data.driverconf.IBrowserConf;
 import omelet.exception.FrameworkException;
 import omelet.testng.support.MethodContextCollection;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /***
  * Data Provider class for the @Test Methods
@@ -43,7 +44,7 @@ public class DataProvider {
 	}
 
 	@SuppressWarnings("unused")
-	private static final Logger LOGGER = Logger.getLogger(DataProvider.class);
+	private static final Logger LOGGER = LogManager.getLogger(DataProvider.class);
 
 
 	/***

@@ -22,7 +22,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import org.apache.commons.io.FileUtils;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -52,7 +53,7 @@ public class DriverUtility {
 		CHECK, UNCHECK
 	}
 
-	private static final Logger LOGGER = Logger.getLogger(DriverUtility.class);
+	private static final Logger LOGGER = LogManager.getLogger(DriverUtility.class);
 
 	/***
 	 * Generic waitFor Function which waits for condition to be successful else

@@ -28,7 +28,8 @@ import omelet.testng.support.HtmlTable;
 import omelet.testng.support.MethodContextCollection;
 import omelet.testng.support.SAssert;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.IInvokedMethod;
 import org.testng.IInvokedMethodListener;
 import org.testng.ITestResult;
@@ -43,8 +44,7 @@ import org.testng.Reporter;
  */
 public class DriverInitialization implements IInvokedMethodListener {
 
-	private static final Logger LOGGER = Logger
-			.getLogger(DriverInitialization.class);
+	private static final Logger LOGGER = LogManager.getLogger(DriverInitialization.class);
 	// output dir of TestNg currently being used in SAssert
 	public static String outPutDir;
 

@@ -21,18 +21,19 @@ import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 
-import omelet.common.Utils;
-import omelet.data.IProperty;
-import omelet.data.MethodContext;
-import omelet.data.driverconf.IBrowserConf;
-
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.IAnnotationTransformer;
 import org.testng.IAnnotationTransformer2;
 import org.testng.annotations.IConfigurationAnnotation;
 import org.testng.annotations.IDataProviderAnnotation;
 import org.testng.annotations.IFactoryAnnotation;
 import org.testng.annotations.ITestAnnotation;
+
+import omelet.common.Utils;
+import omelet.data.IProperty;
+import omelet.data.MethodContext;
+import omelet.data.driverconf.IBrowserConf;
 
 /***
  * For Appending Retry Annotation on All Test Cases and creating Map of classes
@@ -43,8 +44,7 @@ import org.testng.annotations.ITestAnnotation;
  */
 public class RetryIAnnotationTransformer implements IAnnotationTransformer,
 		IAnnotationTransformer2 {
-	private static final Logger LOGGER = Logger
-			.getLogger(RetryIAnnotationTransformer.class);
+	private static final Logger LOGGER = LogManager.getLogger(RetryIAnnotationTransformer.class);
 	protected static final Map<String,MethodContext> methodContextHolder = new HashMap<String, MethodContext>();
 	/*PrettyMessage prettyMessage = new PrettyMessage();
 	Thread t = new Thread(prettyMessage);*/

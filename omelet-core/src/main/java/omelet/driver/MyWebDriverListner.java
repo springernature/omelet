@@ -23,7 +23,8 @@ package omelet.driver;
  * @author kapilA
  */
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -31,7 +32,7 @@ import org.openqa.selenium.support.events.AbstractWebDriverEventListener;
 
 public class MyWebDriverListner extends AbstractWebDriverEventListener {
 
-	private static Logger LOGGER = Logger.getLogger(MyWebDriverListner.class);
+	private static Logger LOGGER = LogManager.getLogger(MyWebDriverListner.class);
 
 	@Override
 	public void beforeClickOn(WebElement element, WebDriver driver) {
