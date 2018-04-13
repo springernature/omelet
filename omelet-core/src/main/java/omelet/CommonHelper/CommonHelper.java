@@ -3,7 +3,8 @@ package omelet.CommonHelper;
 import java.util.Iterator;
 import java.util.Set;
 
-import org.mortbay.log.Log;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -12,6 +13,7 @@ import omelet.driver.Driver;
 
 public class CommonHelper {
 
+	private static final Logger Log = LogManager.getLogger(CommonHelper.class);
 	/**
 	 * Web driver wait will wait for defined period of time
 	 *

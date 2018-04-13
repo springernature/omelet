@@ -1,6 +1,7 @@
 package omelet.CommonHelper;
 
-import org.mortbay.log.Log;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.ElementClickInterceptedException;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
@@ -17,6 +18,7 @@ import omelet.driver.Driver;
 
 public class ElementActions {
 
+	private static final Logger Log = LogManager.getLogger(ElementActions.class);
 	/**
 	 * @param element
 	 *            pass the webelement to enter text
