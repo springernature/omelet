@@ -113,7 +113,7 @@ public class ElementActions {
 				if (isElementEnabled(driver, element, nameOfWebElement)) {
 					element.click();
 					clickResult = true;
-					Log.debug("clicked on element" + nameOfWebElement);
+					Log.debug("clicked on element: " + nameOfWebElement);
 				} else
 					Log.error("Was unable to click the locator " + nameOfWebElement + " as it is not enabled");
 			} else
@@ -123,7 +123,7 @@ public class ElementActions {
 			clickResult = false;
 		} catch (Exception e) {
 			Log.error("Webelement: " + nameOfWebElement + "-" + element + " :element not found" + e);
-			throw new ElementException("Webelement: " + nameOfWebElement, element + " :element not found" + e);
+			throw new ElementException("Webelement: " + nameOfWebElement, element + " :element not found: " + e);
 		}
 		return clickResult;
 	}

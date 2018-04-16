@@ -97,7 +97,7 @@ public class CommonHelper {
 			throw new ElementException("Switch To window Failed for title: " + windowTitle + e.getMessage());
 		}
 
-		Log.debug("switched to frame and is:" + isSwitchedToWindow);
+		Log.debug("switched to window and is:" + isSwitchedToWindow);
 		return isSwitchedToWindow;
 
 	}
@@ -228,6 +228,7 @@ public class CommonHelper {
 		boolean isDisplayed = false;
 		try {
 			if (element != null) {
+				Log.debug("waiting for visiblity of element: " + nameOfWebElement);
 				expclicitWait(driver, 20).until(ExpectedConditions.visibilityOf(element));
 				isDisplayed = element.isDisplayed();
 			} else {
@@ -237,7 +238,7 @@ public class CommonHelper {
 		} catch (Exception e) {
 			Log.error("Tried waiting for visibility of element:" + nameOfWebElement + " : for 20 seconds,error occured"
 					+ e.getMessage());
-			throw new ElementException("Tried waiting for visibility of element:" + nameOfWebElement
+			throw new ElementException("Tried waiting for visibility of element: " + nameOfWebElement
 					+ " : for 20 seconds,error occured" + e.getMessage());
 		}
 		return isDisplayed;
@@ -267,7 +268,7 @@ public class CommonHelper {
 			}
 		} catch (Exception e) {
 			Log.error("Target Webelement is not enabled");
-			throw new ElementException("Target Webelement" + element.toString() + "is not enabled");
+			throw new ElementException("Target Webelement " + element.toString() + "is not enabled");
 
 		}
 		return isEnabled;
@@ -286,10 +287,9 @@ public class CommonHelper {
 		try {
 			if (url.isEmpty() || url != null) {
 				driver.get(url);
-			} else
-				Log.debug("URL passed is null or empty");
+			}
 		} catch (Exception e) {
-			Log.fatal("Not able to open passed URL" + e.getMessage());
+			Log.fatal("Not able to open passed URL: " + e.getMessage());
 		}
 	}
 
@@ -318,7 +318,7 @@ public class CommonHelper {
 			Log.debug("Alert Exists");
 			return true;
 		} catch (NoAlertPresentException e) {
-			Log.debug("Alert Not Found" + e.getMessage());
+			Log.debug("Alert Not Found: " + e.getMessage());
 
 			return false;
 		}
