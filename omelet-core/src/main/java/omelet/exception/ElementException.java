@@ -18,12 +18,23 @@ public class ElementException extends GenericException {
 	 * 
 	 * @param message
 	 *            pass the message
-	 * @param elementType
+	 * @param element
 	 *            pass the element type in which exception is coming
 	 * @author mlp8076
 	 */
-	public ElementException(String elementType, String message) {
-		super("Exception in element type: " + elementType + " is " + message);
+	public ElementException(String element, String message) {
+		super("Exception in element: " + element + " is " + message);
+	}
+
+	/**
+	 * Constructs a new exception with the specified detail message.
+	 * 
+	 * @param message
+	 *            pass the message
+	 * @author mlp8076
+	 */
+	public ElementException(String message) {
+		super("Exception during element interaction :" + message);
 	}
 
 }

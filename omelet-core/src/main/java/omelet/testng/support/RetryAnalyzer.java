@@ -16,14 +16,14 @@
  *******************************************************************************/
 package omelet.testng.support;
 
-import omelet.configuration.DefaultBrowserConf;
-import omelet.data.driverconf.IBrowserConf;
-import omelet.driver.Driver;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.testng.IRetryAnalyzer;
 import org.testng.ITestResult;
+
+import omelet.configuration.DefaultBrowserConf;
+import omelet.data.driverconf.IBrowserConf;
+import omelet.driver.Driver;
 
 /***
  * For Re-Running Failed Test Cases

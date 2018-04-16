@@ -45,6 +45,7 @@ public class PropertyMapping implements IProperty {
 	private Set<String> classEnumCheck = new HashSet<String>();
 	private FileInputStream fis;
 	boolean isEnumMappingChecked;
+	
 	private static final Logger LOGGER = LogManager.getLogger(PropertyMapping.class);
 
 	public PropertyMapping(Properties prop) {
