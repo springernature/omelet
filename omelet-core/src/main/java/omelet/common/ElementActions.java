@@ -11,6 +11,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import omelet.exception.ElementException;
 
@@ -57,7 +58,7 @@ public class ElementActions {
 				Log.error("Target Webelement is null");
 			}
 		} catch (Exception e) {
-			Log.error("Double click of Web Element " + element.getText() + " failed");
+			Log.error("Double click of Web Element " + element.getText() + " failed " + e);
 			throw new ElementException("Double click Action failed :: " + e.getMessage());
 		}
 		Log.debug("Double click Web Element was succesfull");
@@ -111,6 +112,7 @@ public class ElementActions {
 		try {
 			if (isElementDisplayed(driver, element, nameOfWebElement)) {
 				if (isElementEnabled(driver, element, nameOfWebElement)) {
+					CommonHelper.expclicitWait(driver, 5).until(ExpectedConditions.elementToBeClickable(element));
 					element.click();
 					clickResult = true;
 					Log.debug("clicked on element: " + nameOfWebElement);
@@ -119,11 +121,11 @@ public class ElementActions {
 			} else
 				Log.error("Was unable to click the locator " + nameOfWebElement + " as it is not displayed");
 		} catch (ElementClickInterceptedException e) {
-			Log.error("Unable to click on: " + nameOfWebElement, element + " :element not found" + e);
+			Log.error("Unable to click on: " + nameOfWebElement, element + " :element not found " + e);
 			clickResult = false;
 		} catch (Exception e) {
-			Log.error("Webelement: " + nameOfWebElement + "-" + element + " :element not found" + e);
-			throw new ElementException("Webelement: " + nameOfWebElement, element + " :element not found: " + e);
+			Log.error("Webelement: " + nameOfWebElement + "-" + element + " :element not found " + e);
+			throw new ElementException("Webelement: " + nameOfWebElement, element + " :element not found: " + "/n" + e);
 		}
 		return clickResult;
 	}
@@ -153,8 +155,8 @@ public class ElementActions {
 			} else
 				Log.error("Was unable to click the locator " + nameOfWebElement + " as it is not displayed");
 		} catch (Exception e) {
-			Log.error("Webelement: " + nameOfWebElement + " : " + element + " :element not found" + e);
-			throw new ElementException("Webelement: " + nameOfWebElement, element + " :element not found" + e);
+			Log.error("Webelement: " + nameOfWebElement + " : " + element + " :element not found " + e);
+			throw new ElementException("Webelement: " + nameOfWebElement, element + " :element not found: " + "/n" + e);
 		}
 		return clickResult;
 
@@ -162,7 +164,9 @@ public class ElementActions {
 
 	/**
 	 * Method to mouse hover on element
-	 *
+	 * 
+	 * @param driver
+	 * @param nameOfWebElement
 	 * @param element
 	 *            pass the Web element for click
 	 * @return true when click on element happened
@@ -190,7 +194,7 @@ public class ElementActions {
 				Log.error("Target Webelement is null");
 			}
 		} catch (Exception e) {
-			Log.error("Mouse Hovering of Web Element " + element.getText() + " failed");
+			Log.error("Mouse Hovering of Web Element " + element.getText() + " failed " + e);
 			throw new ElementException("Mouse Hovering Action failed :: " + e.getMessage());
 		}
 		Log.debug("Mouse Hover on Web Element was succesfull");
@@ -201,7 +205,6 @@ public class ElementActions {
 	 * This Method is used to submit element which is in the form of type button and
 	 * it should have submit attribute
 	 * 
-	 * @param strLogicalName
 	 * @param driver
 	 * @param element
 	 * @return boolean
@@ -222,8 +225,8 @@ public class ElementActions {
 					Log.error("Was unable to click the locator " + nameOfWebElement + " as it is not displayed");
 			}
 		} catch (Exception e) {
-			Log.error("Webelement: " + nameOfWebElement + " - " + element + " :element not found" + e);
-			throw new ElementException("Webelement: " + nameOfWebElement, element + " :element not found" + e);
+			Log.error("Webelement: " + nameOfWebElement + " - " + element + " :element not found " + e);
+			throw new ElementException("Webelement: " + nameOfWebElement, element + " :element not found " + e);
 		}
 		return elementResult;
 	}
@@ -256,7 +259,7 @@ public class ElementActions {
 							CommonHelper.waitInSeconds(1);
 						}
 						element.sendKeys(textToEnter);
-						Log.debug("Entered text:" + textToEnter + " \t in field" + nameOfWebElement);
+						Log.debug("Entered text:" + textToEnter + " \t in field: " + nameOfWebElement);
 
 						String textValue = getText(driver, element, nameOfWebElement);
 						if (textValue != null && !textValue.isEmpty()) {
@@ -275,7 +278,7 @@ public class ElementActions {
 						+ " :textbox as the Value might be NULL or Empty");
 			}
 		} catch (Exception e) {
-			Log.error("For passed Element:" + nameOfWebElement + " :textField not found");
+			Log.error("For passed Element:" + nameOfWebElement + " :textField not found " + e);
 			throw new ElementException("For passed Element:" + nameOfWebElement + " :textField not found");
 		}
 		return isTextEntered;
@@ -319,7 +322,7 @@ public class ElementActions {
 				Log.error("Element: " + nameOfWebElement + " textField is null");
 			}
 		} catch (Exception e) {
-			Log.error("Element: " + nameOfWebElement + " :textField not found");
+			Log.error("Element: " + nameOfWebElement + " :textField not found " + e);
 			throw new ElementException(nameOfWebElement + " :textField not found");
 		}
 		return returnText;
@@ -355,8 +358,8 @@ public class ElementActions {
 				Log.error(nameOfWebElement + " Element does not exist");
 			}
 		} catch (Exception e) {
-			Log.error("Element: " + nameOfWebElement + ": WebElement not found");
-			throw new ElementException(nameOfWebElement + " :WebElement not found");
+			Log.error("Element: " + nameOfWebElement + ": WebElement not found " + e);
+			throw new ElementException(nameOfWebElement + " :WebElement not found ");
 		}
 		return isReadOnly;
 	}
@@ -387,7 +390,7 @@ public class ElementActions {
 					Log.debug("Element: " + nameOfWebElement + " is not displayed");
 				}
 			} else {
-				Log.debug("Element: " + nameOfWebElement + " might be empty or nul");
+				Log.debug("Element: " + nameOfWebElement + " might be empty or null");
 			}
 		} catch (Exception e) {
 			Log.error("Error occured while getting attribute: " + attribute + " of element: " + nameOfWebElement);

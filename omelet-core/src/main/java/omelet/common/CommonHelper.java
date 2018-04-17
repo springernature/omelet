@@ -94,7 +94,7 @@ public class CommonHelper {
 			isSwitchedToWindow = true;
 
 		} catch (Exception e) {
-			throw new ElementException("Switch To window Failed for title: " + windowTitle + e.getMessage());
+			throw new ElementException("Switch To window Failed for title: " + windowTitle +"/n "+"/n "+ e.getMessage());
 		}
 
 		Log.debug("switched to window and is:" + isSwitchedToWindow);
@@ -125,7 +125,7 @@ public class CommonHelper {
 
 			}
 		} catch (Exception e) {
-			throw new ElementException("For frame: " + frameName + " Switch To Frame Action Failed " + e.getMessage());
+			throw new ElementException("For frame: " + frameName + " Switch To Frame Action Failed " +"/n "+ e.getMessage());
 		}
 
 		Log.debug("switched to frame and is:" + isSwitchedToFrame);
@@ -156,7 +156,7 @@ public class CommonHelper {
 
 			}
 		} catch (Exception e) {
-			throw new ElementException("Switch To Frame Action Failed using weblement: " + e.getMessage());
+			throw new ElementException("Switch To Frame Action Failed using weblement: " +"/n "+ e.getMessage());
 		}
 
 		Log.debug("switched to frame and is:" + isSwitchedToFrame);
@@ -188,7 +188,7 @@ public class CommonHelper {
 			}
 		} catch (Exception e) {
 			throw new ElementException(
-					"Switch To Frame Action Failed using frameNumber: " + frameNubmer + e.getMessage());
+					"Switch To Frame Action Failed using frameNumber: " + frameNubmer +"/n "+ e.getMessage());
 		}
 
 		Log.debug("switched to frame and is:" + isSwitchedToFrame);
@@ -229,7 +229,7 @@ public class CommonHelper {
 		try {
 			if (element != null) {
 				Log.debug("waiting for visiblity of element: " + nameOfWebElement);
-				expclicitWait(driver, 20).until(ExpectedConditions.visibilityOf(element));
+				expclicitWait(driver, 15).until(ExpectedConditions.visibilityOf(element));
 				isDisplayed = element.isDisplayed();
 			} else {
 				Log.debug("Element: " + nameOfWebElement + " is null");
@@ -237,9 +237,9 @@ public class CommonHelper {
 			}
 		} catch (Exception e) {
 			Log.error("Tried waiting for visibility of element:" + nameOfWebElement + " : for 20 seconds,error occured"
-					+ e.getMessage());
+					+"/n "+ e.getMessage());
 			throw new ElementException("Tried waiting for visibility of element: " + nameOfWebElement
-					+ " : for 20 seconds,error occured" + e.getMessage());
+					+ " : for 20 seconds,error occured" +"/n "+ e.getMessage());
 		}
 		return isDisplayed;
 	}
@@ -255,6 +255,8 @@ public class CommonHelper {
 	public static boolean isElementEnabled(WebDriver driver, WebElement element, String nameOfWebElement)
 			throws ElementException {
 		boolean isEnabled = false;
+
+		Log.debug("Trying to check if element is enabled ");
 		try {
 			if (element != null) {
 				if (isElementDisplayed(driver, element, nameOfWebElement)) {
@@ -289,7 +291,7 @@ public class CommonHelper {
 				driver.get(url);
 			}
 		} catch (Exception e) {
-			Log.fatal("Not able to open passed URL: " + e.getMessage());
+			Log.fatal("Not able to open passed URL: " +"/n "+ e.getMessage());
 		}
 	}
 
@@ -318,7 +320,7 @@ public class CommonHelper {
 			Log.debug("Alert Exists");
 			return true;
 		} catch (NoAlertPresentException e) {
-			Log.debug("Alert Not Found: " + e.getMessage());
+			Log.debug("Alert Not Found: " +"/n "+ e.getMessage());
 
 			return false;
 		}

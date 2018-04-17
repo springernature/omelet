@@ -102,7 +102,6 @@ class DriverFactory {
 			FirefoxOptions option = new FirefoxOptions();
 			option.merge(capabilities);
 			option.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
-			option.setCapability("elementScrollBehavior", 1);
 			
 			if(remoteFlag)
 				webDriver = rb.returnRemoteDriver(option);
