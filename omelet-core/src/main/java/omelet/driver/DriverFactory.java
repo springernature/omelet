@@ -19,7 +19,6 @@ package omelet.driver;
 
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
@@ -63,7 +62,7 @@ class DriverFactory {
 	private boolean ishiglightElementFlag;
 	private String fireFoxServerPath;
 	private Capabilities capabilities;
-	WebDriver webDriver ;
+	WebDriver webDriver;
 
 	public DriverFactory(IBrowserConf browserConf) {
 		IBrowserConf browsConf = browserConf;
@@ -89,63 +88,67 @@ class DriverFactory {
 	 * @return
 	 */
 	public WebDriver intializeDriver() {
-		RemoteBrowser rb=null;
-		if(remoteFlag)
+		RemoteBrowser rb = null;
+		if (remoteFlag)
 			rb = this.new RemoteBrowser();
 
-		 if (browser.toLowerCase().startsWith("f")) {
+		if (browser.toLowerCase().startsWith("f")) {
 
 			System.setProperty("webdriver.gecko.driver", fireFoxServerPath);
 
 			LOGGER.debug("Returning firefox driver-Without Remote.");
 
-			FirefoxOptions option = new FirefoxOptions();
-			option.merge(capabilities);
-			option.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
+			FirefoxOptions options = new FirefoxOptions();
+			options.merge(capabilities);
 			
-			if(remoteFlag)
-				webDriver = rb.returnRemoteDriver(option);
-			
-			webDriver = new FirefoxDriver(option);
+			options.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
+
+			if (remoteFlag)
+				webDriver = rb.returnRemoteDriver(options);
+			else
+			webDriver = new FirefoxDriver(options);
 
 		} else if (browser.toLowerCase().startsWith("i")) {
 
 			System.setProperty("webdriver.ie.driver", ieServerPath);
-			
-			InternetExplorerOptions option = new InternetExplorerOptions();
-			
-			option.merge(capabilities);
-			
+
+			InternetExplorerOptions options = new InternetExplorerOptions();
+
+			options.merge(capabilities);
+
 			LOGGER.debug("Returning ie driver-Without Remote.");
-			
-			if(remoteFlag)
-				webDriver = rb.returnRemoteDriver(option);
-			
-			webDriver = new InternetExplorerDriver(option);
+
+			if (remoteFlag)
+				webDriver = rb.returnRemoteDriver(options);
+			else
+			webDriver = new InternetExplorerDriver(options);
 
 		}
 
 		else if (browser.toLowerCase().startsWith("c")) {
 
 			System.setProperty("webdriver.chrome.driver", chromeServerPath);
+
+			ChromeOptions options = new ChromeOptions();
+
+			options.merge(capabilities);
+			options.addArguments("--disable-extensions");
+			options.addArguments("start-maximized");
+			options.addArguments("--kiosk");
+			options.setAcceptInsecureCerts(true);
 			
-			LOGGER.debug("Returning chrome driver-Without Remote.");
-			
-			ChromeOptions option = new ChromeOptions();
-			
-			option.merge(capabilities);
-			
-			if(remoteFlag)
-				webDriver = rb.returnRemoteDriver(option);
-			
-			webDriver = new ChromeDriver(option);
+			if (remoteFlag)
+				webDriver = rb.returnRemoteDriver(options);
+			else
+			webDriver = new ChromeDriver(options);
 
 		} else if (browser.toLowerCase().startsWith("h")) {
-			
+
 			LOGGER.info("Browser is HTMLUNIT");
-			if(remoteFlag)
-				webDriver = rb.returnRemoteDriver(capabilities);
 			
+			if (remoteFlag)
+				webDriver = rb.returnRemoteDriver(capabilities);
+			else
 			webDriver = new HtmlUnitDriver(capabilities);
 
 		}
@@ -155,21 +158,27 @@ class DriverFactory {
 		{
 			System.setProperty("phantomjs.binary.path", phantomServerPath);
 			LOGGER.info("Browser is PhantomJS");
-			
-			if(remoteFlag)
+
+			if (remoteFlag)
 				webDriver = rb.returnRemoteDriver(capabilities);
-			
+			else
 			webDriver = new PhantomJSDriver(capabilities);
 
 		}
 
-		// For set driver timeout
+		/**
+		 * commenting this because it creates problem with explicit wait. Advised to use
+		 * explicit wait whenever required.
+		 */
 
-		if (webDriver != null) {
-
-			webDriver.manage().timeouts().implicitlyWait(driverTimeOut, TimeUnit.SECONDS);
-
-		}
+		/*
+		 * if (webDriver != null) {
+		 * 
+		 * webDriver.manage().timeouts().implicitlyWait(driverTimeOut,
+		 * TimeUnit.SECONDS);
+		 * 
+		 * }
+		 */
 
 		if (ishiglightElementFlag) {
 
@@ -189,13 +198,12 @@ class DriverFactory {
 	 */
 	private class RemoteBrowser {
 
-		public RemoteBrowser() {
+		public WebDriver returnRemoteDriver(Capabilities options) {
+
 			// setDesiredCapability();
 			if (StringUtils.isBlank(capabilities.getBrowserName()))
-				System.out.println("Browser name is not set");
-		}
-
-		public WebDriver returnRemoteDriver(Capabilities options) {
+				LOGGER.debug("Browser name is not set");
+		
 			String remoteUrl;
 			if (host.contains("browserstack") || host.contains("sauce") || host.contains("testingbot")) {
 				remoteUrl = "http://" + USERNAME + ":" + AUTOMATE_KEY + "@" + host + ":" + port + "/wd/hub";
