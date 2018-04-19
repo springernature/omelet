@@ -125,7 +125,7 @@ public class ElementActions {
 			clickResult = false;
 		} catch (Exception e) {
 			Log.error("Webelement: " + nameOfWebElement + "-" + element + " :element not found " + e);
-			throw new ElementException("Webelement: " + nameOfWebElement, element + " :element not found: " + "/n" + e);
+			throw new ElementException("Webelement: " + nameOfWebElement, element + " :element not found: " + "\n" + e);
 		}
 		return clickResult;
 	}
@@ -156,7 +156,7 @@ public class ElementActions {
 				Log.error("Was unable to click the locator " + nameOfWebElement + " as it is not displayed");
 		} catch (Exception e) {
 			Log.error("Webelement: " + nameOfWebElement + " : " + element + " :element not found " + e);
-			throw new ElementException("Webelement: " + nameOfWebElement, element + " :element not found: " + "/n" + e);
+			throw new ElementException("Webelement: " + nameOfWebElement, element + " :element not found: " + "\n" + e);
 		}
 		return clickResult;
 

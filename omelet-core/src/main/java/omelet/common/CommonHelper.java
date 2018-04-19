@@ -94,10 +94,10 @@ public class CommonHelper {
 			isSwitchedToWindow = true;
 
 		} catch (Exception e) {
-			throw new ElementException("Switch To window Failed for title: " + windowTitle +"/n "+"/n "+ e.getMessage());
+			throw new ElementException("Switch To window Failed for title: " + windowTitle +"\n"+ e.getMessage());
 		}
 
-		Log.debug("switched to window and is:" + isSwitchedToWindow);
+		Log.debug("switched to window and is: " + isSwitchedToWindow);
 		return isSwitchedToWindow;
 
 	}
@@ -125,7 +125,7 @@ public class CommonHelper {
 
 			}
 		} catch (Exception e) {
-			throw new ElementException("For frame: " + frameName + " Switch To Frame Action Failed " +"/n "+ e.getMessage());
+			throw new ElementException("For frame: " + frameName + " Switch To Frame Action Failed " +"\n "+ e.getMessage());
 		}
 
 		Log.debug("switched to frame and is:" + isSwitchedToFrame);
@@ -156,7 +156,7 @@ public class CommonHelper {
 
 			}
 		} catch (Exception e) {
-			throw new ElementException("Switch To Frame Action Failed using weblement: " +"/n "+ e.getMessage());
+			throw new ElementException("Switch To Frame Action Failed using weblement: " +"\n "+ e.getMessage());
 		}
 
 		Log.debug("switched to frame and is:" + isSwitchedToFrame);
@@ -188,7 +188,7 @@ public class CommonHelper {
 			}
 		} catch (Exception e) {
 			throw new ElementException(
-					"Switch To Frame Action Failed using frameNumber: " + frameNubmer +"/n "+ e.getMessage());
+					"Switch To Frame Action Failed using frameNumber: " + frameNubmer +"\n "+ e.getMessage());
 		}
 
 		Log.debug("switched to frame and is:" + isSwitchedToFrame);
@@ -237,9 +237,9 @@ public class CommonHelper {
 			}
 		} catch (Exception e) {
 			Log.error("Tried waiting for visibility of element:" + nameOfWebElement + " : for 20 seconds,error occured"
-					+"/n "+ e.getMessage());
+					+"\n "+ e.getMessage());
 			throw new ElementException("Tried waiting for visibility of element: " + nameOfWebElement
-					+ " : for 20 seconds,error occured" +"/n "+ e.getMessage());
+					+ " : for 20 seconds,error occured" +"\n "+ e.getMessage());
 		}
 		return isDisplayed;
 	}
@@ -291,7 +291,7 @@ public class CommonHelper {
 				driver.get(url);
 			}
 		} catch (Exception e) {
-			Log.fatal("Not able to open passed URL: " +"/n "+ e.getMessage());
+			Log.fatal("Not able to open passed URL: " +"\n "+ e.getMessage());
 		}
 	}
 
@@ -320,7 +320,7 @@ public class CommonHelper {
 			Log.debug("Alert Exists");
 			return true;
 		} catch (NoAlertPresentException e) {
-			Log.debug("Alert Not Found: " +"/n "+ e.getMessage());
+			Log.debug("Alert Not Found: " +"\n "+ e.getMessage());
 
 			return false;
 		}

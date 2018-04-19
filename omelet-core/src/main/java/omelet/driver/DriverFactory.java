@@ -100,13 +100,26 @@ class DriverFactory {
 
 			FirefoxOptions options = new FirefoxOptions();
 			options.merge(capabilities);
-			
+
 			options.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
+			options.addPreference("toolkit.startup.max_resumed_crashes", 2);
+			options.addPreference("browser.download.manager.showWhenStarting", false);
+			options.addPreference("pdfjs.disabled", true);
+			options.addPreference("plugin.scan.plid.all", false);
+			options.addPreference("plugin.scan.Acrobat", "99.0");
+			options.addPreference("plugin.disable_full_page_plugin_for_types",
+					"application/pdf,application/vnd.adobe.xfdf,application/vnd.fdf,"
+							+ "application/vnd.adobe.xdp+xml");
+			options.addPreference("browser.helperApps.neverAsk.saveToDisk",
+					"application/vnd.ms-excel, " + "application/octet-stream, application/pdf, application/vnd.fdf, "
+							+ "application/x-unknown-application-octet-stream");
+			options.addPreference("browser.helperApps.alwaysAsk.force", false);
+			options.addPreference("network.http.use-cache", false);
 
 			if (remoteFlag)
 				webDriver = rb.returnRemoteDriver(options);
 			else
-			webDriver = new FirefoxDriver(options);
+				webDriver = new FirefoxDriver(options);
 
 		} else if (browser.toLowerCase().startsWith("i")) {
 
@@ -121,7 +134,7 @@ class DriverFactory {
 			if (remoteFlag)
 				webDriver = rb.returnRemoteDriver(options);
 			else
-			webDriver = new InternetExplorerDriver(options);
+				webDriver = new InternetExplorerDriver(options);
 
 		}
 
@@ -136,20 +149,20 @@ class DriverFactory {
 			options.addArguments("start-maximized");
 			options.addArguments("--kiosk");
 			options.setAcceptInsecureCerts(true);
-			
+
 			if (remoteFlag)
 				webDriver = rb.returnRemoteDriver(options);
 			else
-			webDriver = new ChromeDriver(options);
+				webDriver = new ChromeDriver(options);
 
 		} else if (browser.toLowerCase().startsWith("h")) {
 
 			LOGGER.info("Browser is HTMLUNIT");
-			
+
 			if (remoteFlag)
 				webDriver = rb.returnRemoteDriver(capabilities);
 			else
-			webDriver = new HtmlUnitDriver(capabilities);
+				webDriver = new HtmlUnitDriver(capabilities);
 
 		}
 
@@ -162,7 +175,7 @@ class DriverFactory {
 			if (remoteFlag)
 				webDriver = rb.returnRemoteDriver(capabilities);
 			else
-			webDriver = new PhantomJSDriver(capabilities);
+				webDriver = new PhantomJSDriver(capabilities);
 
 		}
 
@@ -203,7 +216,7 @@ class DriverFactory {
 			// setDesiredCapability();
 			if (StringUtils.isBlank(capabilities.getBrowserName()))
 				LOGGER.debug("Browser name is not set");
-		
+
 			String remoteUrl;
 			if (host.contains("browserstack") || host.contains("sauce") || host.contains("testingbot")) {
 				remoteUrl = "http://" + USERNAME + ":" + AUTOMATE_KEY + "@" + host + ":" + port + "/wd/hub";
