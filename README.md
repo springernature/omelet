@@ -1,3 +1,7 @@
+## WARNING: this repository is not currently maintained!    
+
+**There may be known security issues or just general bit-rot. We hope the code may remain useful to some but we cannot offer any support at this time.**
+
 
 	**********************************************
 	**********************************************
