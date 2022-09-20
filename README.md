@@ -1,3 +1,7 @@
+## WARNING: this repository is not currently maintained!    
+
+**There may be known security issues or just general bit-rot. We hope the code may remain useful to some but we cannot offer any support at this time.**
+
 
 	**********************************************
 	**********************************************
@@ -21,7 +25,7 @@ Very simple yet powerful automation library for **Selenium WebDriver** which use
 Omelet Vagrant Box
 ----------------
 if you would like to work on fresh machine, then there is vagrant box built for the development of automation script
-https://github.com/springer-opensource/omelet-dev-box
+https://github.com/springernature/omelet-dev-box
 
 Salient Features
 ----------------
